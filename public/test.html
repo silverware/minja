@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Tournament Tests</title>
+    <link href="css/buster-test.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="js/lib/require-jquery.js"></script>
+    <script src="js/require-config.js"></script>
+    <script src="js/lib/handlebars-1.0.rc.1.js"></script>
+    <script src="js/lib/ember-1.0.pre.min.js"></script>
+    <script src="js/lib/bootstrap.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/buster-test.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/tree.js"></script>
+    <script type="text/javascript" src="js/tree-test.js"></script>
+  <script>
+    require(["utils/EmberSerializer"], function(Serializer) {
+        window.Serializer = Serializer;
+    });
+  </script>
+
+  </body>
+</html>

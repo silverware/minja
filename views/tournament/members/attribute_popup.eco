@@ -1,0 +1,12 @@
+<%= @formFor {}, (form) => %>
+  <%= form.textField "Name", "name" %>
+  <div class="control-group">
+    <label class="control-label" for="inputtyp"><%= @i18n.members.type %></label>
+    <div class="controls">
+      <select id="inputtyp">
+        <option value="textfield"><%= @i18n.members.textfield %></option>
+        <option value="checkbox">Checkbox</option>
+      </select>
+    </div>
+  </div>
+<% end %>

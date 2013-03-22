@@ -1,0 +1,58 @@
+<script>
+  require(["info/Chat"], function(Chat) {
+    window.Chat = Chat.create({
+      tournament_id: "<%= @tournament.id %>",
+      editable: <%= @tournament.isOwner %>,
+      i18n: <%- @json @i18n.chat %>
+    });
+  });
+</script>
+
+<div id="content">
+  <h1><%= @i18n.info.header %>
+  <% if @tournament.isOwner: %>
+    <%= @headerAction @i18n.edit, "info/edit", "edit" %>
+  <% end %>
+  </h1>
+
+  <dl class="dl-horizontal">
+    <dt><%= @i18n.info.startDate %></dt>
+    <dd>
+      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime %>
+    </dd>
+    <% if @tournament.info.stopDate: %>
+      <dt><%= @i18n.info.stopDate %></dt>
+      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime %></dd>
+    <% end %>
+    <dt><%= @i18n.info.venue %></dt>
+    <dd><%= @textOrNa @tournament.info.venue %>
+  </dl>
+    <dl class="dl-horizontal">
+    <dt><%= @i18n.info.host %></dt>
+    <dd><%= @textOrNa @tournament.info.host %></dd>
+    <dt>E-Mail</dt>
+    <dd><%= @textOrNa @tournament.info.hostMail %>
+  </dl>
+  <% if @tournament.info.description: %>
+    <hr />
+    <div id="description"><%= @wikiToHtml @tournament.info.description %></div>
+  <% end %>
+
+  <br />
+  <br />
+
+  <fieldset>
+  <legend><%= @i18n.chat.messageStream %></legend>
+    <form id="chatForm">
+      <% if not @tournament.isOwner: %>
+        <input type="text" id="messageName" class="input-small required" style="display: none" placeholder="Name" name="message[author]" />
+      <% end %>
+      <textarea id="message" rows="1" class="required input-block-level" placeholder="<%= @i18n.chat.message %>" name="message[text]"></textarea>
+      <button type="submit" id="publishButton" class="btn btn-primary hide"><%= @i18n.chat.publish %></button>
+    </form>
+    <div id="chat"></div>
+  </fieldset>
+</div>
+
+
+

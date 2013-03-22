@@ -1,0 +1,45 @@
+<script>
+function removeFavorte(tid) {
+  $.post("/me/favorites/toggle", {tid: tid}, function() {
+    window.location.reload();
+  });
+}
+</script>
+
+<div id="content">
+  <h1><%= @i18n.favorites %></h1>
+
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th><%= @i18n.created %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% for tournament in @favoriteTournaments: %>
+        <tr>
+          <td><%= tournament.value.info.name %></td>
+          <td><%= @i18n.date tournament.value.created_at %></td>
+          <td width="60px">
+            <div class="btn-group">
+              <button class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value._id %>'"><i class="icon-folder-open"></i><%= @i18n.open %></button>
+              <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" onclick="removeFavorte('<%= tournament.value._id %>');">
+                    <i class="icon-trash"></i><%= @i18n.delete %>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div style="text-align: right">
+    <em><%= "#{@favoriteTournaments.length} #{@i18n.tournaments}" %></em>
+  </div>
+</div>

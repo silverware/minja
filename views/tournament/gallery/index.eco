@@ -1,0 +1,44 @@
+<div id="content">
+  <h1>
+  	<%= @i18n.gallery.navName %>
+    <% if @editable: %>
+     <%= @headerAction @i18n.show, "../gallery", "eye-open" %>
+     <a style="float: right; margin-right: 10px" href="#">
+       <button class="btn btn-inverse" onclick="Gallery.loadImage()"><i class="icon-plus-sign"></i><%= @i18n.gallery.addImages %></button>
+     </a>
+    <% end %>
+    <% if not @editable and @tournament.isOwner: %>
+     <%= @headerAction @i18n.edit, "gallery/edit", "edit" %>
+    <% end %>
+  </h1>
+
+  <div id="gallery"></div>
+
+  <script>
+    require(["gallery/Gallery", "gallery/GallerySave"], function(EmberGallery, GallerySave) {
+      window.Gallery = EmberGallery.create({
+        editable: <%= @editable %>,
+        imagesData: <%- @json @tournament.gallery %>,
+        tournamentId: "<%= @tournament.id %>",
+        i18n: <%- @json @i18n.gallery %>
+      });
+      new GallerySave({
+        form: $("form"),
+        data: Gallery.data.bind(Gallery)
+      });
+    });
+  </script>
+  <% if @editable: %>
+    <div class="form-horizontal" action="#" method="post">
+      <div class="control-group">
+        <div class="controls">
+          <form action="#" method="post" style="display: inline-block">
+            <button class="btn btn-primary btn" type="submit"><%= @i18n.save %></button>
+            <img class="ajaxLoader" src="/img/ajax-loader.gif" />
+            <span class="successIcon"><i class="icon-ok"></i> <%= @i18n.saved %></span>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

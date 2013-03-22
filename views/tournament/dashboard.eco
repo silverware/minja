@@ -1,0 +1,99 @@
+<script>
+  require(["info/Chat", "info/TreeStatisticsView"], function(Chat, TreeStatisticsView) {
+    window.Chat = Chat.create({
+      tournament_id: "<%= @tournament.id %>",
+      editable: false,
+      i18n: <%- @json @i18n.chat %>,
+      limit: 2
+    });
+    TreeStatisticsView.init({
+      data: <%- @json @tournament.tree %>,
+      i18n: <%- @json @i18n.tree %>
+    });
+  });
+</script>
+
+<div id="wrapper">
+<div class="row-fluid">
+<div class="span6">
+<a href="/<%= @tournament.identifier %>/info">
+<section class="dashboardBox" style="height: 200px">
+  <fieldset>
+  <legend><%= @i18n.info.basicData %></legend>
+  <dl class="dl-horizontal">
+    <dt><%= @i18n.info.startDate %></dt>
+    <dd>
+      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime %>
+    </dd>
+    <% if @tournament.info.stopDate: %>
+      <dt><%= @i18n.info.stopDate %></dt>
+      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime %></dd>
+    <% end %>
+    <dt><%= @i18n.info.venue %></dt>
+    <dd><%= @textOrNa @tournament.info.venue %>
+  </dl>
+    <dl class="dl-horizontal">
+    <dt><%= @i18n.info.host %></dt>
+    <dd><%= @textOrNa @tournament.info.host %></dd>
+    <dt>E-Mail</dt>
+    <dd><%= @textOrNa @tournament.info.hostMail %>
+  </dl>
+  </fieldset>
+</section>
+</a>
+</div>
+
+
+<div class="span6">
+<a href="/<%= @tournament.identifier %>/members">
+<section class="dashboardBox" style="height: 200px">
+  <fieldset>
+    <legend><%= @i18n.members.navName %></legend>
+    <% if @tournament.members: %>
+    <% for member in @tournament.members.members: %>
+      <span class="label"><%= member.name %></span>
+    <% end %>
+    <div class="bottomRight">
+      <em><%= "#{@tournament.members.members.length} #{@i18n.members.navName}" %></em>
+    </div>
+    </span>
+    <% else: %>
+      Es wurden noch keine Teilnehmer angelegt.
+    <% end %>
+  </fieldset>
+</section>
+</a>
+</div>
+
+
+</div>
+
+
+
+<div class="row-fluid">
+
+<div class="span6">
+<a href="/<%= @tournament.identifier %>/info">
+<section class="dashboardBox">
+  <fieldset>
+  <legend><%= @i18n.chat.messageStream %></legend>
+    <div id="chat"></div>
+  </fieldset>
+</section>
+</a>
+</div>
+
+
+<div class="span6">
+<a href="/<%= @tournament.identifier %>/tree">
+<section class="dashboardBox" id="treeDashboardBox">
+  <fieldset>
+    <legend><%= @i18n.tree.navName %></legend>
+  </fieldset>
+</section>
+</a>
+</div>
+
+</div>
+
+</div>

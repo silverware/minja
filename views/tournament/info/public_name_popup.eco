@@ -1,0 +1,18 @@
+Hinweis:
+    <p>Der öffentliche Turniername kann nur einmal geändert werden und sollte den Namen des Turniers enthalten.</p> 
+    Der Name unterliegt folgenden Einschränkungen:
+    <ul>
+    	<li>mindestens 5 Zeichen</li>
+    	<li>nur Buchstaben, Zahlen oder Punkt</li>
+    </ul>
+<br />
+<form id="publicNameForm">
+<div class="form-horizontal">
+   <div class="control-group">
+     <label class="control-label" for="inputPublicName">Name</label>
+	<div class="controls">
+      <input type="text" id="inputPublicName" name="publicName" class="publicName" placeholder="<%= @i18n.info.publicName %>">
+    </div>
+   </div>
+</div>
+</form>

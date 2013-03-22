@@ -1,0 +1,19 @@
+{{#each image in Gallery.images}}
+  <li style="width: 160px">
+    <div class="thumbnail">
+      <img style="cursor: pointer" src="{{unbound image.url}}" {{action "show" target="image"}} />
+      <center>
+      <br />
+      {{#if Gallery.editable}}
+	      <p>{{view Em.TextField valueBinding="image.title" placeholderBinding="Gallery.i18n.title" classNames="galleryTitle"}}</p>
+	      <p>{{#view Em.Button classNames="btn btn-danger" action="remove" target="image"}}<i class="icon-trash"></i>{{Gallery.i18n.delete}}{{/view}}</p>
+      {{/if}}
+      {{#unless Gallery.editable}}
+         <p>{{image.title}}&nbsp;</p>
+      {{/unless}}
+      </center>
+    </div>
+  </li>
+{{/each}}
+<input type="file" id="file" class="hide" multiple />
+

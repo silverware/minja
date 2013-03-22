@@ -1,0 +1,42 @@
+<script>
+function fillInputs() {
+	$("#username").val("test@test.de");
+	$("#password").val("test");
+	$("form").submit();
+};
+
+$(function() {
+  new Save({
+    form: $("form"),
+    ajax: false,
+  });
+});
+</script>
+
+<div id="smallContent">
+	<h1>Login</h1>
+	<% if (@message): %>
+	  <p><%= @message %></p>
+	<% end %>
+  <%= @formWithActionFor {}, "/login", (form) => %>
+    <%= form.textField "E-Mail", "username", {placeholder: "name@example.com", class: "required email"} %>
+    <%= form.password @i18n.password, "password", {placeholder: @i18n.password, class: "required"} %>
+	  <input type="hidden" value="<%= @next %>" name="next" />
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Login</button>
+        <a href="/lostpassword">
+          <button type="button" class="btn btn-link"><i class="icon-question-sign"></i><%= @i18n.lostPassword %></button>
+        </a>
+      </div>
+    </div>
+
+    <hr />
+    <div class="control-group">
+      <div class="control-label">Via facebook</div>
+      <div class="controls">
+        <a href="/auth/facebook"><button class="btn btn-primary btn" type="button"><i class="icon-facebook"></i>Login via Facebook</button></a>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+{{#each message in Chat.messages}}
+  <h5>
+    {{message.author}}
+    <small>&nbsp;&nbsp;{{message.created_at_humanized}}</small>
+    {{#if Chat.editable}}
+       <button class="btn btn-link pull-right" {{action "remove" target="message"}}><i class="icon-trash"></i>{{Chat.i18n.delete}}</button>
+    {{/if}}
+  </h5>
+  <pre style="margin-bottom: 20px">{{message.text}}</pre>
+{{/each}}
+
+<center><img id="chatLoader" src="/img/ajax-loader.gif" /></center>
+<button id="showMore" class="hide btn btn-inverse" {{action "loadMessages" target="Chat"}}>
+  {{Chat.i18n.showMore}}
+</button>

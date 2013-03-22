@@ -1,0 +1,27 @@
+exports.CLIENT_DIR = __dirname + '/../public'
+
+exports.DB_HOST = "127.0.0.1"
+exports.DB_PORT = "5984"
+exports.DB_USER = ""
+exports.DB_PASSWORD = ""
+exports.DB_URL = "http://" + exports.DB_HOST + ":" + exports.DB_PORT
+
+exports.SERVER_PORT = 3000
+
+# development, production
+exports.ENV = 'development'
+
+exports.isDevelopment = exports.ENV is 'development'
+
+exports.isProduction = exports.ENV is 'production'
+
+exports.ROOTPATH = "http://localhost:3000"
+
+exports.EMAIL_USER = "admin@example.net"
+exports.EMAIL_PASSWORD = "yourpassword"
+exports.EMAIL_HOST = "smtp.example.net"
+exports.EMAIL_USESSL = true
+exports.EMAIL_FROM = "admin@example.net"
+
+exports.CLIENTID = ""
+exports.CLIENTSECRET = ""

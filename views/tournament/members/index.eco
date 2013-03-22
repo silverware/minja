@@ -1,0 +1,18 @@
+<script>
+  require(["membersTable/MembersTable"], function(Table) {
+    window.MembersTable = Table.create({
+      editable: false,
+      membersData: <%- @json @tournament.members %>,
+      i18n: <%- @json @i18n.members %>
+    });
+  });
+</script>
+
+<div id="content">
+  <h1><%= @i18n.members.navName %>
+  <% if @tournament.isOwner: %>
+    <%= @headerAction @i18n.edit, "members/edit", "edit" %>
+  <% end %>
+  </h1>
+  <div id="membersTable"></div>
+</div>

@@ -1,0 +1,49 @@
+<script>
+require(["info/InfoSave"], function(InfoSave) {
+  window.save = new InfoSave({
+    form: $("form"),
+    i18n: <%- @json @i18n.info %>,
+    tournamentId: "<%= @tournament.id %>"
+  });
+});
+</script>
+
+<div id="content">
+  <h1><%= @i18n.info.header %><%= @headerAction @i18n.show, "../info", "eye-open" %></h1>
+  <%= @formFor @tournament.info, (form) => %>
+    <fieldset>
+      <legend><%= @i18n.info.basicData %></legend>
+      <%= form.textField @i18n.tournamentName, "name", {class: "required"} %>
+      <%= form.textarea @i18n.info.description, "description", {style: "width: 500px; height: 200px"} %>
+      <%= form.textField @i18n.info.venue, "venue" %>
+      <%= form.textField @i18n.info.startDate, "startDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
+      <%= form.textField "", "startTime", {stopInline: "true", "class": "input-small", placeholder: @i18n.time} %>
+      <%= form.textField @i18n.info.stopDate, "stopDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
+      <%= form.textField "", "stopTime", {stopInline: "true","class": "input-small", placeholder: @i18n.time} %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= @i18n.contact %></legend>
+      <%= form.textField @i18n.info.host, "host" %>
+      <%= form.textField "E-Mail", "hostMail", {class: "email"} %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= @i18n.info.publicName %></legend>
+        <p>Dein öffentlicher Turniername dient zum Zugriff über die URL-Adresse: <br />
+          http://tournament-manager.xaga.de/#<%= @i18n.info.publicName %>#</p>
+        <dl class="dl-horizontal">
+          <dt>Name</dt>
+          <dd id="publicNameValue">
+            <% if @tournament.publicName: %>
+              <a href="<%= @rootPath%>/<%= @tournament.publicName %>"><%= @tournament.publicName %></a>
+            <% else: %>
+              <b>noch kein Name angelegt</b><span id="createPublicName" class='btn btn-link'>Jetzt Name anlegen</span>
+            <% end %>
+          </dd>
+        </dl>
+    </fieldset>
+    <br /><br />
+    <%= form.button @i18n.save %>
+  <% end %>
+</div>

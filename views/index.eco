@@ -1,0 +1,23 @@
+<div class="featureHeader">Welcome to the Next Generation <br /> of Tournament Management</div>
+
+<div class="features clearfix">
+  <div class="feature">
+    <div><h5><i class="icon-search"></i> Turniere suchen</h5>
+    
+    Hier kannst Du nach Turnieren in deiner Umgebung oder im ganzen Land suchen. Egal nach welcher Sportart du suchst - hier wirst du sicher fündig.</div>
+  </div>
+
+  <div class="feature">
+    <div>
+    <h5><i class="icon-bullhorn"></i> Turniere veröffentlichen</h5>
+    Du hast ein eigenes Turnier und willst es im Web bekannt machen? Mit unserem Publishing-Modul kannst Du Dein Turnier auf Facebook, Twitter, youtube und überall sonst im Internet verbreiten.
+    </div>
+  </div>
+
+  <div class="feature">
+    <div>
+    <h5><i class="icon-table"></i> Turniere verwalten</h5>
+    Als Organisator muss man Spieler, Mannschaften und alles andere im Griff haben. Der Tournament Manager unterstützt dich mit vielen Features wie Turnierbaumerstellung, Spielplänen, Urkundendruck und Bildergallerie dabei. Alles live und online.
+    </div>
+  </div>
+</div>

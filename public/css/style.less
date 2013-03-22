@@ -1,0 +1,514 @@
+@import "mixins";
+@import "colors";
+
+
+/* ---------------------------------------------------------------------
+ Basic Elements
+----------------------------------------------------------------------*/
+
+body {
+  font-family: 'Maven Pro', sans-serif;
+  background-color: @grey;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+// add background Image and make it fixed
+body:before {
+  background-image: url("../img/background.png"), url("../img/grain.png");
+  background-position: center top, center top;
+  background-repeat: repeat-x, repeat;
+  position: fixed;
+  width: 100%;
+  content: "";
+  height: 100%;
+  z-index: -1;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+hr {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+}
+
+code, pre {
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+legend {
+  color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  z-index: -100;
+}
+
+
+header {
+  ul {
+    float: right;
+    line-height: 37px;
+  }
+
+  ul li {
+    display: inline-block;
+  }
+  li {
+    margin: 0 0 0 10px;
+  }
+  ul, li {
+    list-style-type: none;
+  }
+  .nav a {
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 4px 8px;
+    text-shadow: 0 1px 0 #999999;
+  }
+  .nav a.active {
+    background: white;
+    color: #383838;
+    border: 1px solid #222;
+    border-radius: 5px 5px 5px 5px;
+  }
+  .nav a:hover {
+    color: #383838;
+    background-color: #f4f3f0;
+    border-radius: 3px 3px 3px 3px;
+  }
+  color: #fff;
+  padding: 15px 0;
+}
+
+
+
+footer {
+    color: white;
+    background-color: @darkGrey;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    padding: 10px;
+    font-size: 0.90em;
+    position: fixed;
+    left:0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+/* ---------------------------------------------------------------------
+ Page Elements
+----------------------------------------------------------------------*/
+
+
+.seperator {
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 6px;
+  text-shadow: 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+#wrapper {
+  margin: 0 auto 80px;
+  width: 896px;
+}
+
+.wrapperBeforeTree {
+  margin-bottom: 0 !important;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 896px;
+}
+
+.rotated {
+  -moz-transform: rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+}
+
+.alert {
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.home {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  height: 50px;
+  line-height: 25px;
+  color: white !important;
+  text-decoration: none;
+  hover: none;
+}
+
+.home:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.home i {
+  text-shadow: 0 1px 0 #999999;
+  color: #E46D2D;
+  margin-right: 10px;
+  font-size: 40px;
+}
+
+.cf:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+
+#favoriteStar {
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------
+ Table
+----------------------------------------------------------------------*/
+
+.table {
+  color: white;
+}
+
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.table-striped tbody tr {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.table-striped input {
+  color: white;
+}
+
+.table td {
+  border-top: 1px solid rgba(0,0,0,0.2);
+  vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+.thumbnail {
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.1);
+}
+
+a {
+  color: #9DC7FF;
+  text-shadow: 0 1px 0 #888888;
+}
+a:hover {
+  color: #58a7e7;
+  text-decoration: none;
+}
+
+.btn-inverse {
+  background-image: -moz-linear-gradient(center top , #4F5B69, #2a3440);
+  background-color: #3b4550;
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  background-color: #3b4550;
+}
+
+
+
+#content {
+    .contentBox;
+    margin: 0 auto 70px;
+    width: 700px;
+    padding: 50px 75px;
+}
+
+#smallContent {
+  .contentBox;
+  margin: 0 auto;
+  padding: 20px;
+  width: 475px;
+  margin-top: 50px;
+}
+ #smallContent a, footer a {
+    color: white;
+  }
+ #smallContent a:hover, footer a:hover {
+    color: white;
+  }
+
+
+/* ---------------------------------------------------------------------
+ Features for Homepage
+----------------------------------------------------------------------*/
+
+.featureHeader {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 60px auto 70px;
+  text-align: center;
+  line-height: 40px;
+  .contentBox;
+  padding: 20px;
+  width: 775px;
+}
+
+.feature {
+  float: left;
+  margin-left: 40px;
+  margin-right: 20px;
+  width: 230px;
+
+}
+
+.feature div {
+  .contentBox;
+  padding: 20px;
+  min-height: 250px;
+  text-align: center;
+
+}
+
+.feature i {
+  font-size:30px;
+}
+
+
+
+
+button i {
+  margin-right: 5px;
+}
+
+button[rel="tooltip"] i  {
+  margin-right: 0px;
+}
+
+
+
+/* ---------------------------------------------------------------------
+ Dashboard
+----------------------------------------------------------------------*/
+
+
+.dashboardBox {
+  .contentBox;
+  position: relative;
+  padding: 15px;
+  margin-bottom: 20px;
+  .transition(0.5s);
+  dt {
+    width: 80px;
+  }
+  dd {
+    margin-left: 100px;
+  }
+  .label {
+    font-size: 12.8px;
+  }
+}
+
+.dashboardBox:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.bottomRight {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
+#treeDashboardBox {
+  .icon-double-angle-down {
+    margin: 10px;
+    color: rgba(0,0,0,0.2);
+    text-shadow: none;
+    font-size: 30px;
+  }
+}
+
+/********************************
+Helper
+*********************************/
+
+.center {
+  text-align: center;
+}
+
+
+
+/* ---------------------------------------------------------------------
+ Corner Ribbon
+----------------------------------------------------------------------*/
+.ribbon-wrapper-green {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: fixed;
+  top: -3px;
+  right: -3px;
+}
+
+.ribbon-green {
+  font: bold 15px Sans-Serif;
+  color: #333;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+  background-color: #E46D2D;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#E46D2D), to(#FF9555)); 
+  background-image: -webkit-linear-gradient(top, #E46D2D, #FF9555); 
+  background-image:    -moz-linear-gradient(top, #E46D2D, #FF9555); 
+  background-image:     -ms-linear-gradient(top, #E46D2D, #FF9555); 
+  background-image:      -o-linear-gradient(top, #E46D2D, #FF9555); 
+  color: #333;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon-green:before, .ribbon-green:after {
+  content: "";
+  border-top:   3px solid #6e8900;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon-green:before {
+  left: 0;
+}
+.ribbon-green:after {
+  right: 0;
+}
+
+
+
+/*********************************
+Dynamic Text Box
+*********************************/
+
+.dynamicTextField {
+  background: none !important;
+  border: 1px solid rgba(0, 0, 0, 0) !important;
+  box-shadow: none !important;
+}
+
+.dynamicTextField:hover {
+  border: 1px solid #CCCCCC !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+}
+.dynamicTextField:focus {
+    border-color: rgba(82, 168, 236, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6) !important;
+    outline: 0 none !important;
+}
+
+
+/*********************************
+Forms
+*********************************/
+
+.successIcon {
+  display: none;
+  color: white;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.ajaxLoader {
+  margin-left: 10px;
+  display: none;
+}
+
+label.error {
+  display: inline-block !important;
+  margin-left: 10px;
+}
+
+
+/*********************************
+Gallery
+*********************************/
+.galleryTitle {
+  width: 125px;
+}
+
+
+
+
+
+/*********************************
+Bootstrap overwrites
+*********************************/
+
+.dropdown-menu {
+  background-color: @darkGrey;
+}
+
+.dropdown-menu a {
+  color: white;
+}
+
+.btn-link {
+  color: #9DC7FF;
+  text-shadow: 0 1px 0 #888888;
+}
+.btn-link:hover {
+  color: #58a7e7;
+  text-decoration: none;
+}
+
+.modal {
+  color: #333;
+}
+
+.popover {
+  color: #333;
+}
+
+i {
+  cursor: pointer;
+}

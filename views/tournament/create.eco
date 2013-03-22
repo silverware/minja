@@ -1,0 +1,17 @@
+<script>
+$(function() {
+  var save = new Save({
+    form : $("form"),
+    ajax: false
+  });
+});
+</script>
+
+<div id="smallContent">
+  <h1><%= @i18n.newTournament %></h1>
+    <%= @formFor {}, (form) => %>
+      <%= form.textField @i18n.tournamentName, "name", {class: "required"} %>
+      <%= form.button @i18n.create %>
+    <% end %>
+</div>
+

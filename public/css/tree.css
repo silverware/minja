@@ -1,0 +1,287 @@
+.ui-spinner {position: relative; border: 0px solid white; }
+.ui-spinner-buttons {position: absolute}
+.ui-spinner-button {overflow: hidden}
+
+
+body {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+/*********************************
+Tournament
+*********************************/
+
+#tournament {
+  font-size: 12px;
+  margin-bottom: 80px;
+}
+
+.box {
+  background-color: rgba(72, 82, 97, 0.8);
+  border-radius: 6px 2px 2px 2px;
+  box-shadow: 0 10px 20px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+}
+.navbar-inner {
+  background-color: rgba(0,0,0,0.2) !important;
+  background-image: none !important;
+  padding-top: 5px;
+}
+
+.round {
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  color: white;
+  min-height: 130px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.106);
+  box-shadow: 0 -1px rgba(0, 0, 0, 0.106) inset;
+}
+
+.roundItem {
+  display: inline-block;
+  margin: 5px;
+  text-align: left;
+  color: white;
+}
+
+.gamePlayer {
+  color: black;
+}
+
+.gamePlayer input {
+  color: black;
+}
+
+.roundSetting {
+  position: absolute;
+  position: relative;
+  left: 5;
+  top: 0;
+  border-radius: 0 5px 5px 0;
+  padding: 10px;
+  position: absolute;
+  text-align: left;
+  top: 0;
+}
+
+.roundSetting #settings {
+  margin-top: 10px;
+}
+
+.roundSetting label {
+  width: 100px !important;
+}
+
+.actions {
+  margin: 1px 20px;
+  display: inline-block;
+}
+
+.tournamentActions {
+  float: left;
+  margin-top: 10px;
+}
+
+.tournamentActions .roundSetting {
+  position: relative !important;
+  display: inline-block;
+}
+
+
+.saveActions {
+  margin-top: 10px;
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  float: right;
+}
+
+
+.roundSetting .controls {
+  margin-left: 110px !important;
+}
+
+.roundSetting .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: white;
+  opacity: 1;
+}
+
+.roundName {
+  font-weight: bold !important;
+  font-size: 14px !important;
+  color: white !important;
+  cursor: pointer;
+
+}
+
+.group {
+  width: 200px;
+  max-width: 200px;
+  min-width: 60px;
+}
+
+.tableCell {
+  border-bottom: 1px solid rgba(0,0,0,0.3); 
+  box-shadow: 0 1px rgba(255,255,255,0.2) inset;
+}
+
+.tableCellBottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.106); 
+}
+
+.tableCellTop {
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.qualified td {
+  background-color: rgba(55,180,110, 0.2);
+}
+
+.roundItem table thead {
+  color: white;
+}
+
+.roundItem table td {
+  border-top: 0px;
+}
+
+.roundItem table input {
+  color: white;
+}
+
+.roundItem table input.xxs {
+  background-color: rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.15);
+  color: white;
+}
+
+.roundItem input {
+  margin-bottom: 0px !important;
+  color: white;
+}
+
+
+.noPadding td {
+  padding: 2px !important;
+}
+
+.noPadding td .reallyNoPadding {
+  padding: 0 !important;
+}
+
+.result {
+    display: inline-block;
+    float: right;
+    height: 20px;
+    margin-right: 5px;
+    width: 20px;
+}
+
+.gamePlayer {
+   background-color: #FCF8E3;
+   border: 1px solid #FBEED5;
+   text-align: left;
+   padding: 2px;
+}
+
+.gamePlayer input {
+  color: black;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+.actionIcons {
+  float:right;
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+#treeWrapper {
+  font-size: 0.85em !important;
+}
+
+#treeWrapper input {
+  font-size: 0.95em !important;
+  padding: 1px 2px;
+  font-weight: bold;
+}
+
+.groupGames {
+  table-layout: fixed;
+}
+
+.groupGames input {
+  padding: 0 !important;
+}
+
+.groupGames td {
+  overflow: hidden;
+}
+
+
+
+/*********************************
+Toolbar
+*********************************/
+#toolbar {
+  font-size: 25px;
+  position: absolute;
+  right: 20px; 
+  top: 0;
+}
+
+#toolbar i {
+  margin-right: 15px;
+}
+
+
+
+
+
+
+
+/*********************************
+Breiten
+*********************************/
+.xxs {
+  width: 12px;
+  max-width: 12px;
+}
+.s {
+  width: 90px;
+  max-width: 90px;
+}
+
+.l {
+  width: 140px;
+  max-width: 140px;
+}
+
+.xl {
+  width: 200px;
+  max-width: 200px;
+}
+
+
+
+/*********************************
+Action Box unten
+*********************************/
+
+.actionBar {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+  margin: 15px auto 0;
+  padding: 20px;
+  position: relative;
+}
+
+.actionBar .actionWrapper {
+  width: 896px;
+  margin: 0 auto;
+}

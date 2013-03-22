@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Tournament-Manager</title>
+    <% if @tournament?.info: %>
+      <meta content="<%= @tournament.info.name %>" property="og:title" />
+      <meta content="<%= @tournament.info.description %>" property="og:description" />
+    <% end %>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <script src="/js/lib/require-jquery.js"></script>
+    <script src="/js/require-config.js"></script>
+    <script src="/js/lib/bootstrap.js"></script>
+    <script src="/js/lib/jquery.validate.min.js"></script>
+    <script src="/js/lib/handlebars-1.0.rc.1.js"></script>
+    <script src="/js/lib/ember-1.0.pre.min.js"></script>
+    <script src="/js/lib/underscore.js"></script>
+    <script src="/js/lib/moment.min.js"></script>
+    <script src="/js/lib/three.js"></script>
+
+    <script src="/js/form/FormValidator.js"></script>
+    <script src="/js/form/Save.js"></script>
+    <script src="/js/main.js"></script>
+
+
+
+
+    <!-- ########################################## GOOGLE ANALYTICS ################################### -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+    
+      _gaq.push(['_setAccount', 'UA-35904231-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript">
+      require(["utils/background/BackgroundRenderer"], function(bgRenderer) {
+        bgRenderer.init();
+      });
+    </script>
+
+
+    
+  </head>
+  <body>
+
+    <div class="ribbon-wrapper-green"><div class="ribbon-green">BETA</div></div>
+
+    <div id="wrapper">
+
+      <!-- ########################################## NAVIGATION ########################################## -->
+      <header id="header">
+          <% if @navigation: %>
+            <a class="home" href="/<%= @tournament.identifier %>">
+              <i class="icon-sitemap rotated"></i><%= @tournament.info.name %>
+            </a>
+          <% else: %>
+            <a class="home" href="/"><i class="icon-sitemap rotated"></i>Tournament Manager</a>
+          <% end %>
+        <ul class="nav">
+          <% if @navigation: %>
+            <% for item in @navigation: %>
+              <li><a href="<%= item.route %>" class="<%= item.selectedClass %>"><i class="icon-<%= item.icon %>"></i><%= item.label %></a></li>
+            <% end %>
+          <% else: %>
+            <li><a href="http://tournament-manager.blogspot.de/">Blog</a></li>
+            <li><a href="/tournament/create"><%= @.i18n.createNewTournament %></a></li>
+          <% end %>
+        </ul>
+      </header>
+
+
+      <!-- ########################################## FLASH NOTICES ######################################## -->
+      <% if @errors?: %>
+      <% for error in @errors: %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong><%= error.title %></strong> <%= error.message %>
+        </div>
+      <% end %>
+      <% end %>
+      
+      <% if @warnings?: %>
+      <% for warning in @warnings: %>
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong><%= warning.title %></strong> <%= warning.message %>
+        </div>
+      <% end %>
+      <% end %>
+
+      <% if @infos?: %>
+      <% for info in @infos: %>
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong><%= info.title %></strong> <%= info.message %>
+        </div>
+      <% end %>
+      <% end %>
+
+
+      <!-- ########################################### CONTENT ################################################ -->
+      <%- @body %>
+    </div>
+
+
+
+    <footer>
+      <div class="wrapper">
+        &copy; <a href="/">Xaga Tournament Manager</a>
+		<span class="seperator">|</span>
+        <a href="mailto:admin@tournament-manager.xaga.de"><%= @i18n.contactUs %></a>
+		<span class="seperator">|</span>
+        <span>
+          <a href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" /></a>
+          <a href="/lang/en?next=<%= @path %>"><img src="/img/gb.png" alt="english" /></a>
+        </span>
+
+        <span style="float: right">
+        <% if @user: %>
+          <% if @tournament: %>
+            <i id="favoriteStar" tid="<%= @tournament.id %>" rel="tooltip"
+              title="Favoriten-Status" isFavorite="<%= @tournament.isFavorite %>"></i>
+            <span class="seperator">|</span>
+          <% end %>
+          <span class="dropup">
+            <a data-toggle="dropdown" href="#"><%= @user.email %></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a tabindex="-1" href="/me/tournaments"><%= @i18n.myTournaments %></a></li>
+              <li><a tabindex="-1" href="/me/favorites"><%= @i18n.favorites %></a></li>
+              <li><a tabindex="-1" href="/me/changepassword"><%= @i18n.changePassword %></a></li>
+            </ul>
+          </span>
+            <span class="seperator">|</span>
+            <a href="/logout">Logout</a>
+        <% else: %>
+            <a href="/login">Login</a>
+            <span class="seperator">|</span>
+            <a href="/register"><%= @i18n.register %></a>
+        <% end %>
+        </span>
+      </div>
+    </footer>
+
+
+  </body>
+</html>

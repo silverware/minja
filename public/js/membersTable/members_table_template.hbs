@@ -1,0 +1,44 @@
+<table class="table table-striped">
+  <thead>
+    <th>Name</th>
+    {{#each attribute in MembersTable.attributes}}
+      <th>
+        {{attribute.name}}
+        {{#if MembersTable.editable}}
+          &nbsp;&nbsp;<i class="icon-remove" rel="tooltip" {{action "remove" target="attribute"}}></i>
+        {{/if}}
+      </th>
+    {{/each}}
+    <th></th>
+  </thead>
+  {{#each member in MembersTable.members}}
+    <tr>
+      <td>
+        {{view DynamicTextField valueBinding="member.name" classNames="required" placeholder="Name" minWidth="40" editableBinding="MembersTable.editable"}}
+      </td>
+      {{#each attribute in MembersTable.attributes}}
+        {{#view MembersTable.MemberValueView memberBinding="member" attributeBinding="attribute"}}
+          {{#if attribute.isCheckbox}}
+            {{#if MembersTable.editable}}
+              {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
+            {{else}}
+              {{#if view.memberValue}}
+                <i class="icon-ok" style="color: #DA5919" />
+              {{/if}}
+            {{/if}}
+          {{/if}}
+          {{#if attribute.isTextfield}}
+           {{view DynamicTypeaheadTextField nameBinding="attribute.id" valueBinding="view.memberValue" editableBinding="MembersTable.editable"}}
+          {{/if}}
+        {{/view}}
+      {{/each}}
+    
+      <td width="50px">
+        {{#if MembersTable.editable}}
+          <i class="icon-remove" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
+        {{/if}}
+      </td>
+    </tr>
+  {{/each}}
+</table>
+<div style="text-align: right"><em>{{MembersTable.members.length}} {{MembersTable.i18n.navName}}</em></div>

@@ -1,0 +1,22 @@
+<script src="/js/lib/jquery-ui.js"></script>
+<link href="/css/tree.css" rel="stylesheet">
+
+<script>
+  require(["utils/DynamicTextField", "utils/EmberSerializer", "utils/Popup", "tree"], function(dynamicTextField, Serializer, Popup) {
+
+      window.DynamicTextField = dynamicTextField;
+      window.Serializer = Serializer;
+      window.Popup = Popup;
+      var treeWrapper = $("<div id='treeWrapper'>");
+      $("#wrapper").addClass("wrapperBeforeTree");
+      $("#wrapper").after(treeWrapper);
+      treeWrapper.createTree({
+        editable: <%= @editable %>,
+        i18n: <%- @json @i18n.tree %>,
+        isOwner: <%= @tournament.isOwner %>,
+        data: <%- @json @tournament.tree %>,
+        initialMembers: <%- @json @tournament.members %>
+      });
+  });
+</script>
+

@@ -1,0 +1,48 @@
+<script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this tournament?');
+  }
+</script>
+
+<div id="content">
+  <h1><%= @i18n.myTournaments %></h1>
+
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th><%= @i18n.created %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% for tournament in @tournaments: %>
+        <tr>
+          <td><%= tournament.value.info.name %></td>
+          <td><%= @i18n.date tournament.value.created_at %></td>
+          <td width="60px">
+            <div class="btn-group">
+              <button class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value._id %>'"><i class="icon-folder-open"></i><%= @i18n.open %></button>
+              <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/<%= tournament.value._id %>/duplicate">
+                    <i class="icon-copy"></i><%= @i18n.duplicate %>
+                  </a>
+                </li>
+                <li>
+                  <a href="/<%= tournament.value._id %>/remove">
+                    <i class="icon-trash"></i><%= @i18n.delete %>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div style="text-align: right">
+    <em><%= "#{@tournaments.length} #{@i18n.tournaments}" %></em>
+  </div>
+</div>
