@@ -23,15 +23,13 @@ module.exports = (app) ->
   app.use (err, req, res, next) ->
     console.error err.stack
     if req.xhr
-      res.send 500, {error: 'Something blew up!'}
+      res.send 500, error: 'Something blew up!'
     else
       res.status 500
       res.render '500', {error: err}
 
   process.on 'uncaughtException', (err) ->
-    console.log err, "huhu"
-
-
+    console.log err, "oops"
 
   # Param Settings
   for controller in controllers

@@ -36,7 +36,7 @@ class TournamentController extends ControllerBase
     tournament = req.tournament
     id = tournament.identifier
     nav = [route: "/#{id}/info", icon: "info-sign", label: req.i18n.info.navName]
-    if tournament.isOwner or tournament.members?.members.length > 0
+    if tournament.isOwner or tournament.members
       nav.push route: "/#{id}/members", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
       nav.push route: "/#{id}/tree", icon: "table", label: req.i18n.tree.navName
@@ -45,7 +45,6 @@ class TournamentController extends ControllerBase
         nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
     
     for navItem in nav
-      console.log req.url
       navItem.selectedClass = "active" if req.url.indexOf(navItem.route) != -1
     nav
 
