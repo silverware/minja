@@ -68,7 +68,8 @@
               <i class="icon-sitemap rotated"></i><%= @tournament.info.name %>
             </a>
           <% else: %>
-            <a class="home" href="/"><img src="/img/ninja.png" width="60px" />Minja Tournament Manager</a>
+            <a class="home" href="/"><i class="icon-sitemap rotated"></i>
+              <!--<img src="/img/ninja.png" width="60px" />-->Minja Tournament Manager</a>
           <% end %>
         <ul class="nav">
           <% if @navigation: %>
