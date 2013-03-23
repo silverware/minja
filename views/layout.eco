@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="de">
   <head>
-    <title>Tournament-Manager</title>
+    <title>Minja Tournament Manager</title>
     <% if @tournament?.info: %>
       <meta content="<%= @tournament.info.name %>" property="og:title" />
       <meta content="<%= @tournament.info.description %>" property="og:description" />
@@ -68,7 +68,7 @@
               <i class="icon-sitemap rotated"></i><%= @tournament.info.name %>
             </a>
           <% else: %>
-            <a class="home" href="/"><i class="icon-sitemap rotated"></i>Tournament Manager</a>
+            <a class="home" href="/"><img src="/img/ninja.png" width="60px" />Minja Tournament Manager</a>
           <% end %>
         <ul class="nav">
           <% if @navigation: %>
@@ -120,9 +120,9 @@
 
     <footer>
       <div class="wrapper">
-        &copy; <a href="/">Xaga Tournament Manager</a>
+        &copy; <a href="/">Minja Tournament Manager</a>
 		<span class="seperator">|</span>
-        <a href="mailto:admin@tournament-manager.xaga.de"><%= @i18n.contactUs %></a>
+        <a href="mailto:webmaster@minja.net"><%= @i18n.contactUs %></a>
 		<span class="seperator">|</span>
         <span>
           <a href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" /></a>
