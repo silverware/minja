@@ -41,6 +41,29 @@ tableDetailViewTemplate = """
 <fieldset>
 <legend>Kreuztabelle</legend>
 
+<table class="table">
+  <tr>
+    <td></td>
+    {{#each player in group.players}}
+      <td>{{player.name}}</td>
+    {{/each}}
+  </tr>
+  {{#each player1 in group.players}}
+    <tr>
+      <td>{{player1.name}}</td>
+      {{#each player2 in group.players}}
+        <td>{{#view view.resultsView player1Binding="player1" player2Binding="player2" groupBinding="group"}}
+          {{#each view.results}}
+            {{#if block}}black{{/if}}
+            {{#unless block}}
+            {{result1}}:{{result2}}
+            {{/unless}}
+          {{/each}}
+        {{/view}}</td>
+      {{/each}}
+    </tr>
+  {{/each}}
+</table>
 
 </fieldset>
 """
@@ -51,3 +74,19 @@ App.TableDetailView = App.DetailView.extend
 
   didInsertElement: ->
     @_super()
+
+  resultsView: Em.View.extend
+    player1: null
+    player2: null
+    group: null
+
+    results: (->
+      results = []
+      if @get("player1") is @get("player2")
+        results.push block: true
+        return results
+      @get("group.games").forEach (game) =>
+        if game.player1 is @get("player1") and game.player2 is @get("player2")
+          results.pushObject game
+      results
+    ).property("player1", "player2", "group.games.@each")
