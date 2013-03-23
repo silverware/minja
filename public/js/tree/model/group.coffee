@@ -21,7 +21,7 @@ App.Group = App.RoundItem.extend
         @replace @dummies[i], player
     @_tempQualifiers = qualifiers
     qualifiers
-    ).property("qualifierCount", "games.@each.qualifiers", "name")
+    ).property("qualifierCount", "games.@each.isCompleted", "name")
 
   init: ->
     @_super()

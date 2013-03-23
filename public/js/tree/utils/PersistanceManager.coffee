@@ -53,6 +53,8 @@ App.PersistanceManager =
     game = App.Game.create
       player1: @createPlayer obj.player1
       player2: @createPlayer obj.player2
+    delete obj.player1
+    delete obj.player2
     $.extend game, obj
     game
 

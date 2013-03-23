@@ -3,7 +3,6 @@ class App.Alert
   @open: (title, text) ->
     $(".alert").alert('close')
     $("body").append(App.Alert.template.replace("###text###", text).replace("###title###", title))
-    $(".alert").center()
     
 
   @openWarning: (text) ->
