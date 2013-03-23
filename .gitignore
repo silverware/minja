@@ -1,6 +1,10 @@
 app/server-config.coffee
 start_server.bat
 start_futon.url
+node_modules
+public/js/tree.js
+public/js/tree-test.js
+*.lnk
 
 #################
 ## Eclipse

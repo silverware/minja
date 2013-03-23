@@ -41,6 +41,8 @@ module.exports = (app) ->
   # Routes 
   for controller in controllers
     middleware = []
+
+    # add before middleware
     for route, func of controller
       if route is 'before'
         middleware.push func

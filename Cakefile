@@ -1,8 +1,6 @@
 fs = require 'fs'
 {spawn, exec} = require 'child_process'
 which = require 'which'
-{print} = require 'util'
-
 
 # ANSI Terminal Colors
 bold = '\x1B[0;1m'
@@ -10,39 +8,42 @@ red = '\x1B[0;31m'
 green = '\x1B[0;32m'
 reset = '\x1B[0m'
 
-tournament_tree_root_dir = "public/js/tree/"
+root = "public/js/tree/"
 
 treeFiles  = [
   # omit src/ and .coffee to make the below lines a little shorter
-  tournament_tree_root_dir + 'App.coffee',
-  tournament_tree_root_dir + 'model/round.coffee',
-  tournament_tree_root_dir + 'model/koRound.coffee',
-  tournament_tree_root_dir + 'model/groupRound.coffee',
-  tournament_tree_root_dir + 'model/roundItem.coffee',
-  tournament_tree_root_dir + 'model/group.coffee',
-  tournament_tree_root_dir + 'model/roundGame.coffee',
-  tournament_tree_root_dir + 'model/game.coffee',
-  tournament_tree_root_dir + 'model/player.coffee',
-  tournament_tree_root_dir + 'model/tournament.coffee',
-  tournament_tree_root_dir + 'view/TournamentView.coffee',
-  tournament_tree_root_dir + 'view/RoundItemView.coffee',
-  tournament_tree_root_dir + 'view/RoundSettingView.coffee',
-  tournament_tree_root_dir + 'view/RoundView.coffee',
-  tournament_tree_root_dir + 'view/GroupRoundView.coffee',
-  tournament_tree_root_dir + 'view/GroupView.coffee',
-  tournament_tree_root_dir + 'view/GameView.coffee',
-  tournament_tree_root_dir + 'view/TournamentPopup.coffee',
-  tournament_tree_root_dir + 'view/helper/NumberField.coffee',
-  tournament_tree_root_dir + 'view/helper/Alert.coffee',
-  tournament_tree_root_dir + 'view/detailViews/DetailView.coffee',
-  tournament_tree_root_dir + 'view/detailViews/GroupDetailView.coffee',
-  tournament_tree_root_dir + 'view/detailViews/GroupGamesDetailView.coffee',
-  tournament_tree_root_dir + 'view/detailViews/GroupRoundDetailView.coffee',
-  tournament_tree_root_dir + 'view/detailViews/KoRoundDetailView.coffee',
-  tournament_tree_root_dir + 'utils/Utils.coffee',
-  tournament_tree_root_dir + 'utils/PersistanceManager.coffee',
-  tournament_tree_root_dir + 'utils/RoundRobin.coffee'
+  'App.coffee'
+  'model/round.coffee'
+  'model/koRound.coffee'
+  'model/groupRound.coffee'
+  'model/roundItem.coffee'
+  'model/group.coffee'
+  'model/roundGame.coffee'
+  'model/game.coffee'
+  'model/player.coffee'
+  'model/tournament.coffee'
+  'view/TournamentView.coffee'
+  'view/RoundItemView.coffee'
+  'view/RoundSettingView.coffee'
+  'view/RoundView.coffee'
+  'view/GroupRoundView.coffee'
+  'view/GroupView.coffee'
+  'view/GameView.coffee'
+  'view/TournamentPopup.coffee'
+  'view/helper/NumberField.coffee'
+  'view/helper/Alert.coffee'
+  'view/detailViews/DetailView.coffee'
+  'view/detailViews/GroupDetailView.coffee'
+  'view/detailViews/GroupGamesDetailView.coffee'
+  'view/detailViews/GroupRoundDetailView.coffee'
+  'view/detailViews/KoRoundDetailView.coffee'
+  'utils/Utils.coffee'
+  'utils/PersistanceManager.coffee'
+  'utils/RoundRobin.coffee'
 ]
+
+for f, index in treeFiles
+  treeFiles[index] = root + f
 
 readDir = (src) ->
   files = fs.readdirSync(src)
@@ -66,7 +67,6 @@ concatAndBuild = (files, target) ->
   for file, index in files then do (file, index) ->
     fs.readFile file, 'utf8', (err, fileContents) ->
       if err
-        console.log "huhu" + file
         return
       appContents[index] = fileContents
       process() if --remaining is 0
@@ -74,7 +74,6 @@ concatAndBuild = (files, target) ->
     tempFile = uniqueId()
     fs.writeFile "#{tempFile}.coffee", appContents.join('\n\n'), 'utf8', (err) ->
       if err
-        console.log "huhu"
         return
       exec "coffee --join #{target} --compile #{tempFile}.coffee", (err, stdout, stderr) ->
         if err
@@ -83,16 +82,15 @@ concatAndBuild = (files, target) ->
         else
           fs.unlink "#{tempFile}.coffee", (err) ->
             if err
-              console.log "huhu"
               return
           console.log 'Done.'
 
 task 'build-tree', 'Build tree-app', ->
-  concatAndBuild(treeFiles, "public/js/tree.js")
+  concatAndBuild treeFiles, "public/js/tree.js"
 
 task 'build-test', 'Build Tree-Test File', ->
   testFiles = readDir("public/js/tree/tests")
-  concatAndBuild(testFiles, "public/js/tree-test.js")
+  concatAndBuild testFiles, "public/js/tree-test.js"
 
 task 'watch', 'Watch prod source files and build changes', ->
     invoke 'build-tree'
@@ -113,16 +111,11 @@ task 'watch', 'Watch prod source files and build changes', ->
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
 
-task 'spec', 'Run Mocha tests', ->
-  build -> test -> log ":)", green
-
 task 'test', 'Run Mocha tests', ->
   options = [
     '--compilers'
     'coffee:coffee-script'
   ]
-  ###'--require'
-  './server'###
   try
     cmd = which.sync 'mocha'
     spec = spawn cmd, options
@@ -135,14 +128,11 @@ task 'test', 'Run Mocha tests', ->
 
 
 task 'dev', 'start dev env', ->
+  invoke 'watch'
   platform = process.platform
-  isWindows = platform == 'win32'
-  iced = "coffee"
-  #if isWindows
-  #  iced = "coffee"
   invoke 'build-tree'
   cmd = which.sync 'nodemon'
-  nodemon = spawn cmd, ["--exec", iced, "server.coffee", "-w", "app", "-w", "app/controllers", "-w", "app/dao", "-w", "app/services",  "-w", "app/helper",  "-w", "app/languages", ""]
+  nodemon = spawn cmd, ["--exec", "coffee", "server.coffee", "-w", "app", "-w", "app/controllers", "-w", "app/dao", "-w", "app/services",  "-w", "app/helper",  "-w", "app/languages", ""]
   nodemon.stdout.pipe process.stdout
   nodemon.stderr.pipe process.stderr
   log 'Watching js files and running server', green
