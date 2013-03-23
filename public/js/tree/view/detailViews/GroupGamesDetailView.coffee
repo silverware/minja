@@ -1,35 +1,39 @@
 groupRoundViewTemplate = """
-{{view App.RoundSetting roundBinding="round"}}
 
-<div id="toolbar">
-  <i class="icon-th-list" {{action "displayTables"}} id="showTables" style="display: none"></i>
-  <i class="icon-fullscreen" {{action "displayGames"}} id="showGames"></i>
-  <i id="qualifierCount" class="icon-retweet"></i>
-  <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      {{view App.FilterView}}
+    </div>
+    <div class="span10">
+      <fieldset>
+        <legend>{{group._round.name}} - {{group.name}}</legend>
+        <table>
+          <thead>
+            <tr>
+              <th>Heim</th>
+              <th>Auswärts</th>
+              <th>Ergebnis</th>
+            </tr>
+          </thead>
+          {{#each game in group.games}}
+            <tr>
+              <td>{{game.player1.name}}</td>
+              <td>{{game.player2.name}}</td>
+              <td>{{game.result1}} : {{game.result2}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </fieldset>
+    </div>
+  </div>
 </div>
 
-{{#each group in round.items}}
-  {{view App.GroupView groupBinding="group" showTablesBinding="view.showTables"}}
-{{/each}}
 """
 
-App.GroupRoundView = App.RoundView.extend
+App.GroupGamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile groupRoundViewTemplate
-  showTables: true
+  group: null
 
   didInsertElement: ->
     @_super()
-    @$("#showTables").tooltip
-      title: "Tabellenansicht"
-    @$("#showGames").tooltip
-      title: "Spielplanansicht"    
-
-  displayTables: ->
-    @set "showTables", true
-    @$("#showTables").hide()
-    @$("#showGames").show()
-
-  displayGames: ->
-    @set "showTables", false
-    @$("#showTables").show()
-    @$("#showGames").hide()

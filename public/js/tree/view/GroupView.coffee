@@ -35,7 +35,7 @@ groupViewTemplate = """
 </table>
 
 
-<table  class="table noPadding groupGames box hide" {{action "openGroupGamesView" target="view"}} id="groupGames">
+<table  class="table noPadding groupGames box hide" {{action "openGroupGamesView"}} id="groupGames">
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
@@ -107,11 +107,10 @@ App.GroupView = App.RoundItemView.extend
   ).observes("showTables")
 
   openGroupTableView: ->
-    a = App.TableDetailView.create
+    App.TableDetailView.create
       group: @group
-    console.debug a
 
-  openGroupGamesView: =>
+  openGroupGamesView: ->
     App.GroupGamesDetailView.create
       group: @group
 
