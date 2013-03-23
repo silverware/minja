@@ -1,3 +1,7 @@
+app/server-config.coffee
+start_server.bat
+start_futon.lnk
+
 #################
 ## Eclipse
 #################
