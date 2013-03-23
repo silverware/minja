@@ -12,7 +12,7 @@ groupViewTemplate = """
 {{/if}}
 
 
-<table class="table noPadding box" id="groupTable">
+<table class="table noPadding box" {{action "openGroupTableView"}} id="groupTable">
   <tbody>
     {{#each group.table}}
       {{#if qualified}}
@@ -35,7 +35,7 @@ groupViewTemplate = """
 </table>
 
 
-<table  class="table noPadding groupGames box hide" id="groupGames">
+<table  class="table noPadding groupGames box hide" {{action "openGroupGamesView" target="view"}} id="groupGames">
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
@@ -82,8 +82,9 @@ App.GroupView = App.RoundItemView.extend
     @$(".increaseQualifierCount").tooltip
       title: App.i18n.qualifiersUp
     @$(".decreaseQualifierCount").tooltip
-      title: App.i18n.qualifiersDown
+      title: App.i18n.qualifiersDow
     @toggleTableGames()
+
     if App.editable
       @initGameDraggable()
 
@@ -104,6 +105,15 @@ App.GroupView = App.RoundItemView.extend
     else
       @toggle "#groupTable", "#groupGames"
   ).observes("showTables")
+
+  openGroupTableView: ->
+    a = App.TableDetailView.create
+      group: @group
+    console.debug a
+
+  openGroupGamesView: =>
+    App.GroupGamesDetailView.create
+      group: @group
 
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>

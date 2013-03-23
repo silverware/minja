@@ -18,7 +18,7 @@ App.RoundItemView = Em.View.extend
       @$(".removeItem").tooltip
         title: App.i18n.remove
       @initDraggable()
-        
+  
   initDraggable: ->
     @$(".player").draggable
       containment: @get('parentView').$()

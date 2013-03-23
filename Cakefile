@@ -33,7 +33,7 @@ treeFiles  = [
   'view/helper/NumberField.coffee'
   'view/helper/Alert.coffee'
   'view/detailViews/DetailView.coffee'
-  'view/detailViews/GroupDetailView.coffee'
+  'view/detailViews/TableDetailView.coffee'
   'view/detailViews/GroupGamesDetailView.coffee'
   'view/detailViews/GroupRoundDetailView.coffee'
   'view/detailViews/KoRoundDetailView.coffee'

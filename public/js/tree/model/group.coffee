@@ -50,6 +50,7 @@ App.Group = App.RoundItem.extend
       players.pushObject
         player: player
         index: index
+        games: stats.games
         points: stats.points
         goals: stats.goals
         goalsAgainst: stats.goalsAgainst
@@ -105,6 +106,7 @@ App.Group = App.RoundItem.extend
   calculateStats: (player) ->
     stats =
       points: 0
+      games: 0
       goals: 0
       goalsAgainst: 0
       difference: 0
@@ -114,10 +116,12 @@ App.Group = App.RoundItem.extend
         stats.goals += game.get("goals1")
         stats.goalsAgainst += game.get("goals2")
         stats.points += game.getPoints 1
+        stats.games += 1
       if player is game.get("player2")
           stats.goals += game.get("goals2")
           stats.goalsAgainst += game.get("goals1")
           stats.points += game.getPoints 2
+          stats.games += 1
     stats.difference = stats.goals - stats.goalsAgainst
     stats
 
