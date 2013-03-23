@@ -111,6 +111,7 @@ App.GroupView = App.RoundItemView.extend
       group: @group
 
   openGroupGamesView: ->
+    console.debug "jsdklfj"
     App.GroupGamesDetailView.create
       group: @group
 

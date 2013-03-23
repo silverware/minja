@@ -1,17 +1,20 @@
 filterViewTemplate = """
 <fieldset>
 <legend>Spiele-Filter</legend>
-  {{view Em.TextField valueBinding="fastSearch"}}
+  {{view Em.TextField valueBinding="view.fastSearch"}}
 </fieldset>
 """
 
-App.FilterView = App.FilterView.extend
+App.FilterView = Em.View.extend
   template: Ember.Handlebars.compile filterViewTemplate
+  classNames: ['filterView']
   fastSearch: ""
+  gameFilter: null
 
   didInsertElement: ->
     @_super()
 
   onSearch: (->
-    console.debug "search changed"
+    @set "gameFilter",
+      fastSearch: @get("fastSearch")
   ).observes("fastSearch")
