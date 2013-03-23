@@ -27,20 +27,18 @@ class EmailService
 
     @send to, subject, text, callback
 
-  send: (to, subject, text, callback, from='', cc='') ->
+  send: (to, subject, text, callback) ->
     server = email.server.connect
       user: config.EMAIL_USER
       password: config.EMAIL_PASSWORD
       host: config.EMAIL_HOST
       ssl: config.EMAIL_SSL
 
-    from = @from if from == ''
-
     server.send
       text: text
-      from: from
+      from: config.EMAIL_FROM
       to: to
-      cc: cc
+      cc: ''
       subject: subject
     , callback
 
