@@ -56,7 +56,7 @@ groupViewTemplate = """
       {{game.player2.name}}
     </td>
     <td class="tableCell">
-      {{view App.NumberField editableBinding="App.editable" valueBinding="result1"}} : {{view App.NumberField valueBinding="result2" editableBinding="App.editable"}}
+      {{view App.NumberField editableBinding="App.editable" valueBinding="game.result1"}} : {{view App.NumberField valueBinding="game.result2" editableBinding="App.editable"}}
     </td>
   </tr>
 {{/each}}

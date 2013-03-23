@@ -43,7 +43,6 @@ App.Group = App.RoundItem.extend
  
   table: (->
     players = []
-    console.debug "kjl"
     # befüllen
     for index in [0..@get("players").get("length") - 1]
       player = @get("players").objectAt index
