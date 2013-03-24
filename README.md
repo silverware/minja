@@ -2,6 +2,7 @@ minja
 =====
 
 Simple way to manage tournaments. 
+
 Demo: [minja.net](http://www.minja.net)
 
 
