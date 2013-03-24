@@ -22,7 +22,7 @@ App.GroupRoundView = App.RoundView.extend
     @$("#showTables").tooltip
       title: "Tabellenansicht"
     @$("#showGames").tooltip
-      title: "Spielplanansicht"    
+      title: "Spielplanansicht"
 
   displayTables: ->
     @set "showTables", true
