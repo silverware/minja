@@ -116,12 +116,12 @@ App.Group = App.RoundItem.extend
         stats.goals += game.get("goals1")
         stats.goalsAgainst += game.get("goals2")
         stats.points += game.getPoints 1
-        stats.games += 1
+        stats.games += 1 if game.get("isCompleted")
       if player is game.get("player2")
           stats.goals += game.get("goals2")
           stats.goalsAgainst += game.get("goals1")
           stats.points += game.getPoints 2
-          stats.games += 1
+          stats.games += 1 if game.get("isCompleted")
     stats.difference = stats.goals - stats.goalsAgainst
     stats
 

@@ -13,8 +13,8 @@ App.DetailView = Em.View.extend
   initExitableView: ->
     $(document).keyup (e) =>
       if e.keyCode is 27
-       @remove()
+        @destroy()
 
     exitButton = $ """<i class="icon-remove closeButton"></i>"""
-    exitButton.click => @remove()
+    exitButton.click => @destroy()
     @$().append exitButton
