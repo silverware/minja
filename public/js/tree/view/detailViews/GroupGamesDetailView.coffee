@@ -8,7 +8,7 @@ groupGamesDetailTemplate = """
     <div class="span10">
       <fieldset>
         <legend>Spielplan</legend>
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr>
               <th>Heim</th>

@@ -1,7 +1,7 @@
 filterViewTemplate = """
 <fieldset>
-<legend>Spiele-Filter</legend>
-  {{view Em.TextField valueBinding="view.fastSearch"}}
+<legend>Filter</legend>
+  {{view Em.TextField id="searchField" valueBinding="view.fastSearch" placeholder="Filter nach Spielern"}}
 </fieldset>
 """
 
@@ -13,6 +13,8 @@ App.FilterView = Em.View.extend
 
   didInsertElement: ->
     @_super()
+    $(document).keydown =>
+      @$("#searchField")?.focus()
 
   onSearch: (->
     @set "gameFilter",

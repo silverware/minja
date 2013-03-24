@@ -141,8 +141,16 @@ Tournament
   background-color: rgba(55,180,110, 0.2);
 }
 
-.roundItem table thead {
-  color: white;
+.roundItem table {
+  .transition(0.5s);
+  thead {
+    color: white;
+  }
+}
+
+.roundItem table:hover {
+    .lightningBox;
+    cursor: pointer;
 }
 
 .roundItem table td {
@@ -295,6 +303,7 @@ Action Box unten
 
 .detailView {
   .contentBox;
+  background-color: rgba(72, 82, 97, 0.95);
   position: fixed;
   overflow: auto;
   top: 20px;
@@ -324,6 +333,7 @@ Action Box unten
 .filterView {
   input {
     color: @textColor;
+    width: 100%;
   }
 
 }

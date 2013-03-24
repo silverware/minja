@@ -2,7 +2,7 @@ tableDetailViewTemplate = """
 <fieldset>
 <legend>Tabelle</legend>
 
-<table class="table" style="max-width: 800px; margin: 0 auto;">
+<table class="table table-striped" style="max-width: 800px; margin: 0 auto;">
   <thead>
     <tr>
       <th>Rang</th>
@@ -41,7 +41,7 @@ tableDetailViewTemplate = """
 <fieldset>
 <legend>Kreuztabelle</legend>
 
-<table class="table">
+<table class="table table-striped">
   <tr>
     <td></td>
     {{#each player in roundItem.players}}
