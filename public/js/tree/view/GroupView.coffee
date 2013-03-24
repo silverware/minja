@@ -108,12 +108,12 @@ App.GroupView = App.RoundItemView.extend
 
   openGroupTableView: ->
     App.TableDetailView.create
-      group: @group
+      roundItem: @group
 
   openGroupGamesView: ->
     console.debug "jsdklfj"
     App.GroupGamesDetailView.create
-      group: @group
+      roundItem: @group
 
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>

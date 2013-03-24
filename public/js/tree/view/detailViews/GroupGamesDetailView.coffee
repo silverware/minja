@@ -7,7 +7,7 @@ groupGamesDetailTemplate = """
     </div>
     <div class="span10">
       <fieldset>
-        <legend>{{group._round.name}} - {{group.name}}</legend>
+        <legend>Spielplan</legend>
         <table class="table">
           <thead>
             <tr>
@@ -31,9 +31,8 @@ groupGamesDetailTemplate = """
 
 """
 
-App.GroupGamesDetailView = App.DetailView.extend
+App.GroupGamesDetailView = App.RoundItemDetailView.extend
   template: Ember.Handlebars.compile groupGamesDetailTemplate
-  group: null
 
   didInsertElement: ->
     @_super()

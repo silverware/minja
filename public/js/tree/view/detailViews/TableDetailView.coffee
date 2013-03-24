@@ -15,7 +15,7 @@ tableDetailViewTemplate = """
     </tr>
   </thead>
   <tbody>
-    {{#each group.table}}
+    {{#each roundItem.table}}
       {{#if qualified}}
         <tr class="player qualified" >
       {{else}}
@@ -44,15 +44,15 @@ tableDetailViewTemplate = """
 <table class="table">
   <tr>
     <td></td>
-    {{#each player in group.players}}
+    {{#each player in roundItem.players}}
       <td>{{player.name}}</td>
     {{/each}}
   </tr>
-  {{#each player1 in group.players}}
+  {{#each player1 in roundItem.players}}
     <tr>
       <td>{{player1.name}}</td>
-      {{#each player2 in group.players}}
-        <td>{{#view view.resultsView player1Binding="player1" player2Binding="player2" groupBinding="group"}}
+      {{#each player2 in roundItem.players}}
+        <td>{{#view view.resultsView player1Binding="player1" player2Binding="player2" groupBinding="roundItem"}}
           {{#each view.results}}
             {{#if block}}black{{/if}}
             {{#unless block}}
@@ -68,9 +68,8 @@ tableDetailViewTemplate = """
 </fieldset>
 """
 
-App.TableDetailView = App.DetailView.extend
+App.TableDetailView = App.RoundItemDetailView.extend
   template: Ember.Handlebars.compile tableDetailViewTemplate
-  group: null
 
   didInsertElement: ->
     @_super()
