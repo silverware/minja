@@ -31,10 +31,7 @@ App.RoundView = Em.View.extend
         @$("#qualifierPopover").html()
     ###
     @$("#qualifierCount").click =>
-      if @round.isGroupRound
-        App.GroupRoundDetailView.create round: @round
-      else
-        App.KoRoundDetailView.create round: @round
+        App.RoundDetailView.create round: @round
     @$("#toggleRound").tooltip
         title: "Ein-/ Ausblenden"
 

@@ -1,5 +1,4 @@
-groupGamesDetailTemplate = """
-
+gamesDetailViewTemplate = """
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
@@ -11,6 +10,7 @@ groupGamesDetailTemplate = """
         <table class="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th>Heim</th>
               <th>Auswärts</th>
               <th>Ergebnis</th>
@@ -18,6 +18,7 @@ groupGamesDetailTemplate = """
           </thead>
           {{#each game in filteredGames}}
             <tr>
+              <td>{{game.roundItem.name}}</td>
               <td>{{game.player1.name}}</td>
               <td>{{game.player2.name}}</td>
               <td>{{game.result1}} : {{game.result2}}</td>
@@ -31,8 +32,15 @@ groupGamesDetailTemplate = """
 
 """
 
-App.GroupGamesDetailView = App.RoundItemDetailView.extend
-  template: Ember.Handlebars.compile groupGamesDetailTemplate
+App.GamesDetailView = App.DetailView.extend
+  template: Ember.Handlebars.compile gamesDetailViewTemplate
+  gameFilter: null
 
   didInsertElement: ->
     @_super()
+
+  init: ->
+    @_super()
+    @set "gameFilter",
+      fastSearch: null
+      attributes: []

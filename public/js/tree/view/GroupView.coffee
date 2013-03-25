@@ -35,7 +35,7 @@ groupViewTemplate = """
 </table>
 
 
-<table  class="table noPadding groupGames box hide" {{action "openGroupGamesView"}} id="groupGames">
+<table  class="table noPadding groupGames box hide" {{action "openRoundItemView"}} id="groupGames">
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
@@ -110,11 +110,10 @@ App.GroupView = App.RoundItemView.extend
     App.TableDetailView.create
       roundItem: @group
 
-  openGroupGamesView: ->
-    console.debug "jsdklfj"
-    App.GroupGamesDetailView.create
+  openRoundItemView: ->
+    App.RoundItemDetailView.create
       roundItem: @group
-
+      
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>
       @$(inId).fadeIn "medium"

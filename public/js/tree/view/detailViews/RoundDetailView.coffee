@@ -1,15 +1,8 @@
-App.RoundDetailView = App.DetailView.extend
+App.RoundDetailView = App.GamesDetailView.extend
   round: null
-  gameFilter: null
 
   didInsertElement: ->
     @_super()
-
-  init: ->
-    @_super()
-    @set "gameFilter",
-      fastSearch: null
-      attributes: []
 
   filteredGames: (->
     @get("round.items").reduce (filtered, roundItem) =>

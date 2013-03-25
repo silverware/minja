@@ -7,7 +7,7 @@ gameViewTemplate = """
   </span>
 {{/if}}
 
-<table class="box" cellpadding="2" width="100%">
+<table class="box" cellpadding="2" width="100%" {{action "openRoundItemView"}}>
   <tr>
     <td style="min-width: 120px;" class="player tableCellBottom">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
@@ -58,6 +58,10 @@ App.GameView = App.RoundItemView.extend
       else
         @get("g").set "result#{index}", value
     ).property("player", "g")
+
+  openRoundItemView: ->
+    App.RoundItemDetailView.create
+      roundItem: @game
 
   round: (->
     @game?._round
