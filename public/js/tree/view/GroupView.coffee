@@ -107,12 +107,12 @@ App.GroupView = App.RoundItemView.extend
   ).observes("showTables")
 
   openGroupTableView: ->
-    App.TableDetailView.create
-      roundItem: @group
+    #App.TableDetailView.create
+    #  roundItem: @group
 
   openRoundItemView: ->
-    App.RoundItemDetailView.create
-      roundItem: @group
+    #App.RoundItemDetailView.create
+    #  roundItem: @group
       
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>
