@@ -1,10 +1,12 @@
 App.DetailView = Em.View.extend
-  classNames: ['detailView']
+  classNames: ['detailView hide']
 
   didInsertElement: ->
     @_super()
     @$("rel[tooltip]").tooltip()
     @initExitableView()
+    $("#tournament").fadeOut 'slow'
+    @$().show 'medium'
 
   init: ->
     @_super()
@@ -18,3 +20,7 @@ App.DetailView = Em.View.extend
     exitButton = $ """<i class="icon-remove closeButton"></i>"""
     exitButton.click => @destroy()
     @$().append exitButton
+
+  destroy: ->
+    @_super()
+    $("#tournament").fadeIn 'medium'
