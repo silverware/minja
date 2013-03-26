@@ -25,7 +25,7 @@ tableDetailViewTemplate = """
         {{rank}}.
       </td>
       <td class="tableCell reallyNoPadding">
-        {{view DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+        {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
       </td>
       <td class="tableCell">{{games}}</td>
       <td class="tableCell">{{goals}}</td>

@@ -6,7 +6,7 @@ App.PersistanceManager =
     serialized = Serializer.emberObjToJsonData tournament
     serialized.rounds = []
     for round in tournament.content
-       serialized.rounds.push Serializer.emberObjToJsonData(round)
+       serialized.rounds.push App.Serializer.emberObjToJsonData(round)
     serialized
   
   extend: (target, source) ->

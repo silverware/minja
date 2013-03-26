@@ -1,5 +1,5 @@
 groupViewTemplate = """
-{{view DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
+{{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
 
 {{#if view.round.isEditable}}
   <span class="actionIcons">
@@ -25,7 +25,7 @@ groupViewTemplate = """
         {{rank}}.
       </td>
       <td class="tableCell reallyNoPadding">
-        {{view DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+        {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
       </td>
       <td class="tableCell" style="text-align: center; vertical-align: middle">{{goals}} : {{goalsAgainst}}</td>
       <td class="tableCell" style="text-align: center; vertical-align: middle; font-weight: bold;">{{points}}</td>

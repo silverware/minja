@@ -2,11 +2,13 @@
 <link href="/css/tree.css" rel="stylesheet">
 
 <script>
-  require(["utils/DynamicTextField", "utils/EmberSerializer", "utils/Popup", "tree"], function(dynamicTextField, Serializer, Popup) {
-
-      window.DynamicTextField = dynamicTextField;
-      window.Serializer = Serializer;
-      window.Popup = Popup;
+  require(["utils/DynamicTextField",
+    "utils/EmberSerializer",
+    "utils/Popup",
+    "tree"], function(dynamicTextField, Serializer, Popup) {
+      App.DynamicTextField = dynamicTextField;
+      App.Serializer = Serializer;
+      App.Popup = Popup;
       var treeWrapper = $("<div id='treeWrapper'>");
       $("#wrapper").addClass("wrapperBeforeTree");
       $("#wrapper").after(treeWrapper);

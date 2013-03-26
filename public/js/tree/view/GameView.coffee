@@ -1,5 +1,5 @@
 gameViewTemplate = """
-<span>{{view DynamicTextField valueBinding="game.name" editableBinding="App.editable"}}</span>
+<span>{{view App.DynamicTextField valueBinding="game.name" editableBinding="App.editable"}}</span>
 
 {{#if view.round.isEditable}}
   <span class="actionIcons">
@@ -11,7 +11,7 @@ gameViewTemplate = """
   <tr>
     <td style="min-width: 120px;" class="player tableCellBottom">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
-      {{view DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+      {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
     </td>  
     {{#each g in game.games}}
       <td class="tableCellBottom">
@@ -24,7 +24,7 @@ gameViewTemplate = """
   <tr>
     <td class="player tableCellTop">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">1</div>
-      {{view DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+      {{view App.DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
     </td>
     {{#each g in game.games}}
       <td class="tableCellTop">

@@ -1,5 +1,6 @@
 window.App = Em.Application.create
   i18n: {}
+  templates: {}
 
 $.fn.createTree = (settings) ->
   view = App.TournamentView.create()

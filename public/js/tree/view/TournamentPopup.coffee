@@ -21,7 +21,7 @@ App.TournamentPopup = Em.View.create(
 
   show: ->
     @$().show()
-    Popup.show
+    App.Popup.show
       title: "Turnierbaum-Einstellungen"
       bodyContent: @$()[0]
 
