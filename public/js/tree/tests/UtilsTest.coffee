@@ -38,3 +38,4 @@ buster.testCase "Utils"
 
     result = App.utils.filterGames "han up ", games
     assertGames result, 4
+    assert true

@@ -52,6 +52,7 @@ buster.testCase "Group Model"
      p2: tore: 5  -  gegentore: 4  - punkte: 4
      p3: tore: 3  -  gegentore: 4  - punkte: 1
     ###
+
     @group.generateGames()
     console.debug @group.games
     game1 = @group.games.objectAt(0)
