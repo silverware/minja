@@ -17,7 +17,7 @@ $.fn.createTree = (settings) ->
       $("#settings .close").click()
       $("#tournamentAddRemoveActions").click()), 50
 
-  view.appendTo(this)
+  view.appendTo @
 
   # Übernimmt die Teilnehmer aus der Teilnehmerliste
   if not settings.data and settings.initialMembers

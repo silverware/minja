@@ -1,7 +1,7 @@
 App.Tournament = Em.ArrayController.create
   winPoints: 3
   drawPoints: 1
- 
+  gameAttributes: []
   content: []
 
   addGroupRound: ->

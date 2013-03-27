@@ -20,6 +20,7 @@ treeFiles  = [
   'model/group.coffee'
   'model/roundGame.coffee'
   'model/game.coffee'
+  'model/gameAttribute.coffee'
   'model/player.coffee'
   'model/tournament.coffee'
   'view/TournamentView.coffee'

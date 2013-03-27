@@ -35,6 +35,9 @@ App.PersistanceManager =
         delete round.items
         @extend kRound, round
     delete obj.rounds
+    for gameAttribute in obj.gameAttributes
+      App.Tournament.gameAttributes.pushObject App.GameAttribute.create gameAttribute
+    delete obj.gameAttributes
     @extend App.Tournament, obj
 
   buildGroup: (obj, round) ->
