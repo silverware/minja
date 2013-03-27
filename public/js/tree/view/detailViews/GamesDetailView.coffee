@@ -21,7 +21,15 @@ gamesDetailViewTemplate = """
               <td>{{game.roundItem.name}}</td>
               <td>{{game.player1.name}}</td>
               <td>{{game.player2.name}}</td>
-              <td>{{game.result1}} : {{game.result2}}</td>
+              <td>
+              {{#if App.editable}}
+                  {{view App.NumberField editableBinding="App.editable" valueBinding="game.result1"}}
+                  :
+                  {{view App.NumberField editableBinding="App.editable" valueBinding="game.result2"}}
+              {{else}}
+                {{game.result1}} : {{game.result2}}
+              {{/if}}
+              </td>
             </tr>
           {{/each}}
         </table>
@@ -38,6 +46,7 @@ App.GamesDetailView = App.DetailView.extend
 
   didInsertElement: ->
     @_super()
+    #@$().mCustomScrollbar()
 
   init: ->
     @_super()

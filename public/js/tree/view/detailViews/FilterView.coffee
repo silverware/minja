@@ -13,8 +13,6 @@ App.FilterView = Em.View.extend
 
   didInsertElement: ->
     @_super()
-    $(document).keydown =>
-      @$("#searchField")?.focus()
 
   onSearch: (->
     @set "gameFilter",

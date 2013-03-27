@@ -1,5 +1,7 @@
 <script src="/js/lib/jquery-ui.js"></script>
+<script src="/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
 <link href="/css/tree.css" rel="stylesheet">
+<link href="/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 
 <script>
   require(["utils/DynamicTextField",
