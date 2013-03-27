@@ -1,5 +1,4 @@
 buster.testCase "Game Model"
-
   setUp: ->
     @round = App.KoRound.create()
     @roundGame = App.RoundGame.create
@@ -28,7 +27,7 @@ buster.testCase "Game Model"
   "Qualifiers: ": ->
     dummy = @roundGame.get("qualifiers")[0]
 
-    game = @roundGame.get("games").objectAt(0)
+    game = @roundGame.get("games").objectAt 0
     assert dummy.isDummy
 
     game.setResult 2, 1
