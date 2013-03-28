@@ -13,7 +13,7 @@ App.utils =
         attributes = []
         p1 = @subStringContained game.player1.name, ss
         p2 = @subStringContained game.player2.name, ss
-        for attribute in App.Tournament.gameAttributes
+        for attribute in App.Tournament.gameAttributes when attribute.get("isTextfield")
           attributes.push attribute.id
         attrs = attributes.some (attr) => @subStringContained game[attr], ss
         p1 or p2 or attrs
