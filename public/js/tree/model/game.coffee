@@ -4,6 +4,7 @@ App.Game = Em.Object.extend
   result1: null
   result2: null
   date: null
+  attributes: []
 
   isCompleted: (->
     (@get("result1") or @get("result1") == 0) and (@get("result2") or @get("result2") == 0)

@@ -21,6 +21,7 @@ class Save
 
           if typeof @data == 'function'
             data = @data()
+            console.debug data
             $.ajax
               type: "POST"
               url: @url

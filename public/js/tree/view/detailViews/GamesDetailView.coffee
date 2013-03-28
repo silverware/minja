@@ -13,14 +13,20 @@ gamesDetailViewTemplate = """
               <th></th>
               <th>Heim</th>
               <th>Auswärts</th>
+              {{#each attribute in App.Tournament.gameAttributes}}
+                <th>{{attribute.name}}alter</th>
+              {{/each}}
               <th>Ergebnis</th>
             </tr>
           </thead>
           {{#each game in filteredGames}}
             <tr>
-              <td>{{game.roundItem.name}}</td>
+              <td>{{game._roundItem.name}}</td>
               <td>{{game.player1.name}}</td>
               <td>{{game.player2.name}}</td>
+              {{#each attribute in App.Tournament.gameAttributes}}
+                {{view App.GameAttributeValueView attributeBinding="attribute" gameBinding="game"}}
+              {{/each}}
               <td>
               {{#if App.editable}}
                   {{view App.NumberField editableBinding="App.editable" valueBinding="game.result1"}}
@@ -53,3 +59,5 @@ App.GamesDetailView = App.DetailView.extend
     @set "gameFilter",
       fastSearch: null
       attributes: []
+
+

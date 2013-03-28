@@ -38,6 +38,7 @@ treeFiles  = [
   'view/detailViews/RoundDetailView.coffee'
   'view/detailViews/RoundItemDetailView.coffee'
   'view/detailViews/FilterView.coffee'
+  'view/detailViews/GameAttributeValueView.coffee'
   'view/detailViews/TableDetailView.coffee'
   'utils/Utils.coffee'
   'utils/PersistanceManager.coffee'

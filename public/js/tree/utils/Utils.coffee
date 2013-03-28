@@ -1,6 +1,7 @@
 App.utils =
 
  subStringContained: (s, sub) ->
+    if not s then return false
     s.toLowerCase().indexOf(sub.toLowerCase()) isnt -1
 
   filterGames: (searchString, games) ->
@@ -9,6 +10,10 @@ App.utils =
     filtered = games.filter (game) =>
       s.every (ss) =>
         if not ss then return true
-        p1 = @subStringContained game.player2.name, ss
-        p2 = @subStringContained game.player1.name, ss
-        return p1 or p2
+        attributes = []
+        p1 = @subStringContained game.player1.name, ss
+        p2 = @subStringContained game.player2.name, ss
+        for attribute in App.Tournament.gameAttributes
+          attributes.push attribute.id
+        attrs = attributes.some (attr) => @subStringContained game[attr], ss
+        p1 or p2 or attrs
