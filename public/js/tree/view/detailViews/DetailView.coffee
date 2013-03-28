@@ -5,22 +5,21 @@ App.DetailView = Em.View.extend
     @_super()
     @$("rel[tooltip]").tooltip()
     @initExitableView()
-    $("#tournament").fadeOut 'slow'
-    @$().show 'medium'
+    $("#tournament").fadeOut 'medium', =>
+      @$().fadeIn 'slow'
 
   init: ->
     @_super()
     @appendTo "body"
 
   initExitableView: ->
-    $(document).keyup (e) =>
-      if e.keyCode is 27
-        @destroy()
-
+    #$(document).keyup (e) =>
+    #  if e.keyCode is 27 then @destroy()
     exitButton = $ """<i class="icon-remove closeButton"></i>"""
     exitButton.click => @destroy()
     @$().append exitButton
 
   destroy: ->
+    @$().fadeOut 'medium', =>
+      $("#tournament").fadeIn 'slow'
     @_super()
-    $("#tournament").fadeIn 'medium'

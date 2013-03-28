@@ -4,18 +4,13 @@ App.RoundItemDetailView = App.GamesDetailView.extend
   BreadcrumbView: Em.View.extend
     roundItem: null
     template: Ember.Handlebars.compile """
-      <div class="roundItemTitle">{{roundItem._round.name}}
+      <div class="roundItemTitle">{{roundItem._round.name}}<span class="seperator">|</span>{{roundItem.name}}
+        <!--<br />
         {{#each roundItem._round.items}}
-          {{name}} <span class="seperator"></span>
-        {{/each}}
+          {{name}} <span class="seperator">|</span>
+        {{/each}}-->
       </div>
     """
-
-    didInsertElement: ->
-      @_super()
-      view = @BreadcrumbView.create
-        roundItem: @roundItem
-      view.appendTo @$()
 
     filteredGames: (->
       App.utils.filterGames @get("gameFilter.fastSearch"), @get("roundItem.games")
@@ -23,7 +18,10 @@ App.RoundItemDetailView = App.GamesDetailView.extend
 
   didInsertElement: ->
     @_super()
-    @$().append """<div class="roundItemTitle">#{@roundItem._round.name} #{@roundItem.name}</div>"""
+    view = @BreadcrumbView.create
+        roundItem: @roundItem
+      view.appendTo @$()
+    #@$().append """<div class="roundItemTitle">#{@roundItem._round.name} #{@roundItem.name}</div>"""
 
   filteredGames: (->
     App.utils.filterGames @get("gameFilter.fastSearch"), @get("roundItem.games")

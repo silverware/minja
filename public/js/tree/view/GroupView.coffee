@@ -3,6 +3,7 @@ groupViewTemplate = """
 
 {{#if view.round.isEditable}}
   <span class="actionIcons">
+      <i class="icon-sort-up" {{action "openGroupTableView"}}></i>
       <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
       <i class="icon-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
       <i class="icon-plus-sign increaseGroupsize" {{action "addPlayer" target="group"}}></i>
@@ -11,8 +12,11 @@ groupViewTemplate = """
   </span>
 {{/if}}
 
-
-<table class="table noPadding box" {{action "openGroupTableView"}} id="groupTable">
+{{#if view.round.isEditable}}
+  <table class="table noPadding box" id="groupTable">
+{{else}}
+  <table class="table noPadding box" {{action "openGroupTableView"}} id="groupTable">
+{{/if}}
   <tbody>
     {{#each group.table}}
       {{#if qualified}}
@@ -34,8 +38,11 @@ groupViewTemplate = """
   </tbody>
 </table>
 
-
-<table  class="table noPadding groupGames box hide" {{action "openRoundItemView"}} id="groupGames">
+{{#if view.round.isEditable}}
+  <table class="table noPadding groupGames box hide" id="groupGames">
+{{else}}
+  <table class="table noPadding groupGames box hide" {{action "openRoundItemView"}} id="groupGames">
+{{/if}}
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
@@ -62,7 +69,6 @@ groupViewTemplate = """
 {{/each}}
 </table>
 """
-
 
 
 App.GroupView = App.RoundItemView.extend
@@ -107,12 +113,12 @@ App.GroupView = App.RoundItemView.extend
   ).observes("showTables")
 
   openGroupTableView: ->
-    #App.TableDetailView.create
-    #  roundItem: @group
+    App.TableDetailView.create
+      roundItem: @group
 
   openRoundItemView: ->
-    #App.RoundItemDetailView.create
-    #  roundItem: @group
+    App.RoundItemDetailView.create
+      roundItem: @group
       
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>
