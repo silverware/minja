@@ -4,6 +4,12 @@ App.Tournament = Em.ArrayController.create
   gameAttributes: []
   content: []
 
+  games: (->
+    @reduce (tournamentGames, round) -> 
+      tournamentGames = tournamentGames.concat round.get("games")
+    , []
+  ).property('@each.games')
+
   addGroupRound: ->
     if @addRound()
       $("#settings .close").click()

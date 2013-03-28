@@ -7,6 +7,12 @@ App.Round = Em.Object.extend
   changes: 0
   matchesPerGame: 1
 
+  games: (->
+    @get("items").reduce (roundGames, item) ->
+      roundGames = roundGames.concat item.get("games").content
+    , []
+  ).property('items.@each.games.@each')
+
   init: ->
     @_super()
     @set "items", Em.ArrayController.create

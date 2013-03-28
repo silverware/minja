@@ -20,7 +20,21 @@ buster.testCase "Tournament Model"
     assert.equals round2game.get("player1"), round1game1.get("player1")
 
 
-  
+  "Die Spiele aller Turnierrunden holen": ->
+    round1 = @tournament.addGroupRound()
+    # 4er Gruppe -> 6 Spiele
+    round1.addItem()
+
+    round2 = @tournament.addKoRound()
+    ## zwei Spiele
+    round2.addItem()
+    round2.addItem()
+
+    games = @tournament.get("games")
+
+    assert.equals 8, games.length
+
+
 ###
   "öffnet bei Edit das Popup": ->
     App.TournamentPopup.show = @stub()

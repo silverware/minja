@@ -10,7 +10,7 @@ App.templates.gameAttributeValue = """
 {{/if}}
 {{#if attribute.isTextfield}}
   {{#if App.editable}}
-    {{view App.DynamicTextField nameBinding="attribute.id" valueBinding="view.gameValue"}}
+    {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
   {{else}}
     {{view.gameValue}}
   {{/if}}

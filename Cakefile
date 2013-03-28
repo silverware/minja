@@ -32,6 +32,7 @@ treeFiles  = [
   'view/GameView.coffee'
   'view/TournamentPopup.coffee'
   'view/helper/NumberField.coffee'
+  'view/helper/DynamicTypeAheadTextField.coffee'
   'view/helper/Alert.coffee'
   'view/detailViews/DetailView.coffee'
   'view/detailViews/GamesDetailView.coffee'
