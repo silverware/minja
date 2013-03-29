@@ -14,7 +14,7 @@ gamesDetailViewTemplate = """
               <th>Heim</th>
               <th>Auswärts</th>
               {{#each attribute in App.Tournament.gameAttributes}}
-                <th>{{attribute.name}}alter</th>
+                <th>{{attribute.name}}</th>
               {{/each}}
               <th>Ergebnis</th>
             </tr>

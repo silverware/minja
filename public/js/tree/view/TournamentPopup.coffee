@@ -27,10 +27,9 @@ tournamentViewTemplate = """
       </tr>
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
-        <td>{{view App.DynamicTextField valueBinding="gameAttribute.name"}}</td>
+        <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="l"}}</td>
         <td>{{view Ember.Select contentBinding="App.attributeTypes" 
-          optionValuePath="content.id" 
-          optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
+          optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
         <td><i class="icon-remove" rel="tooltip" title="Delete" {{action "remove" target="gameAttribute"}}></i>
         </td>
       </tr>
