@@ -19,12 +19,14 @@ tournamentViewTemplate = """
 
   <fieldset>
     <legend>Spiele-Attribute</legend>
-    <table class="table">
+    <table class="table table-striped">
+      <thead>
       <tr>
         <th>Name</th>
         <th>Typ</th>
         <th></th>
       </tr>
+      </thead>
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
         <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="l"}}</td>
