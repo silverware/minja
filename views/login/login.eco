@@ -18,14 +18,14 @@ $(function() {
 	<% if (@message): %>
 	  <p><%= @message %></p>
 	<% end %>
-  <%= @formWithActionFor {}, "/login", (form) => %>
+  <%= @formWithActionFor {}, "/user/login", (form) => %>
     <%= form.textField "E-Mail", "username", {placeholder: "name@example.com", class: "required email"} %>
     <%= form.password @i18n.password, "password", {placeholder: @i18n.password, class: "required"} %>
 	  <input type="hidden" value="<%= @next %>" name="next" />
     <div class="control-group">
       <div class="controls">
         <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Login</button>
-        <a href="/lostpassword">
+        <a href="/user/lostpassword">
           <button type="button" class="btn btn-link"><i class="icon-question-sign"></i><%= @i18n.lostPassword %></button>
         </a>
       </div>

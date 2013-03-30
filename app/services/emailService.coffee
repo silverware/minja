@@ -7,7 +7,7 @@ class EmailService
     subject = "Tournament Manager lost password"
     text = """
       Click the following link to recover your password:
-      #{config.ROOTPATH}/recoverpassword?user=#{user._id}&secret=#{secret}
+      #{config.ROOTPATH}/user/recoverpassword?user=#{user._id}&secret=#{secret}
     """
     @send user.email, subject, text, callback
 

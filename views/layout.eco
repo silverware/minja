@@ -146,11 +146,11 @@
             </ul>
           </span>
             <span class="seperator">|</span>
-            <a href="/logout">Logout</a>
+            <a href="/user/logout">Logout</a>
         <% else: %>
-            <a href="/login">Login</a>
+            <a href="/user/login">Login</a>
             <span class="seperator">|</span>
-            <a href="/register"><%= @i18n.register %></a>
+            <a href="/user/register"><%= @i18n.register %></a>
         <% end %>
         </span>
       </div>

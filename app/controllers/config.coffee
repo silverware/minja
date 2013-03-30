@@ -1,3 +1,4 @@
+config = require "../server-config"
 formHelper = require "../helper/form_helper"
 viewHelper = require "../helper/view_helper"
 i18n = require "../languages/i18n"
@@ -61,6 +62,7 @@ module.exports = (app) ->
         else
           app.post route, middleware, func
         console.log route, "POST"
+
 
   app.get /^\/([^\s]+)\.template$/, (req, res) ->
     res.render req.params[0],

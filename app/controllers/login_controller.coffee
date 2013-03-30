@@ -10,7 +10,7 @@ class LoginController
 
   viewPrefix: "login"
 
-  "POST:/lostpassword": (req, res) =>
+  "POST:/user/lostpassword": (req, res) =>
     email = req.param "email"
     res.locals.email = email
     userDao.findByEmail email, (user) =>
@@ -36,10 +36,10 @@ class LoginController
               res.addInfo "A password recovery E-mail was sent to you"
             res.render "#{@viewPrefix}/lostpassword"
 
-  "/lostpassword": (req, res) =>
+  "/user/lostpassword": (req, res) =>
     res.render "#{@viewPrefix}/lostpassword"
 
-  "POST:/recoverpassword": (req, res) =>
+  "POST:/user/recoverpassword": (req, res) =>
     secret = req.param "secret"
     userId = req.param "user"
     newpassword1 = req.param "newpassword1"
@@ -74,7 +74,7 @@ class LoginController
       else
         res.render "#{@viewPrefix}/recoverpassword"
 
-  "/recoverpassword": (req, res) =>
+  "/user/recoverpassword": (req, res) =>
     secret = req.param "secret"
     userId = req.param "user"
 
@@ -90,7 +90,7 @@ class LoginController
         newpassword2: ''
       res.render "#{@viewPrefix}/recoverpassword", password: password, user: userId, secret: secret
 
-  "POST:/register": (req, res) =>
+  "POST:/user/register": (req, res) =>
     email = req.param "email"
     res.locals.email = email
     userDao.findByEmail email, (user) =>
@@ -110,18 +110,18 @@ class LoginController
                 res.addInfo req.i18n.passwordSent
                 res.render "#{@viewPrefix}/login"
 
-  "/register": (req, res) =>
+  "/user/register": (req, res) =>
     res.render "#{@viewPrefix}/register"
 
-  "/login": (req, res) =>
+  "/user/login": (req, res) =>
     next = if req.param "next" then req.param "next" else ''
     res.render "#{@viewPrefix}/login", next: next, message: req.flash 'error'
 
-  "/logout": (req, res) =>
+  "/user/logout": (req, res) =>
     req.logOut()
     res.redirect "/"
 
-  "POST:/login": [passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), (req, res) ->
+  "POST:/user/login": [passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), (req, res) ->
       if req.param "next"
         res.redirect req.param "next"
       else res.redirect "/me/tournaments"

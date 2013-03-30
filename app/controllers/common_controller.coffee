@@ -3,7 +3,7 @@ class CommonController
   "/": (req, res) =>
     res.render 'index'
 
-  "/impressum": (req, res) =>
+  "/site/impressum": (req, res) =>
     res.render 'impressum'
 
   "/lang/:lang": (req, res) =>
