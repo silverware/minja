@@ -13,6 +13,10 @@ App.Round = Em.Object.extend
     , []
   ).property('items.@each.games.@each')
 
+  matchDays: (->
+    ## TODO
+  ).property("items.@each.matchDays")
+
   init: ->
     @_super()
     @set "items", Em.ArrayController.create
