@@ -1,5 +1,5 @@
 gamesDetailViewTemplate = """
-      
+      {{#if table}}
       <fieldset>
 <legend>Tabelle</legend>
 
@@ -38,12 +38,18 @@ gamesDetailViewTemplate = """
   </tbody>
 </table>
 </fieldset>
+<br />
+<br />
+{{/if}}
       <fieldset>
-        <legend>Spielplan</legend>
+        <legend>Spielplan
+
+          <span style="float:right" >{{view Em.TextField id="searchField" valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}</span>
+        </legend>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th></th>
+              <th width="70px"></th>
               <th>Heim</th>
               <th>Auswärts</th>
               {{#each attribute in App.Tournament.gameAttributes}}
@@ -53,12 +59,16 @@ gamesDetailViewTemplate = """
             </tr>
           </thead>
           {{#each matchday in filteredGames}}
-            <tr><td>huhu{{matchday.matchDay}}dd</td></tr>
+            <tr><td colspan="6" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
             {{#each game in matchday.games}}
               <tr>
                 <td>{{game._roundItem.name}}</td>
-                <td>{{game.player1.name}}</td>
-                <td>{{game.player2.name}}</td>
+                <td>
+                  {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+                </td>
+                <td>
+                  {{view App.DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+                </td>
                 {{#each attribute in App.Tournament.gameAttributes}}
                   {{view App.GameAttributeValueView attributeBinding="attribute" gameBinding="game"}}
                 {{/each}}
@@ -81,7 +91,7 @@ gamesDetailViewTemplate = """
 
 App.GamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile gamesDetailViewTemplate
-  gameFilter: null
+  gameFilter: ""
 
   didInsertElement: ->
     @_super()
@@ -89,8 +99,5 @@ App.GamesDetailView = App.DetailView.extend
 
   init: ->
     @_super()
-    @set "gameFilter",
-      fastSearch: null
-      attributes: []
 
 

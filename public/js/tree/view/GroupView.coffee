@@ -1,21 +1,21 @@
 groupViewTemplate = """
 {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
 
-{{#if view.round.isEditable}}
-  <span class="actionIcons">
-      <i class="icon-sort-up" {{action "openGroupTableView"}}></i>
-      <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
-      <i class="icon-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
-      <i class="icon-plus-sign increaseGroupsize" {{action "addPlayer" target="group"}}></i>
-      <i class="icon-minus-sign decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
-      <i class="icon-remove removeItem" {{action "remove" target="group"}}></i>
-  </span>
-{{/if}}
+<span class="actionIcons">
+  <i class="icon-sort-up" {{action "openGroupView"}}></i>
+  {{#if view.round.isEditable}}
+    <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
+    <i class="icon-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
+    <i class="icon-plus-sign increaseGroupsize" {{action "addPlayer" target="group"}}></i>
+    <i class="icon-minus-sign decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
+    <i class="icon-remove removeItem" {{action "remove" target="group"}}></i>
+  {{/if}}
+</span>
 
 {{#if view.round.isEditable}}
   <table class="table noPadding box" id="groupTable">
 {{else}}
-  <table class="table noPadding box" {{action "openGroupTableView"}} id="groupTable">
+  <table class="table noPadding box" {{action "openGroupView"}} id="groupTable">
 {{/if}}
   <tbody>
     {{#each group.table}}
@@ -41,7 +41,7 @@ groupViewTemplate = """
 {{#if view.round.isEditable}}
   <table class="table noPadding groupGames box hide" id="groupGames">
 {{else}}
-  <table class="table noPadding groupGames box hide" {{action "openRoundItemView"}} id="groupGames">
+  <table class="table noPadding groupGames box hide" {{action "openGroupView"}} id="groupGames">
 {{/if}}
   <col width="74px" />
   <col width="8px" />
@@ -112,13 +112,11 @@ App.GroupView = App.RoundItemView.extend
       @toggle "#groupTable", "#groupGames"
   ).observes("showTables")
 
-  openGroupTableView: ->
-    App.TableDetailView.create
-      roundItem: @group
-
-  openRoundItemView: ->
+  openGroupView: ->
     App.RoundItemDetailView.create
       roundItem: @group
+      table: true
+
       
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>

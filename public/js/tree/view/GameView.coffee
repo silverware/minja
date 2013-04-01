@@ -60,8 +60,9 @@ App.GameView = App.RoundItemView.extend
     ).property("player", "g")
 
   openRoundItemView: ->
-    #App.RoundItemDetailView.create
-    #  roundItem: @game
+    App.RoundItemDetailView.create
+      roundItem: @game
+      table: false
 
   round: (->
     @game?._round

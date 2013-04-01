@@ -9,12 +9,12 @@ App.Round = Em.Object.extend
 
   games: (->
     @get("items").reduce (roundGames, item) ->
-      roundGames = roundGames.concat item.get("games").content
+      roundGames.concat item.get("games").content
     , []
   ).property('items.@each.games.@each')
 
   matchDays: (->
-    ## TODO
+    # sldkfj 
   ).property("items.@each.matchDays")
 
   init: ->

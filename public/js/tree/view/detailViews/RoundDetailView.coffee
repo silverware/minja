@@ -1,5 +1,6 @@
 App.RoundDetailView = App.GamesDetailView.extend
   round: null
+  table: false
 
   didInsertElement: ->
     @_super()
