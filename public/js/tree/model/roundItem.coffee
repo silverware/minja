@@ -29,10 +29,10 @@ App.RoundItem = Em.Object.extend
     .map((chunk, index) -> 
       games = []
       for game in chunk
-        games.pushObject
-          matchDay: parseInt(index) + 1
-          game: game
-      matchDays.push games
+        games.pushObject game
+      matchDays.pushObject
+        matchDay: parseInt(index) + 1
+        games: games
     )
     matchDays
   ).property("roundItem.games.@each")

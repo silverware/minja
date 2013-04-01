@@ -14,26 +14,26 @@ buster.testCase "RoundItem Model"
     matchdays = @group.get("matchDays")
     assert.equals 3, matchdays.length
     for m in matchdays
-      assert.equals 1, m.length
-    assert.equals matchdays[0][0].game, @group.get("games").objectAt 0 
-    assert.equals matchdays[1][0].game, @group.get("games").objectAt 1 
-    assert.equals matchdays[2][0].game, @group.get("games").objectAt 2
-    assert.equals matchdays[0][0].matchDay, 1 
-    assert.equals matchdays[1][0].matchDay, 2 
-    assert.equals matchdays[2][0].matchDay, 3
+      assert.equals 1, m.games.length
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1 
+    assert.equals matchdays[2].games[0], @group.get("games").objectAt 2
+    assert.equals matchdays[0].matchDay, 1 
+    assert.equals matchdays[1].matchDay, 2 
+    assert.equals matchdays[2].matchDay, 3
 
   "Spieltage werden auf Basis der Spiele und der Spieleranzahl generiert: 4 Spieler": ->
     @fillPlayers 4
     matchdays = @group.get("matchDays")
     assert.equals 3, matchdays.length
     for m in matchdays
-      assert.equals 2, m.length
-    assert.equals matchdays[0][0].game, @group.get("games").objectAt 0 
-    assert.equals matchdays[0][1].game, @group.get("games").objectAt 1 
-    assert.equals matchdays[1][0].game, @group.get("games").objectAt 2 
-    assert.equals matchdays[1][1].game, @group.get("games").objectAt 3 
-    assert.equals matchdays[2][0].game, @group.get("games").objectAt 4 
-    assert.equals matchdays[2][1].game, @group.get("games").objectAt 5 
+      assert.equals 2, m.games.length
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
+    assert.equals matchdays[0].games[1], @group.get("games").objectAt 1 
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 2 
+    assert.equals matchdays[1].games[1], @group.get("games").objectAt 3 
+    assert.equals matchdays[2].games[0], @group.get("games").objectAt 4 
+    assert.equals matchdays[2].games[1], @group.get("games").objectAt 5 
 
   "Spieltage werden auf Basis der Spiele und Spieleranzahl generiert: 3 Spieler, 2 Spiele/Begegnung": ->
     @fillPlayers 3
@@ -41,10 +41,10 @@ buster.testCase "RoundItem Model"
     matchdays = @group.get("matchDays")
     assert.equals 6, matchdays.length
     for m in matchdays
-      assert.equals 1, m.length
-    assert.equals matchdays[0][0].game, @group.get("games").objectAt 0 
-    assert.equals matchdays[1][0].game, @group.get("games").objectAt 1 
-    assert.equals matchdays[2][0].game, @group.get("games").objectAt 2
-    assert.equals matchdays[3][0].game, @group.get("games").objectAt 3
-    assert.equals matchdays[4][0].game, @group.get("games").objectAt 4
-    assert.equals matchdays[5][0].game, @group.get("games").objectAt 5
+      assert.equals 1, m.games.length
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1 
+    assert.equals matchdays[2].games[0], @group.get("games").objectAt 2
+    assert.equals matchdays[3].games[0], @group.get("games").objectAt 3
+    assert.equals matchdays[4].games[0], @group.get("games").objectAt 4
+    assert.equals matchdays[5].games[0], @group.get("games").objectAt 5

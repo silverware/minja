@@ -12,10 +12,6 @@ App.RoundItemDetailView = App.GamesDetailView.extend
       </div>
     """
 
-    filteredGames: (->
-      App.utils.filterGames @get("gameFilter.fastSearch"), @get("roundItem.games")
-    ).property("gameFilter", "roundItem.games.@each")
-
   didInsertElement: ->
     @_super()
     view = @BreadcrumbView.create
@@ -24,5 +20,8 @@ App.RoundItemDetailView = App.GamesDetailView.extend
     #@$().append """<div class="roundItemTitle">#{@roundItem._round.name} #{@roundItem.name}</div>"""
 
   filteredGames: (->
-    App.utils.filterGames @get("gameFilter.fastSearch"), @get("roundItem.games")
+    @get("roundItem.matchDays").map (matchDay) =>
+      Em.Object.create
+        games: App.utils.filterGames @get("gameFilter.fastSearch"), matchDay.games
+        matchDay: matchDay.matchDay
   ).property("gameFilter", "roundItem.games.@each")
