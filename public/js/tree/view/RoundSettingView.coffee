@@ -1,5 +1,4 @@
-roundSettingViewTemplate = """
-
+App.templates.roundSetting = """
 <div id="qualifierPopover" class="hide">
   <ul>
     {{#each qualifier in round.qualifiers}}
@@ -35,7 +34,7 @@ roundSettingViewTemplate = """
 """
 
 App.RoundSetting = Em.View.extend
-  template: Ember.Handlebars.compile roundSettingViewTemplate
+  template: Ember.Handlebars.compile App.templates.roundSetting
   classNames: ["roundSetting box"]
 
   didInsertElement: ->

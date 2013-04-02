@@ -1,24 +1,23 @@
-App.templates.gameAttributeValue = """
-{{#if attribute.isCheckbox}}
-  {{#if App.editable}}
-    {{view Ember.Checkbox checkedBinding="view.gameValue"}}
-  {{else}}
-    {{#if view.gameValue}}
-      <i class="icon-ok" style="color: #DA5919" />
-    {{/if}}
-  {{/if}}
-{{/if}}
-{{#if attribute.isTextfield}}
-  {{#if App.editable}}
-    {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
-  {{else}}
-    {{view.gameValue}}
-  {{/if}}
-{{/if}}
-"""
-
 App.GameAttributeValueView = Ember.View.extend
-  template: Ember.Handlebars.compile App.templates.gameAttributeValue
+  template: Ember.Handlebars.compile """
+    {{#if attribute.isCheckbox}}
+      {{#if App.editable}}
+        {{view Ember.Checkbox checkedBinding="view.gameValue"}}
+      {{else}}
+        {{#if view.gameValue}}
+          <i class="icon-ok" style="color: #DA5919" />
+        {{/if}}
+      {{/if}}
+    {{/if}}
+    {{#if attribute.isTextfield}}
+      {{#if App.editable}}
+        {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
+      {{else}}
+        {{view.gameValue}}
+      {{/if}}
+    {{/if}}
+  """
+
   tagName: 'td'
   game: null
   attribute: null

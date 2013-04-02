@@ -1,4 +1,4 @@
-tournamentViewTemplate = """
+App.templates.tournament = """
 <!--
 <canvas id="draw" width="100%" height="100%" resize="true"></canvas>
 -->
@@ -56,7 +56,7 @@ tournamentViewTemplate = """
 """
 
 App.TournamentView = Em.View.extend
-  template: Ember.Handlebars.compile tournamentViewTemplate
+  template: Ember.Handlebars.compile App.templates.tournament
 
   didInsertElement: ->
     new Save

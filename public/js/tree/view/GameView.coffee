@@ -1,4 +1,4 @@
-gameViewTemplate = """
+App.templates.game = """
 <span>{{view App.DynamicTextField valueBinding="game.name" editableBinding="App.editable"}}</span>
 
 {{#if view.round.isEditable}}
@@ -38,7 +38,7 @@ gameViewTemplate = """
   """
 
 App.GameView = App.RoundItemView.extend
-  template: Ember.Handlebars.compile gameViewTemplate
+  template: Ember.Handlebars.compile App.templates.game
   classNames: ['roundItem']
 
   resultView: Em.View.extend

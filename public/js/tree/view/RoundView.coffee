@@ -1,19 +1,16 @@
-roundViewTemplate = """
-
-{{view App.RoundSetting roundBinding="round"}}
-
-<div id="toolbar">
-  <i id="qualifierCount" class="icon-retweet"></i>
-  <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
-</div>
-
-{{#each game in round.items}}
-  {{view App.GameView gameBinding="game"}}
-{{/each}}
-"""
-
 App.RoundView = Em.View.extend
-  template: Ember.Handlebars.compile roundViewTemplate
+  template: Ember.Handlebars.compile """
+    {{view App.RoundSetting roundBinding="round"}}
+    <div id="toolbar">
+      <i id="qualifierCount" class="icon-retweet"></i>
+      <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
+    </div>
+
+    {{#each game in round.items}}
+      {{view App.GameView gameBinding="game"}}
+    {{/each}}
+  """
+
   classNames: ["round"]
   round: null
 

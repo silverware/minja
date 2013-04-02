@@ -1,4 +1,4 @@
-tournamentViewTemplate = """
+App.templates.tournamentPopup = """
 <form class="form-horizontal">
   <fieldset>
     <legend>Spieleinstellung</legend>
@@ -42,7 +42,7 @@ tournamentViewTemplate = """
 </form>
 """
 App.TournamentPopup = Em.View.create(
-  template: Ember.Handlebars.compile tournamentViewTemplate
+  template: Ember.Handlebars.compile App.templates.tournamentPopup
   classNames: ["hide"]
   tournamentBinding: "App.Tournament"
 

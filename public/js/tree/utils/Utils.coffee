@@ -1,6 +1,6 @@
 App.utils =
 
- subStringContained: (s, sub) ->
+  subStringContained: (s, sub) ->
     if not s then return false
     s.toLowerCase().indexOf(sub.toLowerCase()) isnt -1
 

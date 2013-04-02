@@ -1,4 +1,4 @@
-gamesDetailViewTemplate = """
+App.templates.gamesDetail = """
       {{#if table}}
       <fieldset>
 <legend>Tabelle</legend>
@@ -86,11 +86,10 @@ gamesDetailViewTemplate = """
           {{/each}}
         </table>
       </fieldset>
-
 """
 
 App.GamesDetailView = App.DetailView.extend
-  template: Ember.Handlebars.compile gamesDetailViewTemplate
+  template: Ember.Handlebars.compile App.templates.gamesDetail
   gameFilter: ""
 
   didInsertElement: ->

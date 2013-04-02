@@ -1,4 +1,4 @@
-groupRoundViewTemplate = """
+App.templates.groupRound = """
 {{view App.RoundSetting roundBinding="round"}}
 
 <div id="toolbar">
@@ -14,7 +14,7 @@ groupRoundViewTemplate = """
 """
 
 App.GroupRoundView = App.RoundView.extend
-  template: Ember.Handlebars.compile groupRoundViewTemplate
+  template: Ember.Handlebars.compile App.templates.groupRound
   showTables: true
 
   didInsertElement: ->

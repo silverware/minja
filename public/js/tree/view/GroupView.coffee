@@ -1,4 +1,4 @@
-groupViewTemplate = """
+App.templates.group = """
 {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
 
 <span class="actionIcons">
@@ -72,7 +72,7 @@ groupViewTemplate = """
 
 
 App.GroupView = App.RoundItemView.extend
-  template: Ember.Handlebars.compile groupViewTemplate
+  template: Ember.Handlebars.compile App.templates.group
   classNames: ['group roundItem']
 
   round: (->
