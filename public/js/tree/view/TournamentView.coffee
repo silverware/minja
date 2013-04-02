@@ -1,9 +1,4 @@
 App.templates.tournament = """
-<!--
-<canvas id="draw" width="100%" height="100%" resize="true"></canvas>
--->
-
-
 <div id="tournament">
   {{#each round in App.Tournament}}
     {{#if round.isGroupRound}}
@@ -13,8 +8,6 @@ App.templates.tournament = """
       {{view App.RoundView roundBinding="round"}}
     {{/if}}
   {{/each}}
-  
-
 
   {{#if App.editable}}
     <div class="saveActions box">
