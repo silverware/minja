@@ -14,7 +14,7 @@ App.Round = Em.Object.extend
   ).property('items.@each.games.@each')
 
   matchDays: (->
-    # sldkfj 
+    # todo 
   ).property("items.@each.matchDays")
 
   init: ->

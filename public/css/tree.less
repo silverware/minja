@@ -171,6 +171,12 @@ Tournament
 }
 
 
+.roundSeperator {
+  background-color: @dark !important;
+  font-weight: bold;
+  min-height: 10px;
+}
+
 .noPadding td {
   padding: 2px !important;
 }
@@ -293,21 +299,32 @@ Action Box unten
 }
 
 
-
-
 /* ---------------------------------------------------------------------
  Detail Views
 ----------------------------------------------------------------------*/
 
+.navigationIcon {
+  position: fixed;
+  top: 45%;
+  font-size: 20px;
+}
+
 .detailView {
   .contentBox;
   position: fixed;
-  overflow: auto;
+  overflow: hidden;
   top: 100px;
   left: 20px;
   right: 20px;
   bottom: 60px;
-  padding: 50px;
+  padding: 40px 80px;
+
+  .detailContent {
+    margin-top: 10px;
+    overflow: auto;
+    height: 100%;
+  }
+
   input {
     .blackInput;
     margin-bottom: 0px;
@@ -317,24 +334,29 @@ Action Box unten
     padding: 2px;
   }
 
-  .roundSeperator {
-    background-color: rgba(0,0,0,0);
+  .roundItemTitle {
+    position: fixed;
+    top: 115px;
+    left: 47%;
+    font-size: 16px;
     font-weight: bold;
   }
 
-  .roundItemTitle {
-    position: absolute;
-    top: 10px;
-    left: 40%;
-    font-size: 14px;
-    font-weight: bold;
+  .roundItemLeft {
+    .navigationIcon;
+    left: 45px;
+  }
+
+  .roundItemRight {
+    .navigationIcon;
+    right: 45px;
   }
 
   .closeButton {
     font-size: 30px;
-    position: absolute;
-    right: 30px;
-    top: 30px;
+    position: fixed;
+    right: 45px;
+    top: 115px;
   }
 }
 

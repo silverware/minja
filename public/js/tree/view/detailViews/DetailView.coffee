@@ -21,5 +21,5 @@ App.DetailView = Em.View.extend
 
   destroy: ->
     @$().fadeOut 'medium', =>
-      $("#tournament").fadeIn 'slow'
-    @_super()
+      $("#tournament").fadeIn 'slow', =>
+        @_super()

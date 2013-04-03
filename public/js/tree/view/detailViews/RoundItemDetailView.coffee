@@ -5,23 +5,41 @@ App.RoundItemDetailView = App.GamesDetailView.extend
   BreadcrumbView: Em.View.extend
     roundItem: null
     template: Ember.Handlebars.compile """
-      <div class="roundItemTitle">{{roundItem._round.name}}<span class="seperator">|</span>{{roundItem.name}}
-        <!--<br />
+      <div class="roundItemTitle">{{roundItem.name}}</div>
+      <i class="roundItemLeft icon-sort-up" {{action "navigateToLeft" target="parentView"}}></i>
+      <i class="roundItemRight icon-sort-up" {{action "navigateToRight" target="parentView"}}></i>
+        <!--<br />{{roundItem._round.name}}<span class="seperator">|</span>
         {{#each roundItem._round.items}}
           {{name}} <span class="seperator">|</span>
         {{/each}}-->
-      </div>
+      
     """
+  navigateToRight: ->
+    @navigate 1
+
+  navigateToLeft: ->
+    @navigate -1
+
+  navigate: (offset) ->
+    length = @roundItem._round.items.length
+    index = @roundItem._round.items.indexOf @roundItem
+    index += offset
+    
+    if index < 0 then index = length - 1
+    if index >= length then index = 0
+
+    App.RoundItemDetailView.create
+      roundItem: @roundItem._round.items.objectAt index
+    @destroy()
 
   didInsertElement: ->
     @_super()
     view = @BreadcrumbView.create
         roundItem: @roundItem
-      view.appendTo @$()
-    #@$().append """<div class="roundItemTitle">#{@roundItem._round.name} #{@roundItem.name}</div>"""
+        parentView: @
+    view.appendTo @$()
 
   filteredGames: (->
-    console.debug "sdf"
     @get("roundItem.matchDays").map (matchDay) =>
       Em.Object.create
         games: App.utils.filterGames @get("gameFilter"), matchDay.games

@@ -1,4 +1,5 @@
 App.templates.gamesDetail = """
+<div class="detailContent">
       {{#if table}}
       <fieldset>
 <legend>Tabelle</legend>
@@ -32,13 +33,12 @@ App.templates.gamesDetail = """
       <td class="tableCell">{{goals}}</td>
       <td class="tableCell">{{goalsAgainst}}</td>
       <td class="tableCell">{{difference}}</td>
-      <td class="tableCell">{{points}}</td>
+      <td class="tableCell"><b>{{points}}</b></td>
     </tr>
     {{/each}}
   </tbody>
 </table>
 </fieldset>
-<br />
 <br />
 {{/if}}
       <fieldset>
@@ -86,6 +86,7 @@ App.templates.gamesDetail = """
           {{/each}}
         </table>
       </fieldset>
+      </div>
 """
 
 App.GamesDetailView = App.DetailView.extend

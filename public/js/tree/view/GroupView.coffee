@@ -50,7 +50,7 @@ App.templates.group = """
 {{#each view.games}}
   {{#if newRound}}
     <tr>
-      <td colspan="9" style="background-color: rgba(0,0,0,0.3); height: 10px"></td>
+      <td colspan="9" class="roundSeperator"></td>
     </tr>
   {{/if}}
   <tr class="game">
