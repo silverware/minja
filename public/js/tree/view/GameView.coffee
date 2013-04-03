@@ -1,13 +1,16 @@
 App.templates.game = """
 <span>{{view App.DynamicTextField valueBinding="game.name" editableBinding="App.editable"}}</span>
 
-{{#if view.round.isEditable}}
-  <span class="actionIcons">
+<span class="actionIcons">
+  {{#if App.editable}}
+    <i class="icon-sort-up" {{action "openGameView"}}></i>
+  {{/if}}
+  {{#if view.round.isEditable}}
     <i class="icon-remove removeItem" {{action "remove" target="game"}}></i>
-  </span>
-{{/if}}
+  {{/if}}
+</span>
 
-<table class="box" cellpadding="2" width="100%" {{action "openRoundItemView"}}>
+<table class="box" cellpadding="2" width="100%" id="gamesTable">
   <tr>
     <td style="min-width: 120px;" class="player tableCellBottom">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
@@ -59,7 +62,12 @@ App.GameView = App.RoundItemView.extend
         @get("g").set "result#{index}", value
     ).property("player", "g")
 
-  openRoundItemView: ->
+  didInsertElement: ->
+    @_super()
+    if not App.editable  
+      @$('#gamesTable').click => @openGameView()
+
+  openGameView: ->
     App.RoundItemDetailView.create
       roundItem: @game
       table: false
