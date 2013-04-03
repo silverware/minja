@@ -1,5 +1,5 @@
 App.templates.gamesDetail = """
-<div class="detailContent">
+
       {{#if table}}
       <fieldset>
 <legend>Tabelle</legend>
@@ -59,7 +59,7 @@ App.templates.gamesDetail = """
             </tr>
           </thead>
           {{#each matchday in filteredGames}}
-            <tr><td colspan="6" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
+            <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
             {{#each game in matchday.games}}
               <tr>
                 <td>{{game._roundItem.name}}</td>
@@ -92,12 +92,3 @@ App.templates.gamesDetail = """
 App.GamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.gamesDetail
   gameFilter: ""
-
-  didInsertElement: ->
-    @_super()
-    #@$().mCustomScrollbar()
-
-  init: ->
-    @_super()
-
-

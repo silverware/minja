@@ -1,5 +1,11 @@
 App.DetailView = Em.View.extend
   classNames: ['detailView hide']
+  title: ""
+
+  layout: Ember.Handlebars.compile """
+    <i class="icon-remove closeButton"></i>
+    <div class="detailContent">{{yield}}</div>
+  """
 
   didInsertElement: ->
     @_super()
@@ -15,11 +21,9 @@ App.DetailView = Em.View.extend
   initExitableView: ->
     #$(document).keyup (e) =>
     #  if e.keyCode is 27 then @destroy()
-    exitButton = $ """<i class="icon-remove closeButton"></i>"""
-    exitButton.click => @destroy()
-    @$().append exitButton
+    @$('.closeButton').click => @destroy()
 
   destroy: ->
     @$().fadeOut 'medium', =>
       $("#tournament").fadeIn 'slow', =>
-        @_super()
+    @_super()

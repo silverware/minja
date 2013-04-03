@@ -2,7 +2,9 @@ App.templates.group = """
 {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
 
 <span class="actionIcons">
-  <i class="icon-sort-up" {{action "openGroupView"}}></i>
+  {{#if App.editable}}
+    <i class="icon-sort-up" {{action "openGroupView"}}></i>
+  {{/if}}
   {{#if view.round.isEditable}}
     <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
     <i class="icon-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
@@ -12,11 +14,7 @@ App.templates.group = """
   {{/if}}
 </span>
 
-{{#if view.round.isEditable}}
   <table class="table noPadding box" id="groupTable">
-{{else}}
-  <table class="table noPadding box" {{action "openGroupView"}} id="groupTable">
-{{/if}}
   <tbody>
     {{#each group.table}}
       {{#if qualified}}
@@ -38,11 +36,7 @@ App.templates.group = """
   </tbody>
 </table>
 
-{{#if view.round.isEditable}}
   <table class="table noPadding groupGames box hide" id="groupGames">
-{{else}}
-  <table class="table noPadding groupGames box hide" {{action "openGroupView"}} id="groupGames">
-{{/if}}
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
@@ -93,6 +87,9 @@ App.GroupView = App.RoundItemView.extend
 
     if App.editable
       @initGameDraggable()
+    else
+      @$('#groupTable').click => @openGroupView()
+      @$('#groupGames').click => @openGroupView()
 
   # Wettlauf beachten
   onRedrawTable: (->

@@ -1,4 +1,7 @@
 App.templates.tournamentPopup = """
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span6">
 <form class="form-horizontal">
   <fieldset>
     <legend>Spieleinstellung</legend>
@@ -6,16 +9,21 @@ App.templates.tournamentPopup = """
   <div class="control-group">
     <label class="control-label" for="pointsPerWin">Punkte/Sieg</label>
     <div class="controls">
-      {{view App.NumberField id="pointsPerWin" valueBinding="tournament.winPoints"}}
+      {{view App.NumberField id="pointsPerWin" valueBinding="App.Tournament.winPoints"}}
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="pointsPerDraw">Punkte/Unentschieden</label>
     <div class="controls">
-      {{view App.NumberField id="pointsPerDraw" valueBinding="tournament.drawPoints"}}
+      {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
     </div>
   </div>
   </fieldset>
+</form>
+    </div>
+    <div class="span6">
+    <!--Body content-->
+
 
   <fieldset>
     <legend>Spiele-Attribute</legend>
@@ -39,20 +47,13 @@ App.templates.tournamentPopup = """
     </table>
   <span class='btn btn-link' {{action "addAttribute"}}>Add Attribute</span>
   </fieldset>
-</form>
+    </div>
+    </div>
+    </div>
 """
-App.TournamentPopup = Em.View.create(
+App.TournamentPopup = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
-  classNames: ["hide"]
-  tournamentBinding: "App.Tournament"
-
-  show: ->
-    @$().show()
-    App.Popup.show
-      title: "Turnierbaum-Einstellungen"
-      bodyContent: @$()[0]
 
   addAttribute: ->
     App.Tournament.gameAttributes.pushObject App.GameAttribute.create()
 
-).appendTo("body")
