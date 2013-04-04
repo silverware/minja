@@ -14,7 +14,13 @@ App.Round = Em.Object.extend
   ).property('items.@each.games.@each')
 
   matchDays: (->
-    # todo 
+    matchDays = []
+    maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items").content)
+    for i in [0..maxMatchDays]
+      games = []
+      @get("items").forEach (item) ->
+        item.get("matchDays")
+    # todo
   ).property("items.@each.matchDays")
 
   init: ->
@@ -27,11 +33,10 @@ App.Round = Em.Object.extend
   ).property("editable")
 
   qualifiers: (->
-    qualifiers = []
-    @get("items").forEach (item) ->
-      Array::push.apply qualifiers, item.get("qualifiers")
-    qualifiers
-    ).property("items.@each.qualifiers")
+    @get("items").reduce (qualifiers, item) ->
+      qualifiers.concat item.get("qualifiers")
+    , []
+  ).property("items.@each.qualifiers")
 
   getMembers: ->
     if @get("_previousRound")

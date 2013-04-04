@@ -37,4 +37,8 @@ App.RoundItem = Em.Object.extend
     matchDays
   ).property("roundItem.games.@each")
 
+  matchDayCount: (->
+    @get("matchDays.length")
+  ).property("matchDays.@each")
+
 

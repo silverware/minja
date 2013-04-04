@@ -3,7 +3,7 @@ App.templates.group = """
 
 <span class="actionIcons">
   {{#if App.editable}}
-    <i class="icon-sort-up" {{action "openGroupView"}}></i>
+    <i class="icon-search" {{action "openGroupView"}}></i>
   {{/if}}
   {{#if view.round.isEditable}}
     <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>

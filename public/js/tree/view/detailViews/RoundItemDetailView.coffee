@@ -2,8 +2,14 @@ App.BreadcrumbView = Em.View.extend
     roundItem: null
     template: Ember.Handlebars.compile """
       <div class="roundItemTitle">{{roundItem.name}}</div>
-      <i class="roundItemLeft icon-sort-up" {{action "navigateToLeft" target="parentView"}}></i>
-      <i class="roundItemRight icon-sort-up" {{action "navigateToRight" target="parentView"}}></i>
+
+
+      <span class="carousel-control left" {{action "navigateToLeft" target="parentView"}}>
+        <i class="icon-arrow-left"></i>
+      </span>
+      <span class="carousel-control right" {{action "navigateToRight" target="parentView"}}>
+        <i class="icon-arrow-right"></i>
+      </span>
         <!--<br />{{roundItem._round.name}}<span class="seperator">|</span>
         {{#each roundItem._round.items}}
           {{name}} <span class="seperator">|</span>

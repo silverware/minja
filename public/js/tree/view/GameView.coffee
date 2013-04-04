@@ -3,7 +3,7 @@ App.templates.game = """
 
 <span class="actionIcons">
   {{#if App.editable}}
-    <i class="icon-sort-up" {{action "openGameView"}}></i>
+    <i class="icon-search" {{action "openGameView"}}></i>
   {{/if}}
   {{#if view.round.isEditable}}
     <i class="icon-remove removeItem" {{action "remove" target="game"}}></i>

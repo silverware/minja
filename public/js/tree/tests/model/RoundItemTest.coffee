@@ -22,6 +22,8 @@ buster.testCase "RoundItem Model"
     assert.equals matchdays[1].matchDay, 2 
     assert.equals matchdays[2].matchDay, 3
 
+    assert.equals 3, @group.get("matchDayCount")
+
   "Spieltage werden auf Basis der Spiele und der Spieleranzahl generiert: 4 Spieler": ->
     @fillPlayers 4
     matchdays = @group.get("matchDays")
@@ -34,6 +36,7 @@ buster.testCase "RoundItem Model"
     assert.equals matchdays[1].games[1], @group.get("games").objectAt 3 
     assert.equals matchdays[2].games[0], @group.get("games").objectAt 4 
     assert.equals matchdays[2].games[1], @group.get("games").objectAt 5 
+    assert.equals 3, @group.get("matchDayCount")
 
   "Spieltage werden auf Basis der Spiele und Spieleranzahl generiert: 3 Spieler, 2 Spiele/Begegnung": ->
     @fillPlayers 3
@@ -48,3 +51,4 @@ buster.testCase "RoundItem Model"
     assert.equals matchdays[3].games[0], @group.get("games").objectAt 3
     assert.equals matchdays[4].games[0], @group.get("games").objectAt 4
     assert.equals matchdays[5].games[0], @group.get("games").objectAt 5
+    assert.equals 6, @group.get("matchDayCount")
