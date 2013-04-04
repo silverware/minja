@@ -2,7 +2,7 @@ App.RoundView = Em.View.extend
   template: Ember.Handlebars.compile """
     {{view App.RoundSetting roundBinding="round"}}
     <div id="toolbar">
-      <i id="qualifierCount" class="icon-retweet"></i>
+      <i id="openDetailView" class="icon-search"></i>
       <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
     </div>
 
@@ -19,15 +19,7 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
-    ###
-    @$("#qualifierCount").popover
-      html: true
-      placement: "left"
-      title: "Qualifikanten"
-      content: =>
-        @$("#qualifierPopover").html()
-    ###
-    @$("#qualifierCount").click =>
+    @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
     @$("#toggleRound").tooltip
         title: "Ein-/ Ausblenden"
@@ -44,6 +36,3 @@ App.RoundView = Em.View.extend
       @$().css "min-height", "0px"
       @$("#toggleRound").attr "class", "icon-chevron-down"
       
-    qualifierCount: (->
-      @get("round").get("qualifiers").get("length")
-    ).property("round.qualifiers")
