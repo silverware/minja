@@ -21,7 +21,7 @@ App.RoundItem = Em.Object.extend
 
   matchDays: (->
     matchDays = []
-    playerCount = @players.get("length")
+    playerCount = @get("players.length")
     gamesPerMatchDay = Math.floor(playerCount/2)
     
     _.chain(@get("games").content)
@@ -35,7 +35,7 @@ App.RoundItem = Em.Object.extend
         games: games
     )
     matchDays
-  ).property("roundItem.games.@each")
+  ).property("games.@each")
 
   matchDayCount: (->
     @get("matchDays.length")

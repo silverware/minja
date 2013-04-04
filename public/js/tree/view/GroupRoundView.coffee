@@ -4,7 +4,7 @@ App.templates.groupRound = """
 <div id="toolbar">
   <i class="icon-th-list" {{action "displayTables"}} id="showTables" style="display: none"></i>
   <i class="icon-fullscreen" {{action "displayGames"}} id="showGames"></i>
-  <i id="qualifierCount" class="icon-retweet"></i>
+  <i id="openDetailView" class="icon-search"></i>
   <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
 </div>
 

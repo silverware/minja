@@ -56,11 +56,12 @@ App.GameView = App.RoundItemView.extend
 
       # GETTER
       if arguments.length == 1
+        console.debug @get("g.result#{index}")
         return @get("g.result#{index}")
       # SETTER
       else
         @get("g").set "result#{index}", value
-    ).property("player", "g")
+    ).property("player", "g.result1", "g.result2")
 
   didInsertElement: ->
     @_super()
@@ -69,7 +70,7 @@ App.GameView = App.RoundItemView.extend
 
   openGameView: ->
     App.RoundItemDetailView.create
-      roundItem: @game
+      roundItem: @get("game")
       table: false
 
   round: (->
