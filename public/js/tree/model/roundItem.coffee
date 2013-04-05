@@ -30,7 +30,6 @@ App.RoundItem = Em.Object.extend
       games = []
       for game in chunk
         game.set "_roundItemName", roundItemName
-        console.debug game
         games.pushObject game
       matchDays.pushObject Em.Object.create
         matchDay: parseInt(index) + 1
