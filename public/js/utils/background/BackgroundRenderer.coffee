@@ -61,7 +61,7 @@ define [
     scene.add camera
 
     renderer = new THREE.WebGLRenderer
-      antialias: true
+      antialias: false
     renderer.setSize width(), height()
     canvas = $(renderer.domElement).hide().fadeIn(6000)
     $("body").append canvas

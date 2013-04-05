@@ -503,7 +503,7 @@ Bootstrap overwrites
 }
 
 .modal {
-  background-color: @contentColor;
+  background-color: @contentColorOpaque;
   .table {
     input {
       color: @textColor;
@@ -512,6 +512,10 @@ Bootstrap overwrites
   .close {
     color: white;
   }
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-footer {
@@ -523,6 +527,18 @@ Bootstrap overwrites
 .modal-header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px rgba(255, 255, 255, 0.2); 
+}
+
+.carousel-control.right {
+  right: 10px;
+}
+.carousel-control {
+  line-height: 21px;
+  width: 40px;
+  font-size: 17px;
+  height: 23px;
+  width: 23px;
+  top: 30px;
 }
 
 .popover {

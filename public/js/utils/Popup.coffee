@@ -43,7 +43,7 @@ define ["text!./popup_template.hbs"], (template) ->
           close = ""
           if action.closePopup
             close = "data-dismiss='modal'"
-          if action.notBlue then style = "" else style = "btn-primary"
+          if action.notBlue then style = "btn-inverse" else style = "btn-primary"
           button = $("""
           <button class="btn #{style}" #{close}>
             #{action.label}
