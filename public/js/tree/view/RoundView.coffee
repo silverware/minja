@@ -3,7 +3,7 @@ App.RoundView = Em.View.extend
     {{view App.RoundSetting roundBinding="round"}}
     <div id="toolbar">
       <i id="openDetailView" class="icon-search"></i>
-      <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
+      <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>
     </div>
 
     {{#each game in round.items}}

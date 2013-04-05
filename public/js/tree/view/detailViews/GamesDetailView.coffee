@@ -1,8 +1,23 @@
 App.templates.gamesDetail = """
+{{#if view.roundItem}}
+  <div class="roundItemTitle">
 
-      {{#if table}}
-      <fieldset>
-<legend>Tabelle</legend>
+    <div class="roundItemTitleLabel">
+      <span class="carousel-control left" title="previous" {{action "navigateToLeft" target="view"}}>
+        <i class="icon-arrow-left"></i>
+      </span>
+        {{view.roundItem.name}}
+      <span class="carousel-control right" title="next" {{action "navigateToRight" target="view"}}>
+        <i class="icon-arrow-right"></i>
+      </span>
+
+    </div>
+  </div>
+{{/if}}
+
+{{#if view.table}}
+  <fieldset>
+    <legend>Tabelle</legend>
 
 <table class="table table-striped" style="max-width: 800px; margin: 0 auto;">
   <thead>
@@ -17,7 +32,7 @@ App.templates.gamesDetail = """
     </tr>
   </thead>
   <tbody>
-    {{#each roundItem.table}}
+    {{#each view.roundItem.table}}
       {{#if qualified}}
         <tr class="player qualified" >
       {{else}}
@@ -44,7 +59,7 @@ App.templates.gamesDetail = """
       <fieldset>
         <legend>Spielplan
 
-          <span style="float:right" >{{view Em.TextField id="searchField" valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}</span>
+          <span style="float:right" >{{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}</span>
         </legend>
         <table class="table table-striped">
           <thead>
@@ -59,17 +74,17 @@ App.templates.gamesDetail = """
               <th>Ergebnis</th>
             </tr>
           </thead>
-          {{#each matchday in filteredGames}}
+          {{#each matchday in view.filteredGames}}
             <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
             {{#each game in matchday.games}}
               <tr>
                 <td></td>
                 <td>{{game._roundItemName}}</td>
                 <td>
-                  {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+                  {{game.player1.name}}
                 </td>
                 <td>
-                  {{view App.DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+                  {{game.player2.name}}
                 </td>
                 {{#each attribute in App.Tournament.gameAttributes}}
                   {{view App.GameAttributeValueView attributeBinding="attribute" gameBinding="game"}}

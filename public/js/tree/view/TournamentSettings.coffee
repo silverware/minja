@@ -51,7 +51,7 @@ App.templates.tournamentPopup = """
     </div>
     </div>
 """
-App.TournamentPopup = App.DetailView.extend
+App.TournamentSettings = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
 
   addAttribute: ->

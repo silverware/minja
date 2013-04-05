@@ -14,7 +14,7 @@
   {{#each member in MembersTable.members}}
     <tr>
       <td>
-        {{view DynamicTextField valueBinding="member.name" classNames="required" placeholder="Name" minWidth="40" editableBinding="MembersTable.editable"}}
+        {{view view.DynamicTextField valueBinding="member.name" classNames="required" placeholder="Name" minWidth="40" editableBinding="MembersTable.editable"}}
       </td>
       {{#each attribute in MembersTable.attributes}}
         {{#view MembersTable.MemberValueView memberBinding="member" attributeBinding="attribute"}}
@@ -28,7 +28,7 @@
             {{/if}}
           {{/if}}
           {{#if attribute.isTextfield}}
-           {{view DynamicTypeaheadTextField nameBinding="attribute.id" valueBinding="view.memberValue" editableBinding="MembersTable.editable"}}
+           {{view view.DynamicTypeaheadTextField nameBinding="attribute.id" valueBinding="view.memberValue" editableBinding="MembersTable.editable"}}
           {{/if}}
         {{/view}}
       {{/each}}

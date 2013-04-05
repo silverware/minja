@@ -1,21 +1,3 @@
-App.BreadcrumbView = Em.View.extend
-    roundItem: null
-    template: Ember.Handlebars.compile """
-      <div class="roundItemTitle">
-
-        <div class="roundItemTitleLabel">
-          <span class="carousel-control left" title="previous" {{action "navigateToLeft" target="parentView"}}>
-            <i class="icon-arrow-left"></i>
-          </span>
-          {{roundItem.name}}
-          <span class="carousel-control right" title="next" {{action "navigateToRight" target="parentView"}}>
-            <i class="icon-arrow-right"></i>
-          </span>
-
-        </div>
-      </div>
-    """
-
 App.RoundItemDetailView = App.GamesDetailView.extend
   roundItem: null
   
@@ -37,15 +19,7 @@ App.RoundItemDetailView = App.GamesDetailView.extend
 
     @$('.detailContent').fadeOut 'medium', =>
       @set "roundItem", newRoundItem
-      @breadcrumbView.set "roundItem", newRoundItem
       @$('.detailContent').fadeIn 'medium'
-
-  didInsertElement: ->
-    @_super()
-    @breadcrumbView = App.BreadcrumbView.create
-        roundItem: @roundItem
-        parentView: @
-    @breadcrumbView.appendTo @$()
 
   filteredGames: (->
     @get("roundItem.matchDays").map (matchDay) =>

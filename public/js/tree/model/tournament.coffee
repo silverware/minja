@@ -1,4 +1,4 @@
-App.Tournament = Em.ArrayController.create
+App.Tournament = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
   gameAttributes: []
@@ -54,3 +54,5 @@ App.Tournament = Em.ArrayController.create
                 roundItem.players.insertAt i, to
         if round is fromRound
           isFurtherRound = true
+
+App.Tournament = App.Tournament.create()

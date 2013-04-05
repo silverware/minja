@@ -13,6 +13,7 @@ root = "public/js/tree/"
 treeFiles  = [
   # omit src/ and .coffee to make the below lines a little shorter
   'App.coffee'
+  'model/tournament.coffee'
   'model/round.coffee'
   'model/koRound.coffee'
   'model/groupRound.coffee'
@@ -22,7 +23,6 @@ treeFiles  = [
   'model/game.coffee'
   'model/gameAttribute.coffee'
   'model/player.coffee'
-  'model/tournament.coffee'
   'view/TournamentView.coffee'
   'view/RoundItemView.coffee'
   'view/RoundSettingView.coffee'

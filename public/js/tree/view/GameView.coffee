@@ -3,7 +3,7 @@ App.templates.game = """
 
 <span class="actionIcons">
   {{#if App.editable}}
-    <i class="icon-search" {{action "openGameView"}}></i>
+    <i class="icon-search" {{action "openGameView" target="view"}}></i>
   {{/if}}
   {{#if view.round.isEditable}}
     <i class="icon-remove removeItem" {{action "remove" target="game"}}></i>
@@ -17,10 +17,9 @@ App.templates.game = """
       {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
     </td>  
     {{#each g in game.games}}
+
       <td class="tableCellBottom">
-        {{#view view.resultView playerBinding="game.player1" gBinding="g"}}
-          {{view App.NumberField valueBinding="view.result" editableBinding="App.editable"}}
-        {{/view}}
+        {{view App.GameResultView playerBinding="game.player1" gBinding="g"}}
       </td>
     {{/each}}
   </tr>
@@ -31,9 +30,7 @@ App.templates.game = """
     </td>
     {{#each g in game.games}}
       <td class="tableCellTop">
-        {{#view view.resultView playerBinding="game.player2" gBinding="g"}}
-          {{view App.NumberField valueBinding="view.result" editableBinding="App.editable"}}
-        {{/view}}
+        {{view App.GameResultView playerBinding="game.player2" gBinding="g"}}
       </td>
     {{/each}}
   </tr>
@@ -43,25 +40,6 @@ App.templates.game = """
 App.GameView = App.RoundItemView.extend
   template: Ember.Handlebars.compile App.templates.game
   classNames: ['roundItem']
-
-  resultView: Em.View.extend
-    player: null
-    g: null
-
-    result: ((key, value) ->
-      if @get("g.player1") is @get("player")
-        index = "1"
-      else
-        index = "2"
-
-      # GETTER
-      if arguments.length == 1
-        console.debug @get("g.result#{index}")
-        return @get("g.result#{index}")
-      # SETTER
-      else
-        @get("g").set "result#{index}", value
-    ).property("player", "g.result1", "g.result2")
 
   didInsertElement: ->
     @_super()
@@ -82,3 +60,22 @@ App.GameView = App.RoundItemView.extend
       @game._round.items.indexOf(@game)
     ).property("game._round.items.@each")
 
+
+App.GameResultView = Em.View.extend
+  template: Ember.Handlebars.compile """
+    {{view App.NumberField valueBinding="view.result" editableBinding="App.editable"}}
+  """
+
+  result: ((key, value) ->
+    if @get("g.player1") is @get("player")
+      index = "1"
+    else
+      index = "2"
+
+    # GETTER
+    if arguments.length == 1
+      return @get("g.result#{index}")
+    # SETTER
+    else
+      @get("g").set "result#{index}", value
+  ).property("player", "g.result1", "g.result2")

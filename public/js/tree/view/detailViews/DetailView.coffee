@@ -1,6 +1,5 @@
 App.DetailView = Em.View.extend
   classNames: ['detailView hide']
-  title: ""
 
   layout: Ember.Handlebars.compile """
       <span title="close" class="carousel-control closeButton right">
@@ -13,6 +12,7 @@ App.DetailView = Em.View.extend
     @_super()
     @$("rel[tooltip]").tooltip()
     @initExitableView()
+    console.debug @
     $("#tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow'
 
@@ -28,4 +28,6 @@ App.DetailView = Em.View.extend
   destroy: ->
     @$().fadeOut 'medium', =>
       $("#tournament").fadeIn 'slow', =>
+    
+    @destroyElement()
     @_super()

@@ -10,15 +10,15 @@ App.PersistanceManager =
     serialized
   
   extend: (target, source) ->
-    $.extend(target, source)
+    target.set name, method for name, method of source
     for key, value of target
       if typeof value == 'string'
         if value == 'false'
-          target[key] = false
+          target.set key, false
         if value == 'true'
-          target[key] = true
+          target.set key, true
         if value == 'null'
-          target[key] = null
+          target.set key, null
 
   build: (obj) ->
     for round in obj.rounds
@@ -58,7 +58,7 @@ App.PersistanceManager =
       player2: @createPlayer obj.player2
     delete obj.player1
     delete obj.player2
-    $.extend game, obj
+    @extend game, obj
     game
 
   buildRoundItem: (roundItem, obj) ->

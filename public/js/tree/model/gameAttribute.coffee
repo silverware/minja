@@ -19,6 +19,6 @@ App.GameAttribute = Em.Object.extend
 
 
 App.attributeTypes = [
-  Em.Object.create {type: "textfield", label: "Textfeld"}
   Em.Object.create {type: "checkbox", label: "Checkbox"}
+  Em.Object.create {type: "textfield", label: "Textfeld"}
 ]

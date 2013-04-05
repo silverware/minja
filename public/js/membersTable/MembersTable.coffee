@@ -75,7 +75,6 @@ define [
 
     view: Ember.View.create
       DynamicTextField: DynamicTextField
-      DynamicTypeaheadTextField: DynamicTypeaheadTextField
       template: Ember.Handlebars.compile template
       classNames: ['hide']
       didInsertElement: ->
@@ -87,6 +86,7 @@ define [
       tagName: 'td'
       member: null
       attribute: null
+      DynamicTypeaheadTextField: DynamicTypeaheadTextField
 
       memberValue: ((key, value) ->
         # GETTER

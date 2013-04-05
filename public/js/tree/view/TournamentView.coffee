@@ -13,10 +13,10 @@ App.templates.tournament = """
     <div class="saveActions box">
       <form action="#" method="post" style="margin: 1px 20px">
         <span>
-          <button class="btn btn-inverse" {{action "edit"}} ><i class="icon-cog"></i>Einstellungen</button>
+          <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="icon-cog"></i>Einstellungen</button>
           <button type="submit" class="btn btn-primary">Speichern</button>
           <img class="ajaxLoader" src="/img/ajax-loader.gif" />
-          <span class="successIcon" style="color: white"><i class="icon-ok" /> gespeichert</span>
+          <span class="successIcon" style="color: white"><i class="icon-ok"></i> gespeichert</span>
         </span>
       </form>
     </div>
@@ -64,4 +64,4 @@ App.TournamentView = Em.View.extend
           @$(".tournamentActions .actions").show "medium"
 
   edit: ->
-    App.TournamentPopup.create()
+    App.TournamentSettings.create()

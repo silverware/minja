@@ -2,10 +2,10 @@ App.templates.groupRound = """
 {{view App.RoundSetting roundBinding="round"}}
 
 <div id="toolbar">
-  <i class="icon-th-list" {{action "displayTables"}} id="showTables" style="display: none"></i>
-  <i class="icon-fullscreen" {{action "displayGames"}} id="showGames"></i>
+  <i class="icon-th-list" {{action "displayTables" target="view"}} id="showTables" style="display: none"></i>
+  <i class="icon-fullscreen" {{action "displayGames" target="view"}} id="showGames"></i>
   <i id="openDetailView" class="icon-search"></i>
-  <i class="icon-chevron-up" {{action "toggleRound"}} id="toggleRound"></i>
+  <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>
 </div>
 
 {{#each group in round.items}}
