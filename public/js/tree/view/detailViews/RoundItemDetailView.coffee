@@ -3,7 +3,6 @@ App.BreadcrumbView = Em.View.extend
     template: Ember.Handlebars.compile """
       <div class="roundItemTitle">{{roundItem.name}}</div>
 
-
       <span class="carousel-control left" {{action "navigateToLeft" target="parentView"}}>
         <i class="icon-arrow-left"></i>
       </span>

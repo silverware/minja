@@ -88,6 +88,8 @@ App.GroupView = App.RoundItemView.extend
     if App.editable
       @initGameDraggable()
     else
+      @$('#groupTable').addClass 'blurringBox'
+      @$('#groupGames').addClass 'blurringBox'
       @$('#groupTable').click => @openGroupView()
       @$('#groupGames').click => @openGroupView()
 

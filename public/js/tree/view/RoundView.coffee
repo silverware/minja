@@ -23,6 +23,8 @@ App.RoundView = Em.View.extend
         App.RoundDetailView.create round: @round
     @$("#toggleRound").tooltip
         title: "Ein-/ Ausblenden"
+    @$("#openDetailView").tooltip
+      title: "Spielplan Detailansicht"
 
   toggleRound: ->
     if @$("#toggleRound").attr("class") == "icon-chevron-down"

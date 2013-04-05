@@ -47,7 +47,7 @@ App.Group = App.RoundItem.extend
     for index in [0..@get("players").get("length") - 1]
       player = @get("players").objectAt index
       stats = @calculateStats player
-      players.pushObject
+      players.pushObject Em.Object.create
         player: player
         index: index
         games: stats.games

@@ -50,6 +50,7 @@ App.templates.gamesDetail = """
           <thead>
             <tr>
               <th width="70px"></th>
+              <th></th>
               <th>Heim</th>
               <th>Auswärts</th>
               {{#each attribute in App.Tournament.gameAttributes}}
@@ -62,7 +63,8 @@ App.templates.gamesDetail = """
             <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
             {{#each game in matchday.games}}
               <tr>
-                <td>{{game._roundItem.name}}</td>
+                <td></td>
+                <td>{{game._roundItemName}}</td>
                 <td>
                   {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
                 </td>

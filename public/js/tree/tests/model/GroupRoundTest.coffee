@@ -35,4 +35,24 @@ buster.testCase "Group Round Model"
     assert.equals matchdays[2].matchDay, 3
 
   "Spieltage werden gezippt bei unterschiedlicher Spieltagszahl": ->
-    assert false
+    @round.addItem()
+    @round.addItem()
+    group1 = @round.items.objectAt 0
+    group2 = @round.items.objectAt 1
+    group1.removeLastPlayer()
+    group1.removeLastPlayer()
+    group2.removeLastPlayer()
+
+    matchdays = @round.get("matchDays")
+    assert.equals 3, matchdays.length
+    assert.equals 2, matchdays.objectAt(0).games.length
+    assert.equals 1, matchdays.objectAt(1).games.length
+    assert.equals 1, matchdays.objectAt(2).games.length
+
+    assert.equals matchdays[0].games[0], group1.get("games").objectAt 0
+    assert.equals matchdays[0].games[1], group2.get("games").objectAt 0 
+    assert.equals matchdays[1].games[0], group2.get("games").objectAt 1 
+    assert.equals matchdays[2].games[0], group2.get("games").objectAt 2
+    assert.equals matchdays[0].matchDay, 1 
+    assert.equals matchdays[1].matchDay, 2 
+    assert.equals matchdays[2].matchDay, 3

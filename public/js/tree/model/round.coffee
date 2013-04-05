@@ -16,11 +16,15 @@ App.Round = Em.Object.extend
   matchDays: (->
     matchDays = []
     maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items").content)
-    for i in [0..maxMatchDays]
+    for i in [0..maxMatchDays - 1]
       games = []
       @get("items").forEach (item) ->
-        item.get("matchDays")
-    # todo
+        if item.get("matchDays").objectAt(i)
+          games.pushObject item.get("matchDays").objectAt(i).games
+      games = _.flatten _.zip.apply _, games
+      matchDays.pushObject Em.Object.create
+        games: games
+        matchDay: i + 1
   ).property("items.@each.matchDays")
 
   init: ->

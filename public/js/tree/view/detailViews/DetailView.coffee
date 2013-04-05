@@ -21,7 +21,7 @@ App.DetailView = Em.View.extend
     @appendTo "body"
 
   initExitableView: ->
-    #$(document).keyup (e) =>
+    #$(document).keydown (e) =>
     #  if e.keyCode is 27 then @destroy()
     @$('.closeButton').click => @destroy()
 

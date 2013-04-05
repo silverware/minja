@@ -23,14 +23,16 @@ App.RoundItem = Em.Object.extend
     matchDays = []
     playerCount = @get("players.length")
     gamesPerMatchDay = Math.floor(playerCount/2)
-    
+    roundItemName = @name
     _.chain(@get("games").content)
     .groupBy((item, index) -> Math.floor(index/gamesPerMatchDay))
     .map((chunk, index) -> 
       games = []
       for game in chunk
+        game.set "_roundItemName", roundItemName
+        console.debug game
         games.pushObject game
-      matchDays.pushObject
+      matchDays.pushObject Em.Object.create
         matchDay: parseInt(index) + 1
         games: games
     )

@@ -65,7 +65,8 @@ App.GameView = App.RoundItemView.extend
 
   didInsertElement: ->
     @_super()
-    if not App.editable  
+    if not App.editable
+      @$('#gamesTable').addClass 'blurringBox'  
       @$('#gamesTable').click => @openGameView()
 
   openGameView: ->
