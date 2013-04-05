@@ -8,6 +8,7 @@ define ["text!./chat_template.hbs"], (template) ->
     editable: false
     i18n: null
     limit: 5
+    rootElement: '#chat'
 
     init: ->
       @_super()
@@ -15,7 +16,7 @@ define ["text!./chat_template.hbs"], (template) ->
       @messageSaveUrl = "/#{@tournament_id}/messages/create"
       @messageRemoveUrl = "/#{@tournament_id}/messages/remove"
       @initSave()
-      @view.appendTo("#chat")
+      @view.appendTo @rootElement
       @loadMessages()
       @messageOnFocusListener()
 
