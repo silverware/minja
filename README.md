@@ -12,7 +12,7 @@ Demo: [minja.net](http://www.minja.net)
 -  jQuery
 -  [EmberJs](http://emberjs.com/)
 -  [Twitter Bootstrap] (http://twitter.github.com/bootstrap/index.html)
--  [ThreeJS] (http://mrdoob.github.com/three.js/) for background rendering
+-  [ThreeJS] (http://mrdoob.github.com/three.js/)
 
 ### Backend
 -  [ExpressJs] (http://expressjs.com/)
