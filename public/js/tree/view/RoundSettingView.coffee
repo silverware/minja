@@ -30,7 +30,6 @@ App.templates.roundSetting = """
     <button class="btn btn-inverse roundAddButton" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>
   {{/if}}
 </div>
-
 """
 
 App.RoundSetting = Em.View.extend

@@ -4,16 +4,16 @@ App.templates.tournamentPopup = """
     <div class="span6">
 <form class="form-horizontal">
   <fieldset>
-    <legend>Spieleinstellung</legend>
+    <legend>{{App.i18n.settings}}</legend>
 
   <div class="control-group">
-    <label class="control-label" for="pointsPerWin">Punkte/Sieg</label>
+    <label class="control-label" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
     <div class="controls">
       {{view App.NumberField id="pointsPerWin" valueBinding="App.Tournament.winPoints"}}
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="pointsPerDraw">Punkte/Unentschieden</label>
+    <label class="control-label" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
     <div class="controls">
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
     </div>
@@ -26,7 +26,7 @@ App.templates.tournamentPopup = """
 
 
   <fieldset>
-    <legend>Spiele-Attribute</legend>
+    <legend>{{App.i18n.gameAttributes}}</legend>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -45,7 +45,7 @@ App.templates.tournamentPopup = """
       </tr>
       {{/each}}
     </table>
-  <span class='btn btn-link' {{action "addAttribute" target="view"}}>Add Attribute</span>
+  <span class='btn btn-link' {{action "addAttribute" target="view"}}>{{App.i18n.addAttribute}}</span>
   </fieldset>
     </div>
     </div>

@@ -20,9 +20,9 @@ App.GroupRoundView = App.RoundView.extend
   didInsertElement: ->
     @_super()
     @$("#showTables").tooltip
-      title: "Tabellenansicht"
+      title: App.i18n.table
     @$("#showGames").tooltip
-      title: "Spielplanansicht"
+      title: App.i18n.schedule
 
   displayTables: ->
     @set "showTables", true

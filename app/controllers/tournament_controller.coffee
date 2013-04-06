@@ -69,7 +69,7 @@ class TournamentController extends ControllerBase
     tournamentDao.save newTournament, (result) =>
       message =
         tournament_id: result.id
-        text: "Turnier erstellt."
+        text: req.i18n.chat.tournamentCreated
         authorType: chatDao.authorTypes.leader
       chatDao.save message, ->
       res.redirect "#{result.id}/info"

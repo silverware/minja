@@ -1,6 +1,4 @@
 App.templates.gamesDetail = """
-
-
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel noPrint">
       {{#if view.roundItem}}
@@ -16,26 +14,27 @@ App.templates.gamesDetail = """
       {{/if}}
     </div>
     <div class="noPrint">
+      <!--
       <span title="print" class="carousel-control printView" {{action "printView" target="view"}}>
-        <i class="icon-print"></i>
-      </span>
+        <!--<i class="icon-print"></i>
+      </span>-->
     </div>
   </div>
 
 {{#if view.table}}
   <fieldset>
-    <legend>Tabelle</legend>
+    <legend>{{App.i18n.table}}</legend>
 
     <table class="table table-striped" style="max-width: 800px; margin: 0 auto;">
       <thead>
         <tr>
-          <th>Rang</th>
+          <th>{{App.i18n.rank}}</th>
           <th>Name</th>
-          <th>Spiele</th>
-          <th>Tore</th>
-          <th>Gegentore</th>
-          <th>Differenz</th>
-          <th>Punkte</th>
+          <th>{{App.i18n.games}}</th>
+          <th>{{App.i18n.goals}}</th>
+          <th>{{App.i18n.goalsAgainst}}</th>
+          <th>{{App.i18n.difference}}</th>
+          <th>{{App.i18n.points}}</th>
         </tr>
       </thead>
       <tbody>
@@ -64,10 +63,10 @@ App.templates.gamesDetail = """
   <br />
 {{/if}}
   <fieldset>
-    <legend>Spielplan
+    <legend>{{App.i18n.schedule}}
 
       <span style="float:right" class="noPrint">
-        {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}
+        {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
     <table class="table table-striped">

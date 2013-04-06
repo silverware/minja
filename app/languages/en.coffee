@@ -97,6 +97,7 @@ module.exports =
     publish: "Publish"
     message: "Write a Message"
     showMore: "Show More"
+    tournamentCreated: "Tournament created."
 
 
 
@@ -115,7 +116,7 @@ module.exports =
 
 ################################ TREE ########################################################
   tree:
-    navName: "Fixtures"
+    navName: "Bracket"
     groupStage: "Group Stage"
     koRound: "KO Round"
     group: "Group"
@@ -131,3 +132,23 @@ module.exports =
     player: "Player"
     edit: "Edit"
     qualifiers: "Qualifiers"
+    schedule: "Game Schedule"
+    table: "Table"
+    detailView: "Detail View"
+    settings: "Settings"
+    save: "Save"
+    pointsPerWin: "Points/Win"
+    pointsPerDraw: "Points/Draw"
+    gameAttributes: "Game Attributes"
+    addAttribute: "Add Attribute"
+    close: "Close"
+    home: "Home"
+    guest: "Guest"
+    matchday: "Matchday"
+    result: "Result"
+    rank: "Rank"
+    games: "Games"
+    goals: "Goals"
+    goalsAgainst: "Goals Against"
+    difference: "Difference"
+    points: "Points"
