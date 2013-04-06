@@ -1,17 +1,26 @@
 App.templates.gamesDetail = """
-{{#if view.roundItem}}
+
+
   <div class="roundItemTitle">
-    <div class="roundItemTitleLabel">
-      <span class="carousel-control left" title="previous" {{action "navigateToLeft" target="view"}}>
-        <i class="icon-arrow-left"></i>
-      </span>
+    <div class="roundItemTitleLabel noPrint">
+      {{#if view.roundItem}}
+        <span class="carousel-control left" title="previous" {{action "navigateToLeft" target="view"}}>
+          <i class="icon-arrow-left"></i>
+        </span>
+        
         {{view.roundItem.name}}
-      <span class="carousel-control right" title="next" {{action "navigateToRight" target="view"}}>
-        <i class="icon-arrow-right"></i>
+
+        <span class="carousel-control right noPrint" title="next" {{action "navigateToRight" target="view"}}>
+          <i class="icon-arrow-right"></i>
+        </span>
+      {{/if}}
+    </div>
+    <div class="noPrint">
+      <span title="print" class="carousel-control printView" {{action "printView" target="view"}}>
+        <i class="icon-print"></i>
       </span>
     </div>
   </div>
-{{/if}}
 
 {{#if view.table}}
   <fieldset>
@@ -57,7 +66,9 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>Spielplan
 
-      <span style="float:right" >{{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}</span>
+      <span style="float:right" class="noPrint">
+        {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter nach Spielern"}}
+      </span>
     </legend>
     <table class="table table-striped">
       <thead>
@@ -106,3 +117,6 @@ App.templates.gamesDetail = """
 App.GamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.gamesDetail
   gameFilter: ""
+
+  printView: ->
+    window.print()

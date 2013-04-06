@@ -57,12 +57,12 @@
   </head>
   <body>
 
-    <div class="ribbon-wrapper-green"><div class="ribbon-green">BETA</div></div>
+    <div class="ribbon-wrapper-green noPrint"><div class="ribbon-green">BETA</div></div>
 
     <div id="wrapper">
 
       <!-- ########################################## NAVIGATION ########################################## -->
-      <header id="header">
+      <header id="header" class="noPrint">
           <% if @navigation: %>
             <a class="home" href="/<%= @tournament.identifier %>">
               <i class="icon-sitemap rotated"></i><%= @tournament.info.name %>
@@ -119,7 +119,7 @@
 
 
 
-    <footer>
+    <footer class="noPrint">
       <div class="wrapper">
         &copy; <a href="/">Minja Tournament Manager</a>
 		<span class="seperator">|</span>

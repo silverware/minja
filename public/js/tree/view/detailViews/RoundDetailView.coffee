@@ -4,7 +4,7 @@ App.RoundDetailView = App.GamesDetailView.extend
 
   didInsertElement: ->
     @_super()
-    @$().append """<div class="roundItemTitle">#{@round.name}</div>"""
+    @$('.roundItemTitle').append """#{@round.name}"""
 
   filteredGames: (->
     @get("round.matchDays").map (matchDay) =>
