@@ -74,16 +74,16 @@ App.templates.gamesDetail = """
         <tr>
           <th width="70px"></th>
           <th></th>
-          <th>Heim</th>
-          <th>Auswärts</th>
+          <th>{{App.i18n.home}}</th>
+          <th>{{App.i18n.guest}}</th>
           {{#each attribute in App.Tournament.gameAttributes}}
             <th>{{attribute.name}}</th>
           {{/each}}
-          <th>Ergebnis</th>
+          <th>{{App.i18n.result}}</th>
         </tr>
       </thead>
       {{#each matchday in view.filteredGames}}
-        <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. Spieltag</td></tr>
+        <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
         {{#each game in matchday.games}}
           <tr>
             <td></td>
