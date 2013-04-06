@@ -22,6 +22,17 @@
   <defs
      id="defs4">
     <linearGradient
+       id="linearGradient3816">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3818" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3820" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient3999">
       <stop
          style="stop-color:#ebebeb;stop-opacity:1;"
@@ -35,11 +46,11 @@
     <linearGradient
        id="linearGradient3983">
       <stop
-         style="stop-color:#000000;stop-opacity:1;"
+         style="stop-color:#5b5b5b;stop-opacity:1;"
          offset="0"
          id="stop3985" />
       <stop
-         style="stop-color:#595959;stop-opacity:1;"
+         style="stop-color:#9e9e9e;stop-opacity:1;"
          offset="1"
          id="stop3987" />
     </linearGradient>
@@ -258,6 +269,33 @@
        x2="244.6153"
        y2="785.32758"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3983"
+       id="linearGradient3883"
+       x1="28.554424"
+       y1="940.02765"
+       x2="193.23109"
+       y2="940.02765"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3999"
+       id="linearGradient3822"
+       x1="457.59708"
+       y1="730.33496"
+       x2="456.98471"
+       y2="782.71106"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3999"
+       id="linearGradient3830"
+       x1="624.61511"
+       y1="731.25287"
+       x2="624.51172"
+       y2="783.01312"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -266,18 +304,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="254.3223"
-     inkscape:cy="163.25083"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="703.56195"
+     inkscape:cy="152.2361"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:snap-global="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1280"
-     inkscape:window-height="1002"
-     inkscape:window-x="1358"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <inkscape:grid
@@ -333,9 +371,9 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#ae00ff;fill-rule:evenodd;stroke:#000000;stroke-width:0.99750625999999998px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0"
+       style="fill:#ae00ff;fill-opacity:0;fill-rule:evenodd;stroke:none"
        id="rect2985"
-       width="399.0025"
+       width="1252.5814"
        height="399.0025"
        x="0.49875313"
        y="652.8609"
@@ -347,7 +385,7 @@
        d="m 41.140176,716.4732 66.584024,122.35518 46.59823,15.35361 c 9.5548,-21.56795 32.95332,-33.57541 55.99292,-28.82868 L 226.11755,777.29066 41.140176,716.4732 z"
        id="rect3777"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo_Black.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -355,15 +393,15 @@
        d="m 357.8732,716.13295 -122.31616,66.46527 -15.13888,45.94514 c 21.86778,9.55839 33.96261,33.33419 28.92019,56.61512 l 47.79547,15.71435 60.73938,-184.73988 z"
        id="rect3777-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo_Black.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:url(#linearGradient3997);fill-opacity:1;filter:url(#filter4171)"
+       style="fill:url(#linearGradient3997);fill-opacity:1;filter:url(#filter4171);stroke:url(#linearGradient3883)"
        d="M 103.00712,847.67252 42.277479,1032.3828 164.59365,965.91745 179.50803,920.65511 c -21.95229,-9.72496 -33.99812,-33.78748 -28.55702,-57.21942 l -47.94389,-15.76317 z"
        id="rect3777-4-0"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo_Black.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -371,7 +409,7 @@
        d="m 246.02955,895.22225 c -9.75723,21.72978 -33.59167,33.66079 -56.8644,28.37768 l -15.85101,48.21107 184.7399,60.7394 -66.46528,-122.31616 -45.55921,-15.01199 z"
        id="rect3777-4-9"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo_Black.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -384,8 +422,42 @@
        sodipodi:rx="50.255089"
        sodipodi:ry="50.255089"
        d="m 250.51783,852.60449 a 50.255089,50.255089 0 1 1 -100.51018,0 50.255089,50.255089 0 1 1 100.51018,0 z"
-       inkscape:export-filename="F:\github\minja\public\img\logo_Black.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-  </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3885"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3822);fill-opacity:1;stroke:none;font-family:Sans"
+       transform="matrix(5.9209569,0,0,5.9209569,-2061.0159,-3686.1863)"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion3887"
+         style="fill-opacity:1.0;fill:url(#linearGradient3822)"><rect
+           id="rect3889"
+           width="736.40118"
+           height="299.00516"
+           x="416.18283"
+           y="730.12354"
+           style="fill-opacity:1.0;fill:url(#linearGradient3822)" /></flowRegion><flowPara
+         id="flowPara3891"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bubblegum Sans;-inkscape-font-specification:Bubblegum Sans;fill-opacity:1.0;fill:url(#linearGradient3822)">minja</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3885-1"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3830);fill-opacity:1;stroke:none;font-family:Sans"
+       transform="matrix(2.1857888,0,0,2.1857888,-500.00047,-684.90825)"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion3887-7"
+         style="fill-opacity:1.0;fill:url(#linearGradient3830)"><rect
+           id="rect3889-4"
+           width="736.40118"
+           height="299.00516"
+           x="416.18283"
+           y="730.12354"
+           style="fill-opacity:1.0;fill:url(#linearGradient3830)" /></flowRegion><flowPara
+         id="flowPara3891-0"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bubblegum Sans;-inkscape-font-specification:Bubblegum Sans;fill-opacity:1.0;fill:url(#linearGradient3830)">the tournament manager</flowPara></flowRoot>  </g>
 </svg>

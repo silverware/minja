@@ -3,7 +3,7 @@ class ControllerBase
   @ensureAuthenticated: (req, res, next) ->
     if req.isAuthenticated()
       return next()
-    res.redirect "/login?next=#{req.path}"
+    res.redirect "/user/login?next=#{req.path}"
 
   redirectToEdit: (req, res) ->
     res.redirect req.originalUrl + "/edit"
