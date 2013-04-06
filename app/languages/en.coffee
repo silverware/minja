@@ -147,7 +147,6 @@ module.exports =
     matchday: "Matchday"
     result: "Result"
     rank: "Rank"
-    games: "Games"
     goals: "Goals"
     goalsAgainst: "Goals Against"
     difference: "Difference"
