@@ -14,7 +14,11 @@ App.templates.game = """
   <tr>
     <td style="min-width: 120px;" class="player tableCellBottom">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
-      {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+      {{#if App.editable}}
+        {{view App.DynamicTextField valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+      {{else}}
+        {{game.player1.name}}
+      {{/if}}
     </td>  
     {{#each g in game.games}}
 
@@ -26,7 +30,11 @@ App.templates.game = """
   <tr>
     <td class="player tableCellTop">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">1</div>
-      {{view App.DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+      {{#if App.editable}}
+        {{view App.DynamicTextField valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+      {{else}}
+        {{game.player2.name}}
+      {{/if}}
     </td>
     {{#each g in game.games}}
       <td class="tableCellTop">

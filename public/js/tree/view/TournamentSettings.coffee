@@ -45,7 +45,7 @@ App.templates.tournamentPopup = """
       </tr>
       {{/each}}
     </table>
-  <span class='btn btn-link' {{action "addAttribute"}}>Add Attribute</span>
+  <span class='btn btn-link' {{action "addAttribute" target="view"}}>Add Attribute</span>
   </fieldset>
     </div>
     </div>

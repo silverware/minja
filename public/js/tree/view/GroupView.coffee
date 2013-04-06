@@ -27,7 +27,11 @@ App.templates.group = """
         {{rank}}.
       </td>
       <td class="tableCell reallyNoPadding">
-        {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+        {{#if App.editable}}
+          {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+        {{else}}
+          {{player.name}}
+        {{/if}}
       </td>
       <td class="tableCell" style="text-align: center; vertical-align: middle">{{goals}} : {{goalsAgainst}}</td>
       <td class="tableCell" style="text-align: center; vertical-align: middle; font-weight: bold;">{{points}}</td>

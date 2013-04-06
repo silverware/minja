@@ -8,10 +8,11 @@ App.GameAttribute = Em.Object.extend
     @id = UniqueId.create() if not @id
 
   isCheckbox: (->
-    @get("type") == "checkbox"
+    @get("type") is "checkbox"
   ).property("type")
+
   isTextfield: (->
-    @get("type") == "textfield"
+    @get("type") is "textfield"
   ).property("type")
 
   remove: ->

@@ -1,6 +1,6 @@
 App.GameAttributeValueView = Ember.View.extend
   template: Ember.Handlebars.compile """
-    {{#if attribute.isCheckbox}}
+    {{#if view.attribute.isCheckbox}}
       {{#if App.editable}}
         {{view Ember.Checkbox checkedBinding="view.gameValue"}}
       {{else}}
@@ -9,7 +9,7 @@ App.GameAttributeValueView = Ember.View.extend
         {{/if}}
       {{/if}}
     {{/if}}
-    {{#if attribute.isTextfield}}
+    {{#if view.attribute.isTextfield}}
       {{#if App.editable}}
         {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
       {{else}}
