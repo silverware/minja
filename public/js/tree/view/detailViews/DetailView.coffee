@@ -12,9 +12,9 @@ App.DetailView = Em.View.extend
     @_super()
     @$("rel[tooltip]").tooltip()
     @initExitableView()
-    console.debug @
     $("#tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow'
+    #@$(".detailContent").mCustomScrollbar()
 
   init: ->
     @_super()
