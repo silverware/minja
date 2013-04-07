@@ -28,7 +28,7 @@ App.Group = App.RoundItem.extend
     @set "qualifierCount", 2
 
   removeLastPlayer: ->
-    if @get("players").content.length > 2
+    if @get("players.length") > 2
       @get("players").popObject()
     @onPlayerSizeChange()
 
@@ -44,7 +44,7 @@ App.Group = App.RoundItem.extend
   table: (->
     players = []
     # befüllen
-    for index in [0..@get("players").get("length") - 1]
+    for index in [0..@get("players.length") - 1]
       player = @get("players").objectAt index
       stats = @calculateStats player
       players.pushObject Em.Object.create
@@ -76,7 +76,7 @@ App.Group = App.RoundItem.extend
   generateGames: (->
     @_round.set "changes", @_round.get("changes") + 1
     @games.clear()
-    games = App.RoundRobin.generateGames @get("players").content
+    games = App.RoundRobin.generateGames @get("players")
 
     for i in [1..@get("_round.matchesPerGame")]
       for game in games
@@ -101,7 +101,7 @@ App.Group = App.RoundItem.extend
 
   onPlayerSizeChange: ->
     if @players.get("length") < @qualifierCount
-      @set "qualifierCount", @players.get("length")
+      @set "qualifierCount", @get('players.length')
 
   calculateStats: (player) ->
     stats =
@@ -128,7 +128,7 @@ App.Group = App.RoundItem.extend
   swapGames: (gameIndex1, gameIndex2) ->
     fromGame = @games.objectAt gameIndex1
     toGame = @games.objectAt gameIndex2
-    content = @games.content
+    content = @games
     content[gameIndex1] = toGame
     content[gameIndex2] = fromGame
 

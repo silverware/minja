@@ -7,10 +7,8 @@ App.RoundItem = Em.Object.extend
 
   init: ->
     @_super()
-    @set "players", Em.ArrayController.create
-      content: []
-    @set "games", Em.ArrayController.create
-      content: []
+    @set "players", []
+    @set "games", []
     @set "dummies", []
 
   remove: ->
@@ -24,7 +22,7 @@ App.RoundItem = Em.Object.extend
     playerCount = @get("players.length")
     gamesPerMatchDay = Math.floor(playerCount/2)
     roundItemName = @name
-    _.chain(@get("games").content)
+    _.chain(@get("games"))
     .groupBy((item, index) -> Math.floor(index/gamesPerMatchDay))
     .map((chunk, index) -> 
       games = []

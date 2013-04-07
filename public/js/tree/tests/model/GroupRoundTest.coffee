@@ -8,8 +8,8 @@ buster.testCase "Group Round Model"
     
     @round.addItem()
 
-    assert.equals 1, @round.items.content.length
-    assert.equals 4, @round.items.objectAt(0).players.get("length")
+    assert.equals 1, @round.items.length
+    assert.equals 4, @round.items.objectAt(0).get('players.length')
 
   "Spieltage werden gezippt bei gleichbleibender Spieltagszahl": ->
     @round.addItem()

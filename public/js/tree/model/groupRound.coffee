@@ -10,7 +10,7 @@ App.GroupRound = App.Round.extend
 
   addItem: ->
     group = App.Group.create
-      name:"#{App.i18n.group} " + @letters[@items.content.length]
+      name:"#{App.i18n.group} " + @letters[@get('items.length')]
       _round: @
     players = []
     for i in [0..3]
@@ -19,6 +19,6 @@ App.GroupRound = App.Round.extend
       else
         players.pushObject App.Player.create
           name: "#{App.i18n.player} " + (i + 1)
-    group.players.set "content", players 
+    group.set 'players', players 
     @get("items").pushObject group
 

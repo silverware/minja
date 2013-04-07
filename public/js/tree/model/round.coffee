@@ -9,13 +9,13 @@ App.Round = Em.Object.extend
 
   games: (->
     @get("items").reduce (roundGames, item) ->
-      roundGames.concat item.get("games").content
+      roundGames.concat item.get("games")
     , []
   ).property('items.@each.games.@each')
 
   matchDays: (->
     matchDays = []
-    maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items").content)
+    maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items"))
     for i in [0..maxMatchDays - 1]
       games = []
       @get("items").forEach (item) ->
@@ -29,8 +29,7 @@ App.Round = Em.Object.extend
 
   init: ->
     @_super()
-    @set "items", Em.ArrayController.create
-      content: []
+    @set "items", []
 
   isEditable: (->
     App.editable and @get("editable")
@@ -73,8 +72,8 @@ App.Round = Em.Object.extend
     @items.removeObject item
 
   memberNotAssigned: (member) ->
-    for item in @get("items").content
-      if _.include(item.get("players").content, member)
+    for item in @get("items")
+      if _.include item.get("players"), member
         return false
     return true
 
@@ -98,9 +97,10 @@ App.Round = Em.Object.extend
     #if @get('games').some (game) -> game.get('isCompleted')
     # http://jsfiddle.net/MjmVr/3/ confirm dialog
     #  true
-    true
+    
     # Shuffle
-
-
+    players = _.shuffle _.flatten @get('items').map (item) -> game.get('players')
+    #@get('items').forEach (item) ->
+    #  for i in [0..item.get('players.length') - 1]
 
 
