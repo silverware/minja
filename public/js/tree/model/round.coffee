@@ -93,5 +93,14 @@ App.Round = Em.Object.extend
     gamePlayers1.insertAt player1Index[1], player2
     gamePlayers2.insertAt player2Index[1], player1
 
+  shufflePlayers: ->
+    # Warnung ausgeben, falls dadurch Ergebnisse verfallen
+    #if @get('games').some (game) -> game.get('isCompleted')
+    # http://jsfiddle.net/MjmVr/3/ confirm dialog
+    #  true
+    true
+    # Shuffle
+
+
 
 
