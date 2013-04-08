@@ -93,7 +93,7 @@ App.Group = App.RoundItem.extend
     @get("games").every (game) -> game.get("isCompleted")
 
   increaseQualifierCount: -> 
-    if @players.get("length") > @qualifierCount
+    if @get("players.length") > @qualifierCount
       @set "qualifierCount", @qualifierCount + 1
 
   decreaseQualifierCount: ->
@@ -101,7 +101,7 @@ App.Group = App.RoundItem.extend
       @set "qualifierCount", @qualifierCount - 1
 
   onPlayerSizeChange: ->
-    if @players.get("length") < @qualifierCount
+    if @get("players.length") < @qualifierCount
       @set "qualifierCount", @get('players.length')
 
   calculateStats: (player) ->

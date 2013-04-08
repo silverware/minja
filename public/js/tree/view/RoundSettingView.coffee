@@ -1,4 +1,15 @@
 App.templates.roundSetting = """
+
+<div id="qualifierPopover" class="hide">
+  <ul>
+    {{#each qualifier in round.qualifiers}}
+      <li>{{qualifier.name}}<br /></li>
+    {{/each}}
+  </ul>
+</div>
+
+
+
 <div class="roundName">&nbsp;{{round.name}}</div>
 
 <div id="settings">

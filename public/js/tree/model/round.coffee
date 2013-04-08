@@ -95,8 +95,8 @@ App.Round = Em.Object.extend
   shuffle: ->
     # Warnung ausgeben, falls dadurch Ergebnisse verfallen
     #if @get('games').some (game) -> game.get('isCompleted')
-    # http://jsfiddle.net/MjmVr/3/ confirm dialog
-    #  true
+      # http://jsfiddle.net/MjmVr/3/ confirm dialog
+    #  return
     
     # Shuffle
     players = _.shuffle _.flatten @get('items').map (item) -> item.get('players')
