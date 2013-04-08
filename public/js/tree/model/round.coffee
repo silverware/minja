@@ -21,7 +21,7 @@ App.Round = Em.Object.extend
       @get("items").forEach (item) ->
         if item.get("matchDays").objectAt(i)
           games.pushObject item.get("matchDays").objectAt(i).games
-      games = _.flatten _.zip.apply _, games
+      games = _.flatten _.zip.apply null, games
       matchDays.pushObject Em.Object.create
         games: games
         matchDay: i + 1
@@ -92,15 +92,17 @@ App.Round = Em.Object.extend
     gamePlayers1.insertAt player1Index[1], player2
     gamePlayers2.insertAt player2Index[1], player1
 
-  shufflePlayers: ->
+  shuffle: ->
     # Warnung ausgeben, falls dadurch Ergebnisse verfallen
     #if @get('games').some (game) -> game.get('isCompleted')
     # http://jsfiddle.net/MjmVr/3/ confirm dialog
     #  true
     
     # Shuffle
-    players = _.shuffle _.flatten @get('items').map (item) -> game.get('players')
-    #@get('items').forEach (item) ->
-    #  for i in [0..item.get('players.length') - 1]
-
+    players = _.shuffle _.flatten @get('items').map (item) -> item.get('players')
+    
+    @get('items').forEach (item) ->
+      for i in [0..item.get('players.length') - 1]
+        item.get('players').replace i, 1, [_.last players]
+        players.popObject()
 

@@ -9,6 +9,7 @@ buster.testCase "Round Model"
     getPlayers = (games) ->
       players = []
       games.forEach (game) ->
+        console.debug game
         for player in game.get("players")
           players.pushObject player
       players
@@ -26,4 +27,4 @@ buster.testCase "Round Model"
       assert.equals 2, item.get("players.length")
 
     shuffledPlayers = getPlayers @round.get("items")
-    assert.equals 0, _.difference initialPlayers, shuffledPlayers
+    assert.equals 0, _.difference(initialPlayers, shuffledPlayers).length

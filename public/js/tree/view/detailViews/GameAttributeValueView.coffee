@@ -1,6 +1,7 @@
 App.GameAttributeValueView = Ember.View.extend
   template: Ember.Handlebars.compile """
     {{#if view.attribute.isCheckbox}}
+      {{view.space}}
       {{#if App.editable}}
         {{view Ember.Checkbox checkedBinding="view.gameValue"}}
       {{else}}
@@ -21,6 +22,7 @@ App.GameAttributeValueView = Ember.View.extend
   tagName: 'td'
   game: null
   attribute: null
+  space: ""
 
   gameValue: ((key, value) ->
     # GETTER
