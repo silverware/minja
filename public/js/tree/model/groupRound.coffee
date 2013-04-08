@@ -9,6 +9,7 @@ App.GroupRound = App.Round.extend
     @_itemLabel = App.i18n.group
 
   addItem: ->
+    if not @get('editable') then return
     group = App.Group.create
       name:"#{App.i18n.group} " + @letters[@get('items.length')]
       _round: @

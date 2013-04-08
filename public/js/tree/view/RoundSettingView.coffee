@@ -1,12 +1,4 @@
 App.templates.roundSetting = """
-<div id="qualifierPopover" class="hide">
-  <ul>
-    {{#each qualifier in round.qualifiers}}
-      <li>{{qualifier.name}}<br /></li>
-    {{/each}}
-  </ul>
-</div>
-
 <div class="roundName">&nbsp;{{round.name}}</div>
 
 <div id="settings">
@@ -25,10 +17,8 @@ App.templates.roundSetting = """
         </div> 
       </div>
   </form>
-  {{#if round.isEditable}}
-    <!--<button class="btn" {{action "randomPlayers" target="round"}}>random </button>-->
-    <button class="btn btn-inverse roundAddButton" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>
-  {{/if}}
+  <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>
+  <button class="btn btn-inverse" {{action "shuffle" target="round"}}><i class="icon-random"></i>Shuffle</button>
 </div>
 """
 

@@ -7,6 +7,7 @@ App.KoRound = App.Round.extend
     @_itemLabel = App.i18n.game
 
   addItem: ->
+    if not @get('editable') then return
     game = App.RoundGame.create
       name: "#{App.i18n.game} " + (@items.get("length") + 1)
       _round: @

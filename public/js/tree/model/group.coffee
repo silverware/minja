@@ -5,6 +5,7 @@ App.Group = App.RoundItem.extend
 
   qualifiers: (->
     qualifiers = []
+    console.debug "lksjdflksdfjkl"
     if !@isCompleted()
       for i in [1..@get("qualifierCount")]
         index = i - 1 
