@@ -2,6 +2,7 @@
 <script src="/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
 <link href="/css/tree.css" rel="stylesheet">
 <link href="/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
 
 <script>
   require(["utils/DynamicTextField",
@@ -11,8 +12,8 @@
       App.DynamicTextField = dynamicTextField;
       App.Serializer = Serializer;
       App.Popup = Popup;
-      var treeWrapper = $("<div id='treeWrapper'>");
-      $("#wrapper").addClass("wrapperBeforeTree");
+      var treeWrapper = $("<div id='treeWrapper' class='noPrint'>");
+      $("#wrapper").addClass("wrapperBeforeTree noPrint");
       $("#wrapper").after(treeWrapper);
       treeWrapper.createTree({
         editable: <%= @editable %>,
@@ -20,6 +21,10 @@
         isOwner: <%= @tournament.isOwner %>,
         data: <%- @json @tournament.tree %>,
         initialMembers: <%- @json @tournament.members %>
+      });
+      App.RoundItemDetailView.create({
+        roundItem: App.Tournament.objectAt(0).items.objectAt(0),
+        table: true
       });
   });
 </script>

@@ -1,8 +1,8 @@
 App.templates.gamesDetail = """
   <div class="roundItemTitle">
-    <div class="roundItemTitleLabel noPrint">
+    <div class="roundItemTitleLabel">
       {{#if view.roundItem}}
-        <span class="carousel-control left" title="previous" {{action "navigateToLeft" target="view"}}>
+        <span class="carousel-control left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
           <i class="icon-arrow-left"></i>
         </span>
         
@@ -13,11 +13,10 @@ App.templates.gamesDetail = """
         </span>
       {{/if}}
     </div>
-    <div class="noPrint">
-      <!--
+    <div class="noPrint actionButtons">
       <span title="print" class="carousel-control printView" {{action "printView" target="view"}}>
-        <!--<i class="icon-print"></i>
-      </span>-->
+        <i class="icon-print"></i>
+      </span>
     </div>
   </div>
 
@@ -25,7 +24,7 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{App.i18n.table}}</legend>
 
-    <table class="table table-striped" style="max-width: 800px; margin: 0 auto;">
+    <table class="table table-striped tableTable" style="max-width: 800px; margin: 0 auto;">
       <thead>
         <tr>
           <th>{{App.i18n.rank}}</th>
@@ -44,7 +43,7 @@ App.templates.gamesDetail = """
           {{else}}
             <tr class="player">
           {{/if}}
-          <td class="tableCell" style="text-align: center; vertical-align: middle">
+          <td class="tableCell">
             {{rank}}.
           </td>
           <td class="tableCell reallyNoPadding">
@@ -110,7 +109,7 @@ App.templates.gamesDetail = """
         {{/each}}
       {{/each}}
     </table>
-    <div style="text-align: right"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>
+    <div style="text-align: right" class="noPrint"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>
   </fieldset>
 """
 

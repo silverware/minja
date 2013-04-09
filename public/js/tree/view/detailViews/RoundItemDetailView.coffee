@@ -11,7 +11,6 @@ App.RoundItemDetailView = App.GamesDetailView.extend
     length = @roundItem._round.items.get "length"
     index = @roundItem._round.items.indexOf @roundItem
     index += offset
-    console.debug length
     if index < 0 then index = length - 1
     if index >= length then index = 0
     console.debug index
