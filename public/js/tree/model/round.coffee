@@ -13,6 +13,10 @@ App.Round = Em.Object.extend
     , []
   ).property('items.@each.games.@each')
 
+  gamesCount: (->
+    @get('games.length')
+  ).property('games')
+
   matchDays: (->
     matchDays = []
     maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items"))
