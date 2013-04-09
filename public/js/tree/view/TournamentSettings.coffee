@@ -18,13 +18,17 @@ App.templates.tournamentPopup = """
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
     </div>
   </div>
+
+  <div class="control-group">
+    <label class="control-label" for="timePerGame">{{App.i18n.timePerGame}}</label>
+    <div class="controls">
+      {{view App.NumberField classNames="l" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
+    </div>
+  </div>
   </fieldset>
 </form>
     </div>
     <div class="span6">
-    <!--Body content-->
-
-
   <fieldset>
     <legend>{{App.i18n.gameAttributes}}</legend>
     <table class="table table-striped">
@@ -48,12 +52,50 @@ App.templates.tournamentPopup = """
   <span class='btn btn-link' {{action "addAttribute" target="view"}}>{{App.i18n.addAttribute}}</span>
   </fieldset>
     </div>
+
+
+
+
+
+
+  
+
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <fieldset>
+        <legend>Information</legend>
+        <dl class="dl-horizontal">
+          <dt>Rounds</dt>
+          <dd>{{view.roundCount}}</dd>
+          <dt>Total Games</dt>
+          <dd>{{view.gamesCount}}</dd>
+          <dt>Estimated total time</dt>
+          <dd>{{view.timeCount}} min</dd>
+        </dl>
+      </fieldset>
     </div>
-    </div>
+  </div>
+</div>
 """
 App.TournamentSettings = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
+  tournament: null
 
   addAttribute: ->
     App.Tournament.gameAttributes.pushObject App.GameAttribute.create()
 
+  roundCount: (->
+    @get 'tournament.length'
+  ).property('tournament.@each')
+
+  gamesCount: (->
+    @get('tournament').reduce (count, item) ->
+      count += item.get('games.length')
+    , 0
+  ).property('tournament.@each')
+
+  timeCount: (->
+    @get('gamesCount') * @get('tournament.timePerGame')
+  ).property('gamesCount', 'tournament.timePerGame')

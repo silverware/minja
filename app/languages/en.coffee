@@ -139,6 +139,7 @@ module.exports =
     save: "Save"
     pointsPerWin: "Points/Win"
     pointsPerDraw: "Points/Draw"
+    timePerGame: "Minutes/Game"
     gameAttributes: "Game Attributes"
     addAttribute: "Add Attribute"
     close: "Close"

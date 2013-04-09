@@ -50,17 +50,17 @@ App.RoundSetting = Em.View.extend
           @$("#settings").show "medium"
 
   shuffle: ->
+    #someGamesCompleted = @get('round.games').some (game) -> game.get('isCompleted')
     # Warnung ausgeben, falls dadurch Ergebnisse verfallen
-    if (@get('round.games').some (game) -> game.get('isCompleted'))
-
+    if true
       confirmAction = 
         label: "Yes"
         closePopup: true
         action: =>
           @round.shuffle()
       App.Popup.show
-        label: "Shuffle Players"
-        bodyContent: "Some games are completed. If you shuffle the players, these games will be reverted"
+        title: "Shuffle Players"
+        bodyContent: "If you shuffle the players, all games of this round will be reverted"
         actions: [confirmAction, {label: "No", notBlue: true, closePopup: true, action: ->}]
     else
       @round.shuffle()

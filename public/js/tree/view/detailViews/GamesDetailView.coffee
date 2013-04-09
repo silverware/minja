@@ -110,6 +110,7 @@ App.templates.gamesDetail = """
         {{/each}}
       {{/each}}
     </table>
+    <div style="text-align: right"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>
   </fieldset>
 """
 
@@ -119,3 +120,9 @@ App.GamesDetailView = App.DetailView.extend
 
   printView: ->
     window.print()
+
+  gamesCount: (->
+    @get('filteredGames').reduce (count, matchDay) ->
+      count += matchDay.games.length
+    , 0
+  ).property("filteredGames")

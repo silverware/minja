@@ -64,4 +64,5 @@ App.TournamentView = Em.View.extend
           @$(".tournamentActions .actions").show "medium"
 
   edit: ->
-    App.TournamentSettings.create()
+    App.TournamentSettings.create
+      tournament: App.Tournament

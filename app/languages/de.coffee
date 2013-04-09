@@ -134,6 +134,7 @@ module.exports =
     save: "Speichern"
     pointsPerWin: "Punkte/Sieg"
     pointsPerDraw: "Punkte/Unentschieden"
+    timePerGame: "Minuten/Spiel"
     gameAttributes: "Spielmerkmale"
     addAttribute: "Merkmal hinzufügen"
     close: "Schließen"

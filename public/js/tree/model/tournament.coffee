@@ -1,6 +1,7 @@
 App.Tournament = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
+  timePerGame: 20
   gameAttributes: []
   content: []
 
