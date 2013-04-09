@@ -22,10 +22,6 @@
         data: <%- @json @tournament.tree %>,
         initialMembers: <%- @json @tournament.members %>
       });
-      App.RoundItemDetailView.create({
-        roundItem: App.Tournament.objectAt(0).items.objectAt(0),
-        table: true
-      });
   });
 </script>
 
