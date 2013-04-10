@@ -25,6 +25,13 @@ App.templates.tournamentPopup = """
       {{view App.NumberField classNames="l" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
     </div>
   </div>
+
+  <div class="control-group">
+    <label class="control-label" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
+    <div class="controls">
+      {{view App.NumberField id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
+    </div>
+  </div>
   </fieldset>
 </form>
     </div>
@@ -97,5 +104,7 @@ App.TournamentSettings = App.DetailView.extend
   ).property('tournament.@each')
 
   timeCount: (->
-    @get('gamesCount') * @get('tournament.timePerGame')
-  ).property('gamesCount', 'tournament.timePerGame')
+    minutes = @get('gamesCount') * @get('tournament.timePerGame') / @get('tournament.gamesParallel')
+    minutes.toFixed()
+    #moment('mm', minutes).format('h m')
+  ).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel')

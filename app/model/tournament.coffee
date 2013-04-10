@@ -1,6 +1,7 @@
 class Tournament extends require './MixIn'
   publicName: "" 
   user_id: ""
+  sport_id: ""
   gallery: {}
   info: 
   	name: ""

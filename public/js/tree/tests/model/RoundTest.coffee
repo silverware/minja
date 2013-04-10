@@ -4,7 +4,6 @@ buster.testCase "Round Model"
     App.Tournament.addKoRound()
     @round = App.Tournament.lastRound()
 
-
   "Zufälliges Auslosen der Spieler": ->
     getPlayers = (games) ->
       players = []
