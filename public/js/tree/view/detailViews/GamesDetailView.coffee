@@ -16,7 +16,10 @@ App.templates.gamesDetail = """
     <div class="noPrint actionButtons">
       <span title="print" class="carousel-control printView" {{action "printView" target="view"}}>
         <i class="icon-print"></i>
-      </span>
+      </span><!--
+      <span title="prefill Attributes" class="carousel-control prefillAttributesView" {{action "prefillAttributes" target="view"}}>
+        <i class="icon-ok"></i>
+      </span>-->
     </div>
   </div>
 
@@ -119,6 +122,12 @@ App.GamesDetailView = App.DetailView.extend
 
   printView: ->
     window.print()
+
+  #prefillAttributes: ->
+  #  App.Popup.show
+  #    title: App.i18n.prefillAttributes
+  #    actions: [{closePopup: false, label: App.i18n.prefill, action: ->}]
+  #    bodyUrl: "/tournament/members/attribute_popup"
 
   gamesCount: (->
     @get('filteredGames').reduce (count, matchDay) ->
