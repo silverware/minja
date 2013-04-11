@@ -127,6 +127,11 @@ define ->
   time = new Date().getSeconds()
 
   init = ->
+    is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
+    if is_chrome
+      return
+
+
     ###--------------------------------------------------------------------------
      init height map
     --------------------------------------------------------------------------###

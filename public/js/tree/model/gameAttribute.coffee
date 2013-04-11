@@ -16,7 +16,10 @@ App.GameAttribute = Em.Object.extend
   ).property("type")
 
   remove: ->
-    App.Tournament.gameAttributes.removeObject @
+    App.Popup.showQuestion
+      bodyContent: App.i18n.reallyDeleteGameAttribute
+      onConfirm: =>
+        App.Tournament.gameAttributes.removeObject @
 
 
 App.attributeTypes = [

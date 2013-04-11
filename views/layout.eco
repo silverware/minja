@@ -68,7 +68,7 @@
             </a>
           <% else: %>
             <a class="home" href="/"><!--<i class="icon-sitemap rotated"></i>-->
-              <img src="/img/logo3.png" width="230px" /></a>
+              <img src="/img/logo4.png" width="210px" /></a>
           <% end %>
         <ul class="nav">
           <% if @navigation: %>

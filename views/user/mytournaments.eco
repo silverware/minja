@@ -31,7 +31,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/<%= tournament.value._id %>/remove">
+                  <a href="/<%= tournament.value._id %>/remove" onclick="confirmDelete()">
                     <i class="icon-trash"></i><%= @i18n.delete %>
                   </a>
                 </li>

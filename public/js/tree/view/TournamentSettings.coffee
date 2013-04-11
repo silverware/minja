@@ -22,7 +22,7 @@ App.templates.tournamentPopup = """
   <div class="control-group">
     <label class="control-label" for="timePerGame">{{App.i18n.timePerGame}}</label>
     <div class="controls">
-      {{view App.NumberField classNames="l" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
+      {{view App.NumberField classNames="s" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
     </div>
   </div>
 

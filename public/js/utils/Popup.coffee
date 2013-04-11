@@ -1,24 +1,25 @@
 define ["text!./popup_template.hbs"], (template) ->
 
   popup =
-    title: "Title"
-    bodyUrl: null
-    bodyContent: null
-    actions: [{label: "Ok", closePopup: true, action: ->}]
-    afterRendering: ->
-    cancelble: false
-
     hide: ->
       $('#popup').modal('hide')
 
-    show: (args) ->
-      $.extend @, args
+    init: (args) ->
+      @title = ""
+      @bodyUrl = null
+      @bodyContent = null
+      @actions = [{label: "Ok", closePopup: true, action: ->}]
+      @afterRendering = ->
+      @cancelble = false
+      @[name] = method for name, method of args
 
+    show: (args) ->
+      @init args
       if $("#popup").length > 0
         $("#popup").remove()
-
-      template = template.replace "###title###", @title
-      $("body").append template
+      $template = $ template
+      $template.find('#myModalLabel').html @title
+      $("body").append $template
 
       if @cancelble
         @actions.push 
@@ -38,8 +39,20 @@ define ["text!./popup_template.hbs"], (template) ->
       $("#popup").modal()
 
     showInfo: (args) ->
-      args.title = """<i class="icon-ok"></i> Information"""
+      title = "Information"
+      title = args.title if args.title
+      args.title = """<i class="icon-info-sign"></i> #{title}"""
       @show args
+
+    showQuestion: (args) ->
+      title = "Question"
+      title = args.title if args.title
+      confirmAction = {label: "Yes", closePopup: true,action: => @onConfirm()}
+      args.actions = [confirmAction, {label: "No", notBlue: true, closePopup: true, action: ->}]
+      args.title = """<i class="icon-question-sign"></i> #{title}"""
+      @show args
+
+    onConfirm: ->
 
     _apendActionsToModal: ->
       for action in @actions

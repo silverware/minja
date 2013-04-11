@@ -1111,18 +1111,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994952"
-     inkscape:cx="414.92489"
-     inkscape:cy="-262.68038"
+     inkscape:zoom="0.70000002"
+     inkscape:cx="520.07896"
+     inkscape:cy="-88.70081"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-global="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1280"
-     inkscape:window-height="1002"
-     inkscape:window-x="1358"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <inkscape:grid
@@ -1169,7 +1169,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1191,7 +1191,7 @@
        height="399.0025"
        x="0.49875313"
        y="652.8609"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
@@ -1199,7 +1199,7 @@
        d="m 41.140176,716.4732 66.584024,122.35518 46.59823,15.35361 c 9.5548,-21.56795 32.95332,-33.57541 55.99292,-28.82868 L 226.11755,777.29066 41.140176,716.4732 z"
        id="rect3777"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
@@ -1207,7 +1207,7 @@
        d="m 357.8732,716.13295 -122.31616,66.46527 -15.13888,45.94514 c 21.86778,9.55839 33.96261,33.33419 28.92019,56.61512 l 47.79547,15.71435 60.73938,-184.73988 z"
        id="rect3777-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
@@ -1215,7 +1215,7 @@
        d="M 103.00712,847.67252 42.277479,1032.3828 164.59365,965.91745 179.50803,920.65511 c -21.95229,-9.72496 -33.99812,-33.78748 -28.55702,-57.21942 l -47.94389,-15.76317 z"
        id="rect3777-4-0"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
@@ -1223,7 +1223,7 @@
        d="m 246.02955,895.22225 c -9.75723,21.72978 -33.59167,33.66079 -56.8644,28.37768 l -15.85101,48.21107 184.7399,60.7394 -66.46528,-122.31616 -45.55921,-15.01199 z"
        id="rect3777-4-9"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
@@ -1236,17 +1236,17 @@
        sodipodi:rx="50.255089"
        sodipodi:ry="50.255089"
        d="m 250.51783,852.60449 a 50.255089,50.255089 0 1 1 -100.51018,0 50.255089,50.255089 0 1 1 100.51018,0 z"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3885"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3822);fill-opacity:1;stroke:none;filter:url(#filter3936);font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3822);fill-opacity:1;stroke:none;font-family:Sans"
        transform="matrix(7.2973362,0,0,7.2973362,-2631.4117,-4724.7476)"
-       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo3.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><flowRegion
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
+       inkscape:export-xdpi="21"
+       inkscape:export-ydpi="21"><flowRegion
          id="flowRegion3887"
          style="fill:url(#linearGradient3190);fill-opacity:1"><rect
            id="rect3889"
@@ -1254,14 +1254,14 @@
            height="299.00516"
            x="416.18283"
            y="730.12354"
-           style="fill:url(#linearGradient3188);fill-opacity:1" /></flowRegion><flowPara
+           style="fill:url(#linearGradient3188);fill-opacity:1;" /></flowRegion><flowPara
          id="flowPara3891"
-         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;font-family:Merriweather Sans;-inkscape-font-specification:Merriweather Sans">minja</flowPara></flowRoot>    <flowRoot
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;font-family:Merriweather Sans;-inkscape-font-specification:Merriweather Sans;">minja</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3885-1"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3830);fill-opacity:1;stroke:none;filter:url(#filter4591);font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3830);fill-opacity:1;stroke:none;font-family:Sans"
        transform="matrix(2.1857888,0,0,2.1857888,-491.91925,-656.62398)"
-       inkscape:export-filename="F:\github\minja\public\img\logo3.png"
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\logo4.png"
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465"><flowRegion
          id="flowRegion3887-7"
@@ -1271,9 +1271,9 @@
            height="299.00516"
            x="416.18283"
            y="730.12354"
-           style="fill:url(#linearGradient3192);fill-opacity:1" /></flowRegion><flowPara
+           style="fill:url(#linearGradient3192);fill-opacity:1;" /></flowRegion><flowPara
          id="flowPara3891-0"
-         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;font-family:Merriweather Sans;-inkscape-font-specification:Merriweather Sans">the tournament manager</flowPara></flowRoot>    <flowRoot
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;font-family:Merriweather Sans;-inkscape-font-specification:Merriweather Sans;">the tournament manager</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3832"
        style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
