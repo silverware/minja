@@ -44,7 +44,7 @@ App.templates.group = """
   <col width="74px" />
   <col width="8px" />
   <col width="74px" />
-  <col width="46px" />
+  <col width="50px" />
 {{#each view.games}}
   {{#if newRound}}
     <tr>

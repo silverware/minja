@@ -12,7 +12,6 @@ App.GameAttributeValueView = Ember.View.extend
     {{/if}}
 
     {{#if view.attribute.isResult}}
-      {{view.space}}
       {{#if App.editable}}
         {{view App.NumberField valueBinding="view.resultGameValue1"}}
         :
@@ -23,7 +22,6 @@ App.GameAttributeValueView = Ember.View.extend
     {{/if}}
 
    {{#if view.attribute.isNumber}}
-      {{view.space}}
       {{#if App.editable}}
         {{view App.NumberField valueBinding="view.gameValue"}}
       {{else}}
@@ -43,7 +41,7 @@ App.GameAttributeValueView = Ember.View.extend
   tagName: 'td'
   game: null
   attribute: null
-  space: ""
+  space: " "
 
   gameValue: ((key, value) ->
     # GETTER
@@ -56,21 +54,31 @@ App.GameAttributeValueView = Ember.View.extend
 
   resultGameValue1: ((key, value) ->
     currentValue = @get("game")[@get("attribute.id")]
-
+    currentValue = "" if not currentValue
+    splitted = currentValue.split ":"
+    if splitted.length is not 2
+      currentValue = ":"
+      splitted = currentValue.split ":"
     # GETTER
     if arguments.length == 1
-      return @get("game")[@get("attribute.id")]
+      return splitted[0]
     # SETTER
     else
-      @get("game").set @get("attribute.id"), value
+      @get("game").set @get("attribute.id"), "#{value}:#{splitted[1]}"
   ).property("member", "attribute.name")
 
 
   resultGameValue2: ((key, value) ->
+    currentValue = @get("game")[@get("attribute.id")]
+    currentValue = "" if not currentValue
+    splitted = currentValue.split ":"
+    if splitted.length is not 2
+      currentValue = ":"
+      splitted = currentValue.split ":"
     # GETTER
     if arguments.length == 1
-      return @get("game")[@get("attribute").id]
+      return splitted[1]
     # SETTER
     else
-      @get("game").set @get("attribute").id, value
+      @get("game").set @get("attribute.id"), "#{value}:#{splitted[0]}"
   ).property("member", "attribute.name")
