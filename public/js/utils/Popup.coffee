@@ -37,6 +37,10 @@ define ["text!./popup_template.hbs"], (template) ->
 
       $("#popup").modal()
 
+    showInfo: (args) ->
+      args.title = """<i class="icon-ok"></i> Information"""
+      @show args
+
     _apendActionsToModal: ->
       for action in @actions
         do (action) ->
