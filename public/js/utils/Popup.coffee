@@ -10,6 +10,7 @@ define ["text!./popup_template.hbs"], (template) ->
       @bodyContent = null
       @actions = [{label: "Ok", closePopup: true, action: ->}]
       @afterRendering = ->
+      @onConfirm: ->
       @cancelble = false
       @[name] = method for name, method of args
 
@@ -52,7 +53,6 @@ define ["text!./popup_template.hbs"], (template) ->
       args.title = """<i class="icon-question-sign"></i> #{title}"""
       @show args
 
-    onConfirm: ->
 
     _apendActionsToModal: ->
       for action in @actions
