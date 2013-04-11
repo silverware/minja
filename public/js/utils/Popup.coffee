@@ -10,7 +10,7 @@ define ["text!./popup_template.hbs"], (template) ->
       @bodyContent = null
       @actions = [{label: "Ok", closePopup: true, action: ->}]
       @afterRendering = ->
-      @onConfirm: ->
+      @onConfirm = ->
       @cancelble = false
       @[name] = method for name, method of args
 
