@@ -104,9 +104,9 @@ module.exports =
 
 ################################ MEMBERS ########################################################
   members:
-    navName: "Competitors"
+    navName: "Participants"
     addAttribute: "Add Attribute"
-    addMember: "Competitor"
+    addMember: "Participant"
     visibility: "Visibility"
     type: "Type"
     textfield: "Textfield"
