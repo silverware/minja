@@ -1,9 +1,8 @@
 minja
 =====
-
 Simple way to manage tournaments. 
 
-Demo: [minja.net](http://www.minja.net)
+Demo: [minja.net](http://www.minja.net)  
 Demo User:
 * email: test@example.com 
 * password: test
