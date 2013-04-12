@@ -121,7 +121,7 @@ class LoginController
     req.logOut()
     res.redirect "/"
 
-  "POST:/user/login": [passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), (req, res) ->
+  "POST:/user/login": [passport.authenticate('local', {failureRedirect: '/user/login', failureFlash: true}), (req, res) ->
       if req.param "next"
         res.redirect req.param "next"
       else res.redirect "/me/tournaments"
@@ -129,7 +129,7 @@ class LoginController
 
   "/auth/facebook": [passport.authenticate('facebook', {scope:['email']})]
 
-  "/auth/facebook/callback": [passport.authenticate('facebook', failureRedirect: '/login'), (req, res) ->
+  "/auth/facebook/callback": [passport.authenticate('facebook', failureRedirect: '/user/login'), (req, res) ->
     res.redirect "/me/tournaments"
   ]
 
