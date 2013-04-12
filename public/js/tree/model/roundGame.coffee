@@ -25,20 +25,35 @@ App.RoundGame = App.RoundItem.extend
       @replace @get("player1"), winner
       @replace @get("player2"), winner
       return [winner]
-  ).property("players.@each", "games.@each.result1", "games.@each.result2", "name")
-
+  ).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.Tournament.qualifierModus")
   
   init: ->
     @_super()
     @dummies.pushObject App.Dummy.create()
 
   getWinner: ->
-    goalsPlayer1 = 0
-    goalsPlayer2 = 0
-    @games.forEach (game) =>
-      goalsPlayer1 += game.getGoalsByPlayer @get("player1")
-      goalsPlayer2 += game.getGoalsByPlayer @get("player2")
-    if goalsPlayer2 > goalsPlayer1 then @get("player2") else @get("player1")
+    if App.Tournament.get('qualifierModus') is App.qualifierModi.AGGREGATE.id
+      goalsPlayer1 = 0
+      goalsPlayer2 = 0
+      @games.forEach (game) =>
+        goalsPlayer1 += game.getGoalsByPlayer @get("player1")
+        goalsPlayer2 += game.getGoalsByPlayer @get("player2")
+      if goalsPlayer2 > goalsPlayer1
+        return @get("player2")
+      else 
+        return @get("player1")
+
+    else if App.Tournament.get('qualifierModus') is App.qualifierModi.BEST_OF.id
+      wins1 = 0
+      wins2 = 0
+      @games.forEach (game) =>
+        winner = game.getWinner()
+        wins1++ if winner is @get("player1")
+        wins2++ if winner is @get("player2")
+      if wins2 > wins1
+        return @get("player2")
+      else
+        @get("player1")
 
   isCompleted: ->
     @games.every (game) -> game.get("isCompleted")

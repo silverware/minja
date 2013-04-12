@@ -1,7 +1,6 @@
 App.GameAttributeValueView = Ember.View.extend
   template: Ember.Handlebars.compile """
     {{#if view.attribute.isCheckbox}}
-      {{view.space}}
       {{#if App.editable}}
         {{view Ember.Checkbox checkedBinding="view.gameValue"}}
       {{else}}
@@ -9,31 +8,32 @@ App.GameAttributeValueView = Ember.View.extend
           <i class="icon-ok" style="color: #DA5919" />
         {{/if}}
       {{/if}}
-    {{/if}}
-
-    {{#if view.attribute.isResult}}
-      {{#if App.editable}}
-        {{view App.NumberField valueBinding="view.resultGameValue1"}}
-        :
-        {{view App.NumberField valueBinding="view.resultGameValue2"}}
+    {{else}}
+      {{#if view.attribute.isResult}}
+        {{#if App.editable}}
+          {{view App.NumberField valueBinding="view.resultGameValue1"}}
+          :
+          {{view App.NumberField valueBinding="view.resultGameValue2"}}
+        {{else}}
+          {{view.gameValue}}
+        {{/if}}
       {{else}}
-        {{view.gameValue}}
-      {{/if}}
-    {{/if}}
+        {{#if view.attribute.isNumber}}
+          {{#if App.editable}}
+            {{view App.NumberField valueBinding="view.gameValue"}}
+          {{else}}
+            {{view.gameValue}}
+          {{/if}}
+        {{else}}
 
-   {{#if view.attribute.isNumber}}
-      {{#if App.editable}}
-        {{view App.NumberField valueBinding="view.gameValue"}}
-      {{else}}
-        {{view.gameValue}}
-      {{/if}}
-    {{/if}}
-
-    {{#if view.attribute.isTextfield}}
-      {{#if App.editable}}
-        {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
-      {{else}}
-        {{view.gameValue}}
+          {{#if view.attribute.isTextfield}}
+            {{#if App.editable}}
+              {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
+            {{else}}
+              {{view.gameValue}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
       {{/if}}
     {{/if}}
   """

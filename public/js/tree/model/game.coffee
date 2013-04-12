@@ -28,20 +28,21 @@ App.Game = Em.Object.extend
     if player is @player1 then return @get("goals1")
     if player is @player2 then return @get("goals2")
 
+  getWinner: ->
+    if not @get("isCompleted") then return null
+    if @get("goals1") > @get("goals2") then return @get("player1")
+    if @get("goals1") < @get("goals2") then return @get("player2")
+    if @get("goals1") is @get("goals2") then return false
+
+
   getPoints: (playerNumber) ->
     winPoints = parseInt App.Tournament.get("winPoints")
     drawPoints = parseInt App.Tournament.get("drawPoints")
-    if not @get("isCompleted")
-      return 0
-    if playerNumber is 1
-      if @result1 > @result2
-        return winPoints
-      else if @result1 < @result2
-        return 0
-    if playerNumber is 2
-      if @result2 > @result1
-        return winPoints
-      else if @result2 < @result1
-        return 0
+    if not @get("isCompleted") then return 0
 
-    return drawPoints
+    player = @get("player#{playerNumber}")
+    winner = @getWinner()
+
+    if not winner then return drawPoints
+    if player is winner then return winPoints
+    if player isnt winner then return 0

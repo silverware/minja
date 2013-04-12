@@ -1,6 +1,7 @@
 App.Tournament = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
+  qualifierModus: "aggregate"
   timePerGame: 20
   gamesParallel: 1
   gameAttributes: []
@@ -58,5 +59,14 @@ App.Tournament = Em.ArrayController.extend
                 roundItem.players.insertAt i, to
         if round is fromRound
           isFurtherRound = true
+
+
+App.qualifierModi =
+  BEST_OF: Em.Object.create {id: "bestof", label: "Best Of X"}
+  AGGREGATE: Em.Object.create {id: "aggregate", label: "Aggregated"}
+
+App.qualifierModiSelect = [App.qualifierModi.BEST_OF, App.qualifierModi.AGGREGATE]
+  
+  
 
 App.Tournament = App.Tournament.create()
