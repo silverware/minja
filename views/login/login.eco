@@ -1,6 +1,6 @@
 <script>
 function fillInputs() {
-	$("#username").val("test@test.de");
+	$("#username").val("test@example.com");
 	$("#password").val("test");
 	$("form").submit();
 };

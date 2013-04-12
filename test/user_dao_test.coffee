@@ -36,11 +36,11 @@ describe 'UserDao', ->
 
   describe '#create user after facebook-login', ->
     it 'should save a user', (done) ->
-      dao.findOrCreateByEmail "test@test.de", (err, user) ->
+      dao.findOrCreateByEmail "test@example.com", (err, user) ->
         assert.equal null, err
         assert.notEqual null, user
         dao.find user._id, (user) ->
-          assert.equal user.email, "test@test.de"
+          assert.equal user.email, "test@example.com"
           done()
 
   describe '#create user after facebook-login, when user exists', ->

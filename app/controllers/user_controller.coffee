@@ -13,8 +13,10 @@ class UserController extends ControllerBase
     res.render "#{@viewPrefix}/changepassword"
 
   "POST:/me/changepassword": (req, res) =>
-    if not req.user.password? or req.user.email is 'test@test.de'
+    if not req.user.password?
       res.addError "You cannot change your password as a facebook user"
+    if req.user.email is 'test@example.com'
+      res.addError "The Demo User is not allowed to change password"
 
     oldpassword = req.param("oldpassword")
     newpassword1 = req.param("newpassword1")

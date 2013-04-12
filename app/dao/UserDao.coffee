@@ -3,7 +3,7 @@ crypto = require 'crypto'
 class UserDao extends require('./DaoBase')
 
   testdata: => [
-    {email: "test@test.de", password: @hashPassword("test")}
+    {email: "test@example.com", password: @hashPassword("test")}
   ]
 
   secretKey = '^#1256oknbfxo0987j6@#$%^&*(hnygfde67ui987'

@@ -4,7 +4,9 @@ minja
 Simple way to manage tournaments. 
 
 Demo: [minja.net](http://www.minja.net)
- (Test User: test@test.de; password: test)
+Demo User:
+* email: test@example.com 
+* password: test
 
 
 ## Technologies used
