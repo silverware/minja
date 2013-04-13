@@ -7,10 +7,7 @@ App.RoundItemView = Em.View.extend
     if not @get("round").get("isEditable")
       @$('.player').draggable "disable"
     else
-      if @get("round").isGroupRound
-        @initDraggable()
-      else  
-        @$('.player').draggable "enable"
+      @$('.player').draggable "enable"
   ).observes("round.isEditable")
   
   didInsertElement: ->
@@ -25,7 +22,7 @@ App.RoundItemView = Em.View.extend
     @$(".player").draggable
       containment: @get('parentView').$()
       helper: "clone"
-      revert: 'invalid'
+      revert: "invalid"
 
     @$(".player").droppable
       drop: (event, ui) =>

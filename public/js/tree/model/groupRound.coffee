@@ -13,11 +13,21 @@ App.GroupRound = App.Round.extend
       App.Popup.showInfo
         bodyContent: App.i18n.roundItemNotAddable
       return
+    
     group = App.Group.create
       name:"#{App.i18n.group} " + @letters[@get('items.length')]
       _round: @
+    
+    # apply settings of previous group (playercount and qualifiercount)
+    prevGroup = @get('items.lastObject')
+    if prevGroup
+      group.set "qualifierCount", prevGroup.get("qualifierCount")
+      prevPlayersLength = prevGroup.get("players.length")
+
+    playersCount = (prevPlayersLength - 1) or 3
+
     players = []
-    for i in [0..3]
+    for i in [0..playersCount]
       if @getFreeMembers()?[i]?
         players.pushObject @getFreeMembers()[i]
       else
