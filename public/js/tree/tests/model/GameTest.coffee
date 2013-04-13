@@ -6,6 +6,19 @@ buster.testCase "Game Model"
       player1: @hans
       player2: @peter
 
+  "test ember obj": ->
+    p1 = App.Player.create()
+    p2 = App.Player.create()
+
+    p1.isDummy = true
+
+    assert.equals true, p1.isDummy
+    assert.equals false, p2.isDummy
+
+    p1.set("name", "hi")
+    assert.equals "hi", p1.name
+    assert.equals "", p2.name
+
   "Gewinner eines Spiels wird korrekt ermittelt": ->
 
   	assert.equals null, @game.getWinner()
