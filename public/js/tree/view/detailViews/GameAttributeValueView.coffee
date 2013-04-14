@@ -41,7 +41,12 @@ App.GameAttributeValueView = Ember.View.extend
   tagName: 'td'
   game: null
   attribute: null
-  space: " "
+
+  didInsertElement: ->
+    if attribute.get("isDate")
+      @$("dateTextBox").datepicker()
+    if attribute.get("isTime")
+      @$("timeTextBox").timepicker()
 
   gameValue: ((key, value) ->
     # GETTER

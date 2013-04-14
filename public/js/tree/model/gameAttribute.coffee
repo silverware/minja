@@ -23,6 +23,14 @@ App.GameAttribute = Em.Object.extend
     @get("type") is "result"
   ).property("type")
 
+  isDate: (->
+    @get("type") is "date"
+  ).property("type")
+
+  isTime: (->
+    @get("type") is "time"
+  ).property("type")
+
   remove: ->
     App.Popup.showQuestion
       bodyContent: App.i18n.reallyDeleteGameAttribute
@@ -35,4 +43,6 @@ App.attributeTypes = [
   Em.Object.create {type: "textfield", label: "Textfeld"}
   Em.Object.create {type: "result", label: "Result"}
   Em.Object.create {type: "number", label: "Number"}
+  Em.Object.create {type: "date", label: "Date"}
+  Em.Object.create {type: "time", label: "Time"}
 ]
