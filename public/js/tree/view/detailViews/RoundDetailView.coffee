@@ -12,3 +12,6 @@ App.RoundDetailView = App.GamesDetailView.extend
         games: App.utils.filterGames @get("gameFilter"), matchDay.games
         matchDay: matchDay.matchDay
   ).property("gameFilter", "round.games.@each")
+
+  prefillAttributes: ->
+    App.GameAttributePrefillPopup.open @get("round.games")

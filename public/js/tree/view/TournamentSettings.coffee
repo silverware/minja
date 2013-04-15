@@ -18,20 +18,15 @@ App.templates.tournamentPopup = """
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
     </div>
   </div>
-
+  <!--
   <div class="control-group">
-    <label class="control-label" for="timePerGame">{{App.i18n.timePerGame}}</label>
+    <label class="control-label" for="qualifierModus">{{App.i18n.qualifierModus}}</label>
     <div class="controls">
-      {{view App.NumberField classNames="s" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
+      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
+          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
     </div>
   </div>
-
-  <div class="control-group">
-    <label class="control-label" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
-    <div class="controls">
-      {{view App.NumberField id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
-    </div>
-  </div>
+  -->
   </fieldset>
 </form>
     </div>
@@ -62,17 +57,27 @@ App.templates.tournamentPopup = """
 
 
 
-
-
-
-  
-
   </div>
 
   <div class="row-fluid">
     <div class="span6">
       <fieldset>
         <legend>Information</legend>
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="timePerGame">{{App.i18n.timePerGame}}</label>
+            <div class="controls">
+              {{view App.NumberField classNames="s" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
+            <div class="controls">
+              {{view App.NumberField id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
+            </div>
+          </div>
+        </form>
         <dl class="dl-horizontal">
           <dt>Rounds</dt>
           <dd>{{view.roundCount}}</dd>

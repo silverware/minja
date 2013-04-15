@@ -123,12 +123,6 @@ App.GamesDetailView = App.DetailView.extend
   printView: ->
     window.print()
 
-  #prefillAttributes: ->
-  #  App.Popup.show
-  #    title: App.i18n.prefillAttributes
-  #    actions: [{closePopup: false, label: App.i18n.prefill, action: ->}]
-  #    bodyUrl: "/tournament/members/attribute_popup"
-
   gamesCount: (->
     @get('filteredGames').reduce (count, matchDay) ->
       count += matchDay.games.length

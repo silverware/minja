@@ -20,6 +20,9 @@ App.RoundItemDetailView = App.GamesDetailView.extend
       @set "roundItem", newRoundItem
       @$('.detailContent').fadeIn 'medium'
 
+  prefillAttributes: ->
+    App.GameAttributePrefillPopup.open @get("roundItem.games")
+
   filteredGames: (->
     @get("roundItem.matchDays").map (matchDay) =>
       Em.Object.create
