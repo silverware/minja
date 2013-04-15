@@ -10,7 +10,7 @@
 
 body {
   font-family: 'Maven Pro', sans-serif;
-  background-color: @grey;
+  background-color: @light;
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
@@ -81,12 +81,11 @@ header {
   }
   .nav a.active {
     background: white;
-    color: #383838;
-    border: 1px solid #222;
+    color: @dark;
     border-radius: 5px 5px 5px 5px;
   }
   .nav a:hover {
-    color: #383838;
+    color: @dark;
     background-color: #f4f3f0;
     border-radius: 3px 3px 3px 3px;
   }
@@ -508,7 +507,7 @@ Bootstrap overwrites
 }
 
 .modal {
-  background-color: @contentColorOpaque;
+  background-color: @normalOpaque;
   .table {
     input {
       color: @textColor;
