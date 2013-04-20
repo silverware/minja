@@ -16,10 +16,10 @@
   <h1>
     <%= @i18n.members.navName %><%= @headerAction @i18n.show, "../members", "eye-open" %>
     <a style="float: right; margin-right: 10px" href="#">
-      <button type="button" class="btn btn-inverse" onclick="MembersTable.showAttributePopup()"><i class="icon-plus-sign"></i><%= @i18n.members.addAttribute %></button>
+      <button type="button" class="btn btn-inverse" onclick="MembersTable.showAttributePopup()"><i class="icon-plus-sign"></i><%= @i18n.members.attribute %></button>
     </a>
     <a style="float: right; margin-right: 10px" href="#">
-      <button type="button" class="btn btn-inverse" onclick="MembersTable.addMember()"><i class="icon-plus-sign"></i><%= @i18n.members.addMember %></button>
+      <button type="button" class="btn btn-inverse" onclick="MembersTable.addMember()"><i class="icon-plus-sign"></i><%= @i18n.members.member %></button>
     </a>
   </h1>
 

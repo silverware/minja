@@ -101,7 +101,8 @@ module.exports =
   members:
     navName: "Teilnehmer"
     addAttribute: "Attribut hinzufügen"
-    addMember: "Teilnehmer"
+    attribute: "Attribut"
+    member: "Teilnehmer"
     visibility: "Sichtbarkeit"
     type: "Typ"
     textfield: "Textfeld"

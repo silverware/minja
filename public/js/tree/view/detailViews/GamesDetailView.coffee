@@ -105,7 +105,9 @@ App.templates.gamesDetail = """
                 :
                 {{view App.NumberField editableBinding="App.editable" valueBinding="game.result2"}}
             {{else}}
-              {{game.result1}} : {{game.result2}}
+              {{#if game.isCompleted}}
+                {{game.result1}} : {{game.result2}}
+              {{/if}}
             {{/if}}
             </td>
           </tr>
