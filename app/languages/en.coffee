@@ -122,6 +122,8 @@ module.exports =
     koRound: "KO Round"
     group: "Group"
     previousRound: "Previous Round"
+    deletePreviousRound: "Remove Previous Round"
+    deletePreviousRoundInfo: "Wenn du die letzte Runde löscht, gehen alle Spiele und Ergebnisse dieser Runde verloren. Bist du dir sicher?"
     game: "Game"
     games: "Games"
     remove: "Remove"

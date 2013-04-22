@@ -38,7 +38,7 @@ App.templates.tournament = """
       <div class="actions">
         <button class="btn btn-inverse" {{action "addKoRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.koRound}}</button>
         <button class="btn btn-inverse" {{action "addGroupRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.groupStage}}</button>
-        <button class="btn btn-danger" {{action "removeLastRound" target="App.Tournament"}}><i class="icon-trash"></i>{{App.i18n.previousRound}}</button>
+        <button class="btn btn-danger" {{action "removeLastRound" target="view"}}><i class="icon-trash"></i>{{App.i18n.previousRound}}</button>
       </div>
     </div>
     </div>
@@ -66,3 +66,10 @@ App.TournamentView = Em.View.extend
   edit: ->
     App.TournamentSettings.create
       tournament: App.Tournament
+
+  removeLastRound: ->
+    App.Popup.showQuestion
+      title: App.i18n.deletePreviousRound
+      bodyContent: App.i18n.deletePreviousRoundInfo
+      onConfirm: =>
+        App.Tournament.removeLastRound()

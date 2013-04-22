@@ -108,14 +108,14 @@ module.exports =
     textfield: "Textfeld"
 
 
-
-
   ################################ TREE ########################################################
   tree:
     navName: "Turnierbaum"
     groupStage: "Gruppenphase"
     koRound: "KO-Runde"
     previousRound: "Letzte Runde"
+    deletePreviousRound: "Letzte Runde löschen"
+    deletePreviousRoundInfo: "Wenn du die letzte Runde löscht, gehen alle Spiele und Ergebnisse dieser Runde verloren. Bist du dir sicher?"
     group: "Gruppe"
     game: "Spiel"
     remove: "Löschen"
