@@ -1,4 +1,4 @@
-formFor = (tournament, yield_to, action="") ->
+formFor = (obj, yield_to, action="") ->
   wrapper = (name, label, control, startInline, stopInline) => 
     s = ""
     if not stopInline?
@@ -7,58 +7,55 @@ formFor = (tournament, yield_to, action="") ->
         <label class="control-label" for="input#{name}">#{label}</label>
         <div class="controls">
       """
-    s += """
-        #{control}
-    """
-    if not startInline?
-      s += """
-        </div>
-        </div>
-      """
+    s += """#{control}"""
+
+    if not startInline? then s += """</div></div>"""
     @safe s
+
+  createAttributes = (attributes) ->
+    attributesString = " "
+    for attr, val of attributes
+      attributesString += """ #{attr}="#{val}" """
+    attributesString
+
+  createOptions = (opts) ->
+    attributesString = " "
+    for attr, val of attributes
+      attributesString += """ #{attr}="#{val}" """
+    attributesString
+
+  value = (name) =>
+    if obj and obj[name] then @escape obj[name] else ""
+
   form =
     password: (label, attribute, attributes) =>
       name = @escape attribute
-      wrapper name, label, @safe("""<input id="input#{name}" name="#{name}" type="password" />""")
+      content = @safe """<input id="input#{name}" name="#{name}" type="password" />"""
+      wrapper name, label, content
 
     textarea: (label, attribute, attributes) =>
       name = @escape attribute
-      attributesString = " "
-      for attr, val of attributes
-        attributesString += """
-          #{attr}="#{val}" 
-        """
-
-      value = if tournament[attribute]? then @escape tournament[attribute] else ""
-      wrapper name, label, @safe("""<textarea id="input#{name}"  #{attributesString} name="#{name}">#{value}</textarea>""")
+      attrs = createAttributes attributes
+      val = value attribute
+      content = @safe """<textarea id="input#{name}" #{attrs} name="#{name}">#{val}</textarea>"""
+      wrapper name, label, content
 
     textField: (label, attribute, attributes) =>
       name = @escape attribute
+      attrs = createAttributes attributes
+      val = value attribute
+      
+      content = @safe """<input type="text" value="#{val}" #{attrs} id="input#{name}" name="#{name}">"""
 
-      attributesString = " "
-      for attr, val of attributes
-        attributesString += """
-          #{attr}="#{val}" 
-        """
-
-      value = if tournament? and tournament[attribute]? then @escape tournament[attribute] else ""
-      wrapper name, label, @safe("""
-          <input type="text" value="#{value}" #{attributesString} id="input#{name}" name="#{name}">
-      """), attributes?.startInline, attributes?.stopInline
+      wrapper name, label, content, attributes?.startInline, attributes?.stopInline
 
     select: (label, attribute, attributes, options) =>
       name = @escape attribute
-
-      attributesString = " "
-      for attr, val of attributes
-        attributesString += """
-          #{attr}="#{val}" 
-        """
-
-      value = if tournament? and tournament[attribute]? then @escape tournament[attribute] else ""
-      wrapper name, label, @safe("""
-          <input type="text" value="#{value}" #{attributesString} id="input#{name}" name="#{name}">
-      """), attributes?.startInline, attributes?.stopInline
+      attrs = createAttributes attributes
+      val = value attribute
+      opts = createOptions options
+      content = @safe """<select type="text" value="#{val}" #{attrs} id="input#{name}" name="#{name}">#{opts}</select>"""
+      wrapper name, label, content
 
     button: (label) =>
       saved = "Gespeichert"
@@ -75,7 +72,7 @@ formFor = (tournament, yield_to, action="") ->
 
 
   body = yield_to form
-  action = if action == "" then "" else "action=\"#{action}\""
+  action = if not action then "" else """ action="#{action}" """
   @safe """<form class="form-horizontal" #{action} method="post">#{body}</form>"""
 
 formWithActionFor = (object, action, yield_to) ->
