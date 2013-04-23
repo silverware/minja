@@ -46,10 +46,23 @@ formFor = (tournament, yield_to, action="") ->
           <input type="text" value="#{value}" #{attributesString} id="input#{name}" name="#{name}">
       """), attributes?.startInline, attributes?.stopInline
 
+    select: (label, attribute, attributes, options) =>
+      name = @escape attribute
+
+      attributesString = " "
+      for attr, val of attributes
+        attributesString += """
+          #{attr}="#{val}" 
+        """
+
+      value = if tournament? and tournament[attribute]? then @escape tournament[attribute] else ""
+      wrapper name, label, @safe("""
+          <input type="text" value="#{value}" #{attributesString} id="input#{name}" name="#{name}">
+      """), attributes?.startInline, attributes?.stopInline
+
     button: (label) =>
       saved = "Gespeichert"
-      if label == "Save"
-        saved = "Saved"
+      if label == "Save" then saved = "Saved"
       @safe """
         <div class="control-group">
           <div class="controls">

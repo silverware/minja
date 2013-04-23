@@ -1,6 +1,7 @@
 tournamentDao = require '../dao/TournamentDao'
 chatDao = require '../dao/ChatDao'
 Sport = require '../model/sport'
+sports = require '../model/sports'
 ControllerBase = require './controller_base'
 config = require "./../server-config"
 request = require 'request'
@@ -53,6 +54,7 @@ class TournamentController extends ControllerBase
     res.render "tournaments"
 
   "/tournament/create": [@ensureAuthenticated, (req, res) ->
+    res.locals.sports = sports
     res.render "#{@viewPrefix}/create"
   ]
 
@@ -92,7 +94,7 @@ class TournamentController extends ControllerBase
   "/:tid/tree": (req, res) =>
     if req.tournament.isOwner and not req.tournament.tree?
       @redirectToEdit req, res
-    res.locals.sports = Sport.values
+    res.locals.sports = sports.values
     res.render "#{@viewPrefix}/tree",
       editable: false
 

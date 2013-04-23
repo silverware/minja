@@ -11,12 +11,14 @@
 
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/chosen.css" rel="stylesheet">
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
     <script src="/js/lib/require-jquery.js"></script>
     <script src="/js/require-config.js"></script>
     <script src="/js/lib/bootstrap.js"></script>
+    <script src="/js/lib/chosen.jquery.min.js"></script>
     <script src="/js/lib/jquery.validate.min.js"></script>
     <script src="/js/lib/handlebars-1.0.rc.3.js"></script>
     <script src="/js/lib/ember-1.0.0-rc.2.min.min.js"></script>
