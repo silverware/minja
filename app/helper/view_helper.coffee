@@ -36,7 +36,16 @@ module.exports = (req, res, next) ->
     if text then text else "n/a"
 
   res.locals.wikiToHtml = (str) ->
-    @safe instaview.convert(str)
+    @safe instaview.convert str
+
+  res.locals.toSelectData = (array, id, label) ->
+    if not array then return []
+    array.map (item) ->
+      iid = if id then item[id] else item
+      newItem = 
+        id: iid
+        label: if label then item[label] else req.i18n[iid]
+
 
   res.addError = (message, title) ->
     res.locals.errors = [] if not res.locals.errors?

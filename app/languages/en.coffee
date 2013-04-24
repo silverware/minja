@@ -21,6 +21,9 @@ module.exports =
   contactUs: "Contact Us"
   favorites: "Favorites"
 
+  football: "Football"
+  volleyball: "Volleyball"
+
   date: (date) ->
     moment.lang 'en'
     moment(date).fromNow()

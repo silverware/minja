@@ -11,7 +11,8 @@ $(function() {
   <h1><%= @i18n.newTournament %></h1>
     <%= @formFor {}, (form) => %>
       <%= form.textField @i18n.tournamentName, "name", {class: "required"} %>
+
       <%= form.button @i18n.create %>
     <% end %>
 </div>
-      <!--form.select "Sports", "sport", {class: "required"},   -->
+      <!-- form.select "Sports", "sport", {class: "required"}, @toSelectData Object.keys(@sports),    -->

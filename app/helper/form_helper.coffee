@@ -1,5 +1,32 @@
+eco = require "eco"
+
+
+passwordTemplate = """
+  <input id="input<%= @name %>" name="<%= @name %>" type="password" />
+"""
+
+textareaTemplate = """
+  <textarea id="input<%= @name %>" <%= @attrs %> name="<%= @name %>"><%- @val %></textarea>
+"""
+
+textfieldTemplate = """
+  <input type="text" value="<%- @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
+"""
+
+selectTemplate = """
+  <select type="text" value="<%= @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
+    <% for opt in @options: %>
+      <option value="<%= opt.id %>"><%= opt.label %></option> 
+    <% end %>
+  </select>
+  <script>$("#input<%= @name %>").chosen()</script>
+"""
+
+
 formFor = (obj, yield_to, action="") ->
-  wrapper = (name, label, control, startInline, stopInline) => 
+
+
+  wrapper = (name, label, control, startInline, stopInline) =>
     s = ""
     if not stopInline?
       s += """
@@ -12,50 +39,46 @@ formFor = (obj, yield_to, action="") ->
     if not startInline? then s += """</div></div>"""
     @safe s
 
-  createAttributes = (attributes) ->
-    attributesString = " "
-    for attr, val of attributes
-      attributesString += """ #{attr}="#{val}" """
-    attributesString
+  render = (template, args) =>
+    label = args[0]
+    attribute = args[1]
+    attributes = args[2]
+    startInline = attributes?.startInline
+    stopInline = attributes?.stopInline
 
-  createOptions = (opts) ->
+    locals = createLocals label, attribute, attributes
+    control = eco.render template, locals
+    wrapper locals.name, label, control, startInline, stopInline
+
+  createAttributes = (attributes) =>
     attributesString = " "
     for attr, val of attributes
       attributesString += """ #{attr}="#{val}" """
-    attributesString
+    @safe attributesString
+
+  createLocals = (label, attribute, attributes) =>
+    locals =
+      name: attribute
+      attrs: createAttributes attributes
+      val: value attribute
 
   value = (name) =>
     if obj and obj[name] then @escape obj[name] else ""
 
   form =
-    password: (label, attribute, attributes) =>
-      name = @escape attribute
-      content = @safe """<input id="input#{name}" name="#{name}" type="password" />"""
-      wrapper name, label, content
+    password: =>
+      render passwordTemplate, arguments
 
-    textarea: (label, attribute, attributes) =>
-      name = @escape attribute
-      attrs = createAttributes attributes
-      val = value attribute
-      content = @safe """<textarea id="input#{name}" #{attrs} name="#{name}">#{val}</textarea>"""
-      wrapper name, label, content
+    textarea: =>
+      render textareaTemplate, arguments
 
-    textField: (label, attribute, attributes) =>
-      name = @escape attribute
-      attrs = createAttributes attributes
-      val = value attribute
-      
-      content = @safe """<input type="text" value="#{val}" #{attrs} id="input#{name}" name="#{name}">"""
-
-      wrapper name, label, content, attributes?.startInline, attributes?.stopInline
+    textField: =>
+      render textfieldTemplate, arguments
 
     select: (label, attribute, attributes, options) =>
-      name = @escape attribute
-      attrs = createAttributes attributes
-      val = value attribute
-      opts = createOptions options
-      content = @safe """<select type="text" value="#{val}" #{attrs} id="input#{name}" name="#{name}">#{opts}</select>"""
-      wrapper name, label, content
+      locals = createLocals arguments
+      locals.options = options
+      wrapper locals.name, label, eco.render selectTemplate, locals
 
     button: (label) =>
       saved = "Gespeichert"
