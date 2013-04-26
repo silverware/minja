@@ -58,32 +58,35 @@ App.GameAttributeValueView = Ember.View.extend
   ).property("member", "attribute.name")
 
   resultGameValue1: ((key, value) ->
-    currentValue = @get("game")[@get("attribute.id")]
-    currentValue = "" if not currentValue
-    splitted = currentValue.split ":"
-    if splitted.length is not 2
-      currentValue = ":"
-      splitted = currentValue.split ":"
+    splitted = @resultSplitted()
     # GETTER
     if arguments.length == 1
       return splitted[0]
     # SETTER
     else
+      value = "" if not value?
       @get("game").set @get("attribute.id"), "#{value}:#{splitted[1]}"
   ).property("member", "attribute.name")
 
 
   resultGameValue2: ((key, value) ->
-    currentValue = @get("game")[@get("attribute.id")]
-    currentValue = "" if not currentValue
-    splitted = currentValue.split ":"
-    if splitted.length is not 2
-      currentValue = ":"
-      splitted = currentValue.split ":"
+    splitted = @resultSplitted()
     # GETTER
     if arguments.length == 1
       return splitted[1]
     # SETTER
     else
-      @get("game").set @get("attribute.id"), "#{value}:#{splitted[0]}"
+      value = "" if not value?
+      @get("game").set @get("attribute.id"), "#{splitted[0]}:#{value}"
   ).property("member", "attribute.name")
+
+  resultSplitted: ->
+
+    currentValue = @get("game")[@get("attribute.id")]
+    console.debug currentValue
+    currentValue = "" if not currentValue
+    splitted = currentValue.split ":"
+    if splitted.length is not 2
+      currentValue = ":"
+      splitted = currentValue.split ":"
+    splitted
