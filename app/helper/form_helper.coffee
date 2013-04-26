@@ -14,11 +14,13 @@ textfieldTemplate = """
 """
 
 selectTemplate = """
-  <select type="text" value="<%= @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
-    <% for opt in @options: %>
-      <option value="<%= opt.id %>"><%= opt.label %></option> 
-    <% end %>
-  </select>
+  <div class="chosen">
+    <select type="text" class="chzn-select" value="<%= @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
+      <% for opt in @options: %>
+        <option value="<%= opt.id %>"><%= opt.label %></option> 
+      <% end %>
+    </select>
+  </div>
   <script>$("#input<%= @name %>").chosen()</script>
 """
 
@@ -76,7 +78,7 @@ formFor = (obj, yield_to, action="") ->
       render textfieldTemplate, arguments
 
     select: (label, attribute, attributes, options) =>
-      locals = createLocals arguments
+      locals = createLocals.apply null, arguments
       locals.options = options
       wrapper locals.name, label, eco.render selectTemplate, locals
 

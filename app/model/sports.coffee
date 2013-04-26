@@ -15,3 +15,11 @@ module.exports =
     pointsLabel: "goals"
     # [aggregate, bestof]
     qualifierModus: "aggregate"
+  
+  other:
+    pointsPerWin: 3
+    pointsPerDraw: 1
+    # key of pointsLabel: eg. points, sets, ...
+    pointsLabel: "goals"
+    # [aggregate, bestof]
+    qualifierModus: "aggregate"

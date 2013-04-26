@@ -67,6 +67,7 @@ class TournamentController extends ControllerBase
     newTournament =
       info:
         name: req.param "name"
+        sport: req.param "sport"
       user_id: req.user.id
 
     tournamentDao.save newTournament, (result) =>

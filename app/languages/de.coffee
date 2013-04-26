@@ -21,8 +21,10 @@ module.exports =
   contactUs: "Kontakt"
   favorites: "Favoriten"
 
+  sports: "Sportart"
   football: "Fußball"
   volleyball: "Volleyball"
+  other: "Andere"
 
   date: (date) ->
     moment.lang 'de'

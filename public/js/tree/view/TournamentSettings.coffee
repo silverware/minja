@@ -18,15 +18,7 @@ App.templates.tournamentPopup = """
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
     </div>
   </div>
-  <!--
-  <div class="control-group">
-    <label class="control-label" for="qualifierModus">{{App.i18n.qualifierModus}}</label>
-    <div class="controls">
-      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
-          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
-    </div>
-  </div>
-  -->
+
   </fieldset>
 </form>
     </div>
@@ -113,3 +105,17 @@ App.TournamentSettings = App.DetailView.extend
     minutes.toFixed()
     #moment('mm', minutes).format('h m')
   ).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel')
+
+
+  ###
+
+      <!--
+  <div class="control-group">
+    <label class="control-label" for="qualifierModus">{{App.i18n.qualifierModus}}</label>
+    <div class="controls">
+      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
+          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
+    </div>
+  </div>
+  -->
+  ###
