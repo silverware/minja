@@ -48,7 +48,7 @@ module.exports =
 
   infoAlert:
     members: "Manage the participants of your tournament."
-    info: ""
+    info: "Manage the basis data of your tournament."
     tree: """
       Dies ist die Sahneschnitte. Erstell dir den kompletten Turnierbaum, trage Ergebnisse ein und veröffentliche diesen.
     """

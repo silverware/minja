@@ -20,6 +20,7 @@
         i18n: <%- @json @i18n.tree %>,
         isOwner: <%= @tournament.isOwner %>,
         data: <%- @json @tournament.tree %>,
+        sport: <%- @json @sport %>,
         initialMembers: <%- @json @tournament.members %>
       });
   });

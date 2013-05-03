@@ -1,5 +1,6 @@
 tournamentDao = require '../dao/TournamentDao'
 chatDao = require '../dao/ChatDao'
+sports = require '../model/sports'
 moment = require 'moment'
 ControllerBase = require './controller_base'
 config = require '../server-config'
@@ -40,6 +41,7 @@ class TournamentEditController extends ControllerBase
   "/:tid/tree/edit": (req, res) =>
     if not req.tournament.tree?
       res.addInfo req.i18n.infoAlert.tree
+    res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/tree",
       editable: true
 
