@@ -14,4 +14,4 @@ $(function() {
       <%= form.button @i18n.create %>
     <% end %>
 </div>
-      <!-- <%= form.select "Sports", "sport", {class: "required"}, @toSelectData Object.keys(@sports) %>   -->
+      <!--  form.select "Sports", "sport", {class: "required"}, @toSelectData Object.keys(@sports)   -->
