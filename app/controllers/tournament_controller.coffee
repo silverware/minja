@@ -94,6 +94,7 @@ class TournamentController extends ControllerBase
   "/:tid/tree": (req, res) =>
     if req.tournament.isOwner and not req.tournament.tree?
       @redirectToEdit req, res
+    res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/tree",
       editable: false
 
