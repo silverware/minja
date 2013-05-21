@@ -8,6 +8,8 @@ $.fn.createTree = (settings) ->
   App.isOwner = settings.isOwner or false
   App.i18n = settings.i18n
   App.sport = settings.sport
+
+  # initially fill with sport values
   App.Tournament.set "winPoints", App.sport.pointsPerWin
   App.Tournament.set "drawPoints", App.sport.pointsPerDraw
   App.Tournament.set "qualifierModus", App.sport.qualifierModus
