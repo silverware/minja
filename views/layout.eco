@@ -137,16 +137,17 @@
               title="Favoriten-Status" isFavorite="<%= @tournament.isFavorite %>"></i>
             <span class="seperator">|</span>
           <% end %>
-          <span class="dropup">
+            <a href="/me/tournaments"><%= @i18n.myTournaments %></a>
+            <span class="seperator">|</span>
+            <span class="dropup">
             <a data-toggle="dropdown" href="#"><%= @user.email %></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li><a tabindex="-1" href="/me/tournaments"><%= @i18n.myTournaments %></a></li>
               <li><a tabindex="-1" href="/me/favorites"><%= @i18n.favorites %></a></li>
               <li><a tabindex="-1" href="/me/changepassword"><%= @i18n.changePassword %></a></li>
+              <li><a tabindex="-1" href="/user/logout">Logout</a></li>
             </ul>
           </span>
-            <span class="seperator">|</span>
-            <a href="/user/logout">Logout</a>
         <% else: %>
             <a href="/user/login">Login</a>
             <span class="seperator">|</span>

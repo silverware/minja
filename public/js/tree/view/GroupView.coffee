@@ -30,7 +30,7 @@ App.templates.group = """
         {{#if App.editable}}
           {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
         {{else}}
-          {{player.name}}
+          <div class="input-padding">{{player.name}}</div>
         {{/if}}
       </td>
       <td class="tableCell" style="text-align: center; vertical-align: middle">{{goals}} : {{goalsAgainst}}</td>
@@ -41,9 +41,9 @@ App.templates.group = """
 </table>
 
   <table class="table noPadding groupGames box hide" id="groupGames">
-  <col width="74px" />
+  <col width="100px" />
   <col width="8px" />
-  <col width="74px" />
+  <col width="100px" />
   <col width="50px" />
 {{#each view.games}}
   {{#if newRound}}

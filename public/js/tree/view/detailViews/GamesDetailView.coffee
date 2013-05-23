@@ -50,7 +50,11 @@ App.templates.gamesDetail = """
             {{rank}}.
           </td>
           <td class="tableCell reallyNoPadding">
-            {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+            {{#if App.editable}}
+              {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+            {{else}}
+              <div class="input-padding">{{player.name}}</div>
+            {{/if}}
           </td>
           <td class="tableCell">{{games}}</td>
           <td class="tableCell">{{goals}}</td>
