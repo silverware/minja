@@ -27,3 +27,24 @@ buster.testCase "Round Model"
 
     shuffledPlayers = getPlayers @round.get("items")
     assert.equals 0, _.difference(initialPlayers, shuffledPlayers).length
+
+  "count Ko Rounds before": ->
+    App.Tournament.clear()
+    App.Tournament.pushObject App.KoRound.create()
+    App.Tournament.pushObject App.KoRound.create
+      _previousRound: App.Tournament.lastRound()
+    round = App.Tournament.lastRound()
+    console.debug App.Tournament
+    assert.equals 1, round.koRoundsBefore()
+    App.Tournament.pushObject App.KoRound.create
+      _previousRound: App.Tournament.lastRound()
+    round = App.Tournament.lastRound()
+    assert.equals 2, round.koRoundsBefore()
+    App.Tournament.pushObject App.GroupRound.create
+      _previousRound: App.Tournament.lastRound()
+    App.Tournament.pushObject App.KoRound.create
+      _previousRound: App.Tournament.lastRound()
+    App.Tournament.pushObject App.KoRound.create
+      _previousRound: App.Tournament.lastRound()
+    round = App.Tournament.lastRound()
+    assert.equals 1, round.koRoundsBefore()

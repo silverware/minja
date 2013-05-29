@@ -19,6 +19,7 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
+    @$().addClass "round-#{@round.koRoundsBefore()}"
     @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
     @$("#openDetailView").tooltip
@@ -29,10 +30,9 @@ App.RoundView = Em.View.extend
       @$(".roundItem").show "medium"
       @$().css "min-height", "130px"
       @$("#toggleRound").attr "class", "icon-chevron-up"
-
     else
       @$(".roundItem").hide "medium"
       @$("#settings .close").click()
       @$().css "min-height", "0px"
       @$("#toggleRound").attr "class", "icon-chevron-down"
-      
+

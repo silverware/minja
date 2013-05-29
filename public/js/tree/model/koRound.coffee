@@ -22,5 +22,9 @@ App.KoRound = App.Round.extend
           name: "#{App.i18n.player} " + (i + 1)
     @items.pushObject game
 
+  koRoundsBefore: ->
+    if not @_previousRound or not @_previousRound.isKoRound
+      return 0
+    @_previousRound.koRoundsBefore() + 1
 
     
