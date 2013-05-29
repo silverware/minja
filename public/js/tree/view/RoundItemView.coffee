@@ -4,28 +4,35 @@ App.RoundItemView = Em.View.extend
   round: null
   
   onEditableChanged: (->
-    if not @get("round").get("isEditable")
-      @$('.player').draggable "disable"
-    else
-      @$('.player').draggable "enable"
+    @draggable @get("round").get("isEditable")
   ).observes("round.isEditable")
   
   didInsertElement: ->
     @$(".icon-search").tooltip
       title: App.i18n.detailView
+    @initDraggable()
     if @get("round").get("isEditable")
       @$(".removeItem").tooltip
         title: App.i18n.remove
-      @initDraggable()
+    @draggable @get("round").get("isEditable")
+
+  draggable: (enable) ->
+    @$('.player').draggable if enable then "enable" else "disable"
+    @$(".player").css "cursor", if enable then "move" else "default"
   
-  initDraggable: ->
+  initDraggable: ->  
     @$(".player").draggable
       containment: @get('parentView').$()
       helper: "clone"
       revert: "invalid"
+      start: (e, {helper}) ->
+        $(helper).addClass "ui-draggable-helper"
+      stop: =>
+        setTimeout (=> @draggable true), 20
 
     @$(".player").droppable
       drop: (event, ui) =>
+        setTimeout (=> @draggable true), 20
         dragElement = $ ui.draggable[0]
         dropElement = $ event.target
         @get("round").swapPlayers(

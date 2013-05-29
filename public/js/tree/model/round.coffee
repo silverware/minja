@@ -103,3 +103,9 @@ App.Round = Em.Object.extend
       for i in [0..item.get('players.length') - 1]
         item.get('players').replace i, 1, [_.last players]
         players.popObject()
+
+
+  koRoundsBefore: ->
+    if not @_previousRound or not @_previousRound.isKoRound
+      return 0
+    @_previousRound.koRoundsBefore() + 1
