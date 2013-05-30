@@ -97,6 +97,8 @@ App.Round = Em.Object.extend
     gamePlayers2.insertAt player2Index[1], player1
 
   shuffle: ->
+    # TODO: echter Zufall Sequenz generator mit random.org api
+
     players = _.shuffle _.flatten @get('items').map (item) -> item.get('players')
     
     @get('items').forEach (item) ->

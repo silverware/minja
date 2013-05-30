@@ -21,7 +21,7 @@
 <section class="dashboardBox" style="height: 200px">
   <fieldset>
   <legend><%= @i18n.info.basicData %></legend>
-  <dl class="dl-horizontal">
+  <dl class="dl-horizontal" style="margin-top: 0px">
     <dt><%= @i18n.info.startDate %></dt>
     <dd>
       <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime %>
