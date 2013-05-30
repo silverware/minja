@@ -64,9 +64,14 @@
       <!-- ########################################## NAVIGATION ########################################## -->
       <header id="header" class="noPrint">
           <% if @navigation: %>
-            <a class="home" href="/<%= @tournament.identifier %>">
-              <i class="icon-sitemap rotated"></i><%= @tournament.info.name %>
-            </a>
+            <div style="display: inline-block">
+              <a class="home" href="/<%= @tournament.identifier %>">
+                <i class="icon-sitemap rotated"></i>
+              </a>
+              <a class="home" style="padding: 5px 0 0 10px" href="/<%= @tournament.identifier %>">
+                </i><%= @tournament.info.name %>
+              </a>
+            </div>
           <% else: %>
             <a class="home" href="/"><!--<i class="icon-sitemap rotated"></i>-->
               <img src="/img/logo4.png" width="210px" /></a>
