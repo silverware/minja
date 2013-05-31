@@ -58,7 +58,7 @@ App.TournamentView = Em.View.extend
 
     if App.editable
       @$(".tournamentActions .roundName").click =>
-        if @$(".tournamentActions .actions").is(":visible")
+        if @$(".tournamentActions .actions").is ":visible"
           @$(".tournamentActions .actions").hide "medium"
         else
           @$(".tournamentActions .actions").show "medium"

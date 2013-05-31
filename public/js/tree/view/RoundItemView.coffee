@@ -14,7 +14,7 @@ App.RoundItemView = Em.View.extend
     if @get("round").get("isEditable")
       @$(".removeItem").tooltip
         title: App.i18n.remove
-    @draggable @get("round").get("isEditable")
+      @draggable true
 
   draggable: (enable) ->
     @$('.player').draggable if enable then "enable" else "disable"

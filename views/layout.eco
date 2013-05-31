@@ -73,8 +73,9 @@
               </a>
             </div>
           <% else: %>
-            <a class="home" href="/"><!--<i class="icon-sitemap rotated"></i>-->
-              <img src="/img/logo4.png" width="210px" /></a>
+            <div style="display: inline-block">
+              <a class="home" href="/"><img src="/img/logo4.png" width="210px" /></a>
+            </div>
           <% end %>
         <ul class="nav">
           <% if @navigation: %>

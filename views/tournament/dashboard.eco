@@ -1,12 +1,11 @@
 <script>
   require(["info/Chat", "info/TreeStatisticsView"], function(Chat, TreeStatisticsView) {
-    /*
     window.Chat = Chat.create({
       tournament_id: "<%= @tournament.id %>",
       editable: false,
       i18n: <%- @json @i18n.chat %>,
       limit: 2
-    });*/
+    });
     TreeStatisticsView.init({
       data: <%- @json @tournament.tree %>,
       i18n: <%- @json @i18n.tree %>
@@ -72,7 +71,7 @@
 
 
 <div class="row-fluid">
-<!--
+
 <div class="span6">
 <a href="/<%= @tournament.identifier %>/info">
 <section class="dashboardBox">
@@ -83,7 +82,7 @@
 </section>
 </a>
 </div>
--->
+
 
 <div class="span6">
 <a href="/<%= @tournament.identifier %>/tree">
