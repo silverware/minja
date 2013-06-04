@@ -1,6 +1,9 @@
 <script>
-  function confirmDelete() {
-    return confirm('Are you sure you want to delete this tournament?');
+  function confirmDelete(tournamentId) {
+    var del = confirm('Are you sure you want to delete this tournament?');
+    if (del) {
+      window.location.href = "/" + tournamentId + "/remove";
+    }
   }
 </script>
 
@@ -31,7 +34,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/<%= tournament.value._id %>/remove" onclick="confirmDelete()">
+                  <a href="#" onclick="confirmDelete('<%= tournament.value._id %>')">
                     <i class="icon-trash"></i><%= @i18n.delete %>
                   </a>
                 </li>
