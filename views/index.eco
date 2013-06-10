@@ -3,6 +3,27 @@ minja<br /><br />
 <div class="subtitle">the simple way to manage tournaments</div>
   </div>
 
+<!--
+<div id="content" style="font-size: 16px">
+<ul>
+  <li>100% free</li>
+  <li>no advertising</li>
+  <li>create Your Tournament in 5 minutes</li>
+  <li>unlimeted participants</li>
+</ul>
+
+
+<ul>
+  <li>flexible bracket creation</li>
+  <li>all common bracket modes realizable</li>
+  <li>automatic game schedule generation</li>
+  <li>print views</li>
+</ul>
+
+</div>
+
+<img width="400px" style="float: right" src="/img/screenshots/screen1.png" />
+  -->
 <div class="features clearfix">
   <div class="feature">
     <div><h5><i class="icon-search"></i> Turniere suchen</h5>
@@ -26,12 +47,23 @@ minja<br /><br />
 </div>
 
 
-
 <!--
 FEATURES:
 
 Turnierbaum: Spielplan-Generator, Druckansichten, Spiele Taggen
+* 100% free
+* no advertising
+* Erstelle dein Turnier in 2 Minuten
+* unlimeted participants
+* alle üblichen Turniermodi umsetzbar
+* Flexible Umsetzung aller gebräuchlichen Turniermodi durch einfaches Zusammenbauen der Turnierrunden
+    Gesamter Turnierbaum auf einen Blick
+    automatische Spielplangenerierung (Algorithmus stellt sicher, dass Mannschaften/Spieler nicht zu viel oder zu wenig Pausen zwischen den Gruppenspielen haben)
+    Druckansichten der Spielpläne/Gruppen
+* Individualisiere deine Turnierseite (Farbe, Logo)
 
+
+in 5 Minuten zum Online Auftritt - DEMO VIDEO
 
 
   -->
