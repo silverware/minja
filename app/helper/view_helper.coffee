@@ -1,6 +1,6 @@
 moment = require 'moment'
 config = require '../server-config'
-instaview = require 'instaview'
+marked = require 'marked'
 
 module.exports = (req, res, next) ->
   res.locals.headerAction = (label, url, icon) ->
@@ -35,8 +35,8 @@ module.exports = (req, res, next) ->
   res.locals.textOrNa = (text) ->
     if text then text else "n/a"
 
-  res.locals.wikiToHtml = (str) ->
-    @safe instaview.convert str
+  res.locals.markdownToHtml = (str) ->
+    @safe marked str
 
   res.locals.toSelectData = (array, id, label) ->
     if not array then return []

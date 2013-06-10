@@ -19,7 +19,7 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
-    @$().addClass "round-#{@round.koRoundsBefore()}"
+    @$().addClass "round-#{@round.koRoundsBefore()}" if @round.isKoRound
     @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
     @$("#openDetailView").tooltip

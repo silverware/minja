@@ -35,7 +35,7 @@
   </dl>
   <% if @tournament.info.description: %>
     <hr />
-    <div id="description"><%= @wikiToHtml @tournament.info.description %></div>
+    <div id="description"><%= @markdownToHtml @tournament.info.description %></div>
   <% end %>
 
   <br />

@@ -10,7 +10,9 @@ App.RoundItemView = Em.View.extend
   didInsertElement: ->
     @$(".icon-search").tooltip
       title: App.i18n.detailView
-    @initDraggable()
+    if App.editable
+      @initDraggable()
+      @draggable false
     if @get("round").get("isEditable")
       @$(".removeItem").tooltip
         title: App.i18n.remove
