@@ -20,6 +20,7 @@ module.exports =
   time: "Zeit"
   contactUs: "Kontakt"
   favorites: "Favoriten"
+  createIn3Minutes: "Erstell dein Turnier in 3 Minuten"
 
   sports: "Sportart"
   football: "Fußball"
