@@ -88,4 +88,12 @@ class TournamentEditController extends ControllerBase
         tournamentDao.merge req.tournament.id, publicName: publicName, ->
           res.send "ok"
 
+  "/:tid/logo": (req, res) =>
+    hasLogo = false
+    if req.tournament.logo
+      hasLogo = true
+
+    res.render "#{@viewPrefix}/logo",
+      hasLogo: hasLogo
+
 module.exports = new TournamentEditController()
