@@ -1,0 +1,24 @@
+<div id="content">
+  <h1>Upload a Logo</h1>
+  <div>
+    <img src="" alt="your tournament logo" />
+  </div>
+  <%= @formWithActionFor {}, "/user/login", (form) => %>
+    <div class="control-group">
+      <div class="controls">
+        <input type="file" name="logo" accept="image/* " size="50" value="brabbel" />
+       </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Save Logo</button>
+        <% if @hasLogo: %>
+          <button class="btn btn-danger btn" type="submit" style="margin-right: 20px">Delete Logo</button>
+        <% end  %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
