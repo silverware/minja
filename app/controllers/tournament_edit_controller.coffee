@@ -1,3 +1,4 @@
+fs = require 'fs'
 tournamentDao = require '../dao/TournamentDao'
 chatDao = require '../dao/ChatDao'
 sports = require '../model/sports'
@@ -95,5 +96,19 @@ class TournamentEditController extends ControllerBase
 
     res.render "#{@viewPrefix}/logo",
       hasLogo: hasLogo
+
+  "POST:/:tid/logo": (req, res) =>
+    logoFile = req.files['logo']
+    logoImage =
+      name: 'logo'
+      contentType: logoFile.type
+      body: fs.readFileSync(logoFile.path)
+
+
+    tournamentDao.saveAttachments([logoImage], req.tournament, () =>
+      tournamentDao.merge req.tournament.id, logo: 'logo', () =>
+        res.render "#{@viewPrefix}/logo"
+    )
+
 
 module.exports = new TournamentEditController()

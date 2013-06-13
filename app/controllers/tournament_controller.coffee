@@ -111,6 +111,10 @@ class TournamentController extends ControllerBase
     url = config.DB_URL + "/tournaments/#{req.params.tid}/image/#{req.params.imageId}"
     request(url: url).pipe(res)
 
+  "/:tid/logo/display": (req, res) =>
+    url = config.DB_URL + "/tournaments/#{req.params.tid}/logo"
+    request(url: url).pipe(res)
+
   "/:tid/messages": (req, res) =>
     paginator =
       first: req.param "first" or 0
