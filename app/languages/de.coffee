@@ -91,6 +91,7 @@ module.exports =
     deleteStopTime: "Endzeit löschen"
     publicName: "Öffentlicher Turniername"
     save: "Speichern"
+    preview: "Vorschau"
 
   chat:
     delete: "Löschen"

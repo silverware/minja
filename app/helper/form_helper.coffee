@@ -88,7 +88,7 @@ formFor = (obj, yield_to, action="") ->
       @safe """
         <div class="control-group">
           <div class="controls">
-            <button class="btn btn-primary btn" type="submit">#{label}</button>
+            <button class="btn btn-primary" type="submit">#{label}</button>
             <img class="ajaxLoader" src="/img/ajax-loader.gif" />
             <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
           </div>

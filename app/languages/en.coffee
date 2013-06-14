@@ -96,6 +96,7 @@ module.exports =
     save: "Save"
     available: "available"
     notAvailable: "not available"
+    preview: "Preview"
   
   chat:
     delete: "Delete"

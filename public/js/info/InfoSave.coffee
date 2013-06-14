@@ -73,3 +73,10 @@
       return
       @openVenuePopup = $("<span class='btn btn-link'>auf Karte eintragen</span>")
       $("input[name=venue]").after @openVenuePopup
+
+    openPreview: ->
+      $.get "/editor/preview", markdown: $('textarea[name=description]').val(), (html) =>
+        Popup.show
+          title: @i18n.preview
+          cancelble: true
+          bodyContent: html

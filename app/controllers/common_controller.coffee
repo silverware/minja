@@ -1,3 +1,5 @@
+marked = require 'marked'
+
 class CommonController
 
   "/": (req, res) =>
@@ -9,5 +11,8 @@ class CommonController
   "/lang/:lang": (req, res) =>
   	req.session.language = req.params.lang
   	res.redirect req.param "next"
+
+  "/editor/preview": (req, res) =>
+  	res.send marked req.param "markdown"
 
 module.exports = new CommonController()
