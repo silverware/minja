@@ -1,8 +1,10 @@
 <div id="content">
-  <h1>Upload a Logo</h1>
-  <div>
-    <img style="max-width:200px" src="/<%= @tournament.id %>/logo/display" alt="your tournament logo" />
-  </div>
+  <h1>Upload custom Logo</h1>
+  <% if @hasLogo: %>
+    <div>
+      <img style="max-width:200px" src="/<%= @tournament.id %>/logo/display" alt="your tournament logo" />
+    </div>
+  <% end %>
   <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
     <div class="control-group">
       <div class="controls">
@@ -12,9 +14,9 @@
 
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Save Logo</button>
+        <button class="btn btn-primary btn" name="save" value="1" type="submit" style="margin-right: 20px">Save Logo</button>
         <% if @hasLogo: %>
-          <button class="btn btn-danger btn" type="submit" style="margin-right: 20px">Delete Logo</button>
+          <button class="btn btn-danger btn" name="delete" value="1" type="submit" style="margin-right: 20px">Delete Logo</button>
         <% end  %>
       </div>
     </div>

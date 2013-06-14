@@ -90,25 +90,26 @@ class TournamentEditController extends ControllerBase
           res.send "ok"
 
   "/:tid/logo": (req, res) =>
-    hasLogo = false
-    if req.tournament.logo
-      hasLogo = true
+    hasLogo = req.tournament.hasLogo == true
 
     res.render "#{@viewPrefix}/logo",
       hasLogo: hasLogo
 
   "POST:/:tid/logo": (req, res) =>
-    logoFile = req.files['logo']
-    logoImage =
-      name: 'logo'
-      contentType: logoFile.type
-      body: fs.readFileSync(logoFile.path)
+    if req.param("save")
+      logoFile = req.files['logo']
+      logoImage =
+        name: 'logo'
+        contentType: logoFile.type
+        body: fs.readFileSync(logoFile.path)
 
-
-    tournamentDao.saveAttachments([logoImage], req.tournament, () =>
-      tournamentDao.merge req.tournament.id, logo: 'logo', () =>
-        res.render "#{@viewPrefix}/logo"
-    )
+      tournamentDao.saveAttachments([logoImage], req.tournament, () =>
+        tournamentDao.merge req.tournament.id, hasLogo: true, () =>
+          res.render "#{@viewPrefix}/logo", hasLogo: true)
+    else
+      tournamentDao.merge req.tournament.id, hasLogo: false, () =>
+        tournamentDao.removeAttachments( req.tournament, ["logo"], () =>
+          res.render "#{@viewPrefix}/logo", hasLogo: false)
 
 
 module.exports = new TournamentEditController()
