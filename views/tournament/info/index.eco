@@ -31,7 +31,7 @@
     <dt><%= @i18n.info.host %></dt>
     <dd><%= @textOrNa @tournament.info.host %></dd>
     <dt>E-Mail</dt>
-    <dd><%= @textOrNa @tournament.info.hostMail %>
+    <dd><%= @obscured @textOrNa @tournament.info.hostMail %>
   </dl>
   <% if @tournament.info.description: %>
     <hr />

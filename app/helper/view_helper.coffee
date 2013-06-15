@@ -17,6 +17,13 @@ module.exports = (req, res, next) ->
     str = "" + JSON.stringify(obj)
     return htmlEscape str
 
+  res.locals.obscured = (str) ->
+    replace = """<span style="display:none">minja</span>"""
+    if not str
+      return ""
+    @safe str.replace "@", "#{replace}@#{replace}"
+
+
   res.locals.user = req.user
   res.locals.path = req.path
 
