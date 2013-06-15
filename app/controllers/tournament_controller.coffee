@@ -5,6 +5,8 @@ ControllerBase = require './controller_base'
 config = require "./../server-config"
 request = require 'request'
 _ = require 'underscore'
+fs = require 'fs'
+less = require 'less'
 
 class TournamentController extends ControllerBase
 
@@ -134,5 +136,16 @@ class TournamentController extends ControllerBase
 
     chatDao.save message, ->
       res.send "ok"
+
+  "/:tid/*.cssd": (req, res) =>
+    console.log req.url
+    path = config.CLIENT_DIR + "/"  +req.params[0] + ".less"
+    console.log path
+    fs.readFile path, "utf8", (err, data) ->
+      if err then throw err
+      less.render data, (err, css) ->
+        if err then throw err
+        res.header "Content-type", "text/css"
+        res.send css
 
 module.exports = new TournamentController()
