@@ -107,6 +107,14 @@ module.exports =
     tournamentCreated: "Tournament created."
 
 
+  ################################ SETTINGS ########################################################
+  
+  settings:
+    header: "Tournament Settings"
+    navName: "Settings"
+    publicName: "Public Tournament Name"
+    logo: "Logo"
+    save: "Save"
 
 
 ################################ MEMBERS ########################################################

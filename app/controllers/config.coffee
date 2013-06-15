@@ -68,3 +68,4 @@ module.exports = (app) ->
     res.render req.params[0],
       layout: false
 
+

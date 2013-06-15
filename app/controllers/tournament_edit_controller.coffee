@@ -123,4 +123,11 @@ class TournamentEditController extends ControllerBase
           res.render "#{@viewPrefix}/logo", hasLogo: false)
 
 
+  "/:tid/settings": (req, res) =>
+    res.render "#{@viewPrefix}/settings"
+
+  "POST:/:tid/settings": (req, res) =>
+    tournamentDao.merge req.tournament.id, info: req.body, ->
+      res.send "ok"
+
 module.exports = new TournamentEditController()

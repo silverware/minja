@@ -1,0 +1,39 @@
+<script>
+require(["settings/SettingsSave"], function(SettingsSave) {
+  window.save = new SettingsSave({
+    form: $("form"),
+    i18n: <%- @json @i18n.settings %>,
+    tournamentId: "<%= @tournament.id %>"
+  });
+});
+</script>
+
+<div id="content">
+  <h1><%= @i18n.settings.header %></h1>
+    <!--
+    <fieldset>
+      <legend><%= @i18n.settings.color %></legend>
+
+    </fieldset>
+    -->
+    <fieldset>
+      <legend><%= @i18n.settings.logo %></legend>
+
+    </fieldset>
+
+    <fieldset>
+      <legend><%= @i18n.settings.publicName %></legend>
+        <p>Dein öffentlicher Turniername dient zum Zugriff über die URL-Adresse: <br />
+          http://tournament-manager.xaga.de/#<%= @i18n.settings.publicName %>#</p>
+        <dl class="dl-horizontal">
+          <dt>Name</dt>
+          <dd id="publicNameValue">
+            <% if @tournament.publicName: %>
+              <a href="<%= @rootPath%>/<%= @tournament.publicName %>" target="_blank"><%= @tournament.publicName %></a>
+            <% else: %>
+              <b>noch kein Name angelegt</b><span id="createPublicName" class='btn btn-link'>Jetzt Name anlegen</span>
+            <% end %>
+          </dd>
+        </dl>
+    </fieldset>
+</div>

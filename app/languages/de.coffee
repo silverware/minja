@@ -100,8 +100,15 @@ module.exports =
     publish: "Veröffentlichen"
     showMore: "Mehr Anzeigen"
     tournamentCreated: "Turnier erstellt."
+ 
+  ################################ SETTINGS ########################################################
 
-
+  settings:
+    header: "Tournament Settings"
+    navName: "Settings"
+    publicName: "Public Tournament Name"
+    logo: "Turnier Logo"
+    save: "Speichern"
 
 
   ################################ MEMBERS ########################################################
