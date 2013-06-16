@@ -1,4 +1,4 @@
-define ["text!./popup_template.hbs"], (template) ->
+define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
 
   popup =
     hide: ->
@@ -24,7 +24,7 @@ define ["text!./popup_template.hbs"], (template) ->
 
       if @cancelble
         @actions.push 
-          label: "Cancel"
+          label: i18n.cancel
           action: ->
           closePopup: true
           notBlue: true
@@ -46,10 +46,10 @@ define ["text!./popup_template.hbs"], (template) ->
       @show args
 
     showQuestion: (args) ->
-      title = "Question"
+      title = i18n.question
       title = args.title if args.title
-      confirmAction = {label: "Yes", closePopup: true,action: => @onConfirm()}
-      args.actions = [confirmAction, {label: "No", notBlue: true, closePopup: true, action: ->}]
+      confirmAction = {label: i18n.yes, closePopup: true,action: => @onConfirm()}
+      args.actions = [confirmAction, {label: i18n.no, notBlue: true, closePopup: true, action: ->}]
       args.title = """<i class="icon-question-sign"></i> #{title}"""
       @show args
 

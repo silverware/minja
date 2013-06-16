@@ -162,6 +162,9 @@ module.exports =
     gameAttributes: "Game Attributes"
     addAttribute: "Add Attribute"
     close: "Close"
+    shuffle: "Shuffle"
+    shufflePlayers: "Shuffle players"
+    shufflePlayersDescription: "If you shuffle the players, all games of this round will be reverted"
     home: "Home"
     guest: "Guest"
     matchday: "Matchday"
@@ -175,3 +178,10 @@ module.exports =
     lastRoundNotValid: "Die letzte Runde ist nocht nicht valide. Entweder sind noch nicht alle Qualifikanten der vorletzten Runde übernommen worden, oder die Anzahl der Qualifikanten der letzten Runde ist kleiner als zwei."
     gamesParallel: "Games Parallel"
     reallyDeleteGameAttribute: "Wenn Sie das Merkmal löschen, werden alle dazugehörigen Spiele-Werte gelöscht. Wirklich löschen?"
+
+  ################################ POPUP ########################################################
+  popup:
+    yes: "Yes"
+    no: "No"
+    question: "Question"
+    cancel: "Cancel"

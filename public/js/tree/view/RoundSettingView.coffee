@@ -29,7 +29,7 @@ App.templates.roundSetting = """
       </div>
   </form>
   <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>
-  <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="icon-random"></i>Shuffle</button>
+  <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="icon-random"></i>{{App.i18n.shuffle}}</button>
 </div>
 """
 
@@ -54,8 +54,8 @@ App.RoundSetting = Em.View.extend
     # Warnung ausgeben, falls dadurch Ergebnisse verfallen
     if true
       App.Popup.showQuestion
-        title: "Shuffle Players"
-        bodyContent: "If you shuffle the players, all games of this round will be reverted"
+        title: App.i18n.shufflePlayers
+        bodyContent: App.i18n.shufflePlayersDescription
         onConfirm: =>
           @round.shuffle()
     else
