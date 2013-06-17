@@ -1,5 +1,4 @@
 @import "mixins";
-@import "colors";
 
 
 .ui-spinner {position: relative; border: 0px solid white; }
@@ -17,7 +16,6 @@ Tournament
 }
 
 .box {
-  .contentBox;
   border-radius: 6px 2px 2px 2px;
   box-shadow: 0 10px 20px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
@@ -195,7 +193,6 @@ Tournament
 
 
 .roundSeperator {
-  background-color: @dark !important;
   font-weight: bold;
   min-height: 10px;
 }
@@ -280,7 +277,6 @@ Toolbar
  Utils
 ----------------------------------------------------------------------*/
 .ui-draggable-helper {
-  background-color: @dark;
   z-index: 3;
 }
 
@@ -311,7 +307,6 @@ Action Box unten
 ----------------------------------------------------------------------*/
 
 .detailView {
-  .contentBox;
   position: fixed;
   overflow: hidden;
   top: 100px;
@@ -374,7 +369,6 @@ Action Box unten
 
 .filterView {
   input {
-    color: @textColor;
     width: 100%;
     background-color: white;
   }
