@@ -18,4 +18,5 @@ class CommonController
   "/i18n/*": (req, res) =>
   	res.send req.i18n[req.params[0]]
 
+
 module.exports = new CommonController()

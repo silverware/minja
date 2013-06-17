@@ -1,5 +1,4 @@
 @import "mixins";
-@import "colors";
 @import "bootstrap-chosen";
 
 
@@ -12,7 +11,6 @@
 
 body {
   font-family: 'Maven Pro', sans-serif;
-  background-color: @light;
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
@@ -83,11 +81,9 @@ header {
   }
   .nav a.active {
     background: white;
-    color: @dark;
     border-radius: 5px 5px 5px 5px;
   }
   .nav a:hover {
-    color: @dark;
     background-color: #f4f3f0;
     border-radius: 3px 3px 3px 3px;
   }
@@ -99,8 +95,6 @@ header {
 
 
 footer {
-    color: white;
-    background-color: @dark;
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
     padding: 10px;
     font-size: 0.90em;
@@ -256,14 +250,12 @@ a:hover {
 
 
 #content {
-    .contentBox;
     margin: 0 auto 70px;
     width: 700px;
     padding: 50px 75px;
 }
 
 #smallContent {
-  .contentBox;
   margin: 0 auto;
   padding: 20px;
   width: 475px;
@@ -306,7 +298,6 @@ footer a:hover {
 }
 
 .feature div {
-  .contentBox;
   padding: 20px;
   min-height: 250px;
   text-align: center;
@@ -336,7 +327,6 @@ button[rel="tooltip"] i  {
 
 
 .dashboardBox {
-  .contentBox;
   position: relative;
   padding: 15px;
   margin-bottom: 20px;
@@ -351,9 +341,6 @@ button[rel="tooltip"] i  {
     font-size: 14px;
     margin: 4px;
     font-weight: normal;
-  }
-  .label, .badge {
-    background-color: @dark;
   }
 }
 
@@ -500,10 +487,6 @@ Gallery
 Bootstrap overwrites
 *********************************/
 
-.dropdown-menu {
-  background-color: @dark;
-}
-
 .dropdown-menu a {
   color: white;
 }
@@ -517,24 +500,12 @@ Bootstrap overwrites
   text-decoration: none;
 }
 
-.modal {
-  background-color: @normalOpaque;
-  .table {
-    input {
-      color: @textColor;
-    }
-  }
-  .close {
-    color: white;
-  }
-}
 
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-footer {
-  background-color: @dark;
   box-shadow: none;
   border-top: none;
 }
@@ -557,7 +528,6 @@ Bootstrap overwrites
 }
 
 .popover {
-  color: @textColor !important;
   text-shadow: none;
 }
 

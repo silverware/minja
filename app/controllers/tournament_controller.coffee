@@ -137,12 +137,19 @@ class TournamentController extends ControllerBase
     chatDao.save message, ->
       res.send "ok"
 
-  "/:tid/*.cssd": (req, res) =>
-    console.log req.url
-    path = config.CLIENT_DIR + "/"  +req.params[0] + ".less"
-    console.log path
+  "/:tid/tournament_colors.css": (req, res) =>
+    path = config.CLIENT_DIR + "/css/colors_template.less"
+    colors = """
+      @textColor: #222;
+      @light: rgba(12, 123, 145, 1);
+      @dark: rgba(11, 62, 77, 0.95);
+      @normal: rgba(12, 82, 97, 0.7);
+      @normalOpaque: rgba(12, 82, 97, 1);
+    """
+
     fs.readFile path, "utf8", (err, data) ->
       if err then throw err
+      data = colors.concat data
       less.render data, (err, css) ->
         if err then throw err
         res.header "Content-type", "text/css"
