@@ -1,7 +1,6 @@
 <script>
-require(["settings/SettingsSave"], function(SettingsSave) {
-  window.save = new SettingsSave({
-    form: $("form"),
+require(["settings/Settings"], function(Settings) {
+  window.save = new Settings({
     i18n: <%- @json @i18n.settings %>,
     tournamentId: "<%= @tournament.id %>"
   });
@@ -19,6 +18,17 @@ require(["settings/SettingsSave"], function(SettingsSave) {
     <fieldset>
       <legend><%= @i18n.settings.logo %></legend>
 
+    </fieldset>
+
+    <fieldset>
+      <legend>color</legend>
+        <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
+
+          <%= form.textField @i18n.info.startDate, "normal", {placeholder: @i18n.datum} %>
+          <%= form.textField @i18n.info.startDate, "background", {placeholder: @i18n.datum} %>
+          <%= form.textField @i18n.info.startDate, "text", {placeholder: @i18n.datum} %>
+          <%= form.button @i18n.save %>
+        <% end %>
     </fieldset>
 
     <fieldset>

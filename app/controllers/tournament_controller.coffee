@@ -139,17 +139,18 @@ class TournamentController extends ControllerBase
 
   "/:tid/tournament_colors.css": (req, res) =>
     path = config.CLIENT_DIR + "/css/colors_template.less"
-    colors = """
-      @textColor: #222;
-      @light: rgba(12, 123, 145, 1);
+    colors = req.tournament.colors
+    prefix = """
+      @normal: #{colors.normal};
+      @textColor: #{colors.text};
+      @light: #{colors.background};
       @dark: rgba(11, 62, 77, 0.95);
-      @normal: rgba(12, 82, 97, 0.7);
       @normalOpaque: rgba(12, 82, 97, 1);
     """
 
     fs.readFile path, "utf8", (err, data) ->
       if err then throw err
-      data = colors.concat data
+      data = prefix.concat data
       less.render data, (err, css) ->
         if err then throw err
         res.header "Content-type", "text/css"

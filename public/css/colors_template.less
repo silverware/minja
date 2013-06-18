@@ -3,11 +3,11 @@
 ----------------------------------------------------------------------*/
 
 .contentBox {
-	background-color: @normal;
-	box-shadow: 0 25px 50px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
-	color: #fff;
-	position: relative;
-	border-radius: 5px 5px 5px 5px;
+  background-color: @normal;
+  box-shadow: 0 25px 50px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  color: #fff;
+  position: relative;
+  border-radius: 5px 5px 5px 5px;
 }
 
 
@@ -23,10 +23,12 @@
 
 body {
   background-color: @light;
+  color: @textColor;
 }
 
-#content, #smallContent, .feature div, .dashboardBox {
+#content, #smallContent, .feature div, .dashboardBox, .box, .detailView, legend {
     .contentBox;
+    color: @textColor;
 }
 
 
@@ -35,7 +37,7 @@ footer {
 }
 
 .nav a.active, .nav a:hover {
-	color: @dark;
+  color: @dark;
 }
 
 
@@ -66,4 +68,27 @@ footer {
 
 .dropdown-menu {
   background-color: @dark;
+}
+
+
+
+
+
+
+/* ---------------------------------------------------------------------
+ Tree
+----------------------------------------------------------------------*/
+
+.roundSeperator {
+  background-color: @dark !important;
+}
+
+.ui-draggable-helper {
+  background-color: @dark;
+}
+
+.filterView {
+  input {
+    color: @textColor;
+  }
 }

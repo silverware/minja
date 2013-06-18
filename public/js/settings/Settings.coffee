@@ -1,12 +1,11 @@
 ﻿define ["utils/Popup"], (Popup) ->
 
-  class SettingsSave extends Save
+  class Settings
     
     i18n: null
     tournamentId: ""
 
     constructor: (args) ->
-      super args
       $("#createPublicName").click @showPublicNamePopup
 
     showPublicNamePopup: =>

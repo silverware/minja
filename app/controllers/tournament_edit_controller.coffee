@@ -122,12 +122,12 @@ class TournamentEditController extends ControllerBase
         tournamentDao.removeAttachments( req.tournament, ["logo"], () =>
           res.render "#{@viewPrefix}/logo", hasLogo: false)
 
-
   "/:tid/settings": (req, res) =>
     res.render "#{@viewPrefix}/settings"
 
-  "POST:/:tid/settings": (req, res) =>
-    tournamentDao.merge req.tournament.id, info: req.body, ->
-      res.send "ok"
+  "POST:/:tid/settings/colors": (req, res) =>
+    console.log req.body
+    tournamentDao.merge req.tournament.id, colors: req.body, =>
+      res.redirect "/#{req.tournament.id}/settings"
 
 module.exports = new TournamentEditController()

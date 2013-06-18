@@ -15,5 +15,7 @@ class Tournament extends require './MixIn'
   	members: []
   	membersAttributes: []
   tree: null
+  colors:
+    default: true
 
 module.exports = Tournament
