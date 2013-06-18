@@ -14,8 +14,8 @@
     <link href="/css/font-awesome.css" rel="stylesheet">
 
     <% if @tournament?.colors?.normal: %>
-      <link href="/css/colors.css" rel="stylesheet">
-      <!--<link href="/<%= @tournament.identifier %>/tournament_colors.css" rel="stylesheet">-->
+      <!--<link href="/css/colors.css" rel="stylesheet">-->
+      <link href="/<%= @tournament.identifier %>/tournament_colors.css" rel="stylesheet">
     <% else: %>
       <link href="/css/colors.css" rel="stylesheet">
     <% end %>

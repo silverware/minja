@@ -7,6 +7,8 @@
 
     constructor: (args) ->
       $("#createPublicName").click @showPublicNamePopup
+      $(".colorPicker").colorpicker
+        format: "rgba"
 
     showPublicNamePopup: =>
       popup = Popup.show
