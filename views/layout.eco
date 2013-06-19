@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/js/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
 
     <% if @tournament?.colors?.normal: %>
       <!--<link href="/css/colors.css" rel="stylesheet">-->
@@ -25,6 +26,7 @@
     <script src="/js/require-config.js"></script>
     <script src="/js/lib/bootstrap.js"></script>
     <script src="/js/lib/chosen.jquery.min.js"></script>
+    <script src="/js/lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.js"></script>
     <script src="/js/lib/jquery.validate.min.js"></script>
     <script src="/js/lib/handlebars-1.0.rc.3.js"></script>
     <script src="/js/lib/ember-1.0.0-rc.2.min.min.js"></script>
@@ -42,7 +44,7 @@
     <!-- ########################################## GOOGLE ANALYTICS ################################### -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
-    
+
       _gaq.push(['_setAccount', 'UA-35904231-1']);
       _gaq.push(['_trackPageview']);
 
@@ -60,7 +62,7 @@
     </script>
 
 
-    
+
   </head>
   <body>
     <div class="ribbon-wrapper-green noPrint"><div class="ribbon-green">BETA</div></div>
@@ -104,7 +106,7 @@
         </div>
       <% end %>
       <% end %>
-      
+
       <% if @warnings?: %>
       <% for warning in @warnings: %>
         <div class="alert">

@@ -1,6 +1,4 @@
-<script src="/js/lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.js"></script>
-<script src="/js/lib/bootstrap-modules/colorpicker/js/docs.js"></script>
- <link href="/js/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
+
 <script>
 require(["settings/Settings"], function(Settings) {
   window.settings = new Settings({
@@ -27,9 +25,9 @@ require(["settings/Settings"], function(Settings) {
       <legend>color</legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
 
-          <%= form.textField @i18n.info.startDate, "normal", {"class": "colorPicker", placeholder: @i18n.datum} %>
-          <%= form.textField @i18n.info.startDate, "background", {"class": "colorPicker", placeholder: @i18n.datum} %>
-          <%= form.textField @i18n.info.startDate, "text", {"class": "colorPicker", placeholder: @i18n.datum} %>
+          <%= form.colorSelect @i18n.info.startDate, "normal", {placeholder: @i18n.datum} %>
+          <%= form.colorSelect @i18n.info.startDate, "background", {placeholder: @i18n.datum} %>
+          <%= form.colorSelect @i18n.info.startDate, "text", {placeholder: @i18n.datum} %>
           <%= form.button @i18n.save %>
         <% end %>
     </fieldset>

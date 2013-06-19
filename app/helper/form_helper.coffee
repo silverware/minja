@@ -1,5 +1,12 @@
 eco = require "eco"
 
+colorSelectTemplate = """
+  <div class="input-append color" id="colorpicker<%= @name %>" data-color="<%= @val %>" data-color-format="rgba">
+    <input type="text" <%= @attrs %> name="<%= @name %>" value="<%= @val %>" />
+    <span class="add-on"><i style="background-color: <%= @val %>"></i></span>
+  </div>
+  <script>$("#colorpicker<%= @name %>").colorpicker();</script>
+"""
 
 passwordTemplate = """
   <input id="input<%= @name %>" name="<%= @name %>" type="password" />
@@ -17,7 +24,7 @@ selectTemplate = """
   <div class="chosen">
     <select type="text" class="chzn-select" value="<%= @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
       <% for opt in @options: %>
-        <option value="<%= opt.id %>"><%= opt.label %></option> 
+        <option value="<%= opt.id %>"><%= opt.label %></option>
       <% end %>
     </select>
   </div>
@@ -81,6 +88,9 @@ formFor = (obj, yield_to, action="") ->
       locals = createLocals.apply null, arguments
       locals.options = options
       wrapper locals.name, label, eco.render selectTemplate, locals
+
+    colorSelect: =>
+      render colorSelectTemplate, arguments
 
     button: (label) =>
       saved = "Gespeichert"
