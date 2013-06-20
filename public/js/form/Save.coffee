@@ -1,10 +1,10 @@
 class Save
-  
+
   ajax: true
   url: null
 
   constructor: (args) ->
-    $.extend(@, args)
+    $.extend @, args
     @init()
 
   init: ->
@@ -55,10 +55,10 @@ class Save
   stopLoading: ->
     @showSuccess false
     $(".ajaxLoader").hide()
-    
+
   showSuccess: (show) ->
     if not show
       $(".successIcon").hide()
-    else 
+    else
       $(".successIcon").fadeIn("medium")
       setTimeout((-> $(".successIcon").fadeOut("fast")), 5000)

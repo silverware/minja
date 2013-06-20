@@ -5,7 +5,11 @@ colorSelectTemplate = """
     <input type="text" <%= @attrs %> name="<%= @name %>" value="<%= @val %>" />
     <span class="add-on"><i style="background-color: <%= @val %>"></i></span>
   </div>
-  <script>$("#colorpicker<%= @name %>").colorpicker();</script>
+  <script>
+    var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
+        console.debug(event);
+      });
+  </script>
 """
 
 passwordTemplate = """

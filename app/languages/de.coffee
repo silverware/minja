@@ -1,6 +1,6 @@
 moment = require 'moment'
 
-module.exports = 
+module.exports =
 
   show: "Betrachten"
   edit: "Bearbeiten"
@@ -100,7 +100,7 @@ module.exports =
     publish: "Veröffentlichen"
     showMore: "Mehr Anzeigen"
     tournamentCreated: "Turnier erstellt."
- 
+
   ################################ SETTINGS ########################################################
 
   settings:
@@ -109,6 +109,11 @@ module.exports =
     publicName: "Public Tournament Name"
     logo: "Turnier Logo"
     save: "Speichern"
+    applyColor: "Farben anwenden"
+    background: "Hintergrund"
+    content: "Box"
+    textContent: "Text"
+    footer: "Footer"
 
 
   ################################ MEMBERS ########################################################
@@ -134,7 +139,7 @@ module.exports =
     game: "Spiel"
     remove: "Löschen"
     groupSizeUp: "Gruppengröße erhöhen"
-    groupSizeDown: "Gruppengröße verringern"    
+    groupSizeDown: "Gruppengröße verringern"
     qualifiersUp: "Qualifikantenanzahl erhöhen"
     qualifiersDown: "Qualifikantenanzahl verringern"
     games: "Spiele"

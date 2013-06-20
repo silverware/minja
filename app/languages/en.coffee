@@ -1,6 +1,6 @@
 moment = require 'moment'
 
-module.exports = 
+module.exports =
 
   show: "View"
   edit: "Edit"
@@ -97,7 +97,7 @@ module.exports =
     available: "available"
     notAvailable: "not available"
     preview: "Preview"
-  
+
   chat:
     delete: "Delete"
     messageStream: "Message Stream"
@@ -108,13 +108,18 @@ module.exports =
 
 
   ################################ SETTINGS ########################################################
-  
+
   settings:
     header: "Tournament Settings"
     navName: "Settings"
     publicName: "Public Tournament Name"
     logo: "Logo"
     save: "Save"
+    applyColor: "Farben anwenden"
+    background: "Background"
+    content: "Box"
+    textContent: "Text"
+    footer: "Footer"
 
 
 ################################ MEMBERS ########################################################
@@ -143,7 +148,7 @@ module.exports =
     games: "Games"
     remove: "Remove"
     groupSizeUp: "Increase Groupsize"
-    groupSizeDown: "Decrease Groupsize"    
+    groupSizeDown: "Decrease Groupsize"
     qualifiersUp: "Increase Qualifiercount"
     qualifiersDown: "Decrease Qualifiercount"
     winner: "Winner"

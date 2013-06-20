@@ -6,9 +6,11 @@
     tournamentId: ""
 
     constructor: (args) ->
+      $.extend @, args
       $("#createPublicName").click @showPublicNamePopup
 
     showPublicNamePopup: =>
+      console.debug @
       popup = Popup.show
         title: @i18n.publicName
         actions: [{label: @i18n.save, action: @savePublicName, closePopup: false}]

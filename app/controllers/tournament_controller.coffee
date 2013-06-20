@@ -18,15 +18,15 @@ class TournamentController extends ControllerBase
         if tournament
           if config.isDevelopment
             tournament.isOwner = true
-          else  
+          else
             tournament.isOwner = req.isAuthenticated() and tournament.user_id == req.user.id
           if req.isAuthenticated() and _.contains req.user.favorites, tournament.id
             tournament.isFavorite = true
-          if tournament.publicName 
+          if tournament.publicName
             tournament.identifier = tournament.publicName
-          else 
+          else
             tournament.identifier = tournament.id
-          
+
           req.tournament = tournament
           res.locals.tournament = tournament
           res.locals.title = tournament.name
@@ -46,7 +46,7 @@ class TournamentController extends ControllerBase
     if config.isDevelopment
       if tournament.isOwner or tournament.gallery
         nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
-    
+
     for navItem in nav
       navItem.selectedClass = "active" if req.url.indexOf(navItem.route) != -1
     nav
@@ -144,8 +144,8 @@ class TournamentController extends ControllerBase
       @normal: #{colors.normal};
       @textColor: #{colors.text};
       @light: #{colors.background};
-      @dark: rgba(11, 62, 77, 0.95);
-      @normalOpaque: rgba(12, 82, 97, 1);
+      @dark: #{colors.footer};
+      @normalOpaque: #{colors.normal};
     """
 
     fs.readFile path, "utf8", (err, data) ->
