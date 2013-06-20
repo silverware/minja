@@ -15,17 +15,17 @@ body {
 }
 
 // add background Image and make it fixed
-body:before {
-  background-image: url("../img/background.png"), url("../img/grain.png");
-  background-position: center top, center top;
-  background-repeat: repeat-x, repeat;
+/*body:before {
+  background-image: url("../img/grain.png");
+  background-position: center top;
+  background-repeat: repeat;
   position: fixed;
   width: 100%;
   content: "";
   height: 100%;
   z-index: -1;
 }
-
+*/
 h1 {
   margin-bottom: 20px;
 }
@@ -398,11 +398,11 @@ Helper
   top: 15px;
   width: 120px;
   background-color: #E46D2D;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#E46D2D), to(#FF9555)); 
-  background-image: -webkit-linear-gradient(top, #E46D2D, #FF9555); 
-  background-image:    -moz-linear-gradient(top, #E46D2D, #FF9555); 
-  background-image:     -ms-linear-gradient(top, #E46D2D, #FF9555); 
-  background-image:      -o-linear-gradient(top, #E46D2D, #FF9555); 
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#E46D2D), to(#FF9555));
+  background-image: -webkit-linear-gradient(top, #E46D2D, #FF9555);
+  background-image:    -moz-linear-gradient(top, #E46D2D, #FF9555);
+  background-image:     -ms-linear-gradient(top, #E46D2D, #FF9555);
+  background-image:      -o-linear-gradient(top, #E46D2D, #FF9555);
   color: #333;
   -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
   -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
@@ -411,7 +411,7 @@ Helper
 
 .ribbon-green:before, .ribbon-green:after {
   content: "";
-  border-top:   3px solid #6e8900;   
+  border-top:   3px solid #6e8900;
   border-left:  3px solid transparent;
   border-right: 3px solid transparent;
   position:absolute;
@@ -510,7 +510,7 @@ Bootstrap overwrites
 
 .modal-header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px rgba(255, 255, 255, 0.2); 
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .carousel-control.right {
