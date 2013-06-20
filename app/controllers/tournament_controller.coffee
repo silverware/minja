@@ -141,10 +141,11 @@ class TournamentController extends ControllerBase
     path = config.CLIENT_DIR + "/css/colors_template.less"
     colors = req.tournament.colors
     prefix = """
-      @normal: #{colors.normal};
-      @textColor: #{colors.text};
+      @normal: #{colors.content};
+      @textColor: #{colors.contentText};
       @light: #{colors.background};
       @dark: #{colors.footer};
+      @footerText: #{colors.footerText};
       @normalOpaque: #{colors.normal};
     """
 

@@ -115,11 +115,14 @@ module.exports =
     publicName: "Public Tournament Name"
     logo: "Logo"
     save: "Save"
-    applyColor: "Farben anwenden"
+    applyColor: "Apply Color"
+    color: "Color"
+    colorSelection: "Color Selection"
     background: "Background"
-    content: "Box"
-    textContent: "Text"
+    content: "Contentarea"
+    contentText: "Text in Contentarea"
     footer: "Footer"
+    footerText: "Text in Footer"
 
 
 ################################ MEMBERS ########################################################

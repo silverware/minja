@@ -14,7 +14,7 @@
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link href="/js/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
 
-    <% if @tournament?.colors?.normal: %>
+    <% if @tournament?.colors?.content: %>
       <!--<link href="/css/colors.css" rel="stylesheet">-->
       <link href="/<%= @tournament.identifier %>/tournament_colors.css" rel="stylesheet">
     <% else: %>
@@ -136,12 +136,14 @@
       <div class="wrapper">
         &copy; <a href="/">Minja Tournament Manager</a>
 		<span class="seperator">|</span>
-        <a href="mailto:webmaster@minja.net"><%= @i18n.contactUs %></a>
-		<span class="seperator">|</span>
-        <span>
-          <a href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" /></a>
-          <a href="/lang/en?next=<%= @path %>"><img src="/img/gb.png" alt="english" /></a>
-        </span>
+    <% if not @tournament: %>
+      <a href="mailto:webmaster@minja.net"><%= @i18n.contactUs %></a>
+		  <span class="seperator">|</span>
+    <% end %>
+    <span>
+      <a href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" /></a>
+      <a href="/lang/en?next=<%= @path %>"><img src="/img/gb.png" alt="english" /></a>
+    </span>
 
         <span style="float: right">
         <% if @user: %>

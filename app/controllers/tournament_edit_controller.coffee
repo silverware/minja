@@ -12,7 +12,7 @@ class TournamentEditController extends ControllerBase
 
   before: (req, res, next) ->
     if config.isProduction
-      if not req.isAuthenticated() 
+      if not req.isAuthenticated()
         res.redirect "/login?next=#{req.path}"
         return
       if req.user.id != req.tournament.user_id

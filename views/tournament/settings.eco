@@ -22,13 +22,16 @@ require(["settings/Settings"], function(Settings) {
     </fieldset>
 
     <fieldset>
-      <legend>color</legend>
+      <legend>@i18n.settings.colorSelector</legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
 
-          <%= form.colorSelect @i18n.settings.content, "normal", {placeholder: @i18n.datum} %>
-          <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.datum} %>
-          <%= form.colorSelect @i18n.settings.textContent, "text", {placeholder: @i18n.datum} %>
-          <%= form.colorSelect @i18n.settings.footer, "footer", {placeholder: @i18n.datum} %>
+          <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
+          <br />
+          <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.contentText, "contentText", {placeholder: @i18n.color} %>
+          <br />
+          <%= form.colorSelect @i18n.settings.footer, "footer", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.footerText, "footerText", {placeholder: @i18n.color} %>
           <%= form.button @i18n.settings.applyColor %>
         <% end %>
     </fieldset>

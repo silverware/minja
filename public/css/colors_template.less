@@ -56,13 +56,22 @@ body {
 
 footer {
     background-color: @dark;
+    color: @footerText;
+  a, a:hover {
+    color: @footerText;
+  }
 }
 
-.nav a.active, .nav a:hover {
-  color: @dark;
+header {
+  .nav a.active, .nav a:hover {
+    color: @dark;
+    background: @footerText;
+  }
+
+  .nav a {
+    color: @footerText;
+  }
 }
-
-
 
 
 /* ---------------------------------------------------------------------

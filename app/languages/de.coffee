@@ -110,10 +110,13 @@ module.exports =
     logo: "Turnier Logo"
     save: "Speichern"
     applyColor: "Farben anwenden"
+    color: "Farbe"
+    colorSelection: "Farbauswahl"
     background: "Hintergrund"
-    content: "Box"
-    textContent: "Text"
+    content: "Inhaltsbereich"
+    contentText: "Text im Inhaltsbereich"
     footer: "Footer"
+    footerText: "Text im Footer"
 
 
   ################################ MEMBERS ########################################################
