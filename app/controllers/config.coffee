@@ -37,7 +37,7 @@ module.exports = (app) ->
     for param, func of controller.params
         app.param param, func
 
-  # Routes 
+  # Routes
   for controller in controllers
     middleware = []
 

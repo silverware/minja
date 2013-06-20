@@ -63,6 +63,14 @@ footer {
 }
 
 header {
+  .home {
+  color: @footerText !important;
+}
+
+.home:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
   .nav a.active, .nav a:hover {
     color: @dark;
     background: @footerText;
@@ -73,6 +81,10 @@ header {
   }
 }
 
+
+code, pre {
+  color: @textColor;
+}
 
 /* ---------------------------------------------------------------------
  Popover
@@ -135,12 +147,16 @@ header {
   color: @textColor;
 }
 
+.round {
+  color: @footerText;
+}
+
 .roundItem table input {
   color: @textColor;
 }
 
 .roundItem input {
-  color: @textColor;
+  color: @footerText;
 }
 
 .roundItem .blurringBox {
