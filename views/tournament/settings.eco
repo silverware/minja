@@ -25,6 +25,7 @@ require(["settings/Settings"], function(Settings) {
       <legend><%= @i18n.settings.colorSelection %></legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
 
+          <span class="btn-link" id="selectTheme">select</span>
           <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
           <br />
           <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>

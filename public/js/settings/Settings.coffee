@@ -1,4 +1,4 @@
-﻿define ["utils/Popup"], (Popup) ->
+﻿define ["utils/Popup", "./ColorSelectionPopup"], (Popup, ColorSelection) ->
 
   class Settings
 
@@ -8,6 +8,9 @@
     constructor: (args) ->
       $.extend @, args
       $("#createPublicName").click @showPublicNamePopup
+      $("#selectTheme").click =>
+        ColorSelection.create
+          i18n: @i18n
 
     showPublicNamePopup: =>
       console.debug @
