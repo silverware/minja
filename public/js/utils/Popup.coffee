@@ -23,7 +23,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
       $("body").append $template
 
       if @cancelble
-        @actions.push 
+        @actions.push
           label: i18n.cancel
           action: ->
           closePopup: true
@@ -34,7 +34,10 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
       if @bodyUrl?
         $('.modal-body').load "#{@bodyUrl}.template", @afterRendering
       else if @bodyContent?
-        $(".modal-body").append @bodyContent
+        if typeof @bodyContent is "string"
+          $(".modal-body").append @bodyContent
+        else
+          @bodyContent.appendTo ".modal-body"
         @afterRendering()
 
       $("#popup").modal()

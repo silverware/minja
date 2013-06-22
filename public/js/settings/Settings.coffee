@@ -9,8 +9,12 @@
       $.extend @, args
       $("#createPublicName").click @showPublicNamePopup
       $("#selectTheme").click =>
-        ColorSelection.create
+        hallo = ColorSelection.create
           i18n: @i18n
+          themes: [{name: "green"}, {name: "blue"}, {name: "yellow"}]
+          onSelection: @fillColors
+
+
 
     showPublicNamePopup: =>
       console.debug @
@@ -26,6 +30,11 @@
             onSave: ->
               $("#publicNameValue").html $("#inputPublicName").val().toLowerCase()
               popup.hide()
+
+    fillColors: (colorTheme) =>
+      for key, value of colorTheme
+        if key is "name" then continue
+        $("input[name='#{key}']").val value
 
     savePublicName: ->
       $("#publicNameForm").submit()

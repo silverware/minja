@@ -5,6 +5,7 @@ sports = require '../model/sports'
 moment = require 'moment'
 ControllerBase = require './controller_base'
 config = require '../server-config'
+colorService = require '../services/colorService'
 
 class TournamentEditController extends ControllerBase
 
@@ -123,10 +124,15 @@ class TournamentEditController extends ControllerBase
           res.render "#{@viewPrefix}/logo", hasLogo: false)
 
   "/:tid/settings": (req, res) =>
+    tournament = res.locals.tournament
+    if not colorService.isColorSelected req.tournament
+      tournament.colors = colorService.defaultColors
+
     res.render "#{@viewPrefix}/settings"
 
   "POST:/:tid/settings/colors": (req, res) =>
-    console.log req.body
+    if colorService.isDefaultColor req.body
+      req.body = null
     tournamentDao.merge req.tournament.id, colors: req.body, =>
       res.redirect "/#{req.tournament.id}/settings"
 

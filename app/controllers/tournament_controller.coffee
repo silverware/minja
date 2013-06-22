@@ -7,6 +7,7 @@ request = require 'request'
 _ = require 'underscore'
 fs = require 'fs'
 less = require 'less'
+colorService = require '../services/colorService'
 
 class TournamentController extends ControllerBase
 
@@ -139,7 +140,7 @@ class TournamentController extends ControllerBase
 
   "/:tid/tournament_colors.css": (req, res) =>
     path = config.CLIENT_DIR + "/css/colors_template.less"
-    colors = req.tournament.colors
+    colors = colorService.getColors req.tournament
     prefix = """
       @normal: #{colors.content};
       @textColor: #{colors.contentText};
