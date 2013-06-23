@@ -26,6 +26,7 @@ App.Round = Em.Object.extend
         if item.get("matchDays").objectAt(i)
           games.pushObject item.get("matchDays").objectAt(i).games
       games = _.flatten _.zip.apply null, games
+      games = games.filter (game) -> game
       matchDays.pushObject Em.Object.create
         games: games
         matchDay: i + 1
@@ -71,7 +72,7 @@ App.Round = Em.Object.extend
 
   validate: ->
     return (@getFreeMembers() is null or @getFreeMembers().length == 0) and @get("qualifiers").length > 1
-    
+
   removeItem: (item) ->
     @items.removeObject item
 
@@ -86,12 +87,12 @@ App.Round = Em.Object.extend
     gamePlayers2 = @items.objectAt(player2Index[0]).players
     if gamePlayers1 == gamePlayers2
       return
-      
+
     player1 = gamePlayers1.objectAt player1Index[1]
     player2 = gamePlayers2.objectAt player2Index[1]
 
     gamePlayers1.removeObject player1
-    gamePlayers2.removeObject player2 
+    gamePlayers2.removeObject player2
 
     gamePlayers1.insertAt player1Index[1], player2
     gamePlayers2.insertAt player2Index[1], player1
@@ -100,7 +101,7 @@ App.Round = Em.Object.extend
     # TODO: echter Zufall Sequenz generator mit random.org api
 
     players = _.shuffle _.flatten @get('items').map (item) -> item.get('players')
-    
+
     @get('items').forEach (item) ->
       for i in [0..item.get('players.length') - 1]
         item.get('players').replace i, 1, [_.last players]

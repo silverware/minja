@@ -141,13 +141,14 @@ class TournamentController extends ControllerBase
   "/:tid/tournament_colors.css": (req, res) =>
     path = config.CLIENT_DIR + "/css/colors_template.less"
     colors = colorService.getColors req.tournament
+    contentOpaque = colorService.opaque colors.content
     prefix = """
       @normal: #{colors.content};
       @textColor: #{colors.contentText};
       @light: #{colors.background};
       @dark: #{colors.footer};
       @footerText: #{colors.footerText};
-      @normalOpaque: #{colors.normal};
+      @normalOpaque: #{contentOpaque};
     """
 
     fs.readFile path, "utf8", (err, data) ->

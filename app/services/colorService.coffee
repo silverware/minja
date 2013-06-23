@@ -26,3 +26,7 @@ module.exports =
       if color[key] isnt @defaultColors[key] then return false
     true
 
+  opaque: (color) ->
+    begin = color.lastIndexOf ","
+    stop = color.indexOf ")"
+    color.replace color.substring(begin, stop), ",1"
