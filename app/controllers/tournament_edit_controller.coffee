@@ -6,6 +6,8 @@ moment = require 'moment'
 ControllerBase = require './controller_base'
 config = require '../server-config'
 colorService = require '../services/colorService'
+gm = require 'gm'
+gm = gm.subClass({ imageMagick: true })
 
 class TournamentEditController extends ControllerBase
 
@@ -109,14 +111,26 @@ class TournamentEditController extends ControllerBase
       if res.locals.errors?
         res.render "#{@viewPrefix}/logo", hasLogo: hasLogo
       else
-        logoImage =
-          name: 'logo'
-          contentType: logoFile.type
-          body: fs.readFileSync(logoFile.path)
+        logo = gm(logoFile.path)
+        logo.size((err, size) =>
+          if (err)
+            throw err
+          longestSide = Math.max(size.width, size.height)
+          if (longestSide > 200)
+            logo.resize(200).toBuffer((err, buffer) =>
+              if (err)
+                throw err
 
-        tournamentDao.saveAttachments([logoImage], req.tournament, () =>
-          tournamentDao.merge req.tournament.id, hasLogo: true, () =>
-            res.render "#{@viewPrefix}/logo", hasLogo: true)
+              logoImage =
+                name: 'logo'
+                contentType: logoFile.type
+                body: buffer
+
+              tournamentDao.saveAttachments([logoImage], req.tournament, () =>
+                tournamentDao.merge req.tournament.id, hasLogo: true, () =>
+                  res.render "#{@viewPrefix}/logo", hasLogo: true)
+            )
+        )
 
     else
       tournamentDao.merge req.tournament.id, hasLogo: false, () =>
