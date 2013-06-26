@@ -23,6 +23,13 @@ module.exports = (req, res, next) ->
       return ""
     @safe str.replace "@", "#{replace}@#{replace}"
 
+  res.locals.infoHint = (body) ->
+    @safe """
+      <div class="info-hint">
+        <i class="icon-info-sign"></i>
+        <div>#{body()}</div>
+      </div>
+    """
 
   res.locals.user = req.user
   res.locals.path = req.path
@@ -49,14 +56,14 @@ module.exports = (req, res, next) ->
     if not array then return []
     array.map (item) ->
       iid = if id then item[id] else item
-      newItem = 
+      newItem =
         id: iid
         label: if label then item[label] else req.i18n[iid]
 
 
   res.addError = (message, title) ->
     res.locals.errors = [] if not res.locals.errors?
-    res.locals.errors.push 
+    res.locals.errors.push
       message: message
       title: if title? then title else "#{req.i18n.error}!"
 
@@ -74,4 +81,4 @@ module.exports = (req, res, next) ->
 
   next()
 
-  
+

@@ -31,8 +31,9 @@ require(["info/InfoSave"], function(InfoSave) {
 
     <fieldset>
       <legend><%= @i18n.info.publicName %></legend>
-        <p>Dein öffentlicher Turniername dient zum Zugriff über die URL-Adresse: <br />
-          http://tournament-manager.xaga.de/#<%= @i18n.info.publicName %>#</p>
+        <%= @infoHint => %>
+          <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>
+        <% end %>
         <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd id="publicNameValue">

@@ -123,6 +123,8 @@ module.exports =
     contentText: "Text in Contentarea"
     footer: "Footer"
     footerText: "Text in Footer"
+    publicNameInfo: "The public tournament is used to find the tournament over URL address."
+    publicNameExample: "Example: http://minja.net/minjacup"
 
 
 ################################ MEMBERS ########################################################

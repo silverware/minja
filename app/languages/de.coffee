@@ -117,6 +117,9 @@ module.exports =
     contentText: "Text im Inhaltsbereich"
     footer: "Footer"
     footerText: "Text im Footer"
+    publicNameInfo: "Der öffentlicher Turniername dient zum Zugriff auf das Turnier über die URL-Adresse."
+    publicNameExample: "Beispiel: http://minja.net/minjacup"
+
 
 
   ################################ MEMBERS ########################################################

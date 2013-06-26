@@ -1,4 +1,3 @@
-config = require "../server-config"
 formHelper = require "../helper/form_helper"
 viewHelper = require "../helper/view_helper"
 i18n = require "../languages/i18n"

@@ -8,7 +8,7 @@ App.PersistanceManager =
     for round in tournament.content
        serialized.rounds.push App.Serializer.emberObjToJsonData(round)
     serialized
-  
+
   extend: (target, source) ->
     target[name] = method for name, method of source
     for key, value of target
@@ -21,6 +21,7 @@ App.PersistanceManager =
           target.set key, null
 
   build: (obj) ->
+    if not obj?.rounds then return
     for round in obj.rounds
       if round.isGroupRound
         gRound = App.Tournament.addGroupRound()
