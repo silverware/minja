@@ -104,9 +104,9 @@ module.exports =
   ################################ SETTINGS ########################################################
 
   settings:
-    header: "Tournament Settings"
-    navName: "Settings"
-    publicName: "Public Tournament Name"
+    header: "Turnier-Einstellungen"
+    navName: "Einstellungen"
+    publicName: "Öffentlicher Turniername"
     logo: "Turnier Logo"
     save: "Speichern"
     applyColor: "Farben anwenden"
@@ -119,8 +119,12 @@ module.exports =
     footerText: "Text im Footer"
     publicNameInfo: "Der öffentlicher Turniername dient zum Zugriff auf das Turnier über die URL-Adresse."
     publicNameExample: "Beispiel: http://minja.net/minjacup"
-
-
+    publicNameHint: "Der öffentliche Turniername kann nicht mehr geändert werden und sollte den Namen des Turniers enthalten."
+    publicNameRestriction: "Der Name unterliegt folgenden Einschränkungen:"
+    publicNameRestriction1: "mindestens 5 Zeichen"
+    publicNameRestriction2: "nur Buchstaben, Zahlen oder Punkt"
+    publicNameMisses: "noch kein Name angelegt"
+    createPublicName: "Name anlegen"
 
   ################################ MEMBERS ########################################################
   members:

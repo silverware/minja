@@ -1,17 +1,19 @@
-Hinweis:
-    <p>Der öffentliche Turniername kann nur einmal geändert werden und sollte den Namen des Turniers enthalten.</p> 
-    Der Name unterliegt folgenden Einschränkungen:
-    <ul>
-    	<li>mindestens 5 Zeichen</li>
-    	<li>nur Buchstaben, Zahlen oder Punkt</li>
-    </ul>
+<%= @infoHint => %>
+  <%= @i18n.settings.publicNameHint %>
+<% end %>
+<br />
+<%= @i18n.settings.publicNameRestriction %>
+<ul>
+	<li><%= @i18n.settings.publicNameRestriction1 %></li>
+	<li><%= @i18n.settings.publicNameRestriction2 %></li>
+</ul>
 <br />
 <form id="publicNameForm">
 <div class="form-horizontal">
    <div class="control-group">
      <label class="control-label" for="inputPublicName">Name</label>
 	<div class="controls">
-      <input type="text" id="inputPublicName" name="publicName" class="publicName" placeholder="<%= @i18n.info.publicName %>">
+      <input type="text" id="inputPublicName" name="publicName" class="publicName" placeholder="<%= @i18n.settings.publicName %>">
     </div>
    </div>
 </div>

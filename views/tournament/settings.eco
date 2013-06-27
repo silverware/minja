@@ -1,4 +1,3 @@
-
 <script>
 require(["settings/Settings"], function(Settings) {
   window.settings = new Settings({
@@ -49,7 +48,7 @@ require(["settings/Settings"], function(Settings) {
             <% if @tournament.publicName: %>
               <a href="<%= @rootPath%>/<%= @tournament.publicName %>" target="_blank"><%= @tournament.publicName %></a>
             <% else: %>
-              <b>noch kein Name angelegt</b><span id="createPublicName" class='btn btn-link'>Jetzt Name anlegen</span>
+              <b><%= @i18n.settings.publicNameMisses %></b><span id="createPublicName" class='btn btn-link'><%= @i18n.settings.createPublicName %></span>
             <% end %>
           </dd>
         </dl>

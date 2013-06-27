@@ -125,7 +125,12 @@ module.exports =
     footerText: "Text in Footer"
     publicNameInfo: "The public tournament is used to find the tournament over URL address."
     publicNameExample: "Example: http://minja.net/minjacup"
-
+    publicNameHint: "The public tournament name is not editable. It is recommended to use a name which contains the tournament name."
+    publicNameRestriction: "The name is restricted as follows:"
+    publicNameRestriction1: "at least 5 characters"
+    publicNameRestriction2: "letters, numbers and dots are allowed"
+    publicNameMisses: "no public name"
+    createPublicName: "apply public name"
 
 ################################ MEMBERS ########################################################
   members:
