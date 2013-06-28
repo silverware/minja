@@ -27,7 +27,7 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{App.i18n.table}}</legend>
 
-    <table class="table table-striped tableTable" style="max-width: 800px; margin: 0 auto;">
+    <table class="table table-striped tableTable" style="width: 900px; margin: 0 auto;">
       <thead>
         <tr>
           <th>{{App.i18n.rank}}</th>
@@ -75,7 +75,7 @@ App.templates.gamesDetail = """
         {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th width="70px"></th>
