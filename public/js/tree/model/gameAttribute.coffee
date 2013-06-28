@@ -33,6 +33,7 @@ App.GameAttribute = Em.Object.extend
 
   remove: ->
     App.Popup.showQuestion
+      title: App.i18n.deleteGameAttribute
       bodyContent: App.i18n.reallyDeleteGameAttribute
       onConfirm: =>
         App.Tournament.gameAttributes.removeObject @
@@ -43,6 +44,9 @@ App.attributeTypes = [
   Em.Object.create {type: "textfield", label: "Textfeld"}
   Em.Object.create {type: "result", label: "Result"}
   Em.Object.create {type: "number", label: "Number"}
+]
+
+###
   Em.Object.create {type: "date", label: "Date"}
   Em.Object.create {type: "time", label: "Time"}
-]
+###

@@ -5,7 +5,7 @@ App.templates.tournamentPopup = """
 <form class="form-horizontal">
   <fieldset>
     <legend>{{App.i18n.settings}}</legend>
-
+  <h5>{{App.i18n.groupStage}}</h5>
   <div class="control-group">
     <label class="control-label" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
     <div class="controls">
@@ -16,6 +16,14 @@ App.templates.tournamentPopup = """
     <label class="control-label" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
     <div class="controls">
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
+    </div>
+  </div>
+  <h5>{{App.i18n.koRound}}</h5>
+    <div class="control-group">
+    <label class="control-label" for="qualifierModus">Modus</label>
+    <div class="controls">
+      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
+          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
     </div>
   </div>
 
@@ -38,12 +46,12 @@ App.templates.tournamentPopup = """
         <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="l"}}</td>
         <td>{{view Ember.Select contentBinding="App.attributeTypes" 
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
-        <td><i class="icon-remove" rel="tooltip" title="Delete" {{action "remove" target="gameAttribute"}}></i>
+        <td><i class="icon-remove" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
         </td>
       </tr>
       {{/each}}
     </table>
-  <span class='btn btn-link' {{action "addAttribute" target="view"}}>{{App.i18n.addAttribute}}</span>
+  <span class='btn btn-link' {{action "addAttribute" target="view"}}><i class="icon-plus-sign"></i>&nbsp;{{App.i18n.addAttribute}}</span>
   </fieldset>
     </div>
 
@@ -106,16 +114,3 @@ App.TournamentSettings = App.DetailView.extend
     #moment('mm', minutes).format('h m')
   ).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel')
 
-
-  ###
-
-      <!--
-  <div class="control-group">
-    <label class="control-label" for="qualifierModus">{{App.i18n.qualifierModus}}</label>
-    <div class="controls">
-      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
-          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
-    </div>
-  </div>
-  -->
-  ###

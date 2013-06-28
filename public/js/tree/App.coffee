@@ -14,7 +14,7 @@ $.fn.createTree = (settings) ->
   App.Tournament.set "drawPoints", App.sport.pointsPerDraw
   App.Tournament.set "qualifierModus", App.sport.qualifierModus
 
-  # Baue Baum
+  # Build Bracket
   if settings.data
     App.PersistanceManager.build settings.data
 

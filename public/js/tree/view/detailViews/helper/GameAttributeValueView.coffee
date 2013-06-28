@@ -25,7 +25,6 @@ App.GameAttributeValueView = Ember.View.extend
             {{view.gameValue}}
           {{/if}}
         {{else}}
-
           {{#if view.attribute.isTextfield}}
             {{#if App.editable}}
               {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
@@ -44,9 +43,9 @@ App.GameAttributeValueView = Ember.View.extend
 
   didInsertElement: ->
     if @get("attribute.isDate")
-      @$("dateTextBox").datepicker()
+      @$(".dateTextBox").datepicker()
     if @get("attribute.isTime")
-      @$("timeTextBox").timepicker()
+      @$(".timeTextBox").timepicker()
 
   gameValue: ((key, value) ->
     # GETTER
@@ -81,9 +80,7 @@ App.GameAttributeValueView = Ember.View.extend
   ).property("member", "attribute.name")
 
   resultSplitted: ->
-
     currentValue = @get("game")[@get("attribute.id")]
-    console.debug currentValue
     currentValue = "" if not currentValue
     splitted = currentValue.split ":"
     if splitted.length is not 2
