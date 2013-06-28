@@ -131,6 +131,8 @@ module.exports =
     publicNameRestriction2: "letters, numbers and dots are allowed"
     publicNameMisses: "no public name"
     createPublicName: "apply public name"
+    theme: "Theme"
+    selectTheme: "Select predefined theme"
 
 ################################ MEMBERS ########################################################
   members:

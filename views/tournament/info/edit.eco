@@ -29,23 +29,6 @@ require(["info/InfoSave"], function(InfoSave) {
       <%= form.textField "E-Mail", "hostMail", {class: "email"} %>
     </fieldset>
 
-    <fieldset>
-      <legend><%= @i18n.info.publicName %></legend>
-        <%= @infoHint => %>
-          <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>
-        <% end %>
-        <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd id="publicNameValue">
-            <% if @tournament.publicName: %>
-              <a href="<%= @rootPath%>/<%= @tournament.publicName %>"><%= @tournament.publicName %></a>
-            <% else: %>
-              <b>noch kein Name angelegt</b><span id="createPublicName" class='btn btn-link'>Jetzt Name anlegen</span>
-            <% end %>
-          </dd>
-        </dl>
-    </fieldset>
-    <br /><br />
     <%= form.button @i18n.save %>
   <% end %>
 </div>

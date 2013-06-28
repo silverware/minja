@@ -47,6 +47,8 @@ class TournamentController extends ControllerBase
     if config.isDevelopment
       if tournament.isOwner or tournament.gallery
         nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
+      if tournament.isOwner
+        nav.push route: "/#{id}/settings", icon: "cog", label: ""
 
     for navItem in nav
       navItem.selectedClass = "active" if req.url.indexOf(navItem.route) != -1

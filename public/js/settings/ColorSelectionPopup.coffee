@@ -2,7 +2,7 @@ define ["utils/Popup", "./ColorThemes"], (Popup, themes) ->
 
   template = """
     {{#each theme in view.themes}}
-      <div {{action onSelection theme target="view"}}>
+      <div class="selection-item" {{action onSelection theme target="view"}}>
         {{theme.name}}
         <img />
       </div>

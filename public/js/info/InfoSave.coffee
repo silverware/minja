@@ -1,7 +1,7 @@
 ﻿define ["utils/Popup"], (Popup) ->
 
   class InfoSave extends Save
-    
+
     i18n: null
     tournamentId: ""
 
@@ -9,7 +9,6 @@
       super args
       @dateToggle()
       @initVenuePopup()
-      $("#createPublicName").click @showPublicNamePopup
 
     dateToggle: ->
       @startDate = $("input[name=startDate]")
@@ -25,12 +24,12 @@
 
       @startDate.datepicker
         format: "dd.mm.yyyy"
-      
+
       if not @stopDate.val()
         @stopDate.closest(".control-group").hide()
       else
         @showStopDate false
-      
+
       @deleteStopdate.click @hideStopDate
       @openStopdate.click @showStopDate
 
@@ -50,24 +49,6 @@
         defaultTime: false
       @stopDate.datepicker
         format: "dd.mm.yyyy"
-
-    showPublicNamePopup: =>
-      popup = Popup.show
-        title: @i18n.publicName
-        actions: [{label: @i18n.save, action: @savePublicName, closePopup: false}]
-        cancelble: true
-        bodyUrl: "/tournament/info/public_name_popup"
-        afterRendering: =>
-          new Save 
-            url: "/#{@tournamentId}/savePublicName"
-            form: $("#publicNameForm")
-            onSave: ->
-              $("#publicNameValue").html $("#inputPublicName").val().toLowerCase()
-              popup.hide()
-
-    savePublicName: ->
-      $("#publicNameForm").submit()
-
 
     initVenuePopup: ->
       return

@@ -125,6 +125,8 @@ module.exports =
     publicNameRestriction2: "nur Buchstaben, Zahlen oder Punkt"
     publicNameMisses: "noch kein Name angelegt"
     createPublicName: "Name anlegen"
+    theme: "Theme"
+    selectTheme: "vordefiniertes Theme auswählen"
 
   ################################ MEMBERS ########################################################
   members:

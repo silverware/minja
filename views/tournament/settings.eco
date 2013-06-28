@@ -14,17 +14,21 @@ require(["settings/Settings"], function(Settings) {
       <legend><%= @i18n.settings.color %></legend>
 
     </fieldset>
-    -->
     <fieldset>
       <legend><%= @i18n.settings.logo %></legend>
 
     </fieldset>
 
+    -->
     <fieldset>
       <legend><%= @i18n.settings.colorSelection %></legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
-
-          <span class="btn-link" id="selectTheme">select</span>
+          <div class="control-group">
+            <label class="control-label"><%= @i18n.settings.theme %></label>
+            <div class="controls">
+              <span class="btn btn-link" id="selectTheme"><i class="icon-picture"></i><%= @i18n.settings.selectTheme %></span>
+            </div>
+          </div>
           <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
           <br />
           <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>
@@ -48,7 +52,8 @@ require(["settings/Settings"], function(Settings) {
             <% if @tournament.publicName: %>
               <a href="<%= @rootPath%>/<%= @tournament.publicName %>" target="_blank"><%= @tournament.publicName %></a>
             <% else: %>
-              <b><%= @i18n.settings.publicNameMisses %></b><span id="createPublicName" class='btn btn-link'><%= @i18n.settings.createPublicName %></span>
+              <%= @i18n.settings.publicNameMisses %>
+              <span id="createPublicName" class='btn btn-link'><i class="icon-plus-sign"></i><%= @i18n.settings.createPublicName %></span>
             <% end %>
           </dd>
         </dl>

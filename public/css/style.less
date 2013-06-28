@@ -82,10 +82,8 @@ header {
     border-radius: 3px 3px 3px 3px;
   }
   padding: 15px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-
-
 
 footer {
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
@@ -98,12 +96,9 @@ footer {
     z-index: 100;
 }
 
-
-
 /* ---------------------------------------------------------------------
  Page Elements
 ----------------------------------------------------------------------*/
-
 
 .seperator {
   color: rgba(0, 0, 0, 0.6);
@@ -113,7 +108,7 @@ footer {
 
 #wrapper {
   margin: 0 auto 80px;
-  width: 896px;
+  width: 950px;
 }
 
 .wrapperBeforeTree {
@@ -122,7 +117,7 @@ footer {
 
 .wrapper {
   margin: 0 auto;
-  width: 896px;
+  width: 950px;
 }
 
 .rotated {
@@ -144,7 +139,6 @@ footer {
   height: 50px;
   line-height: 25px;
   text-decoration: none;
-  hover: none;
   float: left;
 }
 
@@ -188,15 +182,6 @@ footer {
   border-top: 1px solid rgba(0,0,0,0.1);
   vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
 
 
 .thumbnail {
@@ -283,7 +268,7 @@ a:hover {
 
 
 
-button i {
+button i, .btn-link i {
   margin-right: 5px;
 }
 
@@ -307,6 +292,18 @@ button[rel="tooltip"] i  {
     margin-left: 30px;
     padding-left: 10px;
   }
+}
+
+
+.selection-item {
+  cursor: pointer;
+  border-bottom: 1px dotted;
+  padding: 5px;
+
+}
+.selection-item:hover {
+  background-color: rgba(0,0,0,0.1);
+
 }
 
 /* ---------------------------------------------------------------------
@@ -535,3 +532,6 @@ Breiten
   width: 200px;
   max-width: 200px;
 }
+
+
+
