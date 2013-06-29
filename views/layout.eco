@@ -87,7 +87,7 @@
         <ul class="nav">
           <% if @navigation: %>
             <% for item in @navigation: %>
-              <li><a href="<%= item.route %>" class="<%= item.selectedClass %>"><i class="icon-<%= item.icon %>"></i><%= item.label %></a></li>
+              <li><a href="<%= item.route %>" class="<%= item.selectedClass %>"><i class="icon-<%= item.icon %>"></i>&nbsp;<%= item.label %></a></li>
             <% end %>
           <% else: %>
             <li><a href="http://tournament-manager.blogspot.de/">Blog</a></li>
