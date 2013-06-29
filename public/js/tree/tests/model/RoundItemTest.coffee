@@ -15,11 +15,11 @@ buster.testCase "RoundItem Model"
     assert.equals 3, matchdays.length
     for m in matchdays
       assert.equals 1, m.games.length
-    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
-    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1 
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1
     assert.equals matchdays[2].games[0], @group.get("games").objectAt 2
-    assert.equals matchdays[0].matchDay, 1 
-    assert.equals matchdays[1].matchDay, 2 
+    assert.equals matchdays[0].matchDay, 1
+    assert.equals matchdays[1].matchDay, 2
     assert.equals matchdays[2].matchDay, 3
 
     assert.equals 3, @group.get("matchDayCount")
@@ -30,12 +30,12 @@ buster.testCase "RoundItem Model"
     assert.equals 3, matchdays.length
     for m in matchdays
       assert.equals 2, m.games.length
-    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
-    assert.equals matchdays[0].games[1], @group.get("games").objectAt 1 
-    assert.equals matchdays[1].games[0], @group.get("games").objectAt 2 
-    assert.equals matchdays[1].games[1], @group.get("games").objectAt 3 
-    assert.equals matchdays[2].games[0], @group.get("games").objectAt 4 
-    assert.equals matchdays[2].games[1], @group.get("games").objectAt 5 
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0
+    assert.equals matchdays[0].games[1], @group.get("games").objectAt 1
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 2
+    assert.equals matchdays[1].games[1], @group.get("games").objectAt 3
+    assert.equals matchdays[2].games[0], @group.get("games").objectAt 4
+    assert.equals matchdays[2].games[1], @group.get("games").objectAt 5
     assert.equals 3, @group.get("matchDayCount")
 
   "Spieltage werden auf Basis der Spiele und Spieleranzahl generiert: 3 Spieler, 2 Spiele/Begegnung": ->
@@ -45,10 +45,25 @@ buster.testCase "RoundItem Model"
     assert.equals 6, matchdays.length
     for m in matchdays
       assert.equals 1, m.games.length
-    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0 
-    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1 
+    assert.equals matchdays[0].games[0], @group.get("games").objectAt 0
+    assert.equals matchdays[1].games[0], @group.get("games").objectAt 1
     assert.equals matchdays[2].games[0], @group.get("games").objectAt 2
     assert.equals matchdays[3].games[0], @group.get("games").objectAt 3
     assert.equals matchdays[4].games[0], @group.get("games").objectAt 4
     assert.equals matchdays[5].games[0], @group.get("games").objectAt 5
     assert.equals 6, @group.get("matchDayCount")
+
+  "Die Anzahl der absolvierten Spiele wird korrekt ermittelt": ->
+    @fillPlayers 3
+    @round.set "matchesPerGame", 2
+    completed = @group.get("completion")
+    assert.equals 0, completed
+    game1 = @group.games.objectAt(0)
+    game2 = @group.games.objectAt(1)
+    game3 = @group.games.objectAt(2)
+
+    game1.setResult 1, 2
+    game2.setResult 1, 0
+    game3.setResult 3, 3
+
+    assert.equals 3, @group.get("completion")

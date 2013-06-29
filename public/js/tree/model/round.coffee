@@ -17,6 +17,16 @@ App.Round = Em.Object.extend
     @get('games.length')
   ).property('games')
 
+  completion: (->
+    completion = 0
+    @get("items").forEach (item) -> completion += item.get("completion")
+    completion
+  ).property("items.@each.completion")
+
+  completionRatio: (->
+    @get("completion") / @get("gamesCount") * 100
+  ).property("completion", "gamesCount")
+
   matchDays: (->
     matchDays = []
     maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items"))

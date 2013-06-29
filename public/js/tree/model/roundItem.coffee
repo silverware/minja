@@ -24,7 +24,7 @@ App.RoundItem = Em.Object.extend
     roundItemName = @name
     _.chain(@get("games"))
     .groupBy((item, index) -> Math.floor(index/gamesPerMatchDay))
-    .map((chunk, index) -> 
+    .map((chunk, index) ->
       games = []
       for game in chunk
         game.set "_roundItemName", roundItemName
@@ -40,5 +40,12 @@ App.RoundItem = Em.Object.extend
     @get("matchDays.length")
   ).property("matchDays.@each")
 
+  completedGames: (->
+    @games.filter (game) -> game.get("isCompleted")
+  ).property("games.@each.isCompleted")
+
+  completion: (->
+    @get("completedGames.length")
+  ).property("completedGames")
 
 

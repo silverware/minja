@@ -14,20 +14,19 @@ define [
         template: Ember.Handlebars.compile """
           {{#each round in App.Tournament}}
             <div>
-              {{#if round.isGroupRound}}
-                <i class="icon-group" title="Gruppenphase"></i>
-              {{/if}}
-              {{#if round.isKoRound}}
-                <i class="icon-exchange" title="KO-Phase"></i>
-              {{/if}}
               <b>{{round.name}}</b>
               <div style="display: inline-block; float: right">
-                <span title="Games">{{round.gamesCount}} {{App.i18n.games}}</span>
+                {{round.completion}}/{{round.gamesCount}} {{App.i18n.games}}
                 <span class="seperator">|</span>
                 <span title="Games/Match"># {{round.matchesPerGame}}</span>
                 <span class="seperator">|</span>
-                {{round.qualifiers.length}} {{App.i18n.qualifiers}}<br />
+                <span title="{{unbound App.i18n.qualifiers}}">
+                  <i class="icon-level-up"></i>&nbsp;{{round.qualifiers.length}}
+                </span>
               </div>
+              <div class="progress">
+                  <div class="bar bar-success" style="width: {{unbound round.completionRatio}}%"></div>
+                </div>
             </div>
               {{#unless round.isLastRound}}
                 <div style="text-align: center" >
