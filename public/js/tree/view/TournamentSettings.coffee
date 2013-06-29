@@ -22,7 +22,7 @@ App.templates.tournamentPopup = """
     <div class="control-group">
     <label class="control-label" for="qualifierModus">Modus</label>
     <div class="controls">
-      {{view Ember.Select id="qualifierModus" contentBinding="App.qualifierModiSelect" 
+      {{view Ember.Select id="qualifierModus" contentBinding="view.qualifierModiOptions"
           optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
     </div>
   </div>
@@ -44,7 +44,7 @@ App.templates.tournamentPopup = """
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
         <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="l"}}</td>
-        <td>{{view Ember.Select contentBinding="App.attributeTypes" 
+        <td>{{view Ember.Select contentBinding="view.gameAttributeOptions"
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
         <td><i class="icon-remove" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
         </td>
@@ -114,3 +114,15 @@ App.TournamentSettings = App.DetailView.extend
     #moment('mm', minutes).format('h m')
   ).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel')
 
+  gameAttributeOptions: (->
+    [
+      Em.Object.create {type: "checkbox", label: "Checkbox"}
+      Em.Object.create {type: "textfield", label: App.i18n.textfield}
+      Em.Object.create {type: "result", label: App.i18n.result}
+      Em.Object.create {type: "number", label: App.i18n.number}
+    ]
+  ).property()
+
+  qualifierModiOptions: (->
+    [App.qualifierModi.BEST_OF, App.qualifierModi.AGGREGATE]
+  ).property()

@@ -39,12 +39,7 @@ App.GameAttribute = Em.Object.extend
         App.Tournament.gameAttributes.removeObject @
 
 
-App.attributeTypes = [
-  Em.Object.create {type: "checkbox", label: "Checkbox"}
-  Em.Object.create {type: "textfield", label: "Textfeld"}
-  Em.Object.create {type: "result", label: "Result"}
-  Em.Object.create {type: "number", label: "Number"}
-]
+
 
 ###
   Em.Object.create {type: "date", label: "Date"}

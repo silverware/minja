@@ -8,7 +8,7 @@ App.Tournament = Em.ArrayController.extend
   content: []
 
   games: (->
-    @reduce (tournamentGames, round) -> 
+    @reduce (tournamentGames, round) ->
       tournamentGames = tournamentGames.concat round.get("games")
     , []
   ).property('@each.games')
@@ -19,7 +19,7 @@ App.Tournament = Em.ArrayController.extend
       @pushObject App.GroupRound.create
         name: App.i18n.groupStage
         _previousRound: @lastRound()
-    
+
   addKoRound: ->
     if @addRound()
       $("#settings .close").click()
@@ -65,8 +65,7 @@ App.qualifierModi =
   BEST_OF: Em.Object.create {id: "bestof", label: "Best Of X"}
   AGGREGATE: Em.Object.create {id: "aggregate", label: "Aggregated"}
 
-App.qualifierModiSelect = [App.qualifierModi.BEST_OF, App.qualifierModi.AGGREGATE]
-  
-  
+
+
 
 App.Tournament = App.Tournament.create()

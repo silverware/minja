@@ -19,7 +19,7 @@ $.fn.createTree = (settings) ->
     App.PersistanceManager.build settings.data
 
     # Schließe Runden Settings
-    setTimeout (-> 
+    setTimeout (->
       $("#settings .close").click()
       $("#tournamentAddRemoveActions").click()), 50
 
