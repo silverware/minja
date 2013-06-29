@@ -15,7 +15,7 @@ define [
           {{#each round in App.Tournament}}
             <div>
               <b>{{round.name}}</b>
-              <div style="display: inline-block; float: right">
+              <div style="display: inline-block; float: right; font-size: 12px">
                 {{round.completion}}/{{round.gamesCount}} {{App.i18n.games}}
                 <span class="seperator">|</span>
                 <span title="Games/Match"># {{round.matchesPerGame}}</span>
