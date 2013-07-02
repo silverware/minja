@@ -144,6 +144,7 @@ class TournamentController extends ControllerBase
     path = config.CLIENT_DIR + "/css/colors_template.less"
     colors = colorService.getColors req.tournament
     contentOpaque = colorService.opaque colors.content
+    linkColor = colorService.generateLinkColor colors
     prefix = """
       @normal: #{colors.content};
       @textColor: #{colors.contentText};

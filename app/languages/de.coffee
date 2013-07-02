@@ -155,6 +155,7 @@ module.exports =
     qualifiersUp: "Qualifikantenanzahl erhöhen"
     qualifiersDown: "Qualifikantenanzahl verringern"
     games: "Spiele"
+    gamesPerMatch: "Spiele/Begegnung"
     winner: "Sieger"
     player: "Spieler"
     edit: "Bearbeiten"

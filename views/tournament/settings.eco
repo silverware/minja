@@ -58,4 +58,11 @@ require(["settings/Settings"], function(Settings) {
           </dd>
         </dl>
     </fieldset>
+    <!--
+    <fieldset>
+      <legend><%= @i18n.settings.messages %></legend>
+
+Nachrichten aktivieren/deaktivieren
+
+  -->
 </div>

@@ -18,7 +18,7 @@ define [
               <div style="display: inline-block; float: right; font-size: 12px">
                 {{round.completion}}/{{round.gamesCount}} {{App.i18n.games}}
                 <span class="seperator">|</span>
-                <span title="Games/Match"># {{round.matchesPerGame}}</span>
+                <span title="{{unbound App.i18n.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
                 <span class="seperator">|</span>
                 <span title="{{unbound App.i18n.qualifiers}}">
                   <i class="icon-level-up"></i>&nbsp;{{round.qualifiers.length}}

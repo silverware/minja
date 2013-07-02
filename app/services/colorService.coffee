@@ -1,4 +1,5 @@
 _ = require 'underscore'
+one = require "onecolor"
 
 module.exports =
 
@@ -30,3 +31,6 @@ module.exports =
     begin = color.lastIndexOf ","
     stop = color.indexOf ")"
     color.replace color.substring(begin, stop), ",1"
+
+  generateLinkColor: (color) ->
+    textColor = one color.contentText
