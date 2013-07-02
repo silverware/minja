@@ -82,7 +82,7 @@ App.GroupView = App.RoundItemView.extend
     @$(".increaseGroupsize").tooltip
       title: App.i18n.groupSizeUp
     @$(".decreaseGroupsize").tooltip
-      title: App.i18n.groupSizeDown 
+      title: App.i18n.groupSizeDown
     @$(".increaseQualifierCount").tooltip
       title: App.i18n.qualifiersUp
     @$(".decreaseQualifierCount").tooltip
@@ -120,7 +120,7 @@ App.GroupView = App.RoundItemView.extend
       roundItem: @group
       table: true
 
-      
+
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>
       @$(inId).fadeIn "medium"
@@ -133,7 +133,7 @@ App.GroupView = App.RoundItemView.extend
     games = []
     gamesPerRound = Math.floor(@group.players.get("length") / 2)
     for index in [0..@group.games.get("length") - 1]
-      games.pushObject 
+      games.pushObject
         game: @get("group.games").objectAt index
         gameIndex: index
         newRound: index != 0 and (index + gamesPerRound) % gamesPerRound == 0
@@ -145,6 +145,10 @@ App.GroupView = App.RoundItemView.extend
       containment: @$()
       helper: 'clone'
       revert: 'invalid'
+      start: (e, {helper}) ->
+        $(helper).addClass "ui-draggable-helper"
+      #stop: =>
+      #  setTimeout (=> @draggable true), 20
 
     @$(".game").droppable
       drop: (event, ui) =>
@@ -153,4 +157,4 @@ App.GroupView = App.RoundItemView.extend
         @get("group").swapGames(
           parseInt(dragElement.find("#gameIndex")[0].textContent),
           parseInt(dropElement.find("#gameIndex")[0].textContent))
-          
+

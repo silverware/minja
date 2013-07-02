@@ -13,20 +13,6 @@ App.Round = Em.Object.extend
     , []
   ).property('items.@each.games.@each')
 
-  gamesCount: (->
-    @get('games.length')
-  ).property('games')
-
-  completion: (->
-    completion = 0
-    @get("items").forEach (item) -> completion += item.get("completion")
-    completion
-  ).property("items.@each.completion")
-
-  completionRatio: (->
-    @get("completion") / @get("gamesCount") * 100
-  ).property("completion", "gamesCount")
-
   matchDays: (->
     matchDays = []
     maxMatchDays = _.max (roundItem.get("matchDayCount") for roundItem in @get("items"))
@@ -122,3 +108,21 @@ App.Round = Em.Object.extend
     if not @_previousRound or not @_previousRound.isKoRound
       return 0
     @_previousRound.koRoundsBefore() + 1
+
+  ###---------------------------------------------------------------------------
+    Statistics
+  ---------------------------------------------------------------------------####
+
+  gamesCount: (->
+    @get('games.length')
+  ).property('games')
+
+  completion: (->
+    completion = 0
+    @get("items").forEach (item) -> completion += item.get("completion")
+    completion
+  ).property("items.@each.completion")
+
+  completionRatio: (->
+    @get("completion") / @get("gamesCount") * 100
+  ).property("completion", "gamesCount")
