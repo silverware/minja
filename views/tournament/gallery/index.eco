@@ -29,16 +29,8 @@
     });
   </script>
   <% if @editable: %>
-    <div class="form-horizontal" action="#" method="post">
-      <div class="control-group">
-        <div class="controls">
-          <form action="#" method="post" style="display: inline-block">
-            <button class="btn btn-primary btn" type="submit"><%= @i18n.save %></button>
-            <img class="ajaxLoader" src="/img/ajax-loader.gif" />
-            <span class="successIcon"><i class="icon-ok"></i> <%= @i18n.saved %></span>
-          </form>
-        </div>
-      </div>
-    </div>
+    <form action="#" method="post" style="display: inline-block">
+      <%= @saveButton @i18n.save, true %>
+    </form>
   <% end %>
 </div>

@@ -35,9 +35,23 @@ selectTemplate = """
   <script>$("#input<%= @name %>").chosen()</script>
 """
 
+saveButton = (label, disabled) ->
+  if disabled then disabled = "disabled='disabled'" else disabled = ""
+  saved = "Gespeichert"
+  if label == "Save" then saved = "Saved"
+  @safe """
+    <div class="form-horizontal">
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn btn-primary" type="submit" #{disabled}>#{label}</button>
+        <img class="ajaxLoader" src="/img/ajax-loader.gif" />
+        <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
+      </div>
+    </div>
+    </div>
+  """
 
 formFor = (obj, yield_to, action="") ->
-
 
   wrapper = (name, label, control, startInline, stopInline) =>
     s = ""
@@ -120,4 +134,5 @@ formWithActionFor = (object, action, yield_to) ->
 module.exports = (req, res, next) ->
   res.locals.formWithActionFor = formWithActionFor
   res.locals.formFor = formFor
+  res.locals.saveButton = saveButton
   next()

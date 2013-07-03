@@ -6,6 +6,7 @@ class Save
   constructor: (args) ->
     $.extend @, args
     @init()
+    @enableSaveButton()
 
   init: ->
     @form.submit (event) =>
@@ -62,3 +63,6 @@ class Save
     else
       $(".successIcon").fadeIn("medium")
       setTimeout((-> $(".successIcon").fadeOut("fast")), 5000)
+
+  enableSaveButton: =>
+    setTimeout (=>@form.find("button").removeAttr "disabled"), 1000

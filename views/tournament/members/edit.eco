@@ -25,16 +25,7 @@
 
   <form action="#" method="post">
     <div id="membersTable"></div>
-
-    <div class="form-horizontal">
-      <div class="control-group">
-        <div class="controls">
-            <button class="btn btn-primary btn" type="submit"><%= @i18n.save %></button>
-            <img class="ajaxLoader" src="/img/ajax-loader.gif" />
-            <span class="successIcon"><i class="icon-ok"></i> <%= @i18n.saved %></span>
-        </div>
-      </div>
-    </div>
+    <%= @saveButton @i18n.save, true %>
   </form>
 </div>
 

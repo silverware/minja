@@ -7,6 +7,7 @@ ControllerBase = require './controller_base'
 config = require '../server-config'
 colorService = require '../services/colorService'
 gm = require 'gm'
+_ = require "underscore"
 gm = gm.subClass({ imageMagick: true })
 
 class TournamentEditController extends ControllerBase
@@ -28,6 +29,8 @@ class TournamentEditController extends ControllerBase
     res.render "#{@viewPrefix}/members/edit"
 
   "POST:/:tid/members/edit": (req, res) =>
+    if _.isEmpty req.body
+      return res.render "#{@viewPrefix}/members/edit"
     tournamentDao.merge req.tournament.id, members: req.body, ->
       res.send "ok"
 
@@ -60,6 +63,7 @@ class TournamentEditController extends ControllerBase
       editable: true
 
   "POST:/:tid/gallery/edit": (req, res) =>
+    console.log req.body
     req.body = {} if req.body.empty?
     tournamentDao.merge req.tournament.id, gallery: req.body, (result) ->
       tournamentDao.mergeImages result, req.tournament._attachments, req.body, req.files, ->
