@@ -85,7 +85,7 @@
 
 
 <div class="span6">
-<a href="/<%= @tournament.identifier %>/tree">
+<a href="/<%= @tournament.identifier %>/bracket">
 <section class="dashboardBox" id="treeDashboardBox">
   <fieldset>
     <legend><%= @i18n.tree.navName %></legend>
