@@ -41,7 +41,7 @@ class TournamentController extends ControllerBase
     id = tournament.identifier
     nav = [route: "/#{id}/info", icon: "info-sign", label: req.i18n.info.navName]
     if tournament.isOwner or tournament.members
-      nav.push route: "/#{id}/members", icon: "group", label: req.i18n.members.navName
+      nav.push route: "/#{id}/participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
       nav.push route: "/#{id}/bracket", icon: "table", label: req.i18n.tree.navName
     if config.isDevelopment
@@ -91,7 +91,7 @@ class TournamentController extends ControllerBase
       @redirectToEdit req, res
     res.render "#{@viewPrefix}/info"
 
-  "/:tid/members": (req, res) =>
+  "/:tid/participants": (req, res) =>
     if req.tournament.isOwner and not req.tournament.members?
       @redirectToEdit req, res
     res.render "#{@viewPrefix}/members"

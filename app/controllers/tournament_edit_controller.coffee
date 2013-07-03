@@ -23,12 +23,12 @@ class TournamentEditController extends ControllerBase
         res.redirect "/"
     next()
 
-  "/:tid/members/edit": (req, res) =>
+  "/:tid/participants/edit": (req, res) =>
     if not req.tournament.members?
       res.addInfo req.i18n.infoAlert.members
     res.render "#{@viewPrefix}/members/edit"
 
-  "POST:/:tid/members/edit": (req, res) =>
+  "POST:/:tid/participants/edit": (req, res) =>
     if _.isEmpty req.body
       return res.render "#{@viewPrefix}/members/edit"
     tournamentDao.merge req.tournament.id, members: req.body, ->
@@ -55,7 +55,7 @@ class TournamentEditController extends ControllerBase
     res.render "#{@viewPrefix}/tree",
       editable: true
 
-  "POST:/:tid/tree/edit": (req, res) =>
+  "POST:/:tid/bracket/edit": (req, res) =>
     tournamentDao.merge req.tournament.id, tree: req.body, ->
       res.send "ok"
 

@@ -45,7 +45,7 @@
 
 
 <div class="span6">
-<a href="/<%= @tournament.identifier %>/members">
+<a href="/<%= @tournament.identifier %>/participants">
 <section class="dashboardBox" style="height: 200px">
   <fieldset>
     <legend><%= @i18n.members.navName %></legend>
