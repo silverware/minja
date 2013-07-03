@@ -43,7 +43,7 @@ class TournamentController extends ControllerBase
     if tournament.isOwner or tournament.members
       nav.push route: "/#{id}/members", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
-      nav.push route: "/#{id}/tree", icon: "table", label: req.i18n.tree.navName
+      nav.push route: "/#{id}/bracket", icon: "table", label: req.i18n.tree.navName
     if config.isDevelopment
       if tournament.isOwner or tournament.gallery
         nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
@@ -97,6 +97,9 @@ class TournamentController extends ControllerBase
     res.render "#{@viewPrefix}/members"
 
   "/:tid/tree": (req, res) =>
+    res.redirect "/#{req.params.tid}/bracket"
+
+  "/:tid/bracket": (req, res) =>
     if req.tournament.isOwner and not req.tournament.tree?
       @redirectToEdit req, res
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other

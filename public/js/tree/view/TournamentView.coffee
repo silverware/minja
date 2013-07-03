@@ -23,7 +23,7 @@ App.templates.tournament = """
   {{else}}
     {{#if App.isOwner}}
       <div class="saveActions box">
-        <a href="tree/edit">
+        <a href="bracket/edit">
           <button  style="margin: 1px 20px" class="btn btn-inverse"><i class="icon-edit"></i>{{App.i18n.edit}}</button>
         </a>
       </div>

@@ -46,6 +46,9 @@ class TournamentEditController extends ControllerBase
       res.send "ok"
 
   "/:tid/tree/edit": (req, res) =>
+    res.redirect "/#{req.params.tid}/bracket/edit"
+
+  "/:tid/bracket/edit": (req, res) =>
     if not req.tournament.tree?
       res.addInfo req.i18n.infoAlert.tree
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
