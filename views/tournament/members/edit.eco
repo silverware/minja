@@ -14,7 +14,7 @@
 
 <div id="content">
   <h1>
-    <%= @i18n.members.navName %><%= @headerAction @i18n.show, "../members", "eye-open" %>
+    <%= @i18n.members.navName %><%= @headerAction @i18n.show, "../participants", "eye-open" %>
     <a style="float: right; margin-right: 10px" href="#">
       <button type="button" class="btn btn-inverse" onclick="MembersTable.showAttributePopup()"><i class="icon-plus-sign"></i><%= @i18n.members.attribute %></button>
     </a>
