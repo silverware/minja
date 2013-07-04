@@ -34,6 +34,7 @@ class TournamentController extends ControllerBase
           res.locals.navigation = @navigation req
           next()
         else
+          res.status 404
           res.render "404"
 
   @navigation: (req) ->

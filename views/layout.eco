@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
   <head>
-    <title>Minja Tournament Manager</title>
+    <% if @tournament?.info: %>
+      <title><%= @tournament.info.name %></title>
+    <% else: %>
+      <title>Minja Tournament Manager</title>
+    <% end %>
     <% if @tournament?.info: %>
       <meta content="<%= @tournament.info.name %>" property="og:title" />
       <meta content="<%= @tournament.info.description %>" property="og:description" />

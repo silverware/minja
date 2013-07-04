@@ -68,6 +68,8 @@ class TournamentDao extends require('./DaoBase')
   checkPublicName: (name, callback) ->
     if not validators.isPublicName name 
       return callback false
+    if "robots.txt" is name
+      return callback false
     @db.view "tournament/byPublicName", key: name, descending: true, (err, tournaments) ->
       if err then callback false else callback tournaments.length == 0
 
