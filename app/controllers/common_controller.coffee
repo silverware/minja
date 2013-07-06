@@ -8,6 +8,9 @@ class CommonController
   "/site/impressum": (req, res) =>
     res.render 'impressum'
 
+  "/site/sitemap": (req, res) =>
+    res.render 'sitemap'
+
   "/lang/:lang": (req, res) =>
   	req.session.language = req.params.lang
   	res.redirect req.param "next"
