@@ -23,10 +23,10 @@ class UserController extends ControllerBase
     newpassword2 = req.param("newpassword2")
     hash = userDao.hashPassword
 
-    if newpassword1 != newpassword2
+    if newpassword1 isnt newpassword2
       res.addError "Passwords do not match."
 
-    if hash(oldpassword) != req.user.password
+    if hash(oldpassword) isnt req.user.password
       res.addError "Wrong old password"
 
     if not newpassword1
@@ -42,14 +42,14 @@ class UserController extends ControllerBase
 
   "/me/tournaments": (req, res) =>
     tournamentDao.findTournamentsByUser req.user, (tournaments) =>
-      if tournaments.length == 0
+      if tournaments.length is 0
         res.addInfo req.i18n.noTournamentsCreated
       res.render "#{@viewPrefix}/mytournaments",
         tournaments: tournaments
 
   "/me/favorites": (req, res) =>
     tournamentDao.findTournamentsByIds req.user.favorites, (tournaments) =>
-      if tournaments.length == 0
+      if tournaments.length is 0
         res.addInfo req.i18n.noTournamentsInFavorites
       res.render "#{@viewPrefix}/favorites",
         favoriteTournaments: tournaments

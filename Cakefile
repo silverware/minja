@@ -118,6 +118,8 @@ task 'test', 'Run Mocha tests', ->
   options = [
     '--compilers'
     'coffee:coffee-script'
+    '-R'
+    'spec'
   ]
   try
     cmd = which.sync 'mocha'

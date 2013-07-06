@@ -13,7 +13,7 @@ describe 'DaoBase', ->
 
   beforeEach (done) ->
     testDb.setup dao, "tournament_test", ->
-      dao.save [ricolacup, paulanercup], (s) -> 
+      dao.save [ricolacup, paulanercup], (s) ->
         ricolacup._id = s[0].id
         ricolacup._rev = s[0].rev
         paulanercup._id = s[1].id
@@ -47,7 +47,7 @@ describe 'DaoBase', ->
   describe '#merge', ->
     it 'should merge info into a tournament', (done) ->
       data =
-        info: 
+        info:
           name: "Name"
           date: "date"
       dao.merge paulanercup._id, data, (result) ->

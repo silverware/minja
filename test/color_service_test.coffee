@@ -14,6 +14,11 @@ describe 'Color Service', ->
       assert.ok colorService.isDefaultColor colorService.defaultColors
 
     it 'isFalse', ->
-      color = colorService.defaultColors
-      color.content = "rgba(1,1,1,1)"
+      defaultColor = colorService.defaultColors
+      color =
+        content: "rgba(1,1,1,1)"
+        contentText: defaultColor.contentText
+        background: defaultColor.background
+        footer: defaultColor.footer
+        footerText: defaultColor.footerText
       assert.equal false, colorService.isDefaultColor color

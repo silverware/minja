@@ -52,7 +52,7 @@ class TournamentController extends ControllerBase
       nav.push route: "/#{id}/settings", icon: "cog", label: ""
 
     for navItem in nav
-      navItem.selectedClass = "active" if req.url.indexOf(navItem.route) != -1
+      navItem.selectedClass = "active" if req.url.indexOf(navItem.route) isnt - 1
     nav
 
   "/tournaments": (req, res) =>

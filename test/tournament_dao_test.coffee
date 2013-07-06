@@ -14,7 +14,7 @@ describe 'TournamentDao', ->
 
   beforeEach (done) ->
     testDb.setup dao, "tournament_test", ->
-      dao.save [ricolacup, paulanercup], (s) -> 
+      dao.save [ricolacup, paulanercup], (s) ->
         ricolacup._id = s[0].id
         paulanercup._id = s[1].id
         done()
@@ -100,3 +100,7 @@ describe 'TournamentDao', ->
       dao.findTournamentsByIds [], (tournaments) ->
         assert.equal 0, tournaments.length
         done()
+
+  describe '#allTournamentItendifiers', ->
+    it 'should return all tournaments', (done) ->
+      done()
