@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <% for tournament in @tournaments: %>
    <url>
-      <loc>http://www.example.com/</loc>
+      <loc>http://minja.net/<%= tournament.value %></loc>
       <changefreq>daily</changefreq>
    </url>
+  <% end %>
 </urlset>

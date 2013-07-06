@@ -11,7 +11,7 @@ class TournamentDao extends require('./DaoBase')
   initialize: ->
     @db.save '_design/tournament',
       views:
-        byIds: 
+        byIds:
           map: 'function(doc) {emit(doc._id, doc)}'
         byUser:
           map: 'function(doc) {emit(doc.user_id, doc)}'
@@ -19,6 +19,8 @@ class TournamentDao extends require('./DaoBase')
           map: 'function(doc) {emit(doc.publicName, doc)}'
         byIdentifier:
           map: 'function(doc) {emit(doc._id, doc); if(doc.publicName) {emit(doc.publicName, doc);}}'
+        allIdentifiers:
+          map: 'function(doc) {if(doc.publicName) {emit(null, doc.publicName);} else {emit(null, doc._id)}}'
 
   mergeImages: (doc, attachments, imageData, files, callback) ->
     imageIds = []
@@ -54,7 +56,7 @@ class TournamentDao extends require('./DaoBase')
     @db.view "tournament/byIds", keys: ids, descending: true, (err, tournaments) ->
       if err then callback [] else callback tournaments
 
-  # Identifier could be the id or the publicName  
+  # Identifier could be the id or the publicName
   findTournamentByIdentifier: (id, callback) ->
     @db.view "tournament/byIdentifier", key: id, (err, tournament) ->
       if tournament? and tournament.length == 1
@@ -66,11 +68,18 @@ class TournamentDao extends require('./DaoBase')
         callback null
 
   checkPublicName: (name, callback) ->
-    if not validators.isPublicName name 
+    if not validators.isPublicName name
       return callback false
     if "robots.txt" is name
       return callback false
     @db.view "tournament/byPublicName", key: name, descending: true, (err, tournaments) ->
-      if err then callback false else callback tournaments.length == 0
+      if err then callback false else callback tournaments.length is 0
+
+  findAllTournamentIdentifiers: (callback) ->
+    @db.view "tournament/allIdentifiers", descending: true, (err, tournaments) ->
+      console.log err
+      console.log tournaments
+      if err then callback [] else callback tournaments
+
 
 module.exports = new TournamentDao()

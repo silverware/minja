@@ -1,5 +1,5 @@
 marked = require 'marked'
-
+tournamentDao = require '../dao/TournamentDao'
 class CommonController
 
   "/": (req, res) =>
@@ -9,7 +9,10 @@ class CommonController
     res.render 'impressum'
 
   "/site/sitemap": (req, res) =>
-    res.render 'sitemap'
+    tournamentDao.findAllTournamentIdentifiers (tournaments)->
+      res.render 'sitemap',
+        tournaments: tournaments
+        layout: false
 
   "/lang/:lang": (req, res) =>
   	req.session.language = req.params.lang

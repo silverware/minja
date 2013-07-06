@@ -87,12 +87,12 @@ describe 'TournamentDao', ->
         done()
 
     it 'should return 1 tournament', (done) ->
-      dao.findTournamentsByIds [ricolacup._id],  (tournaments) ->
+      dao.findTournamentsByIds [ricolacup._id], (tournaments) ->
         assert.equal 1, tournaments.length
         done()
 
     it 'should return 0 tournament', (done) ->
-      dao.findTournamentsByIds null,  (tournaments) ->
+      dao.findTournamentsByIds null, (tournaments) ->
         assert.equal 0, tournaments.length
         done()
 
@@ -101,6 +101,9 @@ describe 'TournamentDao', ->
         assert.equal 0, tournaments.length
         done()
 
-  describe '#allTournamentItendifiers', ->
+  describe '#findAllTournamentIdentifiers', ->
     it 'should return all tournaments', (done) ->
-      done()
+      dao.findAllTournamentIdentifiers (tournaments) ->
+        assert.equal paulanercup.publicName, tournaments[0].value
+        assert.equal ricolacup.publicName, tournaments[1].value
+        done()
