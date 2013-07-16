@@ -6,8 +6,8 @@ moment = require 'moment'
 ControllerBase = require './controller_base'
 config = require '../server-config'
 colorService = require '../services/colorService'
-gm = require 'gm'
 _ = require "underscore"
+gm = require 'gm'
 gm = gm.subClass({ imageMagick: true })
 
 class TournamentEditController extends ControllerBase

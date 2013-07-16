@@ -76,8 +76,16 @@
       <header id="header" class="noPrint">
           <% if @navigation: %>
             <div style="display: inline-block">
+              <% if @tournament.isOwner: %>
+              <a href="/<%= @tournament.id %>/logo"><small><i class="icon-edit-sign"></i>&nbsp;Edit Tournament Logo</small></a>
+              <% end %>
               <a class="home" href="/<%= @tournament.identifier %>">
-                <i class="icon-sitemap rotated"></i>
+                <% if @tournament.hasLogo: %> 
+                  <img style="max-height: 48px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
+                <% else: %>
+                  <i class="icon-sitemap rotated"></i>
+                <% end %>
+
               </a>
               <a class="home" style="padding: 5px 0 0 10px" href="/<%= @tournament.identifier %>">
                 </i><%= @tournament.info.name %>
