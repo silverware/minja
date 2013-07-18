@@ -23,7 +23,7 @@ define [
 
     data: ->
       formData = new FormData()
-      formData.append "empty", "" if @images.get("length") == 0
+      formData.append "empty", "" if @images.get("length") is 0
       for image in @images
         if image.file
           formData.append image.id, image.file
@@ -59,7 +59,7 @@ define [
       classNames: ['thumbnails']
 
       didInsertElement: ->
-        $("#file").live 'change', ->
+        $("#file").on 'change', ->
           for file in @files
             url = URL.createObjectURL(file)
             if Gallery.images.get("length") < MAX_IMAGE_COUNT
