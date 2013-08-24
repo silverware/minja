@@ -1,10 +1,10 @@
-userDao = require '../daos/userDao'
 passport = require 'passport'
 crypto = require 'crypto'
-emailService = require '../services/emailService'
 _ = require 'underscore'
 moment = require 'moment'
-passport = require './config_passport'
+emailService = require '../services/emailService'
+passport = require './configPassport'
+userDao = require '../daos/userDao'
 
 class LoginController
 

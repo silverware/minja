@@ -1,6 +1,6 @@
 assert = require "assert"
-dao = require "../app/dao/UserDao"
-User = require "../app/model/user"
+dao =require "../app/daos/userDao"
+User = require "../app/models/user"
 testDb = require './test_db_setup'
 
 createUser = (initialData) ->
@@ -12,7 +12,7 @@ hans = createUser email: "hans@fcb.de", password: "password"
 lahm = createUser email: "lahm@fcb.de"
 
 describe 'UserDao', ->
-  
+
   beforeEach (done) ->
     testDb.setup dao, "user_test", ->
       dao.save ribery, -> done()

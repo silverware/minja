@@ -1,6 +1,6 @@
 assert = require "assert"
-dao = require "../app/dao/ChatDao"
-Message = require "../app/model/message"
+dao = require "../app/daos/chatDao"
+Message = require "../app/models/message"
 testDb = require './test_db_setup'
 
 messages = [
@@ -9,7 +9,7 @@ messages = [
   new Message tournament_id: "ricolacup", authorType: dao.authorTypes.leader
 ]
 
-i18n = 
+i18n =
   date: -> "date"
 
 assertResultContains = (result, id) ->
@@ -19,7 +19,7 @@ describe 'ChatDao', ->
 
   beforeEach (done) ->
     testDb.setup dao, "chat_test", ->
-      dao.save messages, (re) -> 
+      dao.save messages, (re) ->
         for i in [0..re.length - 1]
           messages[i]._id = re[i].id
         done()

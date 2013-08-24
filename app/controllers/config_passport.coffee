@@ -1,6 +1,6 @@
 passport = require 'passport'
 config = require '../server-config'
-userDao = require '../dao/UserDao'
+userDao = require '../daos/userDao'
 FacebookStrategy = require('passport-facebook').Strategy
 LocalStrategy = require('passport-local').Strategy
 

@@ -1,6 +1,6 @@
 userDao = require '../daos/userDao'
 tournamentDao = require '../daos/tournamentDao'
-ControllerBase = require './controller_base'
+ControllerBase = require './controllerBase'
 {toggleItemInList} = require '../services/utilsService'
 
 class UserController extends ControllerBase

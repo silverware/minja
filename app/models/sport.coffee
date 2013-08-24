@@ -1,4 +1,4 @@
-class Sport extends require './MixIn'
+class Sport extends require './mixIn'
   sport_id: ""
   pointsPerWin: 0
   pointsPerDraw: 0

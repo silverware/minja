@@ -1,7 +1,7 @@
 assert = require "assert"
-dao = require "../app/dao/TournamentDao"
-Tournament = require "../app/model/tournament"
-User = require "../app/model/user"
+dao = require "../app/daos/tournamentDao"
+Tournament = require "../app/models/tournament"
+User = require "../app/models/user"
 testDb = require './test_db_setup'
 
 createTournament = (initialData) ->

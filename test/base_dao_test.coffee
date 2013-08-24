@@ -1,6 +1,6 @@
 assert = require "assert"
-dao = require "../app/dao/TournamentDao"
-Tournament = require "../app/model/tournament"
+dao = require "../app/daos/tournamentDao"
+Tournament = require "../app/models/tournament"
 testDb = require './test_db_setup'
 
 createTournament = (initialData) ->

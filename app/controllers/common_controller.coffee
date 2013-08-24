@@ -1,5 +1,5 @@
 marked = require 'marked'
-tournamentDao = require '../dao/TournamentDao'
+tournamentDao = require '../daos/tournamentDao'
 class CommonController
 
   "/": (req, res) =>

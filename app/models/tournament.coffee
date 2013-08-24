@@ -1,9 +1,9 @@
-class Tournament extends require './MixIn'
-  publicName: "" 
+class Tournament extends require './mixIn'
+  publicName: ""
   user_id: ""
   sport_id: ""
   gallery: {}
-  info: 
+  info:
   	name: ""
   	description: ""
   	venue: ""

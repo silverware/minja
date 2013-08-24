@@ -1,14 +1,14 @@
-formHelper = require "../helper/form_helper"
-viewHelper = require "../helper/view_helper"
+formHelper = require "../helpers/formHelper"
+viewHelper = require "../helpers/viewHelper"
 i18n = require "../languages/i18n"
-passport = require './config_passport'
+passport = require './configPassport'
 
 controllers = [
-  require "./common_controller"
-  require "./login_controller"
-  require "./user_controller"
-  require "./tournament_controller"
-  require "./tournament_edit_controller"
+  require "./commonController"
+  require "./loginController"
+  require "./userController"
+  require "./tournamentController"
+  require "./tournamentEditController"
 ]
 
 module.exports = (app) ->
