@@ -1,4 +1,4 @@
-buster.testCase "Utils"
+buster.testCase "Utils",
   setUp: ->
     App.Tournament.clear()
 
@@ -20,7 +20,7 @@ buster.testCase "Utils"
         contains = list.some (item) ->
           return (item is games[i])
         assert contains
-      
+
     result = App.utils.filterGames "Han", games
     assertGames result, 0, 3, 4
 
@@ -61,7 +61,7 @@ buster.testCase "Utils"
         contains = list.some (item) ->
           return (item is games[i])
         assert contains
-      
+
     result = App.utils.filterGames "Han", games
     assertGames result, 0, 1
     result = App.utils.filterGames "pf", games

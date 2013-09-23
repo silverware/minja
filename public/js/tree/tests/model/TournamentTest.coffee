@@ -1,4 +1,4 @@
-buster.testCase "Tournament Model"
+buster.testCase "Tournament Model",
   setUp: ->
     @tournament = App.Tournament
     @tournament.clear()
@@ -16,7 +16,7 @@ buster.testCase "Tournament Model"
     assert.equals round2game.get("player1"), round1game1.get("winnerDummy")
 
     @tournament.replacePlayer(round1game1.get("winnerDummy"), round1game1.get("player1"), round1)
-    
+
     assert.equals round2game.get("player1"), round1game1.get("player1")
 
 

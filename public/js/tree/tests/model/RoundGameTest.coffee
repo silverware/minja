@@ -1,4 +1,4 @@
-buster.testCase "Round Game Model"
+buster.testCase "Round Game Model",
   setUp: ->
     @round = App.KoRound.create()
     @roundGame = App.RoundGame.create
@@ -63,14 +63,14 @@ buster.testCase "Round Game Model"
     game1.setResult 1, 2
 
     assert.equals @p2, @roundGame.getWinner()
-  
+
   "Gewinner aus zwei Results wird ermittelt (aggregated)": ->
     @roundGame.games.pushObject App.Game.create
       player1: @p1
       player2: @p2
     game1 = @roundGame.games.objectAt(0)
     game2 = @roundGame.games.objectAt(1)
-    
+
     game1.setResult 2, 1
     game2.setResult 2, 1
 
@@ -122,7 +122,7 @@ buster.testCase "Round Game Model"
     game1.setResult 1, 2
 
     assert.equals @p2, @roundGame.getWinner()
-  
+
   "Gewinner aus drei Results wird ermittelt (bestof)": ->
     App.Tournament.set "qualifierModus", App.qualifierModi.BEST_OF.id
 
@@ -136,7 +136,7 @@ buster.testCase "Round Game Model"
     game1 = @roundGame.games.objectAt(0)
     game2 = @roundGame.games.objectAt(1)
     game3 = @roundGame.games.objectAt(2)
-    
+
     game1.setResult 2, 1
     game2.setResult 2, 1
     game3.setResult 1, 5

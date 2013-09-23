@@ -1,4 +1,4 @@
-buster.testCase "Round Model"
+buster.testCase "Round Model",
   setUp: ->
     App.Tournament.clear()
     App.Tournament.addKoRound()

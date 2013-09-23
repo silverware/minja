@@ -1,4 +1,4 @@
-buster.testCase "RoundItem Model"
+buster.testCase "RoundItem Model",
   setUp: ->
     @round = App.GroupRound.create()
     @group = App.Group.create

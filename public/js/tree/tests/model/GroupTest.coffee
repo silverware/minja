@@ -1,4 +1,4 @@
-buster.testCase "Group Model"
+buster.testCase "Group Model",
   setUp: ->
     @round = App.GroupRound.create()
     @group = App.Group.create
@@ -9,7 +9,7 @@ buster.testCase "Group Model"
         player = App.Player.create(name: "Player " + i)
         players.pushObject player
         @group.players.pushObject player
-      players 
+      players
 
   "Qualifiers geben Dummies bei incomplete Gruppe zurück": ->
     @group.set "qualifierCount", 3
@@ -42,11 +42,11 @@ buster.testCase "Group Model"
     @group.generateGames()
     assert.equals 1, @group.games.get("length")
     assert.equals @group.games.objectAt(0).get("player1").name, "Player 1"
-    assert.equals @group.games.objectAt(0).get("player2").name, "Player 2" 
+    assert.equals @group.games.objectAt(0).get("player2").name, "Player 2"
 
   "Tabelle berechnen": ->
     players = @fillPlayers 3
-    
+
     ###
      p1: tore: 2  -  gegentore: 2  - punkte: 3
      p2: tore: 5  -  gegentore: 4  - punkte: 4
@@ -87,7 +87,7 @@ buster.testCase "Group Model"
     assert.equals 5, erster.goals
     assert.equals 2, zweiter.goals
     assert.equals 3, dritter.goals
-    
+
     assert.equals 4, erster.goalsAgainst
     assert.equals 2, zweiter.goalsAgainst
     assert.equals 4, dritter.goalsAgainst
@@ -99,13 +99,13 @@ buster.testCase "Group Model"
 
   "Tabelle berechnen, Sortierung bei Differenzgleichheit": ->
     players = @fillPlayers 3
-    
+
     ###
         1.  p3    5 : 4   3
         2.  p2    4 : 3   3
         3.  p1    3 : 5   3
-    ###    
-    
+    ###
+
     @group.generateGames()
     game1 = @group.games.objectAt(0)
     game1.player1 = players[0]
@@ -132,7 +132,7 @@ buster.testCase "Group Model"
 
   "Tabelle berechnen, wobei noch keine Spiele absolviert wurden": ->
     players = @fillPlayers 3
-    
+
     erster = @group.get("table").objectAt(0)
     zweiter = @group.get("table").objectAt(1)
     dritter = @group.get("table").objectAt(2)
@@ -145,7 +145,7 @@ buster.testCase "Group Model"
     assert.equals 0, erster.goals
     assert.equals 0, zweiter.goals
     assert.equals 0, dritter.goals
-    
+
     assert.equals 0, erster.goalsAgainst
     assert.equals 0, zweiter.goalsAgainst
     assert.equals 0, dritter.goalsAgainst
@@ -187,7 +187,7 @@ buster.testCase "Group Model"
       game.setResult 1, 2
 
     assert @group.isCompleted()
-        
+
   "Vertauschen von Spielen des Spielplans": ->
     @fillPlayers 3
     @group.generateGames()

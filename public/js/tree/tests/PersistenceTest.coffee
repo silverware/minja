@@ -1,4 +1,4 @@
-buster.testCase "Persistence"
+buster.testCase "Persistence",
   setUp: ->
     App.Tournament.clear()
     App.Tournament.addKoRound()

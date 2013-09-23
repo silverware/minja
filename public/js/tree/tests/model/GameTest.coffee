@@ -1,4 +1,4 @@
-buster.testCase "Game Model"
+buster.testCase "Game Model",
   setUp: ->
     @hans = App.Player.create name: "Hans"
     @peter = App.Player.create name: "Peter"

@@ -1,11 +1,11 @@
-buster.testCase "Group Round Model"
+buster.testCase "Group Round Model",
   setUp: ->
     App.Tournament.clear()
     App.Tournament.addGroupRound()
     @round = App.Tournament.lastRound()
 
   "Hinzufügen einer Gruppe mit 4 Spielern": ->
-    
+
     @round.addItem()
 
     assert.equals 1, @round.items.length
@@ -25,13 +25,13 @@ buster.testCase "Group Round Model"
     for m in matchdays
       assert.equals 2, m.games.length
     assert.equals matchdays[0].games[0], group1.get("games").objectAt 0
-    assert.equals matchdays[0].games[1], group2.get("games").objectAt 0 
-    assert.equals matchdays[1].games[0], group1.get("games").objectAt 1 
-    assert.equals matchdays[1].games[1], group2.get("games").objectAt 1 
+    assert.equals matchdays[0].games[1], group2.get("games").objectAt 0
+    assert.equals matchdays[1].games[0], group1.get("games").objectAt 1
+    assert.equals matchdays[1].games[1], group2.get("games").objectAt 1
     assert.equals matchdays[2].games[0], group1.get("games").objectAt 2
     assert.equals matchdays[2].games[1], group2.get("games").objectAt 2
-    assert.equals matchdays[0].matchDay, 1 
-    assert.equals matchdays[1].matchDay, 2 
+    assert.equals matchdays[0].matchDay, 1
+    assert.equals matchdays[1].matchDay, 2
     assert.equals matchdays[2].matchDay, 3
 
   "Spieltage werden gezippt bei unterschiedlicher Spieltagszahl": ->
@@ -50,9 +50,9 @@ buster.testCase "Group Round Model"
     assert.equals 1, matchdays.objectAt(2).games.length
 
     assert.equals matchdays[0].games[0], group1.get("games").objectAt 0
-    assert.equals matchdays[0].games[1], group2.get("games").objectAt 0 
-    assert.equals matchdays[1].games[0], group2.get("games").objectAt 1 
+    assert.equals matchdays[0].games[1], group2.get("games").objectAt 0
+    assert.equals matchdays[1].games[0], group2.get("games").objectAt 1
     assert.equals matchdays[2].games[0], group2.get("games").objectAt 2
-    assert.equals matchdays[0].matchDay, 1 
-    assert.equals matchdays[1].matchDay, 2 
+    assert.equals matchdays[0].matchDay, 1
+    assert.equals matchdays[1].matchDay, 2
     assert.equals matchdays[2].matchDay, 3
