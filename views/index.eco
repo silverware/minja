@@ -26,32 +26,12 @@ minja<br /><br />
 
 <img width="400px" style="float: right" src="/img/screenshots/screen1.png" />
 
--->
 
-<div class="features clearfix">
-  <div class="feature">
-    <div><h5><i class="icon-search"></i> Turniere suchen</h5>
 
-    Hier kannst Du nach Turnieren in deiner Umgebung oder im ganzen Land suchen. Egal nach welcher Sportart du suchst - hier wirst du sicher fündig.</div>
-  </div>
-
-  <div class="feature">
-    <div>
-    <h5><i class="icon-bullhorn"></i> Turniere veröffentlichen</h5>
-    Du hast ein eigenes Turnier und willst es im Web bekannt machen? Mit unserem Publishing-Modul kannst Du Dein Turnier auf Facebook, Twitter, youtube und überall sonst im Internet verbreiten.
-    </div>
-  </div>
-
-  <div class="feature">
-    <div>
-    <h5><i class="icon-table"></i> Turniere verwalten</h5>
-    Als Organisator muss man Spieler, Mannschaften und alles andere im Griff haben. Der Tournament Manager unterstützt dich mit vielen Features wie Turnierbaumerstellung, Spielplänen, Urkundendruck und Bildergallerie dabei. Alles live und online.
-    </div>
-  </div>
-</div>
 <div class="featureHeader" style="margin-top: 50px">
 <div class="subtitle"><%= @i18n.createIn3Minutes %></div>
   </div>
+-->
 <div style="text-align: center">
 <iframe style="z-index: -1" width="640" wmode="Opaque" height="360" src="http://www.youtube.com/embed/d5s_5jGTyD8?rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>
 </div>
