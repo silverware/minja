@@ -19,7 +19,7 @@ App.templates.game = """
       {{else}}
         {{game.player1.name}}
       {{/if}}
-    </td>  
+    </td>
     {{#each g in game.games}}
 
       <td class="tableCellBottom">
@@ -52,7 +52,7 @@ App.GameView = App.RoundItemView.extend
   didInsertElement: ->
     @_super()
     if not App.editable
-      @$('#gamesTable').addClass 'blurringBox'  
+      @$('#gamesTable').addClass 'blurringBox'
       @$('#gamesTable').click => @openGameView()
 
   openGameView: ->

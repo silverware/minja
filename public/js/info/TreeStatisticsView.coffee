@@ -9,7 +9,8 @@ define [
     init: ({data, i18n}) ->
       App.PersistanceManager.build data
       App.i18n = i18n
-      App.Tournament
+      App.set "rootElement", "#treeDashboardBox"
+      App.initialize()
       view = Em.View.create
         template: Ember.Handlebars.compile """
           {{#each round in App.Tournament}}

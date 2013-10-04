@@ -23,4 +23,4 @@ App.KoRound = App.Round.extend
     @items.pushObject game
 
 
-    
+

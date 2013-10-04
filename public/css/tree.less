@@ -31,7 +31,7 @@ Tournament
   position: relative;
   padding-top: 35px;
   padding-bottom: 10px;
-  min-height: 130px;
+  min-height: 110px;
 }
 
 // Level 1 of round tree
@@ -129,6 +129,10 @@ Tournament
 
 }
 
+
+/* ---------------------------------------------------------------------
+Group Stage
+----------------------------------------------------------------------*/
 .group {
   width: 250px;
   max-width: 250px;
@@ -233,7 +237,15 @@ Tournament
   overflow: hidden;
 }
 
+/* ---------------------------------------------------------------------
+Common
+----------------------------------------------------------------------*/
 
+table tbody td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /*********************************
 Toolbar

@@ -4,7 +4,7 @@ define ->
       unless obj instanceof Ember.Object
         throw TypeError "argument is not an Ember Object"
       jsonObj = {}
-      emberObj = Ember.ArrayController.create()
+      emberObj = Ember.ArrayController.create(content: [])
       for key, value of obj
         continue if Ember.typeOf(value) == 'function'
         continue if emberObj[key] != undefined

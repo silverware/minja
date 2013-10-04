@@ -10,9 +10,9 @@ App.PersistanceManager =
     serialized
 
   extend: (target, source) ->
-    target[name] = method for name, method of source
+    target.set(name, method) for name, method of source
     for key, value of target
-      if typeof value == 'string'
+      if typeof value is 'string'
         if value is 'false'
           target.set key, false
         if value is 'true'
