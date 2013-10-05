@@ -20,26 +20,31 @@ App.PersistanceManager =
         if value is 'null'
           target.set key, null
 
+  removeValue: (obj, key) ->
+    value = _.pick obj, key
+    delete obj[key]
+    value[key]
+
   build: (obj) ->
     if not obj?.rounds then return
-    for round in obj.rounds
+    tournamentRounds = @removeValue obj, "rounds"
+    gameAttributes = @removeValue obj, "gameAttributes"
+    @extend App.Tournament, obj
+    for round in tournamentRounds
       if round.isGroupRound
         gRound = App.Tournament.addGroupRound()
-        for item in round.items
-          gRound.items.pushObject @buildGroup item, gRound
-        delete round.items
+        roundItems = @removeValue round, "items"
         @extend gRound, round
+        for item in roundItems
+          gRound.items.pushObject @buildGroup item, gRound
       if round.isKoRound
         kRound = App.Tournament.addKoRound()
-        for item in round.items
-          kRound.items.pushObject @buildRoundGame item, kRound
-        delete round.items
+        roundItems = @removeValue round, "items"
         @extend kRound, round
-    delete obj.rounds
-    for gameAttribute in obj.gameAttributes
+        for item in roundItems
+          kRound.items.pushObject @buildRoundGame item, kRound
+    for gameAttribute in gameAttributes
       App.Tournament.gameAttributes.pushObject App.GameAttribute.create gameAttribute
-    delete obj.gameAttributes
-    @extend App.Tournament, obj
 
   buildGroup: (obj, round) ->
     group = App.Group.create

@@ -81,7 +81,9 @@
           <% if @navigation: %>
             <div style="display: inline-block">
               <% if @tournament.isOwner: %>
-              <a href="/<%= @tournament.id %>/logo"><!--<small><i class="icon-edit-sign"></i>&nbsp;Edit Tournament Logo</small></a>-->
+                <a style="margin-left: 6px" href="/<%= @tournament.id %>/logo">
+                  <small><i class="icon-picture"></i>&nbsp;<%= @i18n.settings.editLogo %></small>
+                </a>
               <% end %>
               <a class="home" href="/<%= @tournament.identifier %>">
                 <% if @tournament.hasLogo: %>

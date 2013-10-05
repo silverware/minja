@@ -1,22 +1,36 @@
 <div id="content">
-  <h1>Upload custom Logo</h1>
-    <div id="logocontainer"
+  <h1><%= @i18n.settings.uploadLogo %></h1>
+
+  <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+  <div id="logocontainer"
          <% if !@hasLogo: %>style="display:none" <% end %>
     >
-      <img id="logo" style="max-width:200px" src="/<%= @tournament.id %>/logo/display" alt="your tournament logo" />
+    <div class="control-group">
+    <label class="control-label"></label>
+    <div class="control-group">
+      <div class="controls">
+        <img id="logo" style="max-width:200px" src="/<%= @tournament.id %>/logo/display" alt="your tournament logo" />
+       </div>
     </div>
-  <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+    </div>
+
+
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="logofile"><%= @i18n.settings.choosePicture %></label>
     <div class="control-group">
       <div class="controls">
         <input type="file" name="logo" accept="image/* " size="50" id="logofile" />
        </div>
     </div>
+    </div>
+
 
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-primary btn" name="save" value="1" type="submit" style="margin-right: 20px">Save Logo</button>
+        <button class="btn btn-primary btn" name="save" value="1" type="submit" style="margin-right: 20px"><%= @i18n.settings.saveLogo %></button>
         <% if @hasLogo: %>
-          <button class="btn btn-danger btn" name="delete" value="1" type="submit" style="margin-right: 20px">Delete Logo</button>
+          <button class="btn btn-danger btn" name="delete" value="1" type="submit" style="margin-right: 20px"><%= @i18n.settings.deleteLogo %></button>
         <% end  %>
       </div>
     </div>
@@ -26,7 +40,7 @@
 </div>
 <script>
   function handleFileSelect(evt) {
-    var files = evt.target.files; 
+    var files = evt.target.files;
     for (var i = 0, f; f = files[i]; i++) {
       if (!f.type.match('image.*')) {
         continue;

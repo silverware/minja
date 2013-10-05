@@ -48,10 +48,12 @@ module.exports =
 
 
   infoAlert:
-    members: "Manage the participants of your tournament."
+    members: """
+      Manage the participants of your tournament. Feel free to add additional attributes e.g., "email", "member count"
+    """
     info: "Manage the basis data of your tournament."
     tree: """
-      Dies ist die Sahneschnitte. Erstell dir den kompletten Turnierbaum, trage Ergebnisse ein und veröffentliche diesen.
+      Create an entire tournament bracket. Combine group stages and knockout phases in any order.
     """
     gallery: "Stelle bis zu 20 Bilder hinein."
 
@@ -133,6 +135,11 @@ module.exports =
     createPublicName: "apply public name"
     theme: "Theme"
     selectTheme: "Select predefined theme"
+    saveLogo: "Save Logo"
+    deleteLogo: "Delete Logo"
+    uploadLogo: "Upload custom Logo"
+    choosePicture: "Choose image"
+    editLogo: "Edit Tournament Logo"
 
 ################################ MEMBERS ########################################################
   members:
@@ -155,7 +162,7 @@ module.exports =
     group: "Group"
     previousRound: "Previous Round"
     deletePreviousRound: "Remove Previous Round"
-    deletePreviousRoundInfo: "Wenn du die letzte Runde löscht, gehen alle Spiele und Ergebnisse dieser Runde verloren. Bist du dir sicher?"
+    deletePreviousRoundInfo: "Removing the last round will cause a deletion of its results. Are you sure?"
     game: "Game"
     games: "Games"
     gamesPerMatch: "Games/Match"
@@ -195,8 +202,8 @@ module.exports =
     textfield: "Textfield"
     date: "Date"
     number: "Number"
-    roundItemNotAddable: "Die Gruppe/Das Spiel kann nicht hinzugefügt werden, weil bereits eine nächste Turnierrunde existiert."
-    lastRoundNotValid: "Die letzte Runde ist nocht nicht valide. Entweder sind noch nicht alle Qualifikanten der vorletzten Runde übernommen worden, oder die Anzahl der Qualifikanten der letzten Runde ist kleiner als zwei."
+    roundItemNotAddable: "The Group/Game is not addable, since a next tournament round already exists."
+    lastRoundNotValid: "Last round is not valid."
     gamesParallel: "Games Parallel"
     deleteGameAttribute: "Delete Attribute"
     reallyDeleteGameAttribute: "Wenn Sie das Merkmal löschen, werden alle dazugehörigen Spiele-Werte gelöscht. Wirklich löschen?"

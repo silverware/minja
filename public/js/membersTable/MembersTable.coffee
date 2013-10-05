@@ -1,10 +1,10 @@
 define [
   "utils/DynamicTextField"
-  "utils/DynamicTypeaheadTextField"
+  "utils/TypeaheadTextField"
   "utils/EmberSerializer"
   "utils/Popup"
   "text!./members_table_template.hbs"
-], (DynamicTextField, DynamicTypeaheadTextField, Serializer, Popup, template) ->
+], (DynamicTextField, TypeaheadTextField, Serializer, Popup, template) ->
 
   Em.Application.extend
 
@@ -23,10 +23,10 @@ define [
       @view.appendTo("#membersTable")
 
     data: ->
-      data = 
+      data =
         members: Serializer.emberObjArrToJsonDataArr @members
         membersAttributes: Serializer.emberObjArrToJsonDataArr @attributes
-    
+
     addMember: ->
       @members.pushObject @Member.create()
 
@@ -42,7 +42,7 @@ define [
         actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
         bodyUrl: "/tournament/members/attribute_popup"
 
-      
+
 
     # ------------------------ MODELS ----------------------------#
 
@@ -50,7 +50,7 @@ define [
       name: ""
       remove: ->
         MembersTable.members.removeObject @
-    
+
 
     Attribute: Em.Object.extend
       name: ""
@@ -80,13 +80,13 @@ define [
       didInsertElement: ->
         @$().fadeIn 1000
         @$("[rel='tooltip']").tooltip()
-    
+
 
     MemberValueView: Ember.View.extend
       tagName: 'td'
       member: null
       attribute: null
-      DynamicTypeaheadTextField: DynamicTypeaheadTextField
+      TypeaheadTextField: TypeaheadTextField
 
       memberValue: ((key, value) ->
         # GETTER

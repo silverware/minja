@@ -16,3 +16,6 @@ App.NumberField = Ember.TextField.extend
   onlyNumber: (input) ->
     input.replace(/[^\d]/g, "") if input
 
+
+
+

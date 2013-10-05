@@ -15,7 +15,7 @@
     <tr>
       <td style="height: 39px;">
         {{#if MembersTable.editable}}
-          {{view view.DynamicTextField valueBinding="member.name" classNames="required" placeholder="Name" minWidth="40" editableBinding="MembersTable.editable"}}
+          {{view Em.TextField valueBinding="member.name" classNames="required m" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
@@ -32,11 +32,15 @@
             {{/if}}
           {{/if}}
           {{#if attribute.isTextfield}}
-           {{view view.DynamicTypeaheadTextField nameBinding="attribute.id" valueBinding="view.memberValue" editableBinding="MembersTable.editable"}}
+            {{#if MembersTable.editable}}
+              {{view view.TypeaheadTextField classNames="m" nameBinding="attribute.id" valueBinding="view.memberValue"}}
+            {{else}}
+              {{view.memberValue}}
+            {{/if}}
           {{/if}}
         {{/view}}
       {{/each}}
-    
+
       <td width="50px">
         {{#if MembersTable.editable}}
           <i class="icon-remove" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>

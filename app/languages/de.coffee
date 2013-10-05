@@ -50,7 +50,7 @@ module.exports =
     members: "Verwalte die Teilnehmer/Mannschaften deines Turnieres. Füge ihnen flexibel Attribute hinzu."
     info: "Verwalte die Basisdaten und Einstellungen deines Turnieres hier"
     tree: """
-      Erstell dir den kompletten Turnierbaum und pflege die Ergebnisse deines Turnieres ein.
+      Erstelle Dir einen kompletten Turnierbaum und pflege die Ergebnisse Deines Turniers ein. Gruppenphasen und KO-Runden lassen sich beliebig kombinieren.
       """
     gallery: "Stelle bis zu 20 Bilder in die turniereigene Bildergallerie ein."
 
@@ -127,6 +127,11 @@ module.exports =
     createPublicName: "Name anlegen"
     theme: "Theme"
     selectTheme: "vordefiniertes Theme auswählen"
+    saveLogo: "Logo speichern"
+    deleteLogo: "Logo löschen"
+    uploadLogo: "Turnierlogo hochladen"
+    choosePicture: "Bild auswählen"
+    editLogo: "Turnier Logo bearbeiten"
 
   ################################ MEMBERS ########################################################
   members:

@@ -79,14 +79,11 @@ concatAndBuild = (files, target) ->
       if err
         return
       exec "coffee --join #{target} --compile #{tempFile}.coffee", (err, stdout, stderr) ->
+        fs.unlink "#{tempFile}.coffee", (err) -> if err then return
         if err
           console.log 'Error while compiling'
           console.log err
-        else
-          fs.unlink "#{tempFile}.coffee", (err) ->
-            if err
-              return
-          console.log 'Done.'
+        console.log 'Done.'
 
 task 'build-tree', 'Build tree-app', ->
   concatAndBuild treeFiles, "public/js/tree.js"
