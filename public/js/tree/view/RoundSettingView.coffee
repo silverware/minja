@@ -25,7 +25,7 @@ App.templates.roundSetting = """
         <label class="control-label">{{App.i18n.games}}</label>
         <div class="controls">
             {{view App.NumberField classNames="xxs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
-        </div> 
+        </div>
       </div>
   </form>
   <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>

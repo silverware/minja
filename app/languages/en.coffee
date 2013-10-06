@@ -186,6 +186,7 @@ module.exports =
     timePerGame: "Minutes/Game"
     gameAttributes: "Game Attributes"
     addAttribute: "Add Attribute"
+    timeCalculation: "Time Calculation"
     close: "Close"
     shuffle: "Shuffle"
     shufflePlayers: "Shuffle players"
