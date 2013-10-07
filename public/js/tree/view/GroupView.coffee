@@ -30,7 +30,7 @@ App.templates.group = """
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.
       </td>
-      <td class="tableCell reallyNoPadding" style="max-width: 150px">
+      <td class="tableCell" style="max-width: 150px">
         {{#if App.editable}}
           {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
         {{else}}

@@ -5,7 +5,7 @@ App.templates.gamesDetail = """
         <span class="carousel-control left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
           <i class="icon-arrow-left"></i>
         </span>
-        
+
         {{view.roundItem.name}}
 
         <span class="carousel-control right noPrint" title="next" {{action "navigateToRight" target="view"}}>
@@ -46,21 +46,21 @@ App.templates.gamesDetail = """
           {{else}}
             <tr class="player">
           {{/if}}
-          <td class="tableCell">
+          <td>
             {{rank}}.
           </td>
-          <td class="tableCell reallyNoPadding">
+          <td>
             {{#if App.editable}}
               {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
             {{else}}
               <div class="input-padding">{{player.name}}</div>
             {{/if}}
           </td>
-          <td class="tableCell">{{games}}</td>
-          <td class="tableCell">{{goals}}</td>
-          <td class="tableCell">{{goalsAgainst}}</td>
-          <td class="tableCell">{{difference}}</td>
-          <td class="tableCell"><b>{{points}}</b></td>
+          <td>{{games}}</td>
+          <td>{{goals}}</td>
+          <td>{{goalsAgainst}}</td>
+          <td>{{difference}}</td>
+          <td><b>{{points}}</b></td>
         </tr>
         {{/each}}
       </tbody>
