@@ -115,14 +115,13 @@ task 'test', 'Run Mocha tests', ->
   options = [
     '--compilers'
     'coffee:coffee-script'
+    '--colors'
     '-R'
     'spec'
   ]
   try
     cmd = which.sync 'mocha'
-    spec = spawn cmd, options
-    spec.stdout.pipe process.stdout
-    spec.stderr.pipe process.stderr
+    spec = spawn cmd, options, stdio: 'inherit'
     spec.on 'exit', (status) -> callback?() if status is 0
   catch err
     log err.message, red
@@ -134,7 +133,5 @@ task 'dev', 'start dev env', ->
   platform = process.platform
   invoke 'build-tree'
   cmd = which.sync 'nodemon'
-  nodemon = spawn cmd, ["--exec", "coffee", "server.coffee", "-w", "app", "-w", "app/controllers", "-w", "app/dao", "-w", "app/services",  "-w", "app/helper",  "-w", "app/languages", ""]
-  nodemon.stdout.pipe process.stdout
-  nodemon.stderr.pipe process.stderr
+  nodemon = spawn cmd, ["--exec", "coffee", "server.coffee", "-w", "app", "-w", "app/controllers", "-w", "app/dao", "-w", "app/services",  "-w", "app/helper",  "-w", "app/languages", ""], stdio: 'inherit'
   log 'Watching js files and running server', green
