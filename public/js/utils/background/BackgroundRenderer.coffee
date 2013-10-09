@@ -128,9 +128,6 @@ define ->
 
   init = ->
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
-    if is_chrome
-      return
-
 
     ###--------------------------------------------------------------------------
      init height map
@@ -140,7 +137,7 @@ define ->
     heightCamera = new THREE.Camera()
     heightCamera.position.z = 1
     heightUniforms =
-      time: 
+      time:
         type: "f"
         value: time
 
@@ -176,7 +173,7 @@ define ->
     $("body").append canvas
 
     uniforms =
-      heightmap: 
+      heightmap:
         type: 't'
         value: heightRenderTarget
 
@@ -184,7 +181,7 @@ define ->
       uniforms: uniforms
       vertexShader: VERTEX_SHADER
       fragmentShader: FRAGMENT_SHADER
-    
+
     geometry = new THREE.PlaneGeometry 1000, 300, 100, 100
     plane = new THREE.Mesh geometry, shaderMaterial
     plane.rotation.x = -Math.PI / 2
@@ -204,7 +201,7 @@ define ->
   animate = ->
     requestAnimationFrame animate
     render()
-  
+
   width = ->
     $(window).width()
 

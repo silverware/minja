@@ -28,7 +28,7 @@ App.Tournament = Em.ArrayController.extend
         _previousRound: @lastRound()
 
   addRound: ->
-    if @content.length == 0 || @lastRound().validate()
+    if @content.length is 0 or @lastRound().validate()
       @lastRound()?.set "editable", false
       return true
     else

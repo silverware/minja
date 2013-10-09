@@ -30,6 +30,7 @@ App.PersistanceManager =
     tournamentRounds = @removeValue obj, "rounds"
     gameAttributes = @removeValue obj, "gameAttributes"
     @extend App.Tournament, obj
+    App.Tournament.clear()
     for round in tournamentRounds
       if round.isGroupRound
         gRound = App.Tournament.addGroupRound()
