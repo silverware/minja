@@ -10,9 +10,7 @@
       <meta content="<%= @tournament.info.name %>" property="og:title" />
       <meta content="<%= @tournament.info.description %>" property="og:description" />
     <% else: %>
-      <meta name="description">
-        Manage Your tournaments. Administrate the basic data, add participants and use an entirely flexible bracket generator.
-      </meta>
+      <meta name="description" content="Manage Your tournaments. Administrate the basic data, add participants and use an entirely flexible bracket generator." />
     <% end %>
 
     <meta charset="utf-8">
