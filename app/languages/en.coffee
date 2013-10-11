@@ -49,11 +49,11 @@ module.exports =
 
   infoAlert:
     members: """
-      Manage the participants of your tournament. Feel free to add additional attributes e.g., "email", "member count"
+      Manage the participants of Your tournament. Feel free to add additional attributes e.g., "email", "member count"
     """
-    info: "Manage the basis data of your tournament."
+    info: "Manage basic data of Your tournament."
     tree: """
-      Create an entire tournament bracket. Combine group stages and knockout phases in any order.
+      Create a complete tournament bracket. Combine group stages and knockout phases in any order.
     """
     gallery: "Stelle bis zu 20 Bilder hinein."
 
@@ -125,9 +125,9 @@ module.exports =
     contentText: "Text in Contentarea"
     footer: "Footer"
     footerText: "Text in Footer"
-    publicNameInfo: "The public tournament is used to find the tournament over URL address."
+    publicNameInfo: "The public tournament name is used to build a tiny url. That provides short aliases for redirection of long URLs."
     publicNameExample: "Example: http://minja.net/minjacup"
-    publicNameHint: "The public tournament name is not editable. It is recommended to use a name which contains the tournament name."
+    publicNameHint: "The public tournament name is not editable after creation. It should contain your tournament name."
     publicNameRestriction: "The name is restricted as follows:"
     publicNameRestriction1: "at least 5 characters"
     publicNameRestriction2: "letters, numbers and dots are allowed"
@@ -162,7 +162,7 @@ module.exports =
     group: "Group"
     previousRound: "Previous Round"
     deletePreviousRound: "Remove Previous Round"
-    deletePreviousRoundInfo: "Removing the last round will cause a deletion of its results. Are you sure?"
+    deletePreviousRoundInfo: "Remove previous round will cause a deletion of its game results. Are you sure?"
     game: "Game"
     games: "Games"
     gamesPerMatch: "Games/Match"
@@ -190,7 +190,7 @@ module.exports =
     close: "Close"
     shuffle: "Shuffle"
     shufflePlayers: "Shuffle players"
-    shufflePlayersDescription: "If you shuffle the players, all games of this round will be reverted"
+    shufflePlayersDescription: "Shuffle players will reset the game results of this round."
     home: "Home"
     guest: "Guest"
     matchday: "Matchday"
@@ -207,7 +207,7 @@ module.exports =
     lastRoundNotValid: "Last round is not valid."
     gamesParallel: "Games Parallel"
     deleteGameAttribute: "Delete Attribute"
-    reallyDeleteGameAttribute: "Wenn Sie das Merkmal löschen, werden alle dazugehörigen Spiele-Werte gelöscht. Wirklich löschen?"
+    reallyDeleteGameAttribute: "If You delete this attribute, all game values refering to that attribute will be deleted too. Are you sure?"
 
   ################################ POPUP ########################################################
   popup:
