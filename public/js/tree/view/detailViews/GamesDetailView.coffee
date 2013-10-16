@@ -33,9 +33,11 @@ App.templates.gamesDetail = """
           <th>{{App.i18n.rank}}</th>
           <th>Name</th>
           <th>{{App.i18n.games}}</th>
-          <th>{{App.i18n.goals}}</th>
-          <th>{{App.i18n.goalsAgainst}}</th>
-          <th>{{App.i18n.difference}}</th>
+          <th style="cursor: help" title="{{unbound App.i18n.wins}}">{{App.i18n.winsShort}}</th>
+          <th style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
+          <th style="cursor: help" title="{{unbound App.i18n.defeats}}">{{App.i18n.defeatsShort}}</th>
+          <th style="cursor: help" title="{{unbound App.i18n.goals}}">{{App.i18n.goalsShort}}</th>
+          <th style="cursor: help" title="{{unbound App.i18n.difference}}">+/-</th>
           <th>{{App.i18n.points}}</th>
         </tr>
       </thead>
@@ -57,8 +59,10 @@ App.templates.gamesDetail = """
             {{/if}}
           </td>
           <td>{{games}}</td>
-          <td>{{goals}}</td>
-          <td>{{goalsAgainst}}</td>
+          <td>{{wins}}</td>
+          <td>{{draws}}</td>
+          <td>{{defeats}}</td>
+          <td>{{goals}} : {{goalsAgainst}}</td>
           <td>{{difference}}</td>
           <td><b>{{points}}</b></td>
         </tr>
