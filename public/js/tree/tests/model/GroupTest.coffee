@@ -79,7 +79,11 @@ buster.testCase "Group Model",
     assert.equals players[0], zweiter.player
     assert.equals players[2], dritter.player
 
-    ###
+
+    assert.equals 2, erster.games
+    assert.equals 2, zweiter.games
+    assert.equals 2, dritter.games
+
     assert.equals 4, erster.points
     assert.equals 3, zweiter.points
     assert.equals 1, dritter.points
@@ -92,10 +96,13 @@ buster.testCase "Group Model",
     assert.equals 2, zweiter.goalsAgainst
     assert.equals 4, dritter.goalsAgainst
 
+    assert.equals 1, erster.difference
+    assert.equals 0, zweiter.difference
+    assert.equals -1, dritter.difference
+
     assert.equals 1, erster.rank
     assert.equals 2, zweiter.rank
     assert.equals 3, dritter.rank
-    ###
 
   "Tabelle berechnen, Sortierung bei Differenzgleichheit": ->
     players = @fillPlayers 3

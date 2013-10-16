@@ -13,7 +13,7 @@ App.Game = Em.Object.extend
   goals1: (->
     return parseInt(@get("result1")) if @get("result1")
     return null
-  ).property("result1")  
+  ).property("result1")
 
   goals2: (->
     return parseInt(@get("result2")) if @get("result2")
@@ -36,11 +36,11 @@ App.Game = Em.Object.extend
 
 
   getPoints: (playerNumber) ->
-    winPoints = parseInt App.Tournament.get("winPoints")
-    drawPoints = parseInt App.Tournament.get("drawPoints")
+    winPoints = parseInt App.Tournament.get "winPoints"
+    drawPoints = parseInt App.Tournament.get "drawPoints"
     if not @get("isCompleted") then return 0
 
-    player = @get("player#{playerNumber}")
+    player = @get "player#{playerNumber}"
     winner = @getWinner()
 
     if not winner then return drawPoints

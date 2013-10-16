@@ -7,7 +7,7 @@ App.Group = App.RoundItem.extend
     qualifiers = []
     if !@isCompleted()
       for i in [1..@get("qualifierCount")]
-        index = i - 1 
+        index = i - 1
         if !@dummies[index]
           @dummies[index] = App.Dummy.create()
         @dummies[index].set "name", i + ". " + @get("name")
@@ -40,23 +40,19 @@ App.Group = App.RoundItem.extend
       @get("players").pushObject App.Player.create
         name: "Player"
     @onPlayerSizeChange()
- 
+
   table: (->
     players = []
     # befüllen
     for index in [0..@get("players.length") - 1]
       player = @get("players").objectAt index
-      stats = @calculateStats player
-      players.pushObject Em.Object.create
+      p = Em.Object.create
         player: player
         index: index
-        games: stats.games
-        points: stats.points
-        goals: stats.goals
-        goalsAgainst: stats.goalsAgainst
-        difference: stats.difference
+      p.setProperties @calculateStats player
+      players.pushObject p
 
-    # Sortieren 
+    # Sortieren
     sorted = players.sort (a, b) ->
       greater = b.points - a.points
       if greater == 0
@@ -65,13 +61,13 @@ App.Group = App.RoundItem.extend
           greater = b.goals - a.goals
       return greater
 
-    # Rang festlegen  
+    # Rang festlegen
     for index in [1..sorted.length]
       sorted[index - 1].rank = index
       sorted[index - 1].qualified = index <= @get("qualifierCount")
 
     sorted
-  ).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.winPoints", "App.Tournament.drawPoints")   
+  ).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.winPoints", "App.Tournament.drawPoints")
 
   generateGames: (->
     @_round.set "changes", @_round.get("changes") + 1
@@ -91,7 +87,7 @@ App.Group = App.RoundItem.extend
   isCompleted: ->
     @get("games").every (game) -> game.get("isCompleted")
 
-  increaseQualifierCount: -> 
+  increaseQualifierCount: ->
     if @get("players.length") > @qualifierCount
       @set "qualifierCount", @qualifierCount + 1
 
@@ -107,21 +103,34 @@ App.Group = App.RoundItem.extend
     stats =
       points: 0
       games: 0
+      wins: 0
+      draws: 0
+      defeats: 0
       goals: 0
       goalsAgainst: 0
       difference: 0
 
     @games.forEach (game) ->
+      if not game.get("isCompleted") then return
+      if player isnt game.get("player1") and player isnt game.get("player2") then return
+
+      stats.games += 1
+      winner = game.getWinner()
+      if player is winner
+        stats.wins += 1
+      else if not winner
+        stats.draws += 1
+      else
+        stats.defeats += 1
+
       if player is game.get("player1")
         stats.goals += game.get("goals1")
         stats.goalsAgainst += game.get("goals2")
         stats.points += game.getPoints 1
-        stats.games += 1 if game.get("isCompleted")
       if player is game.get("player2")
-          stats.goals += game.get("goals2")
-          stats.goalsAgainst += game.get("goals1")
-          stats.points += game.getPoints 2
-          stats.games += 1 if game.get("isCompleted")
+        stats.goals += game.get("goals2")
+        stats.goalsAgainst += game.get("goals1")
+        stats.points += game.getPoints 2
     stats.difference = stats.goals - stats.goalsAgainst
     stats
 
