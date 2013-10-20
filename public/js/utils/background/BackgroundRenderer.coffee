@@ -170,6 +170,7 @@ define ->
       antialias: false
     renderer.setSize width(), height()
     canvas = $(renderer.domElement).hide().fadeIn(6000)
+    canvas.addClass "noPrint"
     $("body").append canvas
 
     uniforms =

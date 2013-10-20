@@ -1,8 +1,21 @@
 .noPrint {
-  display:none;
+  display:none !important;
+}
+
+body {
+  font-size: 11px;
+  color: black;
 }
 
 .detailView {
+
+  .detailContent {
+    padding: 10px;
+    margin: 0;
+    height: none;
+    overflow: hidden;
+  }
+
   position: relative;
   background-color: none;
   border-radius: none;
@@ -11,8 +24,25 @@
   left: 0;
   right: 0;
   top: 0;
+  margin: 0px;
+  padding: 0px;
+  color: black !important;
+  background-color: white;
+  legend {
+    color: black !important;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+  }
 
+  .roundSeperator {
+    page-break-before: always;
+  }
   .roundItemTitle {
-    top: 20px;
+    position: relative;
+    right: 0;
+    left: 0;
+    top: 0;
+
   }
 }
