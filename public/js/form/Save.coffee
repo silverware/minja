@@ -49,7 +49,6 @@ class Save
     # Extension-Point
 
   startLoading: ->
-    console.debug @form.find("button")
     @form.find("button").attr('disabled', 'disabled')
     $(".ajaxLoader").fadeIn("fast")
 

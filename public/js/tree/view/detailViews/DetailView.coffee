@@ -12,7 +12,7 @@ App.DetailView = Em.View.extend
     @_super()
     @$("rel[tooltip]").tooltip()
     @initExitableView()
-    $("#tournament").fadeOut 'medium', =>
+    $(".tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow'
     #@$(".detailContent").mCustomScrollbar()
 
@@ -27,7 +27,7 @@ App.DetailView = Em.View.extend
 
   destroy: ->
     @$().fadeOut 'medium', =>
-      $("#tournament").fadeIn 'slow', =>
-    
+      $(".tournament").fadeIn 'slow', =>
+
     @destroyElement()
     @_super()

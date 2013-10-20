@@ -44,7 +44,7 @@ saveButton = (label, disabled) ->
     <div class="control-group">
       <div class="controls">
         <button class="btn btn-primary" type="submit" #{disabled}>#{label}</button>
-        <img class="ajaxLoader" src="/img/ajax-loader.gif" />
+        <i class="icon-spinner icon-spin ajaxLoader"></i>
         <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
       </div>
     </div>
@@ -117,7 +117,7 @@ formFor = (obj, yield_to, action="") ->
         <div class="control-group">
           <div class="controls">
             <button class="btn btn-primary" type="submit">#{label}</button>
-            <img class="ajaxLoader" src="/img/ajax-loader.gif" />
+            <i class="icon-spinner icon-spin ajaxLoader"></i>
             <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
           </div>
         </div>

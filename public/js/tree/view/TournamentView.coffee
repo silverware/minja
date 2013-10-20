@@ -14,7 +14,7 @@ App.templates.tournament = """
         <span>
           <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="icon-cog"></i>{{App.i18n.settings}}</button>
           <button type="submit" class="btn btn-primary">{{App.i18n.save}}</button>
-          <img class="ajaxLoader" src="/img/ajax-loader.gif" />
+          <i class="icon-spinner icon-spin ajaxLoader"></i>
           <span class="successIcon"><i class="icon-ok"></i> {{App.i18n.saved}}</span>
         </span>
       </form>
