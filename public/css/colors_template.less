@@ -1,10 +1,12 @@
+@grainUrl: "../img/grain.png";
+
 .backgroundGradient(@color) {
-  background: -moz-linear-gradient(top, @color 0%, @light 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color), color-stop(100%,@light)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  @color 0%,@light 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  @color 0%,@light 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  @color 0%,@light 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  @color 0%,@light 100%); /* W3C */
+  background-image: url(@grainUrl), -moz-linear-gradient(top, @color 0%, @light 100%); /* FF3.6+ */
+  background-image: url(@grainUrl), -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color), color-stop(100%,@light)); /* Chrome,Safari4+ */
+  background-image: url(@grainUrl), -webkit-linear-gradient(top,  @color 0%,@light 100%); /* Chrome10+,Safari5.1+ */
+  background-image: url(@grainUrl), -o-linear-gradient(top,  @color 0%,@light 100%); /* Opera 11.10+ */
+  background-image: url(@grainUrl), -ms-linear-gradient(top,  @color 0%,@light 100%); /* IE10+ */
+  background-image: url(@grainUrl), linear-gradient(to bottom,  @color 0%,@light 100%); /* W3C */
 }
 
 
@@ -32,7 +34,6 @@
 body:before {
   .backgroundGradient(@dark);
   background-position: center top;
-  background-repeat: repeat-y;
   position: fixed;
   width: 100%;
   height: 300px;

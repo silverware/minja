@@ -1,5 +1,4 @@
 App.templates.tournament = """
-<div id="tournament">
   {{#each round in App.Tournament}}
     {{#if round.isGroupRound}}
       {{view App.GroupRoundView roundBinding="round"}}
@@ -45,13 +44,15 @@ App.templates.tournament = """
   {{/if}}
 
   <div style="clear: both"></div>
-</div>
 """
 
 App.TournamentView = Em.View.extend
+  classNames: ["tournament hide"]
   template: Ember.Handlebars.compile App.templates.tournament
 
   didInsertElement: ->
+    $(".loading-screen").fadeOut 'medium', =>
+      @$().fadeIn 'slow'
     new Save
       form: $ "form"
       data: App.persist

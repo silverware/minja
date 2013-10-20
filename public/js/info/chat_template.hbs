@@ -9,7 +9,7 @@
   <pre style="margin-bottom: 20px">{{message.text}}</pre>
 {{/each}}
 
-<center><img id="chatLoader" src="/img/ajax-loader.gif" /></center>
+<center><i id="chatLoader" class="icon-spinner icon-spin"></i></center>
 <button id="showMore" class="hide btn btn-inverse" {{action "loadMessages" target="Chat"}}>
   {{Chat.i18n.showMore}}
 </button>
