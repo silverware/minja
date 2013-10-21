@@ -20,7 +20,6 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
-    #@$().addClass "round-#{@round.koRoundsBefore()}" if @round.isKoRound
     @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
     @$("#openDetailView").tooltip
@@ -29,7 +28,7 @@ App.RoundView = Em.View.extend
   roundMargin: (->
     roundIndex = 0
     round = @round
-    while round and round.koRoundsBefore() > 0
+    while round and round.isKoRound and round.koRoundsBefore() > 0
       prevRound = round._previousRound
       isValid = (round.items.length / prevRound.items.length) is 0.5
       if not isValid then break
