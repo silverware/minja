@@ -12,6 +12,7 @@ App.RoundView = Em.View.extend
   """
 
   classNames: ["round"]
+  classNameBindings: ["roundMargin"]
   round: null
 
   onRoundItemsChanged: (->
@@ -19,11 +20,23 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
-    @$().addClass "round-#{@round.koRoundsBefore()}" if @round.isKoRound
+    #@$().addClass "round-#{@round.koRoundsBefore()}" if @round.isKoRound
     @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
     @$("#openDetailView").tooltip
       title: "#{App.i18n.schedule} #{App.i18n.detailView}"
+
+  roundMargin: (->
+    roundIndex = 0
+    round = @round
+    while round and round.koRoundsBefore() > 0
+      prevRound = round._previousRound
+      isValid = (round.items.length / prevRound.items.length) is 0.5
+      if not isValid then break
+      roundIndex++
+      round = prevRound
+    "round-#{roundIndex}"
+  ).property("round.items.@each")
 
   toggleRound: ->
     if @$("#toggleRound").attr("class") == "icon-chevron-down"
