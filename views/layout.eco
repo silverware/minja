@@ -92,11 +92,11 @@
                 <% if @tournament.hasLogo: %>
                   <img style="max-height: 48px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
                 <% else: %>
-                  <i class="icon-sitemap rotated"></i>
+                  <img style="max-height: 48px" src="/img/logo5.png" />
                 <% end %>
 
               </a>
-              <a class="home" style="padding: 5px 0 0 10px" href="/<%= @tournament.identifier %>">
+              <a class="home" style="padding: 5px 0 0 5px" href="/<%= @tournament.identifier %>">
                 </i><%= @tournament.info.name %>
               </a>
             </div>
