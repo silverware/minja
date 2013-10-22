@@ -16,6 +16,9 @@ App.templates.tournamentPopup = """
     <label class="control-label" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
     <div class="controls">
       {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
+
+      <i rel="popover" ref="points-per-draw" class="hide icon-info-sign" data-title="{{unbound App.i18n.pointsPerDraw}}"></i>
+      <div id="points-per-draw" class="hide">{{App.i18n.pointsPerDrawHelp}}</div>
     </div>
   </div>
   <h5>{{App.i18n.koRound}}</h5>
@@ -94,6 +97,14 @@ App.templates.tournamentPopup = """
 App.TournamentSettings = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
   tournament: null
+
+  didInsertElement: ->
+    @_super()
+    @$("[rel=popover]").popover
+        html: true
+        trigger: "hover"
+        content: ->
+          $("##{$(@).attr('ref')}").html()
 
   addAttribute: ->
     App.Tournament.gameAttributes.pushObject App.GameAttribute.create()

@@ -11,9 +11,9 @@ App.DetailView = Em.View.extend
   didInsertElement: ->
     @_super()
     @$("rel[tooltip]").tooltip()
-    @initExitableView()
     $(".tournament").fadeOut 'medium', =>
-      @$().fadeIn 'slow'
+      @$().fadeIn 'slow', =>
+        @initExitableView()
     #@$(".detailContent").mCustomScrollbar()
 
   init: ->
@@ -21,8 +21,12 @@ App.DetailView = Em.View.extend
     @appendTo "body"
 
   initExitableView: ->
-    #$(document).keydown (e) =>
-    #  if e.keyCode is 27 then @destroy()
+    $(document).bind "keydown", (e) =>
+      if e.keyCode is 27 and @
+        e.preventDefault()
+        $(document).unbind "keydown"
+        @destroy()
+
     @$('.closeButton').click => @destroy()
 
   destroy: ->
