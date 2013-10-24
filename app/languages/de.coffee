@@ -149,6 +149,8 @@ module.exports =
     navName: "Turnierbaum"
     groupStage: "Gruppenphase"
     koRound: "KO-Runde"
+    addKoRound: "neue KO-Runde hinzufügen"
+    addGroupStage: "neue Gruppenphase hinzufügen"
     previousRound: "Letzte Runde"
     deletePreviousRound: "Letzte Runde löschen"
     deletePreviousRoundInfo: "Wenn du die letzte Runde löscht, gehen alle Spiele und Ergebnisse dieser Runde verloren. Bist du dir sicher?"

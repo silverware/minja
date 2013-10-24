@@ -158,7 +158,9 @@ module.exports =
   tree:
     navName: "Bracket"
     groupStage: "Group Stage"
-    koRound: "KO Round"
+    koRound: "Knockout Phase"
+    addKoRound: "Add Knockout Phase"
+    addGroupStage: "Add Group Stage"
     group: "Group"
     previousRound: "Previous Round"
     deletePreviousRound: "Remove Previous Round"

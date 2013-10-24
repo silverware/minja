@@ -35,9 +35,9 @@ App.templates.tournament = """
     <div class="roundSetting box">
       <span  id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
       <div class="actions">
-        <button class="btn btn-inverse" {{action "addKoRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.koRound}}</button>
-        <button class="btn btn-inverse" {{action "addGroupRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.groupStage}}</button>
-        <button class="btn btn-danger" {{action "removeLastRound" target="view"}}><i class="icon-trash"></i>{{App.i18n.previousRound}}</button>
+        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.koRound}}</button>
+        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.Tournament"}}><i class="icon-plus-sign"></i>{{App.i18n.groupStage}}</button>
+        <button class="btn btn-danger deletePrevRound" {{action "removeLastRound" target="view"}}><i class="icon-trash"></i>{{App.i18n.previousRound}}</button>
       </div>
     </div>
     </div>
@@ -56,6 +56,13 @@ App.TournamentView = Em.View.extend
     new Save
       form: $ "form"
       data: App.persist
+
+    @$(".deletePrevRound").tooltip
+      title: App.i18n.deletePreviousRound
+    @$(".addGroupStage").tooltip
+      title: App.i18n.addGroupStage
+    @$(".addKoRound").tooltip
+      title: App.i18n.addKoRound
 
     if App.editable
       @$(".tournamentActions .roundName").click =>

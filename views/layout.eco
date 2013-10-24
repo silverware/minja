@@ -102,7 +102,7 @@
             </div>
           <% else: %>
             <div style="display: inline-block">
-              <a class="home" href="/"><img src="/img/logo4.png" width="210px" /></a>
+              <a class="home" href="/"><img src="/img/logo4.png" width="210px" style="width: 210px" /></a>
             </div>
           <% end %>
         <ul class="nav">

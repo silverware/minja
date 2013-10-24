@@ -17,9 +17,9 @@ class TournamentEditController extends ControllerBase
   before: (req, res, next) ->
     if config.isProduction
       if not req.isAuthenticated()
-        res.redirect "/login?next=#{req.path}"
+        res.redirect "/user/login?next=#{req.path}"
         return
-      if req.user.id != req.tournament.user_id
+      if req.user.id isnt req.tournament.user_id
         res.redirect "/"
     next()
 
@@ -66,7 +66,6 @@ class TournamentEditController extends ControllerBase
       editable: true
 
   "POST:/:tid/gallery/edit": (req, res) =>
-    console.log req.body
     req.body = {} if req.body.empty?
     tournamentDao.merge req.tournament.id, gallery: req.body, (result) ->
       tournamentDao.mergeImages result, req.tournament._attachments, req.body, req.files, ->
@@ -106,7 +105,6 @@ class TournamentEditController extends ControllerBase
       hasLogo: hasLogo
 
   "POST:/:tid/logo": (req, res) =>
-
     if req.param("save")
       hasLogo = req.tournament.hasLogo == true
       logoFile = req.files['logo']

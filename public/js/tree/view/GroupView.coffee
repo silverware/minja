@@ -16,7 +16,7 @@ App.templates.group = """
 
   <table class="table noPadding box" id="groupTable">
     <col width="20px" />
-    <col width="150px" />
+    <col width="130px" />
     <col width="40px" />
     <col width="20px" />
   <tbody>
@@ -30,7 +30,7 @@ App.templates.group = """
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.
       </td>
-      <td class="tableCell" style="max-width: 150px">
+      <td class="tableCell" style="max-width: 130px">
         {{#if App.editable}}
           {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
         {{else}}
@@ -45,9 +45,9 @@ App.templates.group = """
 </table>
 
   <table class="table noPadding groupGames box hide" id="groupGames">
-  <col width="90px" />
+  <col width="80px" />
   <col width="8px" />
-  <col width="90px" />
+  <col width="80px" />
   <col width="50px" />
 {{#each view.games}}
   {{#if newRound}}

@@ -14,7 +14,9 @@ App.DetailView = Em.View.extend
     $(".tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow', =>
         @initExitableView()
-    #@$(".detailContent").mCustomScrollbar()
+      @$(".detailContent").mCustomScrollbar
+        scrollInertia: 10
+
 
   init: ->
     @_super()
