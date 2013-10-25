@@ -177,7 +177,7 @@ module.exports =
     player: "Player"
     edit: "Edit"
     qualifiers: "Qualifiers"
-    schedule: "Game Schedule"
+    schedule: "Schedule"
     table: "Standings"
     detailView: "Detail View"
     settings: "Settings"
