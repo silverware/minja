@@ -2,9 +2,6 @@ treeOrderedFiles = require './public/js/tree/Order'
 
 module.exports = (grunt) ->
 
-  clientDir =  "client/"
-  publicDir = "server/public/"
-
   grunt.initConfig
 
     watch:
