@@ -10,7 +10,7 @@ module.exports = (grunt) ->
     watch:
       coffee:
         files: ['public/js/tree/**/*.coffee']
-        tasks: 'coffee'
+        tasks: 'compile'
 
     coffee:
       tree:
@@ -23,6 +23,12 @@ module.exports = (grunt) ->
           join: true
         files:
           'public/js/tree-test.js': ['public/js/tree/tests/*.coffee']
+      all:
+        expand: true
+        cwd: 'public/js'
+        src: ['**/*.coffee']
+        dest: 'public/js'
+        ext: '.js'
 
     uglify:
       js:
@@ -36,7 +42,7 @@ module.exports = (grunt) ->
     nodemon:
       server:
         options:
-          file: 'app'
+          file: 'server.coffee'
           watchedExtensions: ['coffee']
           watchedFolders: ['app']
           debug: true
@@ -57,15 +63,14 @@ module.exports = (grunt) ->
 
     clean:
       dist: [
-        'public/js/tree.js'
-        'public/js/tree-test.js'
+        'public/js/**/*.js'
       ]
 
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
-  grunt.registerTask 'compile', ['clean', 'coffee']
-  grunt.registerTask 'compileDist', ['compile', 'uglify']
+  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'coffee:treeTests']
+  grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify']
   grunt.registerTask 'default', ['compile', 'concurrent']
   grunt.registerTask 'test', 'mochaTest'
 

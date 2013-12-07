@@ -29,7 +29,7 @@ if config.isDevelopment
   app.get /^(\/[^\s]+)\.js$/, (req, res) ->
     res.header 'Content-Type', 'application/x-javascript'
     cs = fs.readFileSync "#{config.CLIENT_DIR}/#{req.params[0]}.coffee", "utf8"
-    js = coffee.compile cs, bare: true
+    js = coffee.compile cs
     res.send js
 
 # needed to provide compiled less files

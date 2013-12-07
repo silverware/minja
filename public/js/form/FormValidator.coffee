@@ -1,4 +1,4 @@
-class FormValidator
+window.FormValidator = class FormValidator
 
   constructor: (@form) ->
     @form.validate
@@ -9,7 +9,7 @@ class FormValidator
       rules:
         publicName:
           required: true
-          remote: 
+          remote:
             url: "/tournament/checkPublicName"
             data:
               publicName: -> $("#inputPublicName").val()

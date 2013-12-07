@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/font-awesome.css" rel="stylesheet">
-    <link href="/js/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
+    <link href="/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
 
     <% if @tournament?.colors?.content: %>
       <!--<link href="/css/colors.css" rel="stylesheet">-->
@@ -29,21 +29,21 @@
     <% end %>
     <link href="/css/style.css" rel="stylesheet">
 
-    <script src="/js/lib/require-jquery.js"></script>
+    <script src="/lib/require-jquery.js"></script>
     <script src="/js/require-config.js"></script>
-    <script src="/js/lib/bootstrap.js"></script>
-    <script src="/js/lib/chosen.jquery.min.js"></script>
-    <script src="/js/lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.js"></script>
-    <script src="/js/lib/jquery.validate.min.js"></script>
-    <script src="/js/lib/handlebars-1.0.0.js"></script>
+    <script src="/lib/bootstrap.js"></script>
+    <script src="/lib/chosen.jquery.min.js"></script>
+    <script src="/lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="/lib/jquery.validate.min.js"></script>
+    <script src="/lib/handlebars-1.0.0.js"></script>
     <% if @isProduction: %>
-    <script src="/js/lib/ember-1.0.0.min.js"></script>
+    <script src="/lib/ember-1.0.0.min.js"></script>
     <% else: %>
-    <script src="/js/lib/ember-1.0.0.js"></script>
+    <script src="/lib/ember-1.0.0.js"></script>
     <% end %>
-    <script src="/js/lib/underscore.js"></script>
-    <script src="/js/lib/moment.min.js"></script>
-    <script src="/js/lib/three.js"></script>
+    <script src="/lib/underscore.js"></script>
+    <script src="/lib/moment.min.js"></script>
+    <script src="/lib/three.js"></script>
 
     <script src="/js/form/FormValidator.js"></script>
     <script src="/js/form/Save.js"></script>

@@ -1,4 +1,4 @@
-class Save
+window.Save = class Save
 
   ajax: true
   url: null
