@@ -33,6 +33,7 @@ treeFiles  = [
   'utils/Utils.coffee'
   'utils/PersistanceManager.coffee'
   'utils/RoundRobin.coffee'
+  'utils/BracketLineDrawer.coffee'
 ]
 
 module.exports = treeFiles.map (name) -> root + name

@@ -171,6 +171,7 @@ define ->
     renderer.setSize width(), height()
     canvas = $(renderer.domElement).hide().fadeIn(6000)
     canvas.addClass "noPrint"
+    canvas.attr "id", "backgroundCanvas"
     $("body").append canvas
 
     uniforms =
