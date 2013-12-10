@@ -29,5 +29,5 @@
       });
   });
 </script>
-<div
 
+<canvas id="bracketLines" ></canvas>
