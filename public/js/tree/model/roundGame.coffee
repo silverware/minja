@@ -4,11 +4,11 @@ App.RoundGame = App.RoundItem.extend
   player1: (->
     @get("players").objectAt 0
     ).property("players.@each")
-  
+
   player2: (->
     @get("players").objectAt 1
     ).property("players.@each")
-  
+
   winnerDummy: (->
     @get("dummies").objectAt 0
   ).property("dummies.@each")
@@ -26,7 +26,7 @@ App.RoundGame = App.RoundItem.extend
       @replace @get("player2"), winner
       return [winner]
   ).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.Tournament.qualifierModus")
-  
+
   init: ->
     @_super()
     @dummies.pushObject App.Dummy.create()
@@ -40,7 +40,7 @@ App.RoundGame = App.RoundItem.extend
         goalsPlayer2 += game.getGoalsByPlayer @get("player2")
       if goalsPlayer2 > goalsPlayer1
         return @get("player2")
-      else 
+      else
         return @get("player1")
 
     else if App.Tournament.get('qualifierModus') is App.qualifierModi.BEST_OF.id
@@ -69,10 +69,15 @@ App.RoundGame = App.RoundItem.extend
         player2: p2
   ).observes("_round.matchesPerGame", "players.@each")
 
+  getId: ->
+    #koRoundsBefore@get("_round.items").indexOf @
 
 
 
-    
+
+
+
+
 
 
 
