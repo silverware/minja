@@ -68,16 +68,3 @@ App.RoundGame = App.RoundItem.extend
         player1: p1
         player2: p2
   ).observes("_round.matchesPerGame", "players.@each")
-
-  getId: ->
-    #koRoundsBefore@get("_round.items").indexOf @
-
-
-
-
-
-
-
-
-
-

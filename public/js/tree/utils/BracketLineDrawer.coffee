@@ -2,9 +2,10 @@ App.BracketLineDrawer =
   ctx: null
 
   init: ->
+    return
     c = document.getElementById "bracketLines"
     @ctx = c.getContext "2d"
-    #@update()
+    @update()
 
   update: ->
     App.Tournament.forEach (round) =>
@@ -20,15 +21,23 @@ App.BracketLineDrawer =
 
 
   draw: (from, to) ->
-    console.debug from, to
-    console.debug from.get("_id")
-    $("#gamesTable").forEach (n) ->
-      console.debug n
+    posFrom = @getCenterPos $("." + from.get('itemId'))
+    posTo = @getCenterPos $("." + to.get('itemId'))
+
+    midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
+
     @ctx.beginPath()
-    @ctx.moveTo 20,20
-    @ctx.lineTo 20,100
-    @ctx.lineTo 70,100
+    @ctx.moveTo posFrom.x, posFrom.y
+    @ctx.lineTo posFrom.x, midY
+    @ctx.lineTo posTo.x, midY
+    @ctx.lineTo posTo.x, posTo.y
     @ctx.stroke()
+
+  getCenterPos: (element) ->
+    pos =
+      x: element.offset().left + element.width() / 2
+      y: element.offset().top + element.height() / 2
+
 
   updateSize: ->
 

@@ -72,9 +72,6 @@ buster.testCase "Group Model",
     zweiter = @group.get("table").objectAt(1)
     dritter = @group.get("table").objectAt(2)
 
-    console.debug erster
-    console.debug zweiter
-    console.debug dritter
     assert.equals players[1], erster.player
     assert.equals players[0], zweiter.player
     assert.equals players[2], dritter.player

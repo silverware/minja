@@ -48,4 +48,9 @@ App.RoundItem = Em.Object.extend
     @get("completedGames.length")
   ).property("completedGames")
 
+  itemId: (->
+    itemIndex = @get('_round.items').indexOf @
+    roundIndex = App.Tournament.indexOf @get('_round')
+    roundIndex + '-' + itemIndex
+  ).property('_round.items.@each')
 

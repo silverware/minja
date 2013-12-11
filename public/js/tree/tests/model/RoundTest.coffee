@@ -8,7 +8,6 @@ buster.testCase "Round Model",
     getPlayers = (games) ->
       players = []
       games.forEach (game) ->
-        console.debug game
         for player in game.get("players")
           players.pushObject player
       players
@@ -34,7 +33,7 @@ buster.testCase "Round Model",
     App.Tournament.pushObject App.KoRound.create
       _previousRound: App.Tournament.lastRound()
     round = App.Tournament.lastRound()
-    console.debug App.Tournament
+
     assert.equals 1, round.koRoundsBefore()
     App.Tournament.pushObject App.KoRound.create
       _previousRound: App.Tournament.lastRound()

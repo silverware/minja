@@ -52,9 +52,8 @@ App.TournamentView = Em.View.extend
 
   didInsertElement: ->
     $(".loading-screen").fadeOut 'medium', =>
-      @$().fadeIn 'slow'
-
-    App.BracketLineDrawer.init()
+      @$().fadeIn 'slow', ->
+        App.BracketLineDrawer.init()
 
     new Save
       form: $ "form"

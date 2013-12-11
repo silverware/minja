@@ -19,7 +19,7 @@ module.exports = (grunt) ->
         options:
           join: true
         files:
-          'public/js/tree-test.js': ['public/js/tree/tests/*.coffee']
+          'public/js/tree-test.js': ['public/js/tree/tests/**/*.coffee']
       all:
         expand: true
         cwd: 'public/js'

@@ -10,7 +10,7 @@ App.templates.game = """
   {{/if}}
 </span>
 
-<table class="box" cellpadding="2" width="100%" id="gamesTable">
+<table class="box {{unbound game.itemId}}" cellpadding="2" width="100%" id="gamesTable">
   <tr>
     <td style="max-width: 110px; width: 110px" class="player tableCellBottom" title="{{unbound game.player1.name}}">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
@@ -62,11 +62,15 @@ App.GameView = App.RoundItemView.extend
 
   round: (->
     @game?._round
-    ).property("game._round")
+  ).property("game._round")
 
   gameIndex: (->
-      @game._round.items.indexOf(@game)
-    ).property("game._round.items.@each")
+    @game._round.items.indexOf @game
+  ).property("game._round.items.@each")
+
+  itemId: (->
+    @game.getId()
+  ).property("game._round.items.@each")
 
 
 App.GameResultView = Em.View.extend

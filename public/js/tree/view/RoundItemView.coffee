@@ -2,11 +2,11 @@ App.RoundItemView = Em.View.extend
 
   # To Override
   round: null
-  
+
   onEditableChanged: (->
     @draggable @get("round").get("isEditable")
   ).observes("round.isEditable")
-  
+
   didInsertElement: ->
     @$(".icon-search").tooltip
       title: App.i18n.detailView
@@ -21,8 +21,8 @@ App.RoundItemView = Em.View.extend
   draggable: (enable) ->
     @$('.player').draggable if enable then "enable" else "disable"
     @$(".player").css "cursor", if enable then "move" else "default"
-  
-  initDraggable: ->  
+
+  initDraggable: ->
     @$(".player").draggable
       containment: @get('parentView').$()
       helper: "clone"
@@ -40,4 +40,4 @@ App.RoundItemView = Em.View.extend
         @get("round").swapPlayers(
           [parseInt(dragElement.find("#itemIndex")[0].textContent), parseInt(dragElement.find("#playerIndex")[0].textContent)],
           [parseInt(dropElement.find("#itemIndex")[0].textContent), parseInt(dropElement.find("#playerIndex")[0].textContent)])
-          
+

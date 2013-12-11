@@ -30,4 +30,4 @@
   });
 </script>
 
-<canvas id="bracketLines" ></canvas>
+<!--<canvas id="bracketLines" width="1000" height="1000"></canvas>-->
