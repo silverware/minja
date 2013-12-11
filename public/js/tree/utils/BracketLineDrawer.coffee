@@ -1,10 +1,11 @@
 App.BracketLineDrawer =
   ctx: null
+  canvas: null
 
   init: ->
     return
-    c = document.getElementById "bracketLines"
-    @ctx = c.getContext "2d"
+    @canvas = document.getElementById "bracketLines"
+    @ctx = @canvas.getContext "2d"
     @update()
 
   update: ->
@@ -21,8 +22,8 @@ App.BracketLineDrawer =
 
 
   draw: (from, to) ->
-    posFrom = @getCenterPos $("." + from.get('itemId'))
-    posTo = @getCenterPos $("." + to.get('itemId'))
+    posFrom = @centerPos $("." + from.get('itemId'))
+    posTo = @centerPos $("." + to.get('itemId'))
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
 
@@ -33,11 +34,13 @@ App.BracketLineDrawer =
     @ctx.lineTo posTo.x, posTo.y
     @ctx.stroke()
 
-  getCenterPos: (element) ->
+  centerPos: (element) ->
     pos =
       x: element.offset().left + element.width() / 2
       y: element.offset().top + element.height() / 2
 
+  clear: ->
+    @ctx.clearRect 0, 0, @canvas.width, @canvas.height
 
   updateSize: ->
 
