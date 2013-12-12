@@ -79,7 +79,7 @@ App.TournamentView = Em.View.extend
 
   updateBrackets: (->
     App.BracketLineDrawer.update()
-  ).observes("App.Tournament.@each.items.@each.games.@each.players.@each")
+  ).observes("App.Tournament.@each.items.@each.games.@each.players")
 
   removeLastRound: ->
     App.Popup.showQuestion

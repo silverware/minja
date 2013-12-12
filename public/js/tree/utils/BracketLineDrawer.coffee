@@ -1,16 +1,23 @@
 App.BracketLineDrawer =
   ctx: null
   canvas: null
+  lastChange: new Date().getTime()
+  active: true
 
   init: ->
-    return
+    #return
     @canvas = document.getElementById "bracketLines"
     @ctx = @canvas.getContext "2d"
-    window.addEventListener 'resize', @update.bind @, false
+    window.addEventListener 'resize', (=> @update()), false
+    $("#treeWrapper").bind "DOMSubtreeModified", => setTimeout (=> @update()), 10
     @update()
 
   update: ->
     if not @ctx then return
+    if not @active then return
+    if new Date().getTime() - @lastChange < 500 then return
+    @lastChange = new Date().getTime()
+    console.debug "huhu"
     @clear()
     @resize()
     App.Tournament.forEach (round) =>
@@ -31,7 +38,7 @@ App.BracketLineDrawer =
     posTo = @centerPos $("." + to.get('itemId'))
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
-
+    @ctx.lineWidth = 2
     @ctx.beginPath()
     @ctx.moveTo posFrom.x, posFrom.y
     @ctx.lineTo posFrom.x, midY
@@ -55,6 +62,15 @@ App.BracketLineDrawer =
 
   height: ->
     $('body').height()
+
+
+  activate: ->
+    @active = true
+    @update()
+
+  deactivate: ->
+    @active = false
+    @clear()
 
   clear: ->
     if not @ctx then return

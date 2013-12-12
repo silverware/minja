@@ -10,18 +10,17 @@ App.DetailView = Em.View.extend
 
   didInsertElement: ->
     @_super()
-    App.BracketLineDrawer.clear()
     @$("rel[tooltip]").tooltip()
     $(".tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow', =>
         @initExitableView()
-      @$(".detailContent").mCustomScrollbar
-        scrollInertia: 10
+      #@$(".detailContent").mCustomScrollbar scrollInertia: 10
 
 
   init: ->
     @_super()
     @appendTo "body"
+    App.BracketLineDrawer.deactivate()
 
   initExitableView: ->
     $(document).bind "keydown", (e) =>
@@ -35,7 +34,7 @@ App.DetailView = Em.View.extend
   destroy: ->
     @$().fadeOut 'medium', =>
       $(".tournament").fadeIn 'slow', =>
-      App.BracketLineDrawer.update()
+      App.BracketLineDrawer.activate()
 
     @destroyElement()
     @_super()
