@@ -23,6 +23,7 @@
         editable: <%= @editable %>,
         i18n: <%- @json @i18n.tree %>,
         isOwner: <%= @tournament.isOwner %>,
+        colors: <%- @json @colors %>,
         data: <%- @json @tournament.tree %>,
         sport: <%- @json @sport %>,
         initialMembers: <%- @json @tournament.members %>
@@ -30,4 +31,4 @@
   });
 </script>
 
-<!--<canvas id="bracketLines" width="1000" height="1000"></canvas>-->
+

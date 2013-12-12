@@ -77,6 +77,10 @@ App.TournamentView = Em.View.extend
     App.TournamentSettings.create
       tournament: App.Tournament
 
+  updateBrackets: (->
+    App.BracketLineDrawer.update()
+  ).observes("App.Tournament.@each.items.@each.games.@each.players.@each")
+
   removeLastRound: ->
     App.Popup.showQuestion
       title: App.i18n.deletePreviousRound

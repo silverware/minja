@@ -6,9 +6,13 @@ App.BracketLineDrawer =
     return
     @canvas = document.getElementById "bracketLines"
     @ctx = @canvas.getContext "2d"
+    window.addEventListener 'resize', @update.bind @, false
     @update()
 
   update: ->
+    if not @ctx then return
+    @clear()
+    @resize()
     App.Tournament.forEach (round) =>
       prev = round._previousRound
       if not prev then return
@@ -21,8 +25,9 @@ App.BracketLineDrawer =
             @draw gameCurrent, gamePrev
 
 
+
   draw: (from, to) ->
-    posFrom = @centerPos $("." + from.get('itemId'))
+    posFrom = @centerPos $("." + from.get('itemId')), true
     posTo = @centerPos $("." + to.get('itemId'))
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
@@ -32,16 +37,26 @@ App.BracketLineDrawer =
     @ctx.lineTo posFrom.x, midY
     @ctx.lineTo posTo.x, midY
     @ctx.lineTo posTo.x, posTo.y
+
+    @ctx.strokeStyle = App.colors.content
     @ctx.stroke()
 
-  centerPos: (element) ->
+  centerPos: (element, top) ->
     pos =
       x: element.offset().left + element.width() / 2
-      y: element.offset().top + element.height() / 2
+      y: element.offset().top + if not top then element.height() else 0
+
+  resize: ->
+    @canvas.width = @width()
+    @canvas.height = @height()
+
+  width: ->
+    $(window).width()
+
+  height: ->
+    $('body').height()
 
   clear: ->
-    @ctx.clearRect 0, 0, @canvas.width, @canvas.height
-
-  updateSize: ->
-
+    if not @ctx then return
+    @ctx.clearRect 0, 0, @width(), @height()
 

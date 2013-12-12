@@ -106,6 +106,7 @@ class TournamentController extends ControllerBase
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/tree",
       editable: false
+      colors: colorService.getColors req.tournament
 
   "/:tid/dashboard": (req, res) =>
     res.render "#{@viewPrefix}/dashboard"
@@ -165,5 +166,9 @@ class TournamentController extends ControllerBase
         if err then throw err
         res.header "Content-type", "text/css"
         res.send css
+
+  "/:tid/colors": (req, res) =>
+    colors = colorService.getColors req.tournament
+    res.send colors
 
 module.exports = new TournamentController()

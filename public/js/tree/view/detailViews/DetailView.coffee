@@ -10,6 +10,7 @@ App.DetailView = Em.View.extend
 
   didInsertElement: ->
     @_super()
+    App.BracketLineDrawer.clear()
     @$("rel[tooltip]").tooltip()
     $(".tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow', =>
@@ -34,6 +35,7 @@ App.DetailView = Em.View.extend
   destroy: ->
     @$().fadeOut 'medium', =>
       $(".tournament").fadeIn 'slow', =>
+      App.BracketLineDrawer.update()
 
     @destroyElement()
     @_super()

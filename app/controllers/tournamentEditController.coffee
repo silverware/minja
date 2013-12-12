@@ -54,6 +54,7 @@ class TournamentEditController extends ControllerBase
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/tree",
       editable: true
+      colors: colorService.getColors req.tournament
 
   "POST:/:tid/bracket/edit": (req, res) =>
     tournamentDao.merge req.tournament.id, tree: req.body, ->
