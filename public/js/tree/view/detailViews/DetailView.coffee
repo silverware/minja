@@ -11,6 +11,7 @@ App.DetailView = Em.View.extend
   didInsertElement: ->
     @_super()
     @$("rel[tooltip]").tooltip()
+    App.BracketLineDrawer.hide()
     $(".tournament").fadeOut 'medium', =>
       @$().fadeIn 'slow', =>
         @initExitableView()
@@ -20,7 +21,6 @@ App.DetailView = Em.View.extend
   init: ->
     @_super()
     @appendTo "body"
-    App.BracketLineDrawer.deactivate()
 
   initExitableView: ->
     $(document).bind "keydown", (e) =>
@@ -34,7 +34,7 @@ App.DetailView = Em.View.extend
   destroy: ->
     @$().fadeOut 'medium', =>
       $(".tournament").fadeIn 'slow', =>
-      App.BracketLineDrawer.activate()
+      App.BracketLineDrawer.show()
 
     @destroyElement()
     @_super()

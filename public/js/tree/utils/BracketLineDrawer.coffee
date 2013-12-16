@@ -2,7 +2,6 @@ App.BracketLineDrawer =
   ctx: null
   canvas: null
   lastChange: new Date().getTime()
-  active: true
 
   init: ->
     #return
@@ -14,10 +13,8 @@ App.BracketLineDrawer =
 
   update: ->
     if not @ctx then return
-    if not @active then return
     if new Date().getTime() - @lastChange < 500 then return
     @lastChange = new Date().getTime()
-    console.debug "huhu"
     @clear()
     @resize()
     App.Tournament.forEach (round) =>
@@ -38,7 +35,7 @@ App.BracketLineDrawer =
     posTo = @centerPos $("." + to.get('itemId'))
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
-    @ctx.lineWidth = 2
+    @ctx.lineWidth = 1
     @ctx.beginPath()
     @ctx.moveTo posFrom.x, posFrom.y
     @ctx.lineTo posFrom.x, midY
@@ -64,13 +61,11 @@ App.BracketLineDrawer =
     $('body').height()
 
 
-  activate: ->
-    @active = true
-    @update()
+  show: ->
+    $(@canvas).fadeIn 'slow'
 
-  deactivate: ->
-    @active = false
-    @clear()
+  hide: ->
+    $(@canvas).fadeOut 'medium'
 
   clear: ->
     if not @ctx then return
