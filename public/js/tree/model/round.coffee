@@ -2,9 +2,7 @@ App.Round = Em.Object.extend
   name: ""
   items: []
   _previousRound: null
-  isNotValid: false
   editable: true
-  changes: 0
   matchesPerGame: 1
 
   games: (->

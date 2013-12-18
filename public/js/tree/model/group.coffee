@@ -70,7 +70,6 @@ App.Group = App.RoundItem.extend
   ).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.winPoints", "App.Tournament.drawPoints")
 
   generateGames: (->
-    @_round.set "changes", @_round.get("changes") + 1
     @games.clear()
     games = App.RoundRobin.generateGames @get("players")
 
