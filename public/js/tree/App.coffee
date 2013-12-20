@@ -1,6 +1,8 @@
 window.App = Em.Application.create
   i18n: {}
   templates: {}
+  persist: ->
+    App.PersistanceManager.persist App.Tournament
 
 $.fn.createTree = (settings) ->
   view = App.TournamentView.create()
@@ -25,6 +27,7 @@ $.fn.createTree = (settings) ->
       $("#tournamentAddRemoveActions").click()), 50
 
   view.appendTo @
+  App.Observer.snapshot()
 
   # Übernimmt die Teilnehmer aus der Teilnehmerliste
   if not settings.data and settings.initialMembers
@@ -34,5 +37,4 @@ $.fn.createTree = (settings) ->
         name: member.name
       App.initialMembers.pushObject player
 
-  App.persist = ->
-    App.PersistanceManager.persist App.Tournament
+

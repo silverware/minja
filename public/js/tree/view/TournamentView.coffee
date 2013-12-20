@@ -58,6 +58,8 @@ App.TournamentView = Em.View.extend
     new Save
       form: $ "form"
       data: App.persist
+      onSave: ->
+        App.Observer.snapshot()
 
     @$(".deletePrevRound").tooltip
       title: App.i18n.deletePreviousRound
@@ -76,10 +78,6 @@ App.TournamentView = Em.View.extend
   edit: ->
     App.TournamentSettings.create
       tournament: App.Tournament
-
-  updateBrackets: (->
-    App.BracketLineDrawer.update()
-  ).observes("App.Tournament.@each.items.@each.games.@each.players")
 
   removeLastRound: ->
     App.Popup.showQuestion

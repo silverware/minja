@@ -31,6 +31,7 @@ treeFiles  = [
   'view/detailViews/helper/GameAttributePrefillPopup.coffee'
   'view/TournamentSettings.coffee'
   'utils/Utils.coffee'
+  'utils/Observer.coffee'
   'utils/PersistanceManager.coffee'
   'utils/RoundRobin.coffee'
   'utils/BracketLineDrawer.coffee'
