@@ -218,6 +218,7 @@ module.exports =
     gamesParallel: "Games Parallel"
     deleteGameAttribute: "Delete Attribute"
     reallyDeleteGameAttribute: "If You delete this attribute, all game values refering to that attribute will be deleted too. Are you sure?"
+    unsavedChanges: "You have unsaved changes!"
 
   ################################ POPUP ########################################################
   popup:

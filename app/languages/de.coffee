@@ -209,6 +209,7 @@ module.exports =
     gamesParallel: "Spiele parallel"
     deleteGameAttribute: "Merkmal löschen"
     reallyDeleteGameAttribute: "Wenn Sie das Merkmal löschen, werden alle dazugehörigen Werte der Spiele gelöscht. Wirklich löschen?"
+    unsavedChanges: "Es liegen noch ungespeicherte Änderungen vor!"
 
   ################################ POPUP ########################################################
   popup:

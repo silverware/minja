@@ -1,6 +1,6 @@
 window.onbeforeunload = ->
   if App.editable and App.Observer.hasChanges()
-    return "You have unsaved changes!"
+    return App.i18n.unsavedChanges
 
 App.Observer =
 
