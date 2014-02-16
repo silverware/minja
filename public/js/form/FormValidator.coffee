@@ -12,13 +12,13 @@ window.FormValidator = class FormValidator
           remote:
             url: "/tournament/checkPublicName"
             data:
-              publicName: -> $("#inputPublicName").val()
+              publicName: => @form.find(".publicName").val()
 
   validate: ->
     @form.valid()
 
 $.extend $.validator.messages,
-  required: "Dieses Feld ist erforderlich.",
+  required: "This field is required.",
   remote: "Please fix this field.",
   email: "Please enter a valid email address.",
   url: "Please enter a valid URL.",

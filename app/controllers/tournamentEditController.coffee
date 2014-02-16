@@ -93,11 +93,13 @@ class TournamentEditController extends ControllerBase
 
   "POST:/:tid/savePublicName": (req, res) =>
     publicName = req.param("publicName").toLowerCase()
-    if req.tournament.publicName then res.send 500
+    # if req.tournament.publicName then res.send 500
     tournamentDao.checkPublicName publicName, (isAvailable) ->
       if isAvailable
         tournamentDao.merge req.tournament.id, publicName: publicName, ->
           res.send "ok"
+      else
+        res.send 500
 
   "/:tid/logo": (req, res) =>
     hasLogo = req.tournament.hasLogo == true

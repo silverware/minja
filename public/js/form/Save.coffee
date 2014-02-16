@@ -10,8 +10,8 @@ window.Save = class Save
 
   init: ->
     @form.submit (event) =>
-
       @formValidator = new FormValidator @form
+
       if @formValidator.validate()
 
         if @ajax
@@ -32,7 +32,8 @@ window.Save = class Save
               error: @_onError
           else
             data = @form.serialize()
-            $.post @url, data, @_onSave
+            xhr = $.post @url, data, @_onSave
+            xhr.fail @_onError
       else
         event.preventDefault()
 
@@ -43,25 +44,28 @@ window.Save = class Save
     @onSave response
 
   _onError: =>
-    window.location.href = "/error"
+    # window.location.href = "/error"
+    @form.find("button").removeAttr('disabled')
+    @stopLoading()
+
 
   onSave: =>
     # Extension-Point
 
   startLoading: ->
     @form.find("button").attr('disabled', 'disabled')
-    $(".ajaxLoader").fadeIn("fast")
+    @form.find(".ajaxLoader").fadeIn("fast")
 
   stopLoading: ->
     @showSuccess false
-    $(".ajaxLoader").hide()
+    @form.find(".ajaxLoader").hide()
 
   showSuccess: (show) ->
     if not show
-      $(".successIcon").hide()
+      @form.find(".successIcon").hide()
     else
-      $(".successIcon").fadeIn("medium")
-      setTimeout((-> $(".successIcon").fadeOut("fast")), 5000)
+      @form.find(".successIcon").fadeIn("medium")
+      setTimeout((=> @form.find(".successIcon").fadeOut("fast")), 5000)
 
   enableSaveButton: =>
-    setTimeout (=>@form.find("button").removeAttr "disabled"), 1000
+    setTimeout (=> @form.find("button").removeAttr "disabled"), 1000

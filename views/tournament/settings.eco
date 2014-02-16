@@ -4,6 +4,11 @@ require(["settings/Settings"], function(Settings) {
     i18n: <%- @json @i18n.settings %>,
     tournamentId: "<%= @tournament.id %>"
   });
+  window.publicNameSave = new Save({
+    url: "/<%= @tournament.id %>/savePublicName",
+    form: $($("form")[1])
+  });
+
 });
 </script>
 
@@ -44,19 +49,20 @@ require(["settings/Settings"], function(Settings) {
       <legend><%= @i18n.settings.publicName %></legend>
         <%= @infoHint => %>
           <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>
+          <br /> <br />
+          <%= @i18n.settings.publicNameRestriction %>
+          <ul>
+            <li><%= @i18n.settings.publicNameRestriction1 %></li>
+            <li><%= @i18n.settings.publicNameRestriction2 %></li>
+            <li><%= @i18n.settings.publicNameRestriction3 %></li>
+          </ul>
         <% end %>
+        <br />
 
-        <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd id="publicNameValue">
-            <% if @tournament.publicName: %>
-              <a href="<%= @rootPath%>/<%= @tournament.publicName %>" target="_blank"><%= @tournament.publicName %></a>
-            <% else: %>
-              <%= @i18n.settings.publicNameMisses %>
-              <span id="createPublicName" class='btn btn-link'><i class="icon-plus-sign"></i><%= @i18n.settings.createPublicName %></span>
-            <% end %>
-          </dd>
-        </dl>
+        <%= @formFor @tournament, (form) => %>
+          <%= form.textField 'Name', "publicName", {class: "publicName", placeholder: @i18n.settings.publicName} %>
+          <%= form.button @i18n.save %>
+        <% end %>
     </fieldset>
     <!--
     <fieldset>
