@@ -148,8 +148,7 @@ module.exports =
     visibility: "Visibility"
     type: "Type"
     textfield: "Textfield"
-
-
+    noMembersCreated: ""
 
 
 ################################ TREE ########################################################

@@ -24,6 +24,7 @@ app.use flash()
 
 configure_controllers app
 
+
 if config.isDevelopment
   # needed to provide compiled coffeescript files
   app.get /^(\/[^\s]+)\.js$/, (req, res) ->

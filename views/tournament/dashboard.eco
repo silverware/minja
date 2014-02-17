@@ -58,7 +58,8 @@
     </div>
     </span>
     <% else: %>
-      Es wurden noch keine Teilnehmer angelegt.
+      <%= @i18n.members.noMembersCreated %>
+      
     <% end %>
   </fieldset>
 </section>

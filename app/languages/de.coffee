@@ -140,6 +140,7 @@ module.exports =
     visibility: "Sichtbarkeit"
     type: "Typ"
     textfield: "Textfeld"
+    noMembersCreated: "Es wurden noch keine Teilnehmer erfasst."
 
 
   ################################ TREE ########################################################
