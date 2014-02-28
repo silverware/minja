@@ -127,6 +127,7 @@ define ->
   time = new Date().getSeconds()
 
   init = ->
+    return
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
 
     ###--------------------------------------------------------------------------
@@ -146,7 +147,7 @@ define ->
       vertexShader: HEIGHT_VERTEX_SHADER
       fragmentShader: HEIGHT_FRAGMENT_SHADER
 
-    heightScene.add new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material)
+    heightScene.add new THREE.Mesh new THREE.PlaneGeometry(2, 2), material
 
     heightRenderTarget = new THREE.WebGLRenderTarget 512, 512,
       minFilter: THREE.LinearFilter

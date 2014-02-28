@@ -10,6 +10,7 @@ config = require "./server-config"
 fs = require 'fs'
 flash = require 'connect-flash'
 
+
 app = express()
 app.engine 'eco', consolidate.eco
 app.set "view engine", 'eco'

@@ -29,6 +29,12 @@ App.RoundItemView = Em.View.extend
       revert: "invalid"
       start: (e, {helper}) ->
         $(helper).addClass "ui-draggable-helper"
+        tds = $(helper).find('td')
+        if tds.length > 0
+          $(tds[0]).empty()
+          $(tds[2]).empty()
+          $(tds[3]).empty()
+          console.debug tds
       stop: =>
         setTimeout (=> @draggable true), 20
 
