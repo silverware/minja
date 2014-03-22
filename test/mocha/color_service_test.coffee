@@ -1,5 +1,5 @@
 assert = require "assert"
-colorService = require "../app/services/colorService"
+colorService = require "../../app/services/colorService"
 
 list = []
 

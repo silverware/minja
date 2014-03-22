@@ -20,6 +20,7 @@ module.exports = (grunt) ->
           join: true
         files:
           'public/js/tree-test.js': ['public/js/tree/tests/**/*.coffee']
+
       all:
         expand: true
         cwd: 'public/js'
@@ -56,7 +57,12 @@ module.exports = (grunt) ->
           reporter: 'spec'
           timeout: 2*60*1000
           require: 'coffee-script'
-        src: ['test/**/*.coffee']
+        src: ['test/mocha/**/*.coffee']
+
+    cucumber:
+      src: 'test/cucumber/features'
+      options:
+        steps: "test/cucumber/step_definitions"
 
     clean:
       dist: [

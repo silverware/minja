@@ -36,6 +36,7 @@
     "grunt-contrib-clean" : "*",
     "grunt-contrib-coffee" : "*",
     "grunt-contrib-uglify" : "*",
+    "grunt-cucumber": "*",
     "matchdep" : "*",
     "grunt-express": "~1.0.0"
   }
