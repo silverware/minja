@@ -93,6 +93,27 @@ App.templates.tournamentPopup = """
     </div>
   </div>
 </div>
+
+
+<!-- TODO: sidebar navigation
+menu erreichbar über Gruppenübersicht, Spielplan
+Return-Icon links oben
+menu: 
+- standings, games settings
+- TimeCalculations
+- Punkteberechnung
+
+
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span10">
+    </div>
+    </div>
+    </div>
+
+    -->
 """
 App.TournamentSettings = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
