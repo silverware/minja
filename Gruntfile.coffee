@@ -59,9 +59,10 @@ module.exports = (grunt) ->
           require: 'coffee-script'
         src: ['test/mocha/**/*.coffee']
 
-    cucumber:
+    cucumberjs:
       src: 'test/cucumber/features'
       options:
+        format: 'summary'
         steps: "test/cucumber/step_definitions"
 
     clean:
@@ -75,5 +76,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['clean', 'coffee:tree', 'coffee:treeTests']
   grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify']
   grunt.registerTask 'default', ['compile', 'concurrent']
-  grunt.registerTask 'test', 'mochaTest'
+  grunt.registerTask 'test', ['mochaTest', 'cucumberjs']
 
