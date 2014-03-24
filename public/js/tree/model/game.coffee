@@ -34,6 +34,13 @@ App.Game = Em.Object.extend
     if @get("goals1") < @get("goals2") then return @get("player2")
     if @get("goals1") is @get("goals2") then return false
 
+  player1Wins: (->
+    @getWinner() is @get("player1")
+  ).property('isCompleted', 'player1')
+
+  player2Wins: (->
+    @getWinner() is @get("player2")
+  ).property('isCompleted', 'player2')
 
   getPoints: (playerNumber) ->
     winPoints = parseInt App.Tournament.get "winPoints"

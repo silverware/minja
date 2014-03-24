@@ -3,7 +3,7 @@ App.RoundView = Em.View.extend
     {{view App.RoundSetting roundBinding="round"}}
     <div id="toolbar">
       <i id="openDetailView" class="icon-search"></i>
-      <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>
+      <!-- <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i> -->
     </div>
 
     {{#each game in round.items}}
@@ -24,6 +24,7 @@ App.RoundView = Em.View.extend
         App.RoundDetailView.create round: @round
     @$("#openDetailView").tooltip
       title: "#{App.i18n.schedule} #{App.i18n.detailView}"
+      placement: 'left'
 
   roundMargin: (->
     roundIndex = 0

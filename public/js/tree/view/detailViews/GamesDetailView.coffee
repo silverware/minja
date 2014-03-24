@@ -98,10 +98,10 @@ App.templates.gamesDetail = """
           <tr>
             <td></td>
             <td>{{game._roundItemName}}</td>
-            <td>
+            <td {{bind-attr class="game.player1Wins:winner"}}>
               {{game.player1.name}}
             </td>
-            <td>
+            <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
             </td>
             {{#each attribute in App.Tournament.gameAttributes}}
@@ -114,7 +114,7 @@ App.templates.gamesDetail = """
                 {{view App.NumberField editableBinding="App.editable" valueBinding="game.result2"}}
             {{else}}
               {{#if game.isCompleted}}
-                {{game.result1}} : {{game.result2}}
+                <b>{{game.result1}} : {{game.result2}}</b>
               {{/if}}
             {{/if}}
             </td>

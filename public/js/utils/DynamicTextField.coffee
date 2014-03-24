@@ -17,7 +17,7 @@ define ->
     ).observes("editable")
 
     updateWidth: () ->
-      sensor = $('<label>' + @get("value") + '</label>').css 
+      sensor = $('<label>' + @get("value") + '</label>').css
         margin: 0
         padding: 0
         display: "inline-block"
