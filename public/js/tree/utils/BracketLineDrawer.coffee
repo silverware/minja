@@ -4,12 +4,13 @@ App.BracketLineDrawer =
   lastChange: new Date().getTime()
 
   init: ->
-    #return
     @canvas = document.getElementById "bracketLines"
+    $(@canvas).hide()
     @ctx = @canvas.getContext "2d"
     window.addEventListener 'resize', (=> @update()), false
     $("#treeWrapper").bind "DOMSubtreeModified", => setTimeout (=> @update()), 10
     @update()
+    $(@canvas).fadeIn 'slow'
 
   update: ->
     if not @ctx then return
