@@ -21,11 +21,7 @@ App.templates.group = """
     <col width="20px" />
   <tbody>
     {{#each group.table}}
-      {{#if qualified}}
-        <tr class="player qualified" >
-      {{else}}
-        <tr class="player">
-      {{/if}}
+      <tr {{bind-attr class="qualified:qualified"}} class="player" >
       <td class="tableCell" style="text-align: center; vertical-align: middle">
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.

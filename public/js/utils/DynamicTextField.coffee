@@ -1,6 +1,7 @@
 define ->
+  
   DynamicTextField = Ember.TextField.extend
-    classNames: ['s dynamicTextField']
+    classNames: ['s', 'dynamicTextField']
     minWidth: 20
     editable: true
 

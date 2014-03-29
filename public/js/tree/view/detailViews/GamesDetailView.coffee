@@ -27,7 +27,7 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{App.i18n.table}}</legend>
 
-    <table class="table table-striped tableTable" style="width: 900px; margin: 0 auto;">
+    <table class="table tableTable" style="width: 900px; margin: 0 auto;">
       <thead>
         <tr>
           <th>{{App.i18n.rank}}</th>
@@ -43,17 +43,13 @@ App.templates.gamesDetail = """
       </thead>
       <tbody>
         {{#each view.roundItem.table}}
-          {{#if qualified}}
-            <tr class="player qualified" >
-          {{else}}
-            <tr class="player">
-          {{/if}}
+          <tr {{bind-attr class=":player qualified:qualified"}} >
           <td>
             {{rank}}.
           </td>
-          <td>
+          <td style="text-align: left">
             {{#if App.editable}}
-              {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+              {{view App.DynamicTextField valueBinding="player.name" classNames="xl" editableBinding="player.editable"}}
             {{else}}
               <div class="input-padding">{{player.name}}</div>
             {{/if}}
