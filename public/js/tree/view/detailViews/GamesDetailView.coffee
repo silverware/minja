@@ -31,7 +31,7 @@ App.templates.gamesDetail = """
       <thead>
         <tr>
           <th>{{App.i18n.rank}}</th>
-          <th>Name</th>
+          <th style="text-align: left">Name</th>
           <th>{{App.i18n.games}}</th>
           <th style="cursor: help" title="{{unbound App.i18n.wins}}">{{App.i18n.winsShort}}</th>
           <th style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
