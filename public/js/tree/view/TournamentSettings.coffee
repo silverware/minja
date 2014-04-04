@@ -1,10 +1,34 @@
 App.templates.tournamentPopup = """
+
+
+<!--
+menu erreichbar über Gruppenübersicht, Spielplan
+Return-Icon links oben
+menu: 
+- standings, games settings
+- TimeCalculations
+- Punkteberechnung
+
+-->
+
+
     <div class="container-fluid">
     <div class="row-fluid">
-    <div class="span6">
-<form class="form-horizontal">
+    <div class="span2">
+      <ul id="settings-navigation" class="nav nav-list">
+        <li class="nav-header">Navigation</li>
+        <li class="active"><a href="#" data-target="#main-settings">{{App.i18n.settings}}</a></li>
+        <li><a href="#" data-target="#gameAttributes">{{App.i18n.gameAttributes}}</a></li>
+        <li><a href="#" data-target="#scheduling">{{App.i18n.timeCalculation}}</a></li>
+    </ul> 
+      
+    </div>
+    <div class="span10" style="padding-left: 40px;">
+    <div class="tab-content">
+    <div id="main-settings" class="tab-pane active">
   <fieldset>
     <legend>{{App.i18n.settings}}</legend>
+<form class="form-horizontal">
   <h5>{{App.i18n.groupStage}}</h5>
   <div class="control-group">
     <label class="control-label" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
@@ -30,10 +54,10 @@ App.templates.tournamentPopup = """
     </div>
   </div>
 
+    </form>
   </fieldset>
-</form>
     </div>
-    <div class="span6">
+    <div id="gameAttributes" class="tab-pane">
   <fieldset>
     <legend>{{App.i18n.gameAttributes}}</legend>
     <table class="table table-striped">
@@ -56,14 +80,9 @@ App.templates.tournamentPopup = """
     </table>
   <span class='btn btn-link' {{action "addAttribute" target="view"}}><i class="icon-plus-sign"></i>&nbsp;{{App.i18n.addAttribute}}</span>
   </fieldset>
-    </div>
-
-
-
   </div>
 
-  <div class="row-fluid">
-    <div class="span6">
+    <div id="scheduling" class="tab-pane">
       <fieldset>
         <legend>{{App.i18n.timeCalculation}}</legend>
         <form class="form-horizontal">
@@ -92,28 +111,10 @@ App.templates.tournamentPopup = """
       </fieldset>
     </div>
   </div>
-</div>
-
-
-<!-- TODO: sidebar navigation
-menu erreichbar über Gruppenübersicht, Spielplan
-Return-Icon links oben
-menu: 
-- standings, games settings
-- TimeCalculations
-- Punkteberechnung
-
-
-    <div class="container-fluid">
-    <div class="row-fluid">
-    <div class="span2">
-    </div>
-    <div class="span10">
     </div>
     </div>
     </div>
 
-    -->
 """
 App.TournamentSettings = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.tournamentPopup
@@ -126,6 +127,11 @@ App.TournamentSettings = App.DetailView.extend
         trigger: "hover"
         content: ->
           $("##{$(@).attr('ref')}").html()
+    @$('#settings-navigation a').click (event) ->
+      event.preventDefault()
+      console.debug @
+      $(@).tab 'show'
+
 
   addAttribute: ->
     App.Tournament.gameAttributes.pushObject App.GameAttribute.create()

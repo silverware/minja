@@ -11,7 +11,7 @@
 
 
 /* ---------------------------------------------------------------------
- Colors
+Colors
 ----------------------------------------------------------------------*/
 
 .contentBox {
@@ -47,14 +47,14 @@ body {
 }
 
 #content, #smallContent, .feature div, .dashboardBox, .box, .detailView {
-    .contentBox;
-    color: @textColor;
+  .contentBox;
+  color: @textColor;
 }
 
 
 footer {
-    background-color: @dark;
-    color: @footerText;
+  background-color: @dark;
+  color: @footerText;
   a, a:hover {
     color: @footerText;
   }
@@ -84,7 +84,7 @@ code, pre, .dynamicTextField, legend {
 }
 
 /* ---------------------------------------------------------------------
- Popover
+Popover
 ----------------------------------------------------------------------*/
 .popover {
   background-color: @normalOpaque !important;
@@ -122,11 +122,39 @@ code, pre, .dynamicTextField, legend {
 
 
 
+/* ---------------------------------------------------------------------
+Bootstrap
+----------------------------------------------------------------------*/
 
+.nav-list > .active > a, .nav-list > .active > a:hover {
+  background-color: @dark;
+  color: @footerText;
+  border-radius: 5px;
+}
+.nav-list > li > a, .nav-list .nav-header {
+  text-shadow: none;
+  border-radius: 5px;
+}
 
+.nav > li > a:hover {
+  background-color: @textColor;
+  color: @normal;
+}
+
+.nav-list > li > a {
+  color: @textColor;
+
+}
+.nav-header {
+  color: @textColor;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+}
 
 /* ---------------------------------------------------------------------
- Tree
+Tree
 ----------------------------------------------------------------------*/
 
 .loading-screen {
@@ -181,9 +209,9 @@ code, pre, .dynamicTextField, legend {
 
 /**
 .detailView input, .detailView select {
-  .blackInput;
+.blackInput;
 }
-**/
+ **/
 
 .btn-link {
   color: @textColor;
