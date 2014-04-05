@@ -21,7 +21,7 @@ Colors
   border-radius: 5px 5px 5px 5px;
 }
 
-.contentBox(@color) when (lightness(@color) < 50%) {
+.contentBox(@color) when (lightness(@color) < 60%) {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
 
@@ -54,7 +54,7 @@ body {
   color: @textColor;
 }
 
-.footer-shadow(@color) when (lightness(@color) < 50%) {
+.footer-shadow(@color) when (lightness(@color) < 60%) {
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
@@ -147,7 +147,7 @@ Bootstrap
 
 .nav > li > a:hover {
   background-color: @textColor;
-  color: @normal;
+  color: fadein(@normal, 100%);
 }
 
 .nav-list > li > a {
@@ -165,8 +165,8 @@ Bootstrap
 
 .btn-inverse {
   background-color: @dark !important;
-  background-image: -moz-linear-gradient(center top , darken(@dark, 5%), darken(@dark, 15%)) !important;
-  background: linear-gradient(darken(@dark, 5%), darken(@dark, 15%));
+  background-image: -moz-linear-gradient(center top , lighten(@dark, 5%), darken(@dark, 10%)) !important;
+  background: linear-gradient(lighten(@dark, 5%), darken(@dark, 10%));
   color: @footerText;
 }
 
@@ -229,11 +229,21 @@ Tree
   color: @textColor;
 }
 
+.roundSeperator {
+  background-color: @dark;
+  color: @footerText;
+}
+
 /**
 .detailView input, .detailView select {
 .blackInput;
 }
  **/
+.detailView {
+  .table tbody tr:hover {
+    background-color: saturate(@normal, 5%)
+  }
+}
 
 .btn-link {
   color: @textColor;
@@ -247,7 +257,7 @@ Tree
 }
 
 
-.box-shadow(@color) when (lightness(@color) < 50%) {
+.box-shadow(@color) when (lightness(@color) < 60%) {
   box-shadow: 0 10px 20px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
 
