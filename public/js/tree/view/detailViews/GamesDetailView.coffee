@@ -75,7 +75,7 @@ App.templates.gamesDetail = """
         {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
-    <table class="table">
+    <table class="table tableSchedule">
       <thead>
         <tr>
           <th width="70px"></th>
