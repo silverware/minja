@@ -26,7 +26,7 @@ define ["../lib/bootstrap-modules/spinner"], ->
     ).observes("value")
 
     onEditableChange: (->
-      if @get("editable") then @get("wrapper").spinner("enable") else @get("wrapper").spinner("disable") 
+      if @get("editable") then @get("wrapper").spinner("enable") else @get("wrapper").spinner("disable")
     ).observes("editable")
 
     onlyNumber: (input) ->

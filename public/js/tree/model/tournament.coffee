@@ -45,7 +45,7 @@ App.Tournament = Em.ArrayController.extend
     @lastRound()?.set "editable", true
 
 
-  # In alle nachfolgenden Runden werden wird der From-spieler durch den To-Spieler ersetzt
+  # replace a player by another, starting at specified round
   replacePlayer: (from, to, fromRound) ->
     isFurtherRound = false
     if from and to

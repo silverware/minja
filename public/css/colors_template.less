@@ -14,12 +14,15 @@
 Colors
 ----------------------------------------------------------------------*/
 
-.contentBox {
+.contentBox(@color) {
   background-color: @normal;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
   color: #fff;
   position: relative;
   border-radius: 5px 5px 5px 5px;
+}
+
+.contentBox(@color) when (lightness(@color) < 50%) {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
 
 
@@ -47,18 +50,23 @@ body {
 }
 
 #content, #smallContent, .feature div, .dashboardBox, .box, .detailView {
-  .contentBox;
+  .contentBox(@normal);
   color: @textColor;
 }
 
+.footer-shadow(@color) when (lightness(@color) < 50%) {
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
 
 footer {
+  .footer-shadow(@normal);
   background-color: @dark;
   color: @footerText;
   a, a:hover {
     color: @footerText;
   }
 }
+
 
 header {
   .home {
@@ -70,14 +78,15 @@ header {
     text-decoration: none !important;
   }
   .nav a.active, .nav a:hover {
-    color: @dark;
-    background: @footerText;
+    color: @dark !important;
+    background: @footerText !important;
   }
 
   .nav a, a, a:hover {
-    color: @footerText;
+    color: @footerText !important;
   }
 }
+
 
 code, pre, .dynamicTextField, legend {
   color: @textColor !important;
@@ -153,6 +162,19 @@ Bootstrap
   font-size: 14px;
 }
 
+
+.btn-inverse {
+  background-color: @dark !important;
+  background-image: -moz-linear-gradient(center top , darken(@dark, 5%), darken(@dark, 15%)) !important;
+  background: linear-gradient(darken(@dark, 5%), darken(@dark, 15%));
+  color: @footerText;
+}
+
+.btn-inverse:hover {
+  background-color: darken(@dark, 10%) !important;
+  color: @footerText;
+}
+
 /* ---------------------------------------------------------------------
 Tree
 ----------------------------------------------------------------------*/
@@ -222,4 +244,13 @@ Tree
 .btn-link:hover {
   color: @textColor;
   text-decoration: none;
+}
+
+
+.box-shadow(@color) when (lightness(@color) < 50%) {
+  box-shadow: 0 10px 20px rgba(30, 30, 30, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+.box {
+  .box-shadow(@normal);
 }
