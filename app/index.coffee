@@ -34,10 +34,5 @@ if config.isDevelopment
     js = coffee.compile cs
     res.send js
 
-# needed to provide compiled less files
-app.get /^(\/[^\s]+)\.css$/, (req, res, next) ->
-  css req.params[0]
-  next()
-
 app.listen config.SERVER_PORT
 console.log "Express server started"

@@ -1,7 +1,7 @@
 App.RoundView = Em.View.extend
   template: Ember.Handlebars.compile """
     {{view App.RoundSetting roundBinding="round"}}
-    <div id="toolbar">
+    <div class="box toolbar"> 
       <i id="openDetailView" class="icon-search"></i>
       <!-- <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i> -->
     </div>

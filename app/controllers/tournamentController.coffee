@@ -146,7 +146,7 @@ class TournamentController extends ControllerBase
       res.send "ok"
 
   "/:tid/tournament_colors.css": (req, res) =>
-    path = config.CLIENT_DIR + "/css/colors_template.less"
+    path = config.CLIENT_DIR + "/less/colors_template.less"
     colors = colorService.getColors req.tournament
     contentOpaque = colorService.opaque colors.content
     linkColor = colorService.generateLinkColor colors

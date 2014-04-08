@@ -1,7 +1,7 @@
 App.templates.groupRound = """
 {{view App.RoundSetting roundBinding="round"}}
 
-<div id="toolbar">
+<div class="box toolbar">
   <i class="icon-table" {{action "displayTables" target="view"}} id="showTables" style="display: none"></i>
   <i class="icon-list" {{action "displayGames" target="view"}} id="showGames"></i>
   <i id="openDetailView" class="icon-search"></i>

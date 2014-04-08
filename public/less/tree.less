@@ -5,7 +5,6 @@
 .ui-spinner-buttons {position: absolute}
 .ui-spinner-button {overflow: hidden}
 
-
 canvas#bracketLines {
   z-index: 0;
   position: absolute;
@@ -264,14 +263,17 @@ table tbody td {
 /*********************************
 Toolbar
 *********************************/
-#toolbar {
-  font-size: 25px;
+.toolbar {
+  font-size: 20px;
   position: absolute;
-  right: 20px;
+  right: 0;
   top: 0;
+  z-index: 2;
+  border-radius: 5px 0 0 5px;
+  padding: 7px;
 }
 
-#toolbar i {
+.toolbar i {
   margin-right: 15px;
 }
 

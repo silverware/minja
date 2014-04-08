@@ -6,7 +6,7 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['public/js/tree/**/*.coffee']
+        files: ['public/js/tree/**/*.coffee', 'public/less/**/*.less']
         tasks: 'compile'
 
     coffee:
@@ -27,6 +27,21 @@ module.exports = (grunt) ->
         src: ['**/*.coffee']
         dest: 'public/js'
         ext: '.js'
+
+    less:
+      production:
+        options:
+          cleancss: true,
+        files: [
+          expand: true
+          cwd: 'public/less/'
+          src: '**/*.less'
+          filter: (filepath) ->
+            # do not compile colors_template.less -> compiled at runtime
+            return -1 == filepath.indexOf 'colors_template'
+          dest: 'public/css'
+          ext: '.css'
+        ]
 
     uglify:
       js:
@@ -68,13 +83,14 @@ module.exports = (grunt) ->
     clean:
       dist: [
         'public/js/**/*.js'
+        'public/css/**/*.css'
       ]
 
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
-  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'coffee:treeTests']
-  grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify']
+  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'coffee:treeTests', 'less']
+  grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify', 'less']
   grunt.registerTask 'default', ['compile', 'concurrent']
   grunt.registerTask 'test', ['mochaTest', 'cucumberjs']
 

@@ -4,6 +4,7 @@ start_futon.url
 node_modules
 public/js/tree.js
 public/js/tree-test.js
+public/css/**/*.css
 *.lnk
 
 #################
