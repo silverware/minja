@@ -35,7 +35,7 @@
     "grunt-concurrent" : "*",
     "grunt-contrib-clean" : "*",
     "grunt-contrib-coffee" : "*",
-    "grunt-contrib-less" : "*",
+    "grunt-contrib-less" : "0.10.0",
     "grunt-contrib-uglify" : "*",
     "grunt-cucumber": "*",
     "matchdep" : "*",
