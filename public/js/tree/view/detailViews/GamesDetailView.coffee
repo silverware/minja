@@ -89,7 +89,7 @@ App.templates.gamesDetail = """
         </tr>
       </thead>
       {{#each matchday in view.filteredGames}}
-        <tr><td colspan="15" class="roundSeperator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
+        <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
         {{#each game in matchday.games}}
           <tr>
             <td></td>

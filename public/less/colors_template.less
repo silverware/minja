@@ -87,9 +87,24 @@ header {
   }
 }
 
+legend {
+  border-bottom: 2px solid fade(@dark, 30%);
+  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+}
+
 
 code, pre, .dynamicTextField, legend {
   color: @textColor !important;
+}
+
+code, pre {
+  background-color: fade(@dark, 10%);
+  border: 1px solid fade(@dark, 15%);
+}
+
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+  background-color: fade(@dark, 12%);
 }
 
 /* ---------------------------------------------------------------------
@@ -119,6 +134,10 @@ Popover
 
 .modal-footer {
   background-color: @dark;
+}
+
+.modal-header {
+  border-bottom: 2px solid fade(@dark, 30%);
 }
 
 .dropdown-menu {
@@ -171,7 +190,8 @@ Bootstrap
 }
 
 .btn-inverse:hover {
-  background-color: darken(@dark, 10%) !important;
+  background-image: -moz-linear-gradient(center top , @dark, @dark) !important;
+  background-color: @dark !important;
   color: @footerText;
 }
 
@@ -218,7 +238,7 @@ Tree
 }
 
 .roundItem input, .roundItem {
-  color: @footerText;
+  color: spin(@light, 180);
 }
 
 .roundItem .blurringBox {
@@ -248,6 +268,15 @@ Tree
 .detailView {
   .table tbody tr:hover {
     background-color: saturate(@normal, 5%)
+  }
+  .tableSchedule {
+    .matchday-separator {
+      border-bottom: 1px solid fade(@dark, 30%);
+      box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+    }
+    .matchday-separator:hover {
+      background-color: rgba(0,0,0,0) !important;
+    }
   }
 }
 
