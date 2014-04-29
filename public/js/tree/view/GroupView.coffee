@@ -104,7 +104,8 @@ App.GroupView = App.RoundItemView.extend
   ).observes("group.table")
 
   onRedrawGames: (->
-    if @get("round").get("isEditable")
+    # if @get("round").get("isEditable")
+    if App.editable
       setTimeout((=> @initGameDraggable()), 50)
   ).observes("games")
 
@@ -141,6 +142,7 @@ App.GroupView = App.RoundItemView.extend
   ).property("group.games.@each")
 
   initGameDraggable: ->
+    @$(".game").css "cursor", "move"
     @$(".game").draggable
       containment: @$()
       helper: 'clone'
