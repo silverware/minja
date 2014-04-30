@@ -20,14 +20,28 @@ buster.testCase "Game Model",
     assert.equals "", p2.name
 
   "Gewinner eines Spiels wird korrekt ermittelt": ->
+    assert.equals null, @game.getWinner()
 
-  	assert.equals null, @game.getWinner()
+    @game.setResult 2, 1
+    assert.equals @hans, @game.getWinner()
 
-  	@game.setResult 2, 1
-  	assert.equals @hans, @game.getWinner()
+    @game.setResult 2, 2
+    assert.equals false, @game.getWinner()
 
-  	@game.setResult 2, 2
-  	assert.equals false, @game.getWinner()
+    @game.setResult 2, 3
+    assert.equals @peter, @game.getWinner()
 
-  	@game.setResult 2, 3
-  	assert.equals @peter, @game.getWinner()
+  "Swap Players": ->
+    assert.equals @hans, @game.get 'player1'
+    assert.equals @peter, @game.get 'player2'
+
+    @game.set 'result1', 1
+    @game.set 'result2', 2
+
+    @game.swapPlayers()
+
+    assert.equals @hans, @game.get 'player2'
+    assert.equals @peter, @game.get 'player1'
+    assert.equals 2, @game.get 'result1'
+    assert.equals 1, @game.get 'result2'
+    

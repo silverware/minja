@@ -1,4 +1,5 @@
 App.Game = Em.Object.extend
+
   player1: null
   player2: null
   result1: null
@@ -53,3 +54,13 @@ App.Game = Em.Object.extend
     if not winner then return drawPoints
     if player is winner then return winPoints
     if player isnt winner then return 0
+
+  swapPlayers: ->
+    tempPlayer = @get 'player1'
+    @set 'player1', @get 'player2'
+    @set 'player2', tempPlayer
+
+    tempResult = @get 'result1'
+    @set 'result1', @get 'result2'
+    @set 'result2', tempResult
+
