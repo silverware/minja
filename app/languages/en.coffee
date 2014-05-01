@@ -207,6 +207,7 @@ module.exports =
     goalsAgainstShort: "A"
     difference: "Goal Difference"
     points: "Points"
+    swapPlayers: "Exchange"
     textfield: "Textfield"
     date: "Date"
     number: "Number"

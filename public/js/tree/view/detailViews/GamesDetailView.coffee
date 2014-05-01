@@ -81,6 +81,9 @@ App.templates.gamesDetail = """
           <th width="70px"></th>
           <th></th>
           <th>{{App.i18n.home}}</th>
+          {{#if App.editable}}
+            <th></th>
+          {{/if}}
           <th>{{App.i18n.guest}}</th>
           {{#each attribute in App.Tournament.gameAttributes}}
             <th>{{attribute.name}}</th>
@@ -97,6 +100,9 @@ App.templates.gamesDetail = """
             <td {{bind-attr class="game.player1Wins:winner"}}>
               {{game.player1.name}}
             </td>
+            {{#if App.editable}}
+              <th><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></th>
+            {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
             </td>
