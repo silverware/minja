@@ -1,4 +1,4 @@
-App.GameAttributePrefillPopup = 
+App.GameAttributePrefillPopup =
   games: []
 
   open: (@games) ->

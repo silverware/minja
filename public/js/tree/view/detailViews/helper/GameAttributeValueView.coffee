@@ -5,7 +5,7 @@ App.GameAttributeValueView = Ember.View.extend
         {{view Ember.Checkbox checkedBinding="view.gameValue"}}
       {{else}}
         {{#if view.gameValue}}
-          <i class="icon-ok" style="color: #DA5919" />
+          <i class="icon-ok" />
         {{/if}}
       {{/if}}
     {{else}}
