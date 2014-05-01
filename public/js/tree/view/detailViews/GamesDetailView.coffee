@@ -101,7 +101,7 @@ App.templates.gamesDetail = """
               {{game.player1.name}}
             </td>
             {{#if App.editable}}
-              <th><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></th>
+              <td><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
