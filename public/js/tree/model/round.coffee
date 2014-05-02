@@ -77,9 +77,12 @@ App.Round = Em.Object.extend
     return true
 
   swapPlayers: (player1Index, player2Index) ->
+    # playerIndex: tupel [roundIndex, Playerindex]
     gamePlayers1 = @items.objectAt(player1Index[0]).players
     gamePlayers2 = @items.objectAt(player2Index[0]).players
-    if gamePlayers1 == gamePlayers2
+    console.debug player1Index
+    console.debug player2Index
+    if gamePlayers1 is gamePlayers2 && @isGroupRound
       return
 
     player1 = gamePlayers1.objectAt player1Index[1]
@@ -88,8 +91,13 @@ App.Round = Em.Object.extend
     gamePlayers1.removeObject player1
     gamePlayers2.removeObject player2
 
-    gamePlayers1.insertAt player1Index[1], player2
-    gamePlayers2.insertAt player2Index[1], player1
+    if player1Index[1] < player2Index[1]
+      gamePlayers1.insertAt player1Index[1], player2
+      gamePlayers2.insertAt player2Index[1], player1
+    else
+      gamePlayers2.insertAt player2Index[1], player1
+      gamePlayers1.insertAt player1Index[1], player2
+
 
   shuffle: ->
     # TODO: echter Zufall Sequenz generator mit random.org api

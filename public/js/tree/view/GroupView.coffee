@@ -21,7 +21,7 @@ App.templates.group = """
     <col width="20px" />
   <tbody>
     {{#each group.table}}
-      <tr {{bind-attr class="qualified:qualified"}} class="player" >
+      <tr {{bind-attr class="qualified:qualified :player"}}>
       <td class="tableCell" style="text-align: center; vertical-align: middle">
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.

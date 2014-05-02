@@ -47,3 +47,76 @@ buster.testCase "Round Model",
       _previousRound: App.Tournament.lastRound()
     round = App.Tournament.lastRound()
     assert.equals 1, round.koRoundsBefore()
+
+  "swap players in group round": ->
+    round = App.GroupRound.create()
+    group1 = App.Group.create
+      _round: round
+    group2 = App.Group.create
+      _round: round
+
+    round.items.pushObject group1
+    round.items.pushObject group2
+
+    p1 = App.Player.create(name: "Player 1")
+    p2 = App.Player.create(name: "Player 2")
+    p3 = App.Player.create(name: "Player 3")
+    p4 = App.Player.create(name: "Player 4")
+
+    group1.players.pushObject p1
+    group1.players.pushObject p2
+    group2.players.pushObject p3
+    group2.players.pushObject p4
+
+    round.swapPlayers [0,1], [1,0]
+
+    assert.equals group1.players[0], p1
+    assert.equals group1.players[1], p3
+    assert.equals group2.players[0], p2
+    assert.equals group2.players[1], p4
+
+
+    # no change, if players belong to same group
+    round.swapPlayers [0,1], [0,0]
+
+    assert.equals group1.players[0], p1
+    assert.equals group1.players[1], p3
+    assert.equals group2.players[0], p2
+    assert.equals group2.players[1], p4
+
+  "swap players in ko round": ->
+    game1 = App.RoundGame.create
+      _round: @round
+    game2 = App.RoundGame.create
+      _round: @round
+
+    @round.items.pushObject game1
+    @round.items.pushObject game2
+    p1 = App.Player.create name: "p1"
+    p2 = App.Player.create name: "p2"
+    p3 = App.Player.create name: "p3"
+    p4 = App.Player.create name: "p4"
+    game1.players.pushObject p1
+    game1.players.pushObject p2
+    game2.players.pushObject p3
+    game2.players.pushObject p4
+
+    @round.swapPlayers [0,1], [1,0]
+
+    assert.equals game1.players[0], p1
+    assert.equals game1.players[1], p3
+    assert.equals game2.players[0], p2
+    assert.equals game2.players[1], p4
+
+
+    @round.swapPlayers [0,1], [0,0]
+
+    assert.equals game1.players[0], p3
+    assert.equals game1.players[1], p1
+    assert.equals game2.players[0], p2
+    assert.equals game2.players[1], p4
+
+    @round.swapPlayers [0,0], [0,1]
+
+    assert.equals game1.players[0], p1
+    assert.equals game1.players[1], p3
