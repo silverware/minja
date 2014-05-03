@@ -5,7 +5,7 @@ App.Game = Em.Object.extend
   result1: null
   result2: null
   date: null
-  attributes: []
+  _playersSwapped: true
 
   isCompleted: (->
     (@get("result1") or @get("result1") == 0) and (@get("result2") or @get("result2") == 0)
@@ -64,3 +64,13 @@ App.Game = Em.Object.extend
     @set 'result1', @get 'result2'
     @set 'result2', tempResult
 
+    # swap result attributes
+
+    for gameAttribute in App.Tournament.gameAttributes when gameAttribute.type is 'result'
+      id = gameAttribute.get 'id'
+      value = @get(id)
+      if value?.search /:/ isnt -1
+        results = value.split ':'
+        @set id, results[1] + ':' + results[0]
+    
+    @set '_playersSwapped', not @get '_playersSwapped'

@@ -45,3 +45,25 @@ buster.testCase "Game Model",
     assert.equals 2, @game.get 'result1'
     assert.equals 1, @game.get 'result2'
     
+  "Swap Players: result attributes": ->
+    attr = App.GameAttribute.create
+      type: 'result'
+      id: 'attr-id'
+      name: 'name'
+    
+    App.Tournament.gameAttributes.pushObject attr
+
+    assert.equals @hans, @game.get 'player1'
+    assert.equals @peter, @game.get 'player2'
+
+    @game.set 'result1', 1
+    @game.set 'result2', 2
+
+    @game.set 'attr-id', '1:2'
+    @game.swapPlayers()
+    assert.equals '2:1', @game.get 'attr-id'
+
+    
+    @game.set 'attr-id', ':'
+    @game.swapPlayers()
+    assert.equals ':', @game.get 'attr-id'

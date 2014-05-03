@@ -65,7 +65,7 @@ App.GameAttributeValueView = Ember.View.extend
     else
       value = "" if not value?
       @get("game").set @get("attribute.id"), "#{value}:#{splitted[1]}"
-  ).property("member", "attribute.name")
+  ).property("member", "attribute.name", "game._playersSwapped")
 
 
   resultGameValue2: ((key, value) ->
@@ -77,7 +77,7 @@ App.GameAttributeValueView = Ember.View.extend
     else
       value = "" if not value?
       @get("game").set @get("attribute.id"), "#{splitted[0]}:#{value}"
-  ).property("member", "attribute.name")
+  ).property("member", "attribute.name", "game._playersSwapped")
 
   resultSplitted: ->
     currentValue = @get("game")[@get("attribute.id")]
