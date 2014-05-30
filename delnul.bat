@@ -1,0 +1,1 @@
+Del \\?\B:\Marvin\Daten\Projekte\Github\minja\NUL
