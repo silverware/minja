@@ -41,7 +41,7 @@ module.exports = (req, res, next) ->
   res.locals.printDateAndTime = (date, time) ->
     if not date
       return ""
-    output = """<i class="icon-calendar"></i>&nbsp; #{date}"""
+    output = """<i class="fa fa-calendar"></i>&nbsp; #{date}"""
     if time
       output += """&nbsp;&nbsp;&nbsp;<i class="icon-time"></i>&nbsp;#{time}"""
     @safe output

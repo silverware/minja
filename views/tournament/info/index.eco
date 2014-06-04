@@ -12,7 +12,7 @@ dl {
   font-size: 16px;
 }
 </style>
-<div id="content">
+<div class="container container-normal">
   <h1><%= @i18n.info.header %>
   <% if @tournament.isOwner: %>
     <%= @headerAction @i18n.edit, "info/edit", "edit" %>

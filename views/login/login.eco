@@ -13,8 +13,7 @@ $(function() {
 });
 </script>
 
-<div class="container">
-<div id="smallContent">
+<div class="container container-small">
 	<h1>Login</h1>
 	<% if (@message): %>
 	  <p><%= @message %></p>
@@ -25,7 +24,7 @@ $(function() {
 	  <input type="hidden" value="<%= @next %>" name="next" />
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Login</button>
+        <button class="btn btn-inverse btn" type="submit" style="margin-right: 20px">Login</button>
         <a href="/user/lostpassword">
           <button type="button" class="btn btn-link"><i class="fa fa-question-circle"></i><%= @i18n.lostPassword %></button>
         </a>
@@ -36,9 +35,8 @@ $(function() {
     <div class="form-group">
       <label class="col-sm-2 control-label">Via facebook</label>
       <div class="col-sm-10">
-        <a href="/auth/facebook"><button class="btn btn-primary btn" type="button"><i class="fa fa-facebook"></i>Login via Facebook</button></a>
+        <a href="/auth/facebook"><button class="btn btn-inverse btn" type="button"><i class="fa fa-facebook"></i>Login via Facebook</button></a>
       </div>
     </div>
   <% end %>
-</div>
 </div>

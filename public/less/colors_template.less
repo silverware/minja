@@ -49,42 +49,13 @@ body {
   color: @textColor;
 }
 
-#content, #smallContent, .feature div, .dashboardBox, .box, .detailView {
+.container-normal, .container-small, .feature div, .dashboardBox, .box, .detailView {
   .contentBox(@normal);
   color: @textColor;
 }
 
 .footer-shadow(@color) when (lightness(@color) < 60%) {
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
-}
-
-footer {
-  .footer-shadow(@normal);
-  background-color: @dark;
-  color: @footerText;
-  a, a:hover {
-    color: @footerText;
-  }
-}
-
-
-header {
-  .home {
-    color: @footerText !important;
-  }
-
-  .home:hover {
-    color: @footerText !important;
-    text-decoration: none !important;
-  }
-  .nav a.active, .nav a:hover {
-    color: @dark !important;
-    background: @footerText !important;
-  }
-
-  .nav a, a, a:hover {
-    color: @footerText !important;
-  }
 }
 
 legend {
@@ -141,7 +112,7 @@ Popover
 }
 
 .dropdown-menu {
-  background-color: @dark;
+  background-color: darken(@dark, 10%);
   color: @footerText !important;
   a {
     color: inherit;
@@ -160,9 +131,31 @@ Bootstrap
     color: @footerText;
   }
 }
-
-.navbar-toggle .icon-bar {
+.dropdown-menu > li > a {
   color: @footerText;
+}
+
+.dropdown-header {
+  color: @footerText;
+  font-weight: bold;
+}
+
+.dropdown-menu .divider {
+  background-color: @dark;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: darken(@dark, 10%);
+}
+
+.navbar-toggle {
+  color: @footerText;
+}
+
+.navbar-brand:hover {
+  background-color: darken(@dark, 10%);
+  color: @footerText;
+
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover {
@@ -176,8 +169,8 @@ Bootstrap
 }
 
 .nav > li > a:hover {
-  background-color: @textColor;
-  color: fadein(@normal, 100%);
+  background-color: darken(@dark, 10%);
+  color: fadein(@footerText, 100%);
 }
 
 .nav-list > li > a {
@@ -195,21 +188,27 @@ Bootstrap
 
 .btn-inverse {
   background-color: @dark !important;
-  background-image: -moz-linear-gradient(center top , lighten(@dark, 5%), darken(@dark, 10%)) !important;
-  background: linear-gradient(lighten(@dark, 5%), darken(@dark, 10%));
   color: @footerText;
 }
 
 .btn-inverse:hover {
-  background-image: -moz-linear-gradient(center top , @dark, @dark) !important;
-  background-color: @dark !important;
+  background-color: darken(@dark, 10%) !important;
   color: @footerText;
 }
 
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
-  background-color: @footerText;
-  color: @dark;
+  background-color: @dark;
+  color: @footerText;
   background-image: none;
+}
+
+/* ---------------------------------------------------------------------
+Form
+----------------------------------------------------------------------*/
+
+.form-control:hover, .form-control:active, .form-control:focus {
+  border-color: @dark;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px lighten(@dark, 10%);
 }
 
 /* ---------------------------------------------------------------------

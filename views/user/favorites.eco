@@ -6,7 +6,7 @@ function removeFavorte(tid) {
 }
 </script>
 
-<div id="content">
+<div class="container container-normal">
   <h1><%= @i18n.favorites %></h1>
 
   <table class="table table-striped">
@@ -20,9 +20,9 @@ function removeFavorte(tid) {
         <tr>
           <td><%= tournament.value.info.name %></td>
           <td><%= @i18n.date tournament.value.created_at %></td>
-          <td width="60px">
+          <td width="140px">
             <div class="btn-group">
-              <button class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value._id %>'"><i class="icon-folder-open"></i><%= @i18n.open %></button>
+              <button class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value._id %>'"><i class="fa fa-folder-open"></i><%= @i18n.open %></button>
               <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
               </button>

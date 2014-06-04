@@ -43,7 +43,7 @@ saveButton = (label, disabled) ->
     <div class="form-horizontal" role="form">
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button class="btn btn-primary" type="submit" #{disabled}>#{label}</button>
+        <button class="btn btn-inverse" type="submit" #{disabled}>#{label}</button>
         <i class="icon-spinner icon-spin ajaxLoader"></i>
         <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
       </div>
@@ -116,7 +116,7 @@ formFor = (obj, yield_to, action="") ->
       @safe """
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary" type="submit">#{label}</button>
+            <button class="btn btn-inverse" type="submit">#{label}</button>
             <i class="icon-spinner icon-spin ajaxLoader"></i>
             <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
           </div>

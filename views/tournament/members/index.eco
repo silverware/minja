@@ -8,7 +8,7 @@
   });
 </script>
 
-<div id="content">
+<div class="container container-normal">
   <h1><%= @i18n.members.navName %>
   <% if @tournament.isOwner: %>
     <%= @headerAction @i18n.edit, "participants/edit", "edit" %>

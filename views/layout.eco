@@ -87,7 +87,28 @@
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars" style="font-size: 1.4em"></i>
           </button>
-          <a class="navbar-brand" href="/"><img src="/img/logo5.png" width="35px" style="width: 35px" /></a>
+
+          <% if @navigation: %>
+              <% if @tournament.isOwner: %>
+                <!--<a style="margin-left: 6px" href="/<%= @tournament.id %>/logo">
+                  <small><i class="icon-picture"></i>&nbsp;<%= @i18n.settings.editLogo %></small>
+                </a>-->
+              <% end %>
+              <a class="navbar-brand" href="/<%= @tournament.identifier %>">
+                
+                <% if @tournament.hasLogo: %>
+                  <img style="max-height: 48px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
+                <% else: %>
+                  <img src="/img/logo5.png" width="35px" style="width: 35px" />
+                <% end %>
+                <%= @tournament.info.name %>
+              </a>
+          <% else: %>
+            <a class="navbar-brand" href="/"><img src="/img/logo5.png" width="35px" style="width: 35px" />minja</a>
+          <% end %>
+
+      
+      
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

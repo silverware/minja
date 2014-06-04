@@ -8,7 +8,7 @@ require(["info/InfoSave"], function(InfoSave) {
 });
 </script>
 
-<div id="content">
+<div class="container container-normal">
   <h1><%= @i18n.info.header %><%= @headerAction @i18n.show, "../info", "eye-open" %></h1>
   <%= @formFor @tournament.info, (form) => %>
     <fieldset>

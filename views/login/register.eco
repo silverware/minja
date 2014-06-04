@@ -7,7 +7,7 @@ $(function() {
 });
 </script>
 
-<div id="smallContent">
+<div class="container container-small">
   <h1><%= @i18n.register %></h1>
   <%= @formFor {email: @email}, (form) => %>
     <%= form.textField "E-Mail", "email", {placeholder: "name@example.com", class: "required email"} %>
