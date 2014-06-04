@@ -13,6 +13,7 @@ $(function() {
 });
 </script>
 
+<div class="container">
 <div id="smallContent">
 	<h1>Login</h1>
 	<% if (@message): %>
@@ -22,21 +23,22 @@ $(function() {
     <%= form.textField "E-Mail", "username", {placeholder: "name@example.com", class: "required email"} %>
     <%= form.password @i18n.password, "password", {placeholder: @i18n.password, class: "required"} %>
 	  <input type="hidden" value="<%= @next %>" name="next" />
-    <div class="control-group">
-      <div class="controls">
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
         <button class="btn btn-primary btn" type="submit" style="margin-right: 20px">Login</button>
         <a href="/user/lostpassword">
-          <button type="button" class="btn btn-link"><i class="icon-question-sign"></i><%= @i18n.lostPassword %></button>
+          <button type="button" class="btn btn-link"><i class="fa fa-question-circle"></i><%= @i18n.lostPassword %></button>
         </a>
       </div>
     </div>
 
     <hr />
-    <div class="control-group">
-      <div class="control-label">Via facebook</div>
-      <div class="controls">
-        <a href="/auth/facebook"><button class="btn btn-primary btn" type="button"><i class="icon-facebook"></i>Login via Facebook</button></a>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Via facebook</label>
+      <div class="col-sm-10">
+        <a href="/auth/facebook"><button class="btn btn-primary btn" type="button"><i class="fa fa-facebook"></i>Login via Facebook</button></a>
       </div>
     </div>
   <% end %>
+</div>
 </div>

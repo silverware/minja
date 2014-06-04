@@ -2,7 +2,7 @@ eco = require "eco"
 
 colorSelectTemplate = """
   <div class="input-append color" id="colorpicker<%= @name %>" data-color="<%= @val %>" data-color-format="rgba">
-    <input type="text" <%= @attrs %> name="<%= @name %>" value="<%= @val %>" />
+    <input class="form-control" type="text" <%= @attrs %> name="<%= @name %>" value="<%= @val %>" />
     <span class="add-on"><i style="background-color: <%= @val %>"></i></span>
   </div>
   <script>
@@ -13,15 +13,15 @@ colorSelectTemplate = """
 """
 
 passwordTemplate = """
-  <input id="input<%= @name %>" name="<%= @name %>" type="password" />
+  <input class="form-control" id="input<%= @name %>" name="<%= @name %>" type="password" />
 """
 
 textareaTemplate = """
-  <textarea id="input<%= @name %>" <%= @attrs %> name="<%= @name %>"><%- @val %></textarea>
+  <textarea class="form-control" id="input<%= @name %>" <%= @attrs %> name="<%= @name %>"><%- @val %></textarea>
 """
 
 textfieldTemplate = """
-  <input type="text" value="<%- @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
+  <input class="form-control" type="text" value="<%- @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
 """
 
 selectTemplate = """
@@ -40,9 +40,9 @@ saveButton = (label, disabled) ->
   saved = "Gespeichert"
   if label == "Save" then saved = "Saved"
   @safe """
-    <div class="form-horizontal">
-    <div class="control-group">
-      <div class="controls">
+    <div class="form-horizontal" role="form">
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
         <button class="btn btn-primary" type="submit" #{disabled}>#{label}</button>
         <i class="icon-spinner icon-spin ajaxLoader"></i>
         <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
@@ -57,9 +57,9 @@ formFor = (obj, yield_to, action="") ->
     s = ""
     if not stopInline?
       s += """
-        <div class="control-group">
-        <label class="control-label" for="input#{name}">#{label}</label>
-        <div class="controls">
+        <div class="form-group">
+        <label class="col-sm-2 control-label" for="input#{name}">#{label}</label>
+        <div class="col-sm-10">
       """
     s += """#{control}"""
 
@@ -114,8 +114,8 @@ formFor = (obj, yield_to, action="") ->
       saved = "Gespeichert"
       if label == "Save" then saved = "Saved"
       @safe """
-        <div class="control-group">
-          <div class="controls">
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
             <button class="btn btn-primary" type="submit">#{label}</button>
             <i class="icon-spinner icon-spin ajaxLoader"></i>
             <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
@@ -126,7 +126,7 @@ formFor = (obj, yield_to, action="") ->
 
   body = yield_to form
   action = if not action then "" else """ action="#{action}" """
-  @safe """<form class="form-horizontal" #{action} method="post">#{body}</form>"""
+  @safe """<form class="form-horizontal" role="form" #{action} method="post">#{body}</form>"""
 
 formWithActionFor = (object, action, yield_to) ->
   formFor.call(this, object, yield_to, action)
