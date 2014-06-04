@@ -37,9 +37,8 @@ define [
           {{/each}}
           <br /><br />
         """
-        classNames: ['hide']
 
         didInsertElement: ->
-          @$().fadeIn 1000
+          @$().hide().fadeIn 1000
       view.appendTo("#treeDashboardBox fieldset")
 

@@ -40,7 +40,7 @@ class TournamentController extends ControllerBase
   @navigation: (req) ->
     tournament = req.tournament
     id = tournament.identifier
-    nav = [route: "/#{id}/info", icon: "info-sign", label: req.i18n.info.navName]
+    nav = [route: "/#{id}/info", icon: "info-circle", label: req.i18n.info.navName]
     if tournament.isOwner or tournament.members
       nav.push route: "/#{id}/participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree

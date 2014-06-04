@@ -101,10 +101,10 @@
                 <% else: %>
                   <img src="/img/logo5.png" width="35px" style="width: 35px" />
                 <% end %>
-                <%= @tournament.info.name %>
+                &nbsp;<%= @tournament.info.name %>
               </a>
           <% else: %>
-            <a class="navbar-brand" href="/"><img src="/img/logo5.png" width="35px" style="width: 35px" />minja</a>
+            <a class="navbar-brand" href="/"><img src="/img/logo5.png" width="35px" style="width: 35px" />&nbsp;minja</a>
           <% end %>
 
       
@@ -114,9 +114,9 @@
           <ul class="nav navbar-nav">
             <% if @navigation: %>
               <% for item in @navigation: %>
-                <li>
-                  <a href="<%= item.route %>" class="<%= item.selectedClass %>">
-                   <i class="icon-<%= item.icon %>"></i><% if item.label: %>&nbsp;<%= item.label %><% end %>
+                <li class="<%= item.selectedClass %>">
+                  <a href="<%= item.route %>">
+                   <i class="fa fa-fw fa-<%= item.icon %>"></i><% if item.label: %>&nbsp;<%= item.label %><% end %>
                   </a>
                 </li>
               <% end %>

@@ -12,7 +12,7 @@ require(["settings/Settings"], function(Settings) {
 });
 </script>
 
-<div id="content">
+<div class="container container-normal">
   <h1><%= @i18n.settings.header %></h1>
     <!--
     <fieldset>

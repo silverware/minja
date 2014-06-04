@@ -20,6 +20,7 @@ define [
         if @membersData.membersAttributes?
           for attribute in @membersData.membersAttributes
             @attributes.pushObject @Attribute.create(attribute)
+
       @view.appendTo("#membersTable")
 
     data: ->
@@ -76,9 +77,8 @@ define [
     view: Ember.View.create
       DynamicTextField: DynamicTextField
       template: Ember.Handlebars.compile template
-      classNames: ['hide']
       didInsertElement: ->
-        @$().fadeIn 1000
+        @$().hide().fadeIn 1000
         @$("[rel='tooltip']").tooltip()
 
 

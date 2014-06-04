@@ -58,7 +58,6 @@ define ["text!./chat_template.hbs"], (template) ->
 
     view: Ember.View.create
       template: Ember.Handlebars.compile template
-      classNames: ['hide']
       didInsertElement: ->
-        @$().fadeIn 1000
+        @$().hide().fadeIn 1000
 
