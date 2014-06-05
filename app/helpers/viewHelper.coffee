@@ -4,9 +4,10 @@ marked = require 'marked'
 
 module.exports = (req, res, next) ->
   res.locals.headerAction = (label, url, icon) ->
+    if icon is "eye-open" then icon = "eye"
     @safe """
     <a href="#{url}" style="float: right">
-      <button class="btn btn-inverse"><i class="icon-#{icon}"></i>#{label}</button>
+      <button class="btn btn-inverse"><i class="fa fa-#{icon}"></i>#{label}</button>
     </a>
     """
 
@@ -26,7 +27,7 @@ module.exports = (req, res, next) ->
   res.locals.infoHint = (body) ->
     @safe """
       <div class="info-hint">
-        <i class="icon-info-sign"></i>
+        <i class="fa fa-info-circle"></i>
         <div>#{body()}</div>
       </div>
     """
@@ -43,7 +44,7 @@ module.exports = (req, res, next) ->
       return ""
     output = """<i class="fa fa-calendar"></i>&nbsp; #{date}"""
     if time
-      output += """&nbsp;&nbsp;&nbsp;<i class="icon-time"></i>&nbsp;#{time}"""
+      output += """&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;#{time}"""
     @safe output
 
   res.locals.textOrNa = (text) ->

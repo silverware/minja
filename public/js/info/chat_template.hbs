@@ -1,11 +1,15 @@
 {{#each message in Chat.messages}}
-  <h5>
-    {{message.author}}
-    <small>&nbsp;&nbsp;{{message.created_at_humanized}}</small>
-    {{#if Chat.editable}}
-       <button class="btn btn-link pull-right" {{action "remove" target="message"}}><i class="icon-trash"></i>{{Chat.i18n.delete}}</button>
-    {{/if}}
-  </h5>
+  <div class="row">
+    <div class="col-md-8">
+      {{message.author}}
+      <small>&nbsp;&nbsp;{{message.created_at_humanized}}</small>
+    </div>
+    <div class="col-md-4">
+      {{#if Chat.editable}}
+         <button class="btn btn-link pull-right" {{action "remove" target="message"}}><i class="fa fa-trash-o"></i>{{Chat.i18n.delete}}</button>
+      {{/if}}
+    </div>
+  </div>
   <pre style="margin-bottom: 20px">{{message.text}}</pre>
 {{/each}}
 

@@ -40,8 +40,8 @@ define ["text!./chat_template.hbs"], (template) ->
 
     messageOnFocusListener: ->
       $("#message").focus ->
-        $("#messageName").show()
-        $("#publishButton").show()
+        $("#messageName").removeClass("hide")
+        $("#publishButton").removeClass("hide")
 
     Message: Em.Object.extend
       _id: ""
@@ -54,6 +54,7 @@ define ["text!./chat_template.hbs"], (template) ->
       remove: ->
         $.post Chat.messageRemoveUrl, {id: @_id, rev: @_rev}
         Chat.messages.removeObject @
+        alert("Message deleted.")
 
 
     view: Ember.View.create

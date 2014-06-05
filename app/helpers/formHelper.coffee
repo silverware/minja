@@ -44,8 +44,8 @@ saveButton = (label, disabled) ->
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button class="btn btn-inverse" type="submit" #{disabled}>#{label}</button>
-        <i class="icon-spinner icon-spin ajaxLoader"></i>
-        <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
+        <i class="fa-spinner fa-spin ajaxLoader"></i>
+        <span class="successIcon"><i class="fa fa-check"></i> #{saved}</span>
       </div>
     </div>
     </div>
@@ -119,8 +119,8 @@ formFor = (obj, yield_to, action="") ->
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button class="btn btn-inverse" type="submit">#{label}</button>
-            <i class="icon-spinner icon-spin ajaxLoader"></i>
-            <span class="successIcon"><i class="icon-ok"></i> #{saved}</span>
+            <i class="fa-spinner fa-spin ajaxLoader"></i>
+            <span class="successIcon"><i class="fa fa-check"></i> #{saved}</span>
           </div>
         </div>
       """

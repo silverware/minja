@@ -9,6 +9,15 @@
   background-image: url(@grainUrl), linear-gradient(to bottom,  @color 0%,@light 100%); /* W3C */
 }
 
+.gradient(@from, @to) {
+  background: -moz-linear-gradient(top, @from 0%, @to 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@from), color-stop(100%,@to)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  @from 0%,@to 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  @from 0%,@to 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  @from 0%,@to 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  @from 0%,@to 100%); /* W3C */
+}
+
 
 /* ---------------------------------------------------------------------
 Colors
@@ -18,11 +27,11 @@ Colors
   background-color: @normal;
   color: #fff;
   position: relative;
-  // border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 
 .contentBox(@color) when (lightness(@color) < 60%) {
-  // box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
 }
 
 
@@ -127,7 +136,8 @@ Bootstrap
 ----------------------------------------------------------------------*/
 
 .navbar {
-  background-color: @dark;
+  // background-color: @dark;
+  .gradient(lighten(@dark, 8%), @dark);
   a {
     color: @footerText;
   }
@@ -192,9 +202,10 @@ Bootstrap
   color: @footerText;
 }
 
-.btn-inverse:hover {
+.btn-inverse:hover, .btn-inverse:focus {
   background-color: darken(@dark, 10%) !important;
   color: @footerText;
+  outline: 0;
 }
 
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {

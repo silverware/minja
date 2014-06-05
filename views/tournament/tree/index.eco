@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
 
 <div class="loading-screen">
-  <i class="icon-spinner icon-spin"></i><br />
+  <i class="fa-spinner fa-spin"></i><br />
   loading...
 </div>
 <script>

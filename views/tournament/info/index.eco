@@ -46,12 +46,16 @@ dl {
 
   <fieldset>
   <legend><%= @i18n.chat.messageStream %></legend>
-    <form id="chatForm">
+    <form id="chatForm" role="form">
       <% if not @tournament.isOwner: %>
-        <input type="text" id="messageName" class="input-small required" style="display: none" placeholder="Name" name="message[author]" />
+        <input type="text" id="messageName" class="form-control required hide" placeholder="Name" name="message[author]" />
       <% end %>
-      <textarea id="message" rows="1" class="required input-block-level" placeholder="<%= @i18n.chat.message %>" name="message[text]"></textarea>
-      <button type="submit" id="publishButton" class="btn btn-primary hide"><%= @i18n.chat.publish %></button>
+      <div class="form-group">
+        <textarea id="message" rows="1" class="required form-control" placeholder="<%= @i18n.chat.message %>" name="message[text]"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" id="publishButton" class="btn btn-inverse hide"><%= @i18n.chat.publish %></button>
+      </div>
     </form>
     <div id="chat"></div>
   </fieldset>
