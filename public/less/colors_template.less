@@ -59,8 +59,9 @@ body {
 }
 
 legend {
-  border-bottom: 2px solid fade(@dark, 30%);
-  box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+  // border-bottom: 2px solid fade(@dark, 30%);
+  // box-shadow: 0 1px rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid @dark;
 }
 
 
@@ -159,7 +160,7 @@ Bootstrap
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover {
-  background-color: @dark;
+  background-color: darken(@dark, 10%);
   color: @footerText;
   border-radius: 5px;
 }

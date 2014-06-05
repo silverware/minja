@@ -181,6 +181,7 @@ module.exports =
     settings: "Settings"
     save: "Save"
     saved: "Saved"
+    pointsModus: "Points/Modus"
     pointsPerWin: "Points/Win"
     pointsPerDraw: "Points/Draw"
     timePerGame: "Minutes/Game"

@@ -1,4 +1,5 @@
-App.templates.tournament = """
+
+App.templates.mobileTournament = """
   {{#each round in App.Tournament}}
     {{#if round.isGroupRound}}
       {{view App.GroupRoundView roundBinding="round"}}
@@ -46,7 +47,7 @@ App.templates.tournament = """
   <div style="clear: both"></div>
 """
 
-App.TournamentView = Em.View.extend
+App.MobileTournamentView = Em.View.extend
   classNames: ["tournament"]
   template: Ember.Handlebars.compile App.templates.tournament
 

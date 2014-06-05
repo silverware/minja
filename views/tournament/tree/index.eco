@@ -16,8 +16,7 @@
       App.Serializer = Serializer;
       App.Popup = Popup;
       var treeWrapper = $("<div id='treeWrapper' class='noPrint'>");
-      $("#wrapper").addClass("wrapperBeforeTree noPrint");
-      $("#wrapper").after(treeWrapper);
+      $(".container").after(treeWrapper);
       treeWrapper.createTree({
         editable: <%= @editable %>,
         i18n: <%- @json @i18n.tree %>,

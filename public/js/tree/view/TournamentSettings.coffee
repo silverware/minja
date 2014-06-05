@@ -12,23 +12,22 @@ menu:
 -->
 
 
-    <div class="container-fluid">
-    <div class="row-fluid">
-    <div class="span2">
+    <div class="row" style="margin: 0; padding: 0">
+    <div class="col-md-2">
       <ul id="settings-navigation" class="nav nav-list">
-        <li class="nav-header">Navigation</li>
-        <li class="active"><a href="#" data-target="#main-settings">{{App.i18n.settings}}</a></li>
+        <li class="nav-header">{{App.i18n.settings}}</li>
+        <li class="active"><a href="#" data-target="#main-settings">{{App.i18n.pointsModus}}</a></li>
         <li><a href="#" data-target="#gameAttributes">{{App.i18n.gameAttributes}}</a></li>
         <li><a href="#" data-target="#scheduling">{{App.i18n.timeCalculation}}</a></li>
     </ul> 
       
     </div>
-    <div class="span10" style="padding-left: 40px;">
+    <div class="col-md-10" style="padding-left: 40px;">
     <div class="tab-content">
     <div id="main-settings" class="tab-pane active">
   <fieldset>
-    <legend>{{App.i18n.settings}}</legend>
-<form class="form-horizontal">
+    <legend>{{App.i18n.pointsModus}}</legend>
+<form class="form-horizontal" role="form">
   <h5>{{App.i18n.groupStage}}</h5>
   <div class="control-group">
     <label class="control-label" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
@@ -111,7 +110,6 @@ menu:
       </fieldset>
     </div>
   </div>
-    </div>
     </div>
     </div>
 
