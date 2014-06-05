@@ -1,3 +1,6 @@
+<script src="/lib/bootstrap-modules/timepicker/bootstrap-timepicker.min.js"></script>
+<link href="/lib/bootstrap-modules/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+
 <script>
 require(["info/InfoSave"], function(InfoSave) {
   window.save = new InfoSave({
@@ -14,7 +17,7 @@ require(["info/InfoSave"], function(InfoSave) {
     <fieldset>
       <legend><%= @i18n.info.basicData %></legend>
       <%= form.textField @i18n.tournamentName, "name", {class: "required"} %>
-      <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><input type="button" class="btn" style="margin-top: 20px" onclick="save.openPreview()" value="#{@i18n.info.preview}">""", "description", {style: "width: 500px; height: 200px"} %>
+      <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><input type="button" class="btn" style="margin-top: 20px" onclick="save.openPreview()" value="#{@i18n.info.preview}">""", "description" %>
 
       <%= form.textField @i18n.info.venue, "venue" %>
       <%= form.textField @i18n.info.startDate, "startDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>

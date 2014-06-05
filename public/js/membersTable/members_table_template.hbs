@@ -15,7 +15,7 @@
     <tr>
       <td style="height: 39px;">
         {{#if MembersTable.editable}}
-          {{view Em.TextField valueBinding="member.name" classNames="required m" placeholder="Name"}}
+          {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}

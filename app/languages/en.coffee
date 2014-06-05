@@ -20,6 +20,7 @@ module.exports =
   time: "Time"
   contactUs: "Contact Us"
   favorites: "Favorites"
+  profile: "Profile"
   createIn3Minutes: "create your tournament in 3 minutes"
 
   sports: "Sports"

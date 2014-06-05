@@ -56,10 +56,12 @@ formFor = (obj, yield_to, action="") ->
   wrapper = (name, label, control, startInline, stopInline) =>
     s = ""
     if not stopInline?
+      inlineClass = ""
+      if startInline then inlineClass = "form-inline"
       s += """
         <div class="form-group">
         <label class="col-sm-2 control-label" for="input#{name}">#{label}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 #{inlineClass}">
       """
     s += """#{control}"""
 
