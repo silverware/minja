@@ -3,9 +3,9 @@ window.FormValidator = class FormValidator
   constructor: (@form) ->
     @form.validate
       highlight: (label) ->
-        $(label).closest('.control-group').addClass('error')
+        $(label).closest('.form-group').addClass('has-error')
       success: (label) ->
-        label.closest('.control-group').removeClass('error')
+        label.closest('.form-group').removeClass('has-error')
       rules:
         publicName:
           required: true

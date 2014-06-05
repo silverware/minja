@@ -13,15 +13,15 @@ colorSelectTemplate = """
 """
 
 passwordTemplate = """
-  <input class="form-control" id="input<%= @name %>" name="<%= @name %>" type="password" />
+  <input class="form-control <%= @class %>" id="input<%= @name %>" name="<%= @name %>" type="password" />
 """
 
 textareaTemplate = """
-  <textarea class="form-control" id="input<%= @name %>" <%= @attrs %> name="<%= @name %>"><%- @val %></textarea>
+  <textarea class="form-control <%= @class %>" id="input<%= @name %>" <%= @attrs %> name="<%= @name %>"><%- @val %></textarea>
 """
 
 textfieldTemplate = """
-  <input class="form-control" type="text" value="<%- @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
+  <input class="form-control <%= @class %>" type="text" value="<%- @val %>" <%= @attrs %> id="input<%= @name %>" name="<%= @name %>">
 """
 
 selectTemplate = """
@@ -90,6 +90,7 @@ formFor = (obj, yield_to, action="") ->
       name: attribute
       attrs: createAttributes attributes
       val: value attribute
+      "class": attributes?["class"]
 
   value = (name) =>
     if obj and obj[name] then @escape obj[name] else ""

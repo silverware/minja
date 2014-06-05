@@ -1,4 +1,4 @@
-<div id="content">
-	<h1>Not Found</h1>
-	The Tournament you are looking for is not available or was deleted.
+<div class="container container-small">
+  <h1>Tournament not found!</h1>
+  The tournament you are looking for is not available or has been deleted.
 </div>
