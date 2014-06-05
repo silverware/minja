@@ -124,6 +124,7 @@ App.GroupView = App.RoundItemView.extend
 
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>
+      @$(inId).removeClass('hide')
       @$(inId).fadeIn "medium"
 
   groupIndex: (->

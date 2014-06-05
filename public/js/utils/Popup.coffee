@@ -45,7 +45,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
     showInfo: (args) ->
       title = "Information"
       title = args.title if args.title
-      args.title = """<i class="icon-info-sign"></i> #{title}"""
+      args.title = """<i class="fa fa-info-circle"></i> #{title}"""
       @show args
 
     showQuestion: (args) ->
@@ -53,7 +53,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
       title = args.title if args.title
       confirmAction = {label: i18n.yes, closePopup: true,action: => @onConfirm()}
       args.actions = [confirmAction, {label: i18n.no, notBlue: true, closePopup: true, action: ->}]
-      args.title = """<i class="icon-question-sign"></i> #{title}"""
+      args.title = """<i class="fa fa-question-circle"></i> #{title}"""
       @show args
 
 
@@ -63,7 +63,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
           close = ""
           if action.closePopup
             close = "data-dismiss='modal'"
-          if action.notBlue then style = "btn-inverse" else style = "btn-primary"
+          if action.notBlue then style = "btn-inverse" else style = "btn-inverse"
           button = $("""
           <button class="btn #{style}" #{close}>
             #{action.label}

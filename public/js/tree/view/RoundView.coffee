@@ -2,8 +2,8 @@ App.RoundView = Em.View.extend
   template: Ember.Handlebars.compile """
     {{view App.RoundSetting roundBinding="round"}}
     <div class="box toolbar"> 
-      <i id="openDetailView" class="icon-search"></i>
-      <!-- <i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i> -->
+      <i id="openDetailView" class="fa fa-search"></i>
+      <!-- <i class="fa fa-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i> -->
     </div>
 
     {{#each game in round.items}}
@@ -39,13 +39,13 @@ App.RoundView = Em.View.extend
   ).property("round.items.@each")
 
   toggleRound: ->
-    if @$("#toggleRound").attr("class") == "icon-chevron-down"
+    if @$("#toggleRound").attr("class") == "fa fa-chevron-down"
       @$(".roundItem").show "medium"
       @$().css "min-height", "130px"
-      @$("#toggleRound").attr "class", "icon-chevron-up"
+      @$("#toggleRound").attr "class", "fa fa-chevron-up"
     else
       @$(".roundItem").hide "medium"
       @$("#settings .close").click()
       @$().css "min-height", "0px"
-      @$("#toggleRound").attr "class", "icon-chevron-down"
+      @$("#toggleRound").attr "class", "fa fa-chevron-down"
 

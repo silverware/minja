@@ -5,7 +5,7 @@
       <th>
         {{attribute.name}}
         {{#if MembersTable.editable}}
-          &nbsp;&nbsp;<i class="icon-remove" rel="tooltip" {{action "remove" target="attribute"}}></i>
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "remove" target="attribute"}}></i>
         {{/if}}
       </th>
     {{/each}}
@@ -27,7 +27,7 @@
               {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
             {{else}}
               {{#if view.memberValue}}
-                <i class="icon-ok" />
+                <i class="fa fa-check" />
               {{/if}}
             {{/if}}
           {{/if}}
@@ -43,7 +43,7 @@
 
       <td width="50px">
         {{#if MembersTable.editable}}
-          <i class="fa fa-remove" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
+          <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
         {{/if}}
       </td>
     </tr>

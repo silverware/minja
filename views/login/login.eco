@@ -33,7 +33,7 @@ $(function() {
 
     <hr />
     <div class="form-group">
-      <label class="col-sm-2 control-label">Via facebook</label>
+      <label class="col-sm-2 control-label"></label>
       <div class="col-sm-10">
         <a href="/auth/facebook"><button class="btn btn-inverse btn" type="button"><i class="fa fa-facebook"></i>Login via Facebook</button></a>
       </div>

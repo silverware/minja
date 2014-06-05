@@ -2,10 +2,10 @@ App.templates.groupRound = """
 {{view App.RoundSetting roundBinding="round"}}
 
 <div class="box toolbar">
-  <i class="icon-table" {{action "displayTables" target="view"}} id="showTables" style="display: none"></i>
-  <i class="icon-list" {{action "displayGames" target="view"}} id="showGames"></i>
-  <i id="openDetailView" class="icon-search"></i>
-  <!--<i class="icon-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>-->
+  <i class="fa fa-table" {{action "displayTables" target="view"}} id="showTables" style="display: none"></i>
+  <i class="fa fa-list" {{action "displayGames" target="view"}} id="showGames"></i>
+  <i id="openDetailView" class="fa fa-search"></i>
+  <!--<i class="fa fa-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>-->
 </div>
 
 {{#each group in round.items}}
@@ -28,10 +28,12 @@ App.GroupRoundView = App.RoundView.extend
 
   displayTables: ->
     @set "showTables", true
+    @$("#showTables").removeClass('hide')
     @$("#showTables").hide()
     @$("#showGames").show()
 
   displayGames: ->
     @set "showTables", false
     @$("#showTables").show()
+    @$("#showGames").removeClass('hide')
     @$("#showGames").hide()

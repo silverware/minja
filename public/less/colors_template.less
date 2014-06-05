@@ -102,7 +102,7 @@ Popover
 }
 
 .modal {
-  background-color: @normalOpaque;
+  background-color: rgba(0, 0, 0, 0.4);
   .table {
     input {
       color: @textColor;
@@ -113,8 +113,13 @@ Popover
   }
 }
 
+.modal-content {
+  background-color: @normalOpaque;
+}
+
 .modal-footer {
-  background-color: @dark;
+  background-color: @normalOpaque;
+  border-top: 2px solid fade(@dark, 30%);
 }
 
 .modal-header {
@@ -295,7 +300,8 @@ Tree
  **/
 .detailView {
   .table tbody tr:hover {
-    background-color: saturate(@normal, 5%)
+    background-color: @dark;
+    color: @textColor;
   }
   .tableSchedule {
     .matchday-separator {

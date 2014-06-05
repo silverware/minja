@@ -147,6 +147,10 @@
                     <li class="dropdown-header"><%= @i18n.profile %></li>
                     <li><a tabindex="-1" href="/me/changepassword"><%= @i18n.changePassword %></a></li>
                     <li><a tabindex="-1" href="/user/logout">Logout</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header"><%= @i18n.language %></li>
+                    <li><a tabindex="-1" href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" />&nbsp;<%= @i18n.german %></a></li>
+                    <li><a tabindex="-1" href="/lang/en?next=<%= @path %>"><img src="/img/gb.png" alt="english" />&nbsp;<%= @i18n.english %></a></li>
                   </ul>
                 </li>
             <% else: %>

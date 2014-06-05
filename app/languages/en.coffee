@@ -21,6 +21,9 @@ module.exports =
   contactUs: "Contact Us"
   favorites: "Favorites"
   profile: "Profile"
+  language: "Language"
+  german: "German"
+  english: "English"
   createIn3Minutes: "create your tournament in 3 minutes"
 
   sports: "Sports"

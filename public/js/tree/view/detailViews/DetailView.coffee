@@ -2,8 +2,8 @@ App.DetailView = Em.View.extend
   classNames: ['detailView']
 
   layout: Ember.Handlebars.compile """
-    <span title="close" class="carousel-control closeButton right noPrint">
-      <i class="icon-remove"></i>
+    <span title="close" class="closeButton right noPrint">
+      <i class="fa fa-times-circle"></i>
     </span>
     <div class="detailContent">{{yield}}</div>
   """
