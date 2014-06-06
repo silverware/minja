@@ -2,26 +2,26 @@ App.templates.gamesDetail = """
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
       {{#if view.roundItem}}
-        <span class="carousel-control left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
-          <i class="icon-arrow-left"></i>
+        <span class="left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
+          <i class="fa fa-arrow-circle-left"></i>
         </span>
 
         {{view.roundItem.name}}
 
-        <span class="carousel-control right noPrint" title="next" {{action "navigateToRight" target="view"}}>
-          <i class="icon-arrow-right"></i>
+        <span class="right noPrint" title="next" {{action "navigateToRight" target="view"}}>
+          <i class="fa fa-arrow-circle-right"></i>
         </span>
       {{/if}}
     </div>
+  </div>
     <div class="noPrint actionButtons">
-      <span title="print" class="carousel-control printView" {{action "printView" target="view"}}>
-        <i class="icon-print"></i>
+      <span title="print" class="printView" {{action "printView" target="view"}}>
+        <i class="fa fa-print"></i>
       </span><!--
       <span title="prefill Attributes" class="carousel-control prefillAttributesView" {{action "prefillAttributes" target="view"}}>
         <i class="icon-ok"></i>
       </span>-->
     </div>
-  </div>
 
 {{#if view.table}}
   <fieldset>

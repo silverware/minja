@@ -22,39 +22,40 @@ menu:
     </ul> 
       
     </div>
-    <div class="col-md-10" style="padding-left: 40px;">
+    <div class="col-md-10">
     <div class="tab-content">
     <div id="main-settings" class="tab-pane active">
-  <fieldset>
-    <legend>{{App.i18n.pointsModus}}</legend>
 <form class="form-horizontal" role="form">
-  <h5>{{App.i18n.groupStage}}</h5>
-  <div class="control-group">
-    <label class="control-label" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
-    <div class="controls">
-      {{view App.NumberField id="pointsPerWin" valueBinding="App.Tournament.winPoints"}}
+  <fieldset>
+    <legend>{{App.i18n.groupStage}}</legend>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
+    <div class="col-sm-10">
+      {{view App.NumberField id="pointsPerWin" classNames="form-control" valueBinding="App.Tournament.winPoints"}}
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
-    <div class="controls">
-      {{view App.NumberField id="pointsPerDraw" valueBinding="App.Tournament.drawPoints"}}
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
+    <div class="col-sm-10">
+      {{view App.NumberField id="pointsPerDraw" classNames="form-control" valueBinding="App.Tournament.drawPoints"}}
 
-      <i rel="popover" ref="points-per-draw" class="hide icon-info-sign" data-title="{{unbound App.i18n.pointsPerDraw}}"></i>
+      <i rel="popover" ref="points-per-draw" class="hide fa fa-info-circle" data-title="{{unbound App.i18n.pointsPerDraw}}"></i>
       <div id="points-per-draw" class="hide">{{App.i18n.pointsPerDrawHelp}}</div>
     </div>
   </div>
-  <h5>{{App.i18n.koRound}}</h5>
-    <div class="control-group">
-    <label class="control-label" for="qualifierModus">Modus</label>
-    <div class="controls">
-      {{view Ember.Select id="qualifierModus" contentBinding="view.qualifierModiOptions"
+  </fieldset>
+  <fieldset>
+    <legend>{{App.i18n.koRound}}</legend>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="qualifierModus">Modus</label>
+    <div class="col-sm-10">
+      {{view Ember.Select id="qualifierModus" contentBinding="view.qualifierModiOptions" classNames="form-control" 
           optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
     </div>
   </div>
+  </fieldset>
 
     </form>
-  </fieldset>
     </div>
     <div id="gameAttributes" class="tab-pane">
   <fieldset>
