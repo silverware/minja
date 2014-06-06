@@ -14,22 +14,11 @@ App.templates.roundSetting = """
 
 <div id="settings">
 <button type="button" class="close">×</button>
-  <form class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label">Name</label>
-        <div class="controls">
-          {{view Em.TextField classNames="s" valueBinding="round.name"}}
-        </div>
-      </div>
-      <div class="control-group">
+  <button style="float: right" class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus-circle"></i>{{round._itemLabel}}</button>
+  <button style="float: right" class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.shuffle}}</button>
+        <label>Name</label> {{view Em.TextField classNames="s" valueBinding="round.name"}}<br />
         <label class="control-label">{{App.i18n.games}}</label>
-        <div class="controls">
             {{view App.NumberField classNames="xxs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
-        </div>
-      </div>
-  </form>
-  <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="icon-plus-sign"></i>{{round._itemLabel}}</button>
-  <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="icon-random"></i>{{App.i18n.shuffle}}</button>
 </div>
 """
 

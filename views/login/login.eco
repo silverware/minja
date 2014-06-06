@@ -13,7 +13,8 @@ $(function() {
 });
 </script>
 
-<div class="container container-small">
+<div class="container">
+<div class="container-small">
 	<h1>Login</h1>
 	<% if (@message): %>
 	  <p><%= @message %></p>
@@ -39,4 +40,5 @@ $(function() {
       </div>
     </div>
   <% end %>
+</div>
 </div>

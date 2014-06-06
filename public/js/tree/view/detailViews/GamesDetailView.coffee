@@ -72,7 +72,7 @@ App.templates.gamesDetail = """
     <legend>{{App.i18n.schedule}}
 
       <span style="float:right" class="noPrint">
-        {{view Em.TextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
+        {{view Em.TextField classNames="form-control" valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
     <table class="table tableSchedule">
@@ -111,9 +111,11 @@ App.templates.gamesDetail = """
             {{/each}}
             <td>
             {{#if App.editable}}
+              <div style="width: 60px" class="form-group row">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
                 :
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
+              </div>
             {{else}}
               {{#if game.isCompleted}}
                 <b>{{game.result1}} : {{game.result2}}</b>

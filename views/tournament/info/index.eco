@@ -12,7 +12,8 @@ dl {
   font-size: 16px;
 }
 </style>
-<div class="container container-normal">
+<div class="container">
+<div class="container-normal">
   <h1><%= @i18n.info.header %>
   <% if @tournament.isOwner: %>
     <%= @headerAction @i18n.edit, "info/edit", "edit" %>
@@ -59,6 +60,7 @@ dl {
     </form>
     <div id="chat"></div>
   </fieldset>
+</div>
 </div>
 
 

@@ -12,7 +12,8 @@
   });
 </script>
 
-<div class="container container-normal">
+<div class="container">
+<div class="container-normal">
   <h1>
     <%= @i18n.members.navName %><%= @headerAction @i18n.show, "../participants", "eye-open" %>
     <a style="float: right; margin-right: 10px" href="#">
@@ -27,6 +28,7 @@
     <div id="membersTable"></div>
     <%= @saveButton @i18n.save, true %>
   </form>
+</div>
 </div>
 
 

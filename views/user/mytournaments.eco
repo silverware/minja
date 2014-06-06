@@ -7,7 +7,8 @@
   }
 </script>
 
-<div class="container container-normal">
+<div class="container">
+<div class="container-normal">
   <h1><%= @i18n.myTournaments %></h1>
 
   <table class="table table-striped">
@@ -48,4 +49,5 @@
   <div style="text-align: right">
     <em><%= "#{@tournaments.length} #{@i18n.tournaments}" %></em>
   </div>
+</div>
 </div>
