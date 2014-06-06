@@ -1,5 +1,5 @@
 App.NumberField = Ember.TextField.extend
-  classNames: ['xxs']
+  classNames: ['result-textfield']
   editable: true
 
   didInsertElement: ->

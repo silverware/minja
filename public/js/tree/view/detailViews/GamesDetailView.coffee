@@ -111,11 +111,13 @@ App.templates.gamesDetail = """
             {{/each}}
             <td>
             {{#if App.editable}}
-              <div style="width: 60px" class="form-group row">
+                <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
+                </div>
                 :
+                <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
-              </div>
+                </div>
             {{else}}
               {{#if game.isCompleted}}
                 <b>{{game.result1}} : {{game.result2}}</b>
