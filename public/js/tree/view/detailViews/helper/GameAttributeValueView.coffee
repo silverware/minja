@@ -11,16 +11,16 @@ App.GameAttributeValueView = Ember.View.extend
     {{else}}
       {{#if view.attribute.isResult}}
         {{#if App.editable}}
-          {{view App.NumberField valueBinding="view.resultGameValue1"}}
+          {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue1"}}
           :
-          {{view App.NumberField valueBinding="view.resultGameValue2"}}
+          {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue2"}}
         {{else}}
           {{view.gameValue}}
         {{/if}}
       {{else}}
         {{#if view.attribute.isNumber}}
           {{#if App.editable}}
-            {{view App.NumberField valueBinding="view.gameValue"}}
+            {{view App.NumberField classNames="form-control" valueBinding="view.gameValue"}}
           {{else}}
             {{view.gameValue}}
           {{/if}}

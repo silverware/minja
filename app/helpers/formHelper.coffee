@@ -6,9 +6,10 @@ colorSelectTemplate = """
     <span class="add-on"><i style="background-color: <%= @val %>"></i></span>
   </div>
   <script>
-    var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
-        console.debug(event);
-      });
+
+    //var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
+     //   console.debug(event);
+      //});
   </script>
 """
 
@@ -53,7 +54,7 @@ saveButton = (label, disabled) ->
 
 formFor = (obj, yield_to, action="") ->
 
-  wrapper = (name, label, control, startInline, stopInline) =>
+  wrapper = (name, label, control, startInline, stopInline, containerClasses) =>
     s = ""
     if not stopInline?
       inlineClass = ""
@@ -61,7 +62,7 @@ formFor = (obj, yield_to, action="") ->
       s += """
         <div class="form-group">
         <label class="col-sm-2 control-label" for="input#{name}">#{label}</label>
-        <div class="col-sm-10 #{inlineClass}">
+        <div class="col-sm-10 #{inlineClass} #{containerClasses?.formControl}">
       """
     s += """#{control}"""
 
@@ -74,10 +75,14 @@ formFor = (obj, yield_to, action="") ->
     attributes = args[2]
     startInline = attributes?.startInline
     stopInline = attributes?.stopInline
+    containerClasses = {}
+    if attributes?.formControl
+      containerClasses.formControl = attributes.formControl
+      delete attributes.formControl
 
     locals = createLocals label, attribute, attributes
     control = eco.render template, locals
-    wrapper locals.name, label, control, startInline, stopInline
+    wrapper locals.name, label, control, startInline, stopInline, containerClasses
 
   createAttributes = (attributes) =>
     attributesString = " "

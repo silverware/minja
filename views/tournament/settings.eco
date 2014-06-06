@@ -1,3 +1,6 @@
+<!--<link href="/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<script src="/lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.min.js"></script>-->
+
 <script>
 require(["settings/Settings"], function(Settings) {
   window.settings = new Settings({
@@ -28,19 +31,19 @@ require(["settings/Settings"], function(Settings) {
     <fieldset>
       <legend><%= @i18n.settings.colorSelection %></legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
-          <div class="control-group">
-            <label class="control-label"><%= @i18n.settings.theme %></label>
-            <div class="controls">
-              <span class="btn btn-link" id="selectTheme"><i class="icon-picture"></i><%= @i18n.settings.selectTheme %></span>
+          <div class="form-group">
+            <label class="control-label col-sm-2"><%= @i18n.settings.theme %></label>
+            <div class="col-sm-10">
+              <span class="btn btn-link" id="selectTheme"><i class="fa fa-picture-o"></i><%= @i18n.settings.selectTheme %></span>
             </div>
           </div>
-          <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.background, "background", {formControl: "col-md-3", placeholder: @i18n.color} %>
           <br />
-          <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>
-          <%= form.colorSelect @i18n.settings.contentText, "contentText", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.content, "content", {formControl: "col-md-3", placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.contentText, "contentText", {formControl: "col-md-3", placeholder: @i18n.color} %>
           <br />
-          <%= form.colorSelect @i18n.settings.footer, "footer", {placeholder: @i18n.color} %>
-          <%= form.colorSelect @i18n.settings.footerText, "footerText", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.footer, "footer", {formControl: "col-md-3", placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.footerText, "footerText", {formControl: "col-md-3", placeholder: @i18n.color} %>
           <%= form.button @i18n.settings.applyColor %>
         <% end %>
     </fieldset>
@@ -60,7 +63,7 @@ require(["settings/Settings"], function(Settings) {
         <br />
 
         <%= @formFor @tournament, (form) => %>
-          <%= form.textField 'Name', "publicName", {class: "publicName", placeholder: @i18n.settings.publicName} %>
+          <%= form.textField 'Name', "publicName", {formControl: "col-md-4", class: "publicName", placeholder: @i18n.settings.publicName} %>
           <%= form.button @i18n.save %>
         <% end %>
     </fieldset>

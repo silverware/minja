@@ -3,14 +3,14 @@ App.templates.group = """
 
 <span class="actionIcons">
   {{#if App.editable}}
-    <i class="icon-search" {{action "openGroupView" target="view"}}></i>
+    <i class="fa fa-search" {{action "openGroupView" target="view"}}></i>
   {{/if}}
   {{#if view.round.isEditable}}
-    <i class="icon-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
-    <i class="icon-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
-    <i class="icon-plus-sign increaseGroupsize" {{action "addPlayer" target="group"}}></i>
-    <i class="icon-minus-sign decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
-    <i class="icon-remove removeItem" {{action "remove" target="group"}}></i>
+    <i class="fa fa-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
+    <i class="fa fa-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
+    <i class="fa fa-plus-circle increaseGroupsize" {{action "addPlayer" target="group"}}></i>
+    <i class="fa fa-minus-circle decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
+    <i class="fa fa-times removeItem" {{action "remove" target="group"}}></i>
   {{/if}}
 </span>
 

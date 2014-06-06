@@ -110,7 +110,7 @@ Popover
   }
   .close {
     color: @textColor;
-    opacity: 0.5;
+    opacity: 1;
   }
 }
 
@@ -206,6 +206,7 @@ Bootstrap
 .btn-inverse {
   background-color: @dark !important;
   color: @footerText;
+  border: 1px solid darken(@dark, 5%);
 }
 
 .btn-inverse:hover, .btn-inverse:focus {
@@ -301,13 +302,14 @@ Tree
  **/
 .detailView {
   .table tbody tr:hover {
-    background-color: @dark;
+    background-color: darken(@normal, 1%);
     color: @textColor;
   }
   .tableSchedule {
     .matchday-separator {
-      border-bottom: 1px solid fade(@dark, 30%);
-      box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid @dark;
+      // border-bottom: 1px solid fade(@dark, 30%);
+      // box-shadow: 0 1px rgba(255, 255, 255, 0.1);
     }
     .matchday-separator:hover {
       background-color: rgba(0,0,0,0) !important;

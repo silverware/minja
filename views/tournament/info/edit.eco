@@ -16,10 +16,10 @@ require(["info/InfoSave"], function(InfoSave) {
   <%= @formFor @tournament.info, (form) => %>
     <fieldset>
       <legend><%= @i18n.info.basicData %></legend>
-      <%= form.textField @i18n.tournamentName, "name", {class: "required"} %>
+      <%= form.textField @i18n.tournamentName, "name", {class: "required", formControl: "col-md-4"} %>
       <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><input type="button" class="btn btn-inverse" style="margin-top: 20px" onclick="save.openPreview()" value="#{@i18n.info.preview}">""", "description" %>
 
-      <%= form.textField @i18n.info.venue, "venue" %>
+      <%= form.textField @i18n.info.venue, "venue", {formControl: 'col-md-4'} %>
       <%= form.textField @i18n.info.startDate, "startDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
       <%= form.textField "", "startTime", {stopInline: "true", "class": "input-small", placeholder: @i18n.time} %>
       <%= form.textField @i18n.info.stopDate, "stopDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
@@ -28,8 +28,8 @@ require(["info/InfoSave"], function(InfoSave) {
 
     <fieldset>
       <legend><%= @i18n.contact %></legend>
-      <%= form.textField @i18n.info.host, "host" %>
-      <%= form.textField "E-Mail", "hostMail", {class: "email"} %>
+      <%= form.textField @i18n.info.host, "host", {formControl: "col-md-4"} %>
+      <%= form.textField "E-Mail", "hostMail", {class: "email", formControl: "col-md-4"} %>
     </fieldset>
 
     <%= form.button @i18n.save %>

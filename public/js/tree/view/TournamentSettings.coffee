@@ -70,15 +70,15 @@ menu:
       </thead>
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
-        <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="l"}}</td>
-        <td>{{view Ember.Select contentBinding="view.gameAttributeOptions"
+        <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</td>
+        <td>{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
-        <td><i class="icon-remove" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
+        <td><i class="fa fa-times" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
         </td>
       </tr>
       {{/each}}
     </table>
-  <span class='btn btn-link' {{action "addAttribute" target="view"}}><i class="icon-plus-sign"></i>&nbsp;{{App.i18n.addAttribute}}</span>
+  <span class='btn btn-link' {{action "addAttribute" target="view"}}><i class="fa fa-plus-circle"></i>&nbsp;{{App.i18n.addAttribute}}</span>
   </fieldset>
   </div>
 
