@@ -13,8 +13,7 @@ $(function() {
 });
 </script>
 
-<div class="container">
-<div class="container-small">
+<div class="container container-small">
 	<h1>Login</h1>
 	<% if (@message): %>
 	  <p><%= @message %></p>
@@ -37,8 +36,8 @@ $(function() {
       <label class="col-sm-2 control-label"></label>
       <div class="col-sm-10">
         <a href="/auth/facebook"><button class="btn btn-inverse btn" type="button"><i class="fa fa-facebook"></i>Login via Facebook</button></a>
+        <a href="/user/register"><button class="btn btn-inverse btn" type="button"><%= @i18n.register %></button></a>
       </div>
     </div>
   <% end %>
-</div>
 </div>

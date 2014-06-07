@@ -1,4 +1,4 @@
-﻿define ["utils/Popup"], (Popup) ->
+﻿define ["utils/Popup", "datepicker"], (Popup) ->
 
   class InfoSave extends Save
 
@@ -18,11 +18,11 @@
       $("input[name=startTime]").after @openStopdate
       $("input[name=stopTime]").after @deleteStopdate
 
-      $("input[name=startTime]").timepicker
+      $("input[name=startTime]").datetimepicker
         showMeridian: false
         defaultTime: false
 
-      @startDate.datepicker
+      @startDate.datetimepicker
         format: "dd.mm.yyyy"
 
       if not @stopDate.val()
@@ -44,10 +44,10 @@
         @stopDate.val @startDate.val()
       @stopDate.closest(".control-group").show()
       @openStopdate.hide()
-      $("input[name=stopTime]").timepicker
+      $("input[name=stopTime]").datetimepicker
         showMeridian: false
         defaultTime: false
-      @stopDate.datepicker
+      @stopDate.datetimepicker
         format: "dd.mm.yyyy"
 
     initVenuePopup: ->

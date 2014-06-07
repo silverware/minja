@@ -1,6 +1,4 @@
-<script src="/lib/bootstrap-modules/timepicker/bootstrap-timepicker.min.js"></script>
-<link href="/lib/bootstrap-modules/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-
+<link href="/lib/bootstrap-modules/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script>
 require(["info/InfoSave"], function(InfoSave) {
   window.save = new InfoSave({
@@ -11,8 +9,7 @@ require(["info/InfoSave"], function(InfoSave) {
 });
 </script>
 
-<div class="container">
-<div class="container-normal">
+<div class="container container-normal">
   <h1><%= @i18n.info.header %><%= @headerAction @i18n.show, "../info", "eye-open" %></h1>
   <%= @formFor @tournament.info, (form) => %>
     <fieldset>
@@ -21,10 +18,12 @@ require(["info/InfoSave"], function(InfoSave) {
       <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><input type="button" class="btn btn-inverse" style="margin-top: 20px" onclick="save.openPreview()" value="#{@i18n.info.preview}">""", "description" %>
 
       <%= form.textField @i18n.info.venue, "venue", {formControl: 'col-md-4'} %>
-      <%= form.textField @i18n.info.startDate, "startDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
-      <%= form.textField "", "startTime", {stopInline: "true", "class": "input-small", placeholder: @i18n.time} %>
-      <%= form.textField @i18n.info.stopDate, "stopDate", {startInline: "true", "class": "input-small", placeholder: @i18n.datum} %>
-      <%= form.textField "", "stopTime", {stopInline: "true","class": "input-small", placeholder: @i18n.time} %>
+      <div class="form-group">
+                <div class='input-group date' id='datetimepicker7'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
     </fieldset>
 
     <fieldset>
@@ -35,5 +34,4 @@ require(["info/InfoSave"], function(InfoSave) {
 
     <%= form.button @i18n.save %>
   <% end %>
-</div>
 </div>

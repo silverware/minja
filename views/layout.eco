@@ -35,7 +35,6 @@
 
     <script src="/lib/require-jquery.js"></script>
     <script src="/js/require-config.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/lib/chosen.jquery.min.js"></script>
     <script src="/lib/jquery.validate.min.js"></script>
     <script src="/lib/handlebars-1.0.0.js"></script>
@@ -44,9 +43,6 @@
     <% else: %>
     <script src="/lib/ember-1.0.0.js"></script>
     <% end %>
-    <script src="/lib/underscore.js"></script>
-    <script src="/lib/moment.min.js"></script>
-    <script src="/lib/three.js"></script>
 
     <script src="/js/form/FormValidator.js"></script>
     <script src="/js/form/Save.js"></script>
@@ -153,7 +149,6 @@
                 </li>
             <% else: %>
                 <li><a href="/user/login">Login</a></li>
-                <li><a href="/user/register"><%= @i18n.register %></a></li>
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->

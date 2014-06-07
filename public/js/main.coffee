@@ -5,7 +5,7 @@ window.UniqueId =
     id.substr 0, length
 
 ############ after each Page-Load ##################
-$ ->
+require ->
   $("[rel='tooltip']").tooltip()
 
   # Favorite Tournament Toggle

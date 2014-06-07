@@ -7,21 +7,20 @@
   }
 </script>
 
-<div class="container">
-<div class="container-normal">
+<div class="container container-normal">
   <h1><%= @i18n.myTournaments %></h1>
 
   <table class="table table-striped">
     <thead>
       <th>Name</th>
-      <th><%= @i18n.created %></th>
+      <th class="hidden-xs"><%= @i18n.created %></th>
       <th></th>
     </thead>
     <tbody>
       <% for tournament in @tournaments: %>
         <tr>
           <td><%= tournament.value.info.name %></td>
-          <td><%= @i18n.date tournament.value.created_at %></td>
+          <td class="hidden-xs"><%= @i18n.date tournament.value.created_at %></td>
           <td width="140px">
             <div class="btn-group">
               <button type="button" class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value._id %>'"><i class="fa fa-folder-open"></i><%= @i18n.open %></button>
@@ -49,5 +48,4 @@
   <div style="text-align: right">
     <em><%= "#{@tournaments.length} #{@i18n.tournaments}" %></em>
   </div>
-</div>
 </div>

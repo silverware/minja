@@ -5,7 +5,7 @@
 
 <div class="container" style="height: 30px"></div>
 <div class="loading-screen">
-  <i class="fa-spinner fa-spin"></i><br />
+  <i class="fa fa-spinner fa-spin"></i><br />
   loading...
 </div>
 <script>

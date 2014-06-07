@@ -45,7 +45,7 @@ saveButton = (label, disabled) ->
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button class="btn btn-inverse" type="submit" #{disabled}>#{label}</button>
-        <i class="fa-spinner fa-spin ajaxLoader"></i>
+        <i class="fa fa-spinner fa-spin ajaxLoader"></i>
         <span class="successIcon"><i class="fa fa-check"></i> #{saved}</span>
       </div>
     </div>
