@@ -12,6 +12,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
       @afterRendering = ->
       @onConfirm = ->
       @cancelble = false
+      @size = "md"
       @[name] = method for name, method of args
 
     show: (args) ->
@@ -29,6 +30,11 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
           closePopup: true
           notBlue: true
       @_apendActionsToModal()
+
+
+      ################ SIZE ######################
+      dialog = $template.find ".modal-dialog"
+      dialog.addClass "modal-" + @size
 
       ################ ADD CONTENT ######################
       if @bodyUrl?

@@ -30,13 +30,13 @@ menu:
     <legend>{{App.i18n.groupStage}}</legend>
   <div class="form-group">
     <label class="control-label col-sm-2" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
-    <div class="col-sm-10 col-mg-1">
+    <div class="col-sm-10 col-md-1">
       {{view App.NumberField id="pointsPerWin" classNames="form-control" valueBinding="App.Tournament.winPoints"}}
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
-    <div class="col-sm-10 col-mg-1">
+    <div class="col-sm-10 col-md-1">
       {{view App.NumberField id="pointsPerDraw" classNames="form-control" valueBinding="App.Tournament.drawPoints"}}
 
       <i rel="popover" ref="points-per-draw" class="hide fa fa-info-circle" data-title="{{unbound App.i18n.pointsPerDraw}}"></i>
@@ -70,9 +70,9 @@ menu:
       </thead>
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
-        <td>{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</td>
-        <td>{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
-          optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</td>
+        <td><div class="col-md-4">{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</div></td>
+        <td><div class="col-md-4">{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
+          optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</div></td>
         <td><i class="fa fa-times" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
         </td>
       </tr>
@@ -86,17 +86,17 @@ menu:
       <fieldset>
         <legend>{{App.i18n.timeCalculation}}</legend>
         <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label" for="timePerGame">{{App.i18n.timePerGame}}</label>
-            <div class="controls">
-              {{view App.NumberField classNames="xs" id="timePerGame" valueBinding="App.Tournament.timePerGame"}} min
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="timePerGame">{{App.i18n.timePerGame}}</label>
+            <div class="col-sm-10 col-md-4">
+              {{view App.NumberField classNames="form-control" id="timePerGame" valueBinding="App.Tournament.timePerGame"}}
             </div>
           </div>
 
-          <div class="control-group">
-            <label class="control-label" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
-            <div class="controls">
-              {{view App.NumberField id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
+            <div class="col-sm-10 col-md-4">
+              {{view App.NumberField classNames="form-control" id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
             </div>
           </div>
         </form>

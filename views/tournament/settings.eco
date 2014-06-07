@@ -15,9 +15,12 @@ require(["settings/Settings"], function(Settings) {
 });
 </script>
 
-<div class="container">
-<div class="container-normal">
-  <h1><%= @i18n.settings.header %></h1>
+<div class="container dashboard" style="margin-top: 20px">
+  <div class="row">
+  <div class="col-md-6">
+  <div class="dashboardBox">
+
+
     <!--
     <fieldset>
       <legend><%= @i18n.settings.color %></legend>
@@ -38,17 +41,21 @@ require(["settings/Settings"], function(Settings) {
               <span class="btn btn-link" id="selectTheme"><i class="fa fa-picture-o"></i><%= @i18n.settings.selectTheme %></span>
             </div>
           </div>
-          <%= form.colorSelect @i18n.settings.background, "background", {formControl: "col-md-3", placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
           <br />
-          <%= form.colorSelect @i18n.settings.content, "content", {formControl: "col-md-3", placeholder: @i18n.color} %>
-          <%= form.colorSelect @i18n.settings.contentText, "contentText", {formControl: "col-md-3", placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.contentText, "contentText", {placeholder: @i18n.color} %>
           <br />
-          <%= form.colorSelect @i18n.settings.footer, "footer", {formControl: "col-md-3", placeholder: @i18n.color} %>
-          <%= form.colorSelect @i18n.settings.footerText, "footerText", {formControl: "col-md-3", placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.footer, "footer", {placeholder: @i18n.color} %>
+          <%= form.colorSelect @i18n.settings.footerText, "footerText", {placeholder: @i18n.color} %>
           <%= form.button @i18n.settings.applyColor %>
         <% end %>
     </fieldset>
+  </div>
+  </div>
 
+  <div class="col-md-6">
+  <div class="dashboardBox">
     <fieldset>
       <legend><%= @i18n.settings.publicName %></legend>
         <%= @infoHint => %>
@@ -64,7 +71,7 @@ require(["settings/Settings"], function(Settings) {
         <br />
 
         <%= @formFor @tournament, (form) => %>
-          <%= form.textField 'Name', "publicName", {formControl: "col-md-4", class: "publicName", placeholder: @i18n.settings.publicName} %>
+          <%= form.textField 'Name', "publicName", {class: "publicName", placeholder: @i18n.settings.publicName} %>
           <%= form.button @i18n.save %>
         <% end %>
     </fieldset>
@@ -75,5 +82,73 @@ require(["settings/Settings"], function(Settings) {
 Nachrichten aktivieren/deaktivieren
 
   -->
+</div>
+</div>
+</div>
+
+
+  <div class="row">
+  <div class="col-md-6">
+  <div class="dashboardBox">
+
+    <fieldset>
+      <legend><%= @i18n.settings.uploadLogo %></legend>
+
+  <form class="form-horizontal" role="form" action="/<%= @tournament.id %>/logo" method="post" enctype="multipart/form-data">
+  <div id="logocontainer"
+         <% if !@hasLogo: %>style="display:none" <% end %>
+    >
+    <div class="form-group">
+    <label class="control-label col-sm-2">&nbsp;</label>
+      <div class="col-sm-10">
+        <img id="logo" style="max-width:200px" src="/<%= @tournament.id %>/logo/display" alt="your tournament logo" />
+       </div>
+    </div>
+
+
+    </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="logofile"><%= @i18n.settings.choosePicture %></label>
+      <div class="col-sm-10">
+        <input type="file" name="logo" accept="image/* " size="50" id="logofile" />
+       </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-inverse" name="save" value="1" type="submit" style="margin-right: 20px"><%= @i18n.settings.saveLogo %></button>
+        <% if @hasLogo: %>
+          <button class="btn btn-danger" name="delete" value="1" type="submit" style="margin-right: 20px"><%= @i18n.settings.deleteLogo %></button>
+        <% end  %>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files;
+    for (var i = 0, f; f = files[i]; i++) {
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+      var reader = new FileReader();
+      reader.onload = (function(theFile) {
+        return function(e) {
+          var logo = document.getElementById('logo');
+          var logocontainer = document.getElementById('logocontainer');
+          logo.setAttribute("src", e.target.result);
+          logocontainer.setAttribute("style", "");
+        };
+      })(f);
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('logofile').addEventListener('change', handleFileSelect, false);
+</script>
+</legend>
 </div>
 </div>

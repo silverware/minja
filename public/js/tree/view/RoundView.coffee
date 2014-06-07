@@ -22,9 +22,9 @@ App.RoundView = Em.View.extend
   didInsertElement: ->
     @$("#openDetailView").click =>
         App.RoundDetailView.create round: @round
-    @$("#openDetailView").tooltip
-      title: "#{App.i18n.schedule} #{App.i18n.detailView}"
-      placement: 'left'
+    # @$("#openDetailView").tooltip
+    #   title: "#{App.i18n.schedule} #{App.i18n.detailView}"
+    #   placement: 'left'
 
   roundMargin: (->
     roundIndex = 0

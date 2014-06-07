@@ -104,7 +104,7 @@ class TournamentEditController extends ControllerBase
   "/:tid/logo": (req, res) =>
     hasLogo = req.tournament.hasLogo == true
 
-    res.render "#{@viewPrefix}/logo",
+    res.render "#{@viewPrefix}/settings",
       hasLogo: hasLogo
 
   "POST:/:tid/logo": (req, res) =>

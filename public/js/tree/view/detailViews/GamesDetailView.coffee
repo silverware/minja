@@ -114,7 +114,7 @@ App.templates.gamesDetail = """
                 <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
                 </div>
-                :
+                &nbsp;
                 <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
                 </div>

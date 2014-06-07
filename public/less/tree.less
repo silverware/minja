@@ -1,4 +1,5 @@
 @import "mixins";
+@import "variables";
 
 
 .ui-spinner {position: relative; border: 0px solid white; }
@@ -394,6 +395,7 @@ Action Box unten
     }
   }
 
+
   #settings-navigation {
     margin-bottom: 20px;
   }
@@ -403,6 +405,16 @@ Action Box unten
     right: 15px;
     top: 10px;
     font-size: 2em;
+  }
+}
+
+@media (max-width: @screen-md-max) {
+  .detailView {
+    bottom: 0;
+    left: 0;
+    padding: 70px 10px;
+    right: 0;
+    top: 50px;
   }
 }
 

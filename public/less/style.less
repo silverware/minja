@@ -1,4 +1,5 @@
 @import "mixins";
+@import "variables";
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,300);
 // @import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,700);
@@ -151,11 +152,12 @@ a:hover {
   z-index: 5;
 }
 
-@media (max-width: 978px) {
+@media (max-width: @screen-md-max) {
   .container-normal {
       padding: 10px 20px;
   }
 }
+
 
 .container-small {
   padding: 20px;
@@ -164,6 +166,17 @@ a:hover {
   z-index: 5;
 }
 
+@media (max-width: @screen-sm-max) {
+  .container {
+    padding: 0;
+  }
+  .container-normal {
+    margin: 0;
+  }
+  .container-small {
+    margin: 0;
+  }
+}
 
 /* ---------------------------------------------------------------------
  Features for Homepage
@@ -254,6 +267,22 @@ button[rel="tooltip"] i  {
 /* ---------------------------------------------------------------------
  Dashboard
 ----------------------------------------------------------------------*/
+// .same-height {
+//   display: table;
+//   .dashboardBox {
+//     float: none;
+//     display: table-cell;
+//     vertical-align: top;
+//   }
+// }
+
+// .row {
+//   overflow: hidden;
+// }
+// [class*="col-"]{
+//     margin-bottom: -99999px;
+//     padding-bottom: 99999px;
+// }
 
 .dashboard {
   fieldset {

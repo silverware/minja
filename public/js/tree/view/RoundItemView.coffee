@@ -8,7 +8,7 @@ App.RoundItemView = Em.View.extend
   ).observes("round.isEditable")
 
   didInsertElement: ->
-    @$(".icon-search").tooltip
+    @$(".fa-search").tooltip
       title: App.i18n.detailView
     if App.editable
       @initDraggable()
