@@ -174,6 +174,7 @@ module.exports =
     table: "Tabelle"
     detailView: "Detailansicht"
     settings: "Einstellungen"
+    actions: "Aktionen"
     save: "Speichern"
     saved: "Gespeichert"
     pointsModus: "Punkte/Modus"

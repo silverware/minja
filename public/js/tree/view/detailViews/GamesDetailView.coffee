@@ -6,7 +6,7 @@ App.templates.gamesDetail = """
           <i class="fa fa-arrow-circle-left"></i>
         </span>
 
-        {{view.roundItem.name}}
+        <span style="margin: 50px">{{view.roundItem.name}}</span>
 
         <span class="right noPrint" title="next" {{action "navigateToRight" target="view"}}>
           <i class="fa fa-arrow-circle-right"></i>
@@ -27,7 +27,9 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{App.i18n.table}}</legend>
 
-    <table class="table tableTable" style="width: 900px; margin: 0 auto;">
+    <div class="container">
+    <div class="row">
+    <table class="table tableTable col-md-8 col-xs-12">
       <thead>
         <tr>
           <th>{{App.i18n.rank}}</th>
@@ -37,7 +39,7 @@ App.templates.gamesDetail = """
           <th style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
           <th style="cursor: help" title="{{unbound App.i18n.defeats}}">{{App.i18n.defeatsShort}}</th>
           <th style="cursor: help" title="{{unbound App.i18n.goals}}">{{App.i18n.goalsShort}}</th>
-          <th style="cursor: help" title="{{unbound App.i18n.difference}}">+/-</th>
+          <th style="cursor: help" class="hidden-xs" title="{{unbound App.i18n.difference}}">+/-</th>
           <th>{{App.i18n.points}}</th>
         </tr>
       </thead>
@@ -59,12 +61,14 @@ App.templates.gamesDetail = """
           <td>{{draws}}</td>
           <td>{{defeats}}</td>
           <td>{{goals}} : {{goalsAgainst}}</td>
-          <td>{{difference}}</td>
+          <td class="hidden-xs">{{difference}}</td>
           <td><b>{{points}}</b></td>
         </tr>
         {{/each}}
       </tbody>
     </table>
+    </div>
+    </div>
   </fieldset>
   <br />
 {{/if}}

@@ -33,7 +33,7 @@
           {{/if}}
           {{#if attribute.isTextfield}}
             {{#if MembersTable.editable}}
-              {{view view.TypeaheadTextField classNames="m" nameBinding="attribute.id" valueBinding="view.memberValue"}}
+              {{view view.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
             {{/if}}

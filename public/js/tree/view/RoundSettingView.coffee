@@ -14,11 +14,26 @@ App.templates.roundSetting = """
 
 <div id="settings">
 <button type="button" class="close">×</button>
-  <button style="float: right" class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus-circle"></i>{{round._itemLabel}}</button>
-  <button style="float: right" class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.shuffle}}</button>
-        <label>Name</label> {{view Em.TextField classNames="s" valueBinding="round.name"}}<br />
-        <label class="control-label">{{App.i18n.games}}</label>
-            {{view App.NumberField classNames="xxs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
+  <form role="form" style="float: left">
+    <div>
+      <label style="">Name</label>
+      {{view Em.TextField classNames="s form-control" valueBinding="round.name"}}
+    </div>
+  </form>
+  <form role="form" style="float: left">
+    <div>
+      <label>{{App.i18n.games}}</label>
+      {{view App.NumberField classNames="form-control xs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
+    </div>
+  </form>
+  <form role="form" style="float: left">
+      <label>{{App.i18n.actions}}</label>
+    <div>
+    <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.shuffle}}</button>
+    <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus-circle"></i>{{round._itemLabel}}</button>
+    </div>
+  </form>
+
 </div>
 """
 

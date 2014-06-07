@@ -182,6 +182,7 @@ module.exports =
     table: "Standings"
     detailView: "Detail View"
     settings: "Settings"
+    actions: "Actions"
     save: "Save"
     saved: "Saved"
     pointsModus: "Points/Modus"

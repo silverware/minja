@@ -1,4 +1,4 @@
-define ->
+define ["typeahead"], ->
   Ember.TextField.extend
 
     # name: String
