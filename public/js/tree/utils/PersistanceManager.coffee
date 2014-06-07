@@ -82,9 +82,12 @@ App.PersistanceManager =
     delete obj.players
     @extend roundItem, obj
 
+  isTrue: (obj) ->
+    return obj and obj isnt "false"
+
   createPlayer: (obj) ->
     return player for player in @players when player.id is obj.id
-    newPlayer = if obj.isDummy == "true" then App.Dummy.create(obj) else App.Player.create(obj)
+    newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.Player.create(obj)
     newPlayer.set "id", obj.id
     @extend newPlayer, {}
     @players.pushObject newPlayer

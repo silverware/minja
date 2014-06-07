@@ -1,15 +1,16 @@
 eco = require "eco"
 
 colorSelectTemplate = """
-  <div class="input-append color" id="colorpicker<%= @name %>" data-color="<%= @val %>" data-color-format="rgba">
+  <div class="input-group color" id="colorpicker<%= @name %>" data-color="<%= @val %>" data-color-format="rgba">
     <input class="form-control" type="text" <%= @attrs %> name="<%= @name %>" value="<%= @val %>" />
-    <span class="add-on"><i style="background-color: <%= @val %>"></i></span>
+    <span class="input-group-addon"><i style="background-color: <%= @val %>"></i></span>
   </div>
   <script>
-
-    //var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
-     //   console.debug(event);
-      //});
+    require(['colorpicker'], function() {
+      var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
+        console.debug(event);
+      });
+    });
   </script>
 """
 

@@ -11,22 +11,25 @@
       @initVenuePopup()
 
     dateToggle: ->
-      @startDate = $("input[name=startDate]")
-      @stopDate = $("input[name=stopDate]")
+      @startDate = $("#startDate")
+      @stopDate = $("#stopDate")
+      @stopDateInput = $("input[name=stopDate]")
       @openStopdate = $("<span class='btn btn-link'>#{@i18n.stopTimeKnown}</span>")
       @deleteStopdate = $("<span class='btn btn-link'>#{@i18n.deleteStopTime}</span>")
-      $("input[name=startTime]").after @openStopdate
-      $("input[name=stopTime]").after @deleteStopdate
+      $("#startTime").after @openStopdate
+      $("#stopTime").after @deleteStopdate
 
-      $("input[name=startTime]").datetimepicker
-        showMeridian: false
+      $("#startTime").datetimepicker
+        format: "HH:mm"
+        pickDate: false
         defaultTime: false
 
       @startDate.datetimepicker
-        format: "dd.mm.yyyy"
+        pickTime: false
+        format: "DD.MM.YYYY"
 
-      if not @stopDate.val()
-        @stopDate.closest(".control-group").hide()
+      if not @stopDateInput.val()
+        @stopDate.closest(".form-group").hide()
       else
         @showStopDate false
 
@@ -34,21 +37,23 @@
       @openStopdate.click @showStopDate
 
     hideStopDate: =>
-      @stopDate.val ""
+      @stopDateInput.val ""
       $("input[name=stopTime]").val ""
-      @stopDate.closest(".control-group").hide()
+      @stopDate.closest(".form-group").hide()
       @openStopdate.show()
 
     showStopDate: (setValue) =>
       if setValue
-        @stopDate.val @startDate.val()
-      @stopDate.closest(".control-group").show()
+        @stopDateInput.val @startDate.val()
+      @stopDate.closest(".form-group").show()
       @openStopdate.hide()
-      $("input[name=stopTime]").datetimepicker
-        showMeridian: false
+      $("#stopTime").datetimepicker
+        format: "HH:mm"
+        pickDate: false
         defaultTime: false
       @stopDate.datetimepicker
-        format: "dd.mm.yyyy"
+        pickTime: false
+        format: "DD.MM.YYYY"
 
     initVenuePopup: ->
       return

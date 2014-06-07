@@ -24,6 +24,7 @@
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/lib/bootstrap-modules/inline/bootstrap.inline-responsive.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/lib/bootstrap-modules/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
     
 
     <% if @tournament?.colors?.content: %>
