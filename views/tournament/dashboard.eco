@@ -17,7 +17,7 @@
 <div class="row">
 <div class="col-md-6">
 <a href="/<%= @tournament.identifier %>/info">
-<section class="dashboardBox">
+<section class="dashboardBox dashboardLightning">
   <fieldset>
   <legend><%= @i18n.info.basicData %></legend>
   <dl class="dl-horizontal" style="margin-top: 0px">
@@ -46,7 +46,7 @@
 
 <div class="col-md-6">
 <a href="/<%= @tournament.identifier %>/participants">
-<section class="dashboardBox">
+<section class="dashboardBox dashboardLightning">
   <fieldset>
     <legend><%= @i18n.members.navName %></legend>
     <% if @tournament.members: %>
@@ -74,8 +74,8 @@
 <div class="row">
 
 <div class="col-md-6">
-<a href="/<%= @tournament.identifier %>/info">
-<section class="dashboardBox">
+<a href="/<%= @tournament.identifier %>/chat">
+<section class="dashboardBox dashboardLightning">
   <fieldset>
   <legend><%= @i18n.chat.messageStream %></legend>
     <div id="chat"></div>
@@ -87,7 +87,7 @@
 
 <div class="col-md-6">
 <a href="/<%= @tournament.identifier %>/bracket">
-<section class="dashboardBox" id="treeDashboardBox">
+<section class="dashboardBox dashboardLightning" id="treeDashboardBox">
   <fieldset>
     <legend><%= @i18n.tree.navName %></legend>
   </fieldset>

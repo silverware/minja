@@ -1,6 +1,6 @@
 requirejs.config
   baseUrl: "/js"
-  deps: ['bootstrap', 'underscore']
+  deps: ['threejs', 'bootstrap', 'underscore']
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'
@@ -9,4 +9,5 @@ requirejs.config
     bootstrap: '../lib/bootstrap/js/bootstrap.min'
     underscore: '../lib/underscore'
     threejs: '../lib/three'
+    typeahead: '../lib/bootstrap-modules/typeahead/bootstrap3-typeahead.min'
 

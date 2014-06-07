@@ -22,6 +22,7 @@
 
     <link href="/lib/normalize/normalize.css" rel="stylesheet">
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lib/bootstrap-modules/inline/bootstrap.inline-responsive.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     
 
@@ -95,9 +96,9 @@
               <a class="navbar-brand" href="/<%= @tournament.identifier %>">
                 
                 <% if @tournament.hasLogo: %>
-                  <img style="max-height: 48px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
+                  <img style="max-height: 35px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
                 <% else: %>
-                  <img src="/img/logo5.png" width="35px" style="width: 35px" />
+                  <img src="/img/logo5.png" width="35px" style="width: 35px; height: 35px" />
                 <% end %>
                 &nbsp;<%= @tournament.info.name %>
               </a>
@@ -114,7 +115,7 @@
               <% for item in @navigation: %>
                 <li class="<%= item.selectedClass %>">
                   <a href="<%= item.route %>">
-                   <i class="fa fa-fw fa-<%= item.icon %>"></i><% if item.label: %>&nbsp;<%= item.label %><% end %>
+                    <i class="fa fa-fw fa-<%= item.icon %>"></i><span <% if item.xs: %>class="visible-inline-xs"<% end %>><% if item.label: %>&nbsp;<%= item.label %><% end %></span>
                   </a>
                 </li>
               <% end %>

@@ -5,6 +5,5 @@ App.DynamicTypeAheadTextField = Em.TextField.extend
   focusIn: ->
     @_super()
     values = (game[@attribute.id] for game in App.Tournament.get("games"))
-    console.debug values
     @$().typeahead
       source: _.uniq _.compact values

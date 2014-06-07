@@ -12,6 +12,7 @@
   require(["utils/DynamicTextField",
     "utils/EmberSerializer",
     "utils/Popup",
+    "typeahead",
     "tree"], function(dynamicTextField, Serializer, Popup) {
       App.DynamicTextField = dynamicTextField;
       App.Serializer = Serializer;

@@ -45,11 +45,12 @@ class TournamentController extends ControllerBase
       nav.push route: "/#{id}/participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
       nav.push route: "/#{id}/bracket", icon: "table", label: req.i18n.tree.navName
-    if config.isDevelopment
-      if tournament.isOwner or tournament.gallery
-        nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
+    # if config.isDevelopment
+    #   if tournament.isOwner or tournament.gallery
+    #     nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
+    nav.push route: "/#{id}/chat", icon: "wechat", label: req.i18n.chat.messageStream, xs: true
     if tournament.isOwner
-      nav.push route: "/#{id}/settings", icon: "cog", label: ""
+      nav.push route: "/#{id}/settings", icon: "cog", label: req.i18n.settings.navName, xs: true
 
     for navItem in nav
       navItem.selectedClass = "active" if req.url.indexOf(navItem.route) isnt - 1
@@ -115,6 +116,10 @@ class TournamentController extends ControllerBase
     if req.tournament.isOwner and not req.tournament.gallery?
       @redirectToEdit req, res
     res.render "#{@viewPrefix}/gallery",
+      editable: false
+
+  "/:tid/chat": (req, res) =>
+    res.render "#{@viewPrefix}/chat",
       editable: false
 
   "/:tid/image/:imageId": (req, res) =>

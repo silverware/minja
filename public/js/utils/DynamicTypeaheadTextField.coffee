@@ -1,4 +1,4 @@
-define ["./DynamicTextField"], (DynamicTextField) ->
+define ["./DynamicTextField", "typeahead"], (DynamicTextField) ->
   DynamicTextField.extend
 
     # name: String

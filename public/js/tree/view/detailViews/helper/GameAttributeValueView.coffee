@@ -5,29 +5,32 @@ App.GameAttributeValueView = Ember.View.extend
         {{view Ember.Checkbox checkedBinding="view.gameValue"}}
       {{else}}
         {{#if view.gameValue}}
-          <i class="icon-ok" />
+          <i class="fa fa-check" />
         {{/if}}
       {{/if}}
     {{else}}
       {{#if view.attribute.isResult}}
         {{#if App.editable}}
-          {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue1"}}
-          :
-          {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue2"}}
+          <div class="result-container">
+            {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue1"}}
+          </div>
+          <div class="result-container">
+            {{view App.NumberField classNames="form-control" valueBinding="view.resultGameValue2"}}
+          </div>
         {{else}}
           {{view.gameValue}}
         {{/if}}
       {{else}}
         {{#if view.attribute.isNumber}}
           {{#if App.editable}}
-            {{view App.NumberField classNames="form-control" valueBinding="view.gameValue"}}
+            {{view App.NumberField classNames="form-control xs" valueBinding="view.gameValue"}}
           {{else}}
             {{view.gameValue}}
           {{/if}}
         {{else}}
           {{#if view.attribute.isTextfield}}
             {{#if App.editable}}
-              {{view App.DynamicTypeAheadTextField attributeBinding="attribute" valueBinding="view.gameValue"}}
+              {{view App.DynamicTypeAheadTextField classNames="form-control" attributeBinding="attribute" valueBinding="view.gameValue"}}
             {{else}}
               {{view.gameValue}}
             {{/if}}

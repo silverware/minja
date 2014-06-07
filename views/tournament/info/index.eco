@@ -1,12 +1,3 @@
-<script>
-  require(["info/Chat"], function(Chat) {
-    window.Chat = Chat.create({
-      tournament_id: "<%= @tournament.id %>",
-      editable: <%= @tournament.isOwner %>,
-      i18n: <%- @json @i18n.chat %>
-    });
-  });
-</script>
 <style type="text/css">
 dl {
   font-size: 16px;
@@ -41,22 +32,4 @@ dl {
     <div id="description"><%= @markdownToHtml @tournament.info.description %></div>
   <% end %>
 
-  <br />
-  <br />
-
-  <fieldset>
-  <legend><%= @i18n.chat.messageStream %></legend>
-    <form id="chatForm" role="form">
-      <% if not @tournament.isOwner: %>
-        <input type="text" id="messageName" class="form-control required hide" placeholder="Name" name="message[author]" />
-      <% end %>
-      <div class="form-group">
-        <textarea id="message" rows="1" class="required form-control" placeholder="<%= @i18n.chat.message %>" name="message[text]"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" id="publishButton" class="btn btn-inverse hide"><%= @i18n.chat.publish %></button>
-      </div>
-    </form>
-    <div id="chat"></div>
-  </fieldset>
 </div>
