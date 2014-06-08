@@ -136,7 +136,7 @@ class TournamentEditController extends ControllerBase
 
               tournamentDao.saveAttachments([logoImage], req.tournament, () =>
                 tournamentDao.merge req.tournament.id, hasLogo: true, () =>
-                  res.render "#{@viewPrefix}/settings", hasLogo: true)
+                  res.render "#{@viewPrefix}/logo", hasLogo: true)
             )
         )
 
