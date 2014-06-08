@@ -151,6 +151,7 @@ class TournamentEditController extends ControllerBase
       tournament.colors = colorService.defaultColors
 
     res.render "#{@viewPrefix}/settings"
+      hasLogo: req.tournament.hasLogo
 
   "POST:/:tid/settings/colors": (req, res) =>
     if colorService.isDefaultColor req.body
