@@ -6,7 +6,7 @@ App.templates.gamesDetail = """
           <i class="fa fa-arrow-circle-left"></i>
         </span>
 
-        <span style="margin: 50px">{{view.roundItem.name}}</span>
+        <span class="round-item-name">{{view.roundItem.name}}</span>
 
         <span class="right noPrint" title="next" {{action "navigateToRight" target="view"}}>
           <i class="fa fa-arrow-circle-right"></i>
@@ -82,8 +82,8 @@ App.templates.gamesDetail = """
     <table class="table tableSchedule">
       <thead>
         <tr>
-          <th width="70px"></th>
-          <th></th>
+          <th class="hidden-xs" width="70px"></th>
+          <th class="hidden-xs"></th>
           <th>{{App.i18n.home}}</th>
           {{#if App.editable}}
             <th></th>
@@ -99,8 +99,8 @@ App.templates.gamesDetail = """
         <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
         {{#each game in matchday.games}}
           <tr>
-            <td></td>
-            <td>{{game._roundItemName}}</td>
+            <td class="hidden-xs"></td>
+            <td class="hidden-xs">{{game._roundItemName}}</td>
             <td {{bind-attr class="game.player1Wins:winner"}}>
               {{game.player1.name}}
             </td>

@@ -387,6 +387,9 @@ Action Box unten
     font-weight: bold;
     .roundItemTitleLabel {
       margin: 0 auto;
+      .round-item-name {
+        margin: 50px;
+      }
       // .left {
       //   position: absolute;
       //   left: 0;
@@ -411,11 +414,32 @@ Action Box unten
   }
 }
 
+@media (max-width: @screen-xs-max) {
+  .detailView {
+    .roundItemTitle {
+      font-size: 1.5em;
+    }
+    .roundItemTitle {
+      .roundItemTitleLabel {
+        .round-item-name {
+          margin: 20px;
+        }
+      }
+    }
+    .actionButtons {
+      font-size: 1.5em;
+    }
+    .closeButton {
+      font-size: 1.5em;
+    }
+  }
+}
+  
 @media (max-width: @screen-md-max) {
   .detailView {
     bottom: 0;
     left: 0;
-    padding: 70px 10px;
+    padding: 30px 0 0 0;
     right: 0;
     top: 50px;
   }

@@ -7,7 +7,7 @@ colorSelectTemplate = """
   </div>
   <script>
     require(['colorpicker'], function() {
-      var c = $("#colorpicker<%= @name %>").colorpicker().on("changeColor", function(event) {
+      var c = $("#colorpicker<%= @name %>").colorpicker({place: "right"}).on("changeColor", function(event) {
         console.debug(event);
       });
     });
