@@ -117,7 +117,7 @@ class TournamentEditController extends ControllerBase
         res.addError "Image must be of type png, jpg, or gif"
 
       if res.locals.errors?
-        res.render "#{@viewPrefix}/logo", hasLogo: hasLogo
+        res.render "#{@viewPrefix}/settings", hasLogo: hasLogo
       else
         logo = gm(logoFile.path)
         logo.size((err, size) =>
@@ -143,14 +143,15 @@ class TournamentEditController extends ControllerBase
     else
       tournamentDao.merge req.tournament.id, hasLogo: false, () =>
         tournamentDao.removeAttachments( req.tournament, ["logo"], () =>
-          res.render "#{@viewPrefix}/logo", hasLogo: false)
+          res.render "#{@viewPrefix}/settings", hasLogo: false)
 
   "/:tid/settings": (req, res) =>
     tournament = res.locals.tournament
     if not colorService.isColorSelected req.tournament
       tournament.colors = colorService.defaultColors
 
-    res.render "#{@viewPrefix}/settings"
+    res.render "#{@viewPrefix}/settings",
+      hasLogo: req.tournament.hasLogo
 
   "POST:/:tid/settings/colors": (req, res) =>
     if colorService.isDefaultColor req.body

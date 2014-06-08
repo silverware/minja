@@ -83,7 +83,7 @@ Nachrichten aktivieren/deaktivieren
 </div>
 </div>
 
-
+<!--
   <div class="row">
   <div class="col-md-6">
   <div class="dashboardBox">
@@ -123,6 +123,7 @@ Nachrichten aktivieren/deaktivieren
 
   </form>
 
+</fieldset>
 </div>
 <script>
   function handleFileSelect(evt) {
@@ -146,6 +147,5 @@ Nachrichten aktivieren/deaktivieren
 
   document.getElementById('logofile').addEventListener('change', handleFileSelect, false);
 </script>
-</legend>
 </div>
-</div>
+</div>-->
