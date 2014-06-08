@@ -13,7 +13,7 @@ App.templates.roundSetting = """
 <div class="roundName">&nbsp;{{round.name}}</div>
 
 <div id="settings">
-<button type="button" class="close">×</button>
+<button type="button" class="close"><i class="fa fa-times-circle"></i></button>
   <form role="form" style="float: left">
     <div>
       <label style="">Name</label>

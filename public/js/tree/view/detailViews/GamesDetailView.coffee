@@ -76,7 +76,7 @@ App.templates.gamesDetail = """
     <legend>{{App.i18n.schedule}}
 
       <span style="float:right" class="noPrint">
-        {{view Em.TextField classNames="form-control" valueBinding="view.gameFilter" placeholder="Filter ..."}}
+        {{view App.SearchTextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
     <table class="table tableSchedule">

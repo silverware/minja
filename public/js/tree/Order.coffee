@@ -20,6 +20,7 @@ treeFiles  = [
   'view/GroupView.coffee'
   'view/GameView.coffee'
   'view/helper/NumberField.coffee'
+  'view/helper/SearchTextField.coffee'
   'view/helper/DynamicTypeAheadTextField.coffee'
   'view/helper/Alert.coffee'
   'view/detailViews/DetailView.coffee'
