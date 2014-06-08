@@ -222,6 +222,22 @@ Bootstrap
   background-image: none;
 }
 
+
+.bootstrap-datetimepicker-widget td.active, .bootstrap-datetimepicker-widget td.active:hover,
+.bootstrap-datetimepicker-widget td:hover, 
+.bootstrap-datetimepicker-widget td span:hover, 
+.bootstrap-datetimepicker-widget thead tr:first-child th:hover, 
+.bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover {
+  background-color: @dark;
+  color: @footerText;
+}
+
+.input-group-addon {
+  border: 1px solid darken(@dark, 10%);
+  background-color: @dark;
+  color: @footerText;
+}
+
 /* ---------------------------------------------------------------------
 Form
 ----------------------------------------------------------------------*/

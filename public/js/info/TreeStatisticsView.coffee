@@ -26,7 +26,7 @@ define [
                 </span>
               </div>
               <div class="progress">
-                  <div class="bar bar-success" style="width: {{unbound round.completionRatio}}%"></div>
+                  <div class="progress-bar progress-bar-success" style="width: {{unbound round.completionRatio}}%"></div>
                 </div>
             </div>
               {{#unless round.isLastRound}}
