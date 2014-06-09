@@ -14,6 +14,7 @@ App.DetailView = Em.View.extend
     @$("rel[tooltip]").tooltip()
     App.BracketLineDrawer.hide()
     $(".tournament").fadeOut 'medium', =>
+      $(".navbar-static-top").addClass "visible-lg"
       @$().fadeIn 'slow', =>
         @initExitableView()
       #@$(".detailContent").mCustomScrollbar scrollInertia: 10
@@ -34,6 +35,7 @@ App.DetailView = Em.View.extend
 
   destroy: ->
     @$().fadeOut 'medium', =>
+      $(".navbar-static-top").removeClass "visible-lg"
       $(".tournament").fadeIn 'slow', =>
       App.BracketLineDrawer.show()
 

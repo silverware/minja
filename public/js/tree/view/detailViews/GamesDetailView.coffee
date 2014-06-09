@@ -90,7 +90,7 @@ App.templates.gamesDetail = """
           {{/if}}
           <th>{{App.i18n.guest}}</th>
           {{#each attribute in App.Tournament.gameAttributes}}
-            <th>{{attribute.name}}</th>
+            <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
           <th>{{App.i18n.result}}</th>
         </tr>
@@ -111,7 +111,7 @@ App.templates.gamesDetail = """
               {{game.player2.name}}
             </td>
             {{#each attribute in App.Tournament.gameAttributes}}
-              {{view App.GameAttributeValueView attributeBinding="attribute" gameBinding="game"}}
+              {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td>
             {{#if App.editable}}

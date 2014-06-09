@@ -11,4 +11,5 @@ requirejs.config
     threejs: '../lib/three'
     typeahead: '../lib/bootstrap-modules/typeahead/bootstrap3-typeahead.min'
     colorpicker: '../lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.min'
+    hammer: '../lib/hammer.min'
 
