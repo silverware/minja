@@ -15,7 +15,7 @@ App.templates.gamesDetail = """
     </div>
   </div>
     <div class="noPrint actionButtons">
-      <span title="print" class="printView" {{action "printView" target="view"}}>
+      <span title="print" class="printView hidden-xs hidden-sm" {{action "printView" target="view"}}>
         <i class="fa fa-print"></i>
       </span><!--
       <span title="prefill Attributes" class="carousel-control prefillAttributesView" {{action "prefillAttributes" target="view"}}>
