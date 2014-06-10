@@ -4,8 +4,8 @@ App.Player = Em.Object.extend
   isPlayer: true
 
   init: ->
-  	@_super()
-  	@id = UniqueId.create()
+    @_super()
+    @id = UniqueId.create()
 
   editable: (->
     @get("isPlayer") and App.editable

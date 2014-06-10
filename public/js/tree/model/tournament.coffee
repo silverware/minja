@@ -13,6 +13,10 @@ App.Tournament = Em.ArrayController.extend
     , []
   ).property('@each.games')
 
+  gamesByPlayer: (player) ->
+    @get("games").filter (game) ->
+      game.get("players").indexOf player
+
   addGroupRound: ->
     if @addRound()
       $("#settings .close").click()

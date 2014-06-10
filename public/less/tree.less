@@ -28,12 +28,6 @@ Tournament
   border-radius: 6px 2px 2px 2px;
 }
 
-.navbar-inner {
-  background-color: rgba(0,0,0,0.2) !important;
-  background-image: none !important;
-  padding-top: 5px;
-}
-
 .round {
   margin-bottom: 10px;
   text-align: center;
@@ -67,43 +61,33 @@ Tournament
   text-align: left;
 }
 
-.gamePlayer {
-  color: black;
-}
-
-.gamePlayer input {
-  color: black;
-}
-
 .roundSetting {
   position: absolute;
-  position: relative;
   left: 5;
   top: 0;
   border-radius: 0 5px 5px 0;
   padding: 10px;
-  position: absolute;
   text-align: left;
   top: 0;
   z-index: 2;
   form {
     margin-bottom: 10px;
   }
-  .control-group {
-    margin-bottom: 10px;
-  }
   label {
     font-variant: small-caps;
+    width: 100px !important;
+  }
+  .close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-weight: normal;
+  }
+  #settings {
+    margin-top: 10px;
   }
 }
 
-.roundSetting #settings {
-  margin-top: 10px;
-}
-
-.roundSetting label {
-  width: 100px !important;
-}
 
 .actions {
   margin: 1px 20px;
@@ -129,17 +113,6 @@ Tournament
 }
 
 
-.roundSetting .controls {
-  margin-left: 110px !important;
-}
-
-.roundSetting .close {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  opacity: 1;
-  font-weight: normal;
-}
 
 .roundName {
   font-weight: bold !important;
@@ -213,19 +186,6 @@ Group Stage
     width: 20px;
 }
 
-.gamePlayer {
-   background-color: #FCF8E3;
-   border: 1px solid #FBEED5;
-   text-align: left;
-   padding: 2px;
-}
-
-.gamePlayer input {
-  color: black;
-  margin-bottom: 0px;
-  display: inline-block;
-}
-
 .round-item-table {
   thead {
     th {
@@ -236,7 +196,7 @@ Group Stage
 }
 
 .actionIcons {
-  float:right;
+  float: right;
 }
 
 #treeWrapper {
@@ -267,7 +227,7 @@ Group Stage
 Common
 ----------------------------------------------------------------------*/
 
-table tbody td {
+#treeWrapper table tbody td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

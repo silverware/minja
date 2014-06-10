@@ -11,6 +11,10 @@ App.Game = Em.Object.extend
     (@get("result1") or @get("result1") == 0) and (@get("result2") or @get("result2") == 0)
   ).property("result1", "result2")
 
+  players: (->
+    [@player1, @player2]
+  ).property('player1', 'player2')
+
   goals1: (->
     return parseInt(@get("result1")) if @get("result1")
     return null
