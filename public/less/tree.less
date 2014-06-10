@@ -171,8 +171,9 @@ Group Stage
   box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 **/
-.qualified td {
-  background-color: rgba(55,180,110, 0.2);
+.qualified td:first-child {
+  background-color: rgba(20,170,16,0.5);
+  color: white;
 }
 
 .roundItem .blurringBox {
@@ -195,7 +196,7 @@ Group Stage
 }
 
 .noPadding td {
-  padding: 4px 0 !important;
+  padding: 4px 1px !important;
 }
 
 .result {
@@ -219,9 +220,17 @@ Group Stage
   display: inline-block;
 }
 
+.round-item-table {
+  thead {
+    th {
+      padding: 4px !important;
+      font-variant: normal;
+    }
+  }
+}
+
 .actionIcons {
   float:right;
-  margin-top: 3px;
 }
 
 #treeWrapper {

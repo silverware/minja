@@ -32,12 +32,13 @@ App.templates.gamesDetail = """
     <table class="table tableTable col-md-8 col-xs-12">
       <thead>
         <tr>
-          <th>{{App.i18n.rank}}</th>
+          <th style="width: 5px"></th>
+          <th width="20px">{{App.i18n.rank}}</th>
           <th style="text-align: left">Name</th>
           <th>{{App.i18n.games}}</th>
-          <th style="cursor: help" title="{{unbound App.i18n.wins}}">{{App.i18n.winsShort}}</th>
-          <th style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
-          <th style="cursor: help" title="{{unbound App.i18n.defeats}}">{{App.i18n.defeatsShort}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.wins}}">{{App.i18n.winsShort}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.defeats}}">{{App.i18n.defeatsShort}}</th>
           <th style="cursor: help" title="{{unbound App.i18n.goals}}">{{App.i18n.goalsShort}}</th>
           <th style="cursor: help" class="hidden-xs" title="{{unbound App.i18n.difference}}">+/-</th>
           <th>{{App.i18n.points}}</th>
@@ -46,6 +47,7 @@ App.templates.gamesDetail = """
       <tbody>
         {{#each view.roundItem.table}}
           <tr {{bind-attr class=":player qualified:qualified"}} >
+          <td></td>
           <td>
             {{rank}}.
           </td>
@@ -57,9 +59,9 @@ App.templates.gamesDetail = """
             {{/if}}
           </td>
           <td>{{games}}</td>
-          <td>{{wins}}</td>
-          <td>{{draws}}</td>
-          <td>{{defeats}}</td>
+          <td class="hidden-xs">{{wins}}</td>
+          <td class="hidden-xs">{{draws}}</td>
+          <td class="hidden-xs">{{defeats}}</td>
           <td>{{goals}} : {{goalsAgainst}}</td>
           <td class="hidden-xs">{{difference}}</td>
           <td><b>{{points}}</b></td>

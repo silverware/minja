@@ -1,27 +1,33 @@
 App.templates.group = """
-{{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
 
-<span class="actionIcons">
-  {{#if App.editable}}
-    <i class="fa fa-search" {{action "openGroupView" target="view"}}></i>
-  {{/if}}
-  {{#if view.round.isEditable}}
-    <i class="fa fa-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
-    <i class="fa fa-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
-    <i class="fa fa-plus-circle increaseGroupsize" {{action "addPlayer" target="group"}}></i>
-    <i class="fa fa-minus-circle decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
-    <i class="fa fa-times removeItem" {{action "remove" target="group"}}></i>
-  {{/if}}
-</span>
-
-  <table class="table noPadding box" id="groupTable">
+  <table class="table round-item-table noPadding box" id="groupTable">
+    <col width="5px" />
     <col width="20px" />
-    <col width="130px" />
+    <col width="125px" />
     <col width="40px" />
     <col width="20px" />
+  <thead>
+    <th colspan="5">
+      {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
+
+      <span class="actionIcons">
+        {{#if App.editable}}
+          <i class="fa fa-search" {{action "openGroupView" target="view"}}></i>
+        {{/if}}
+        {{#if view.round.isEditable}}
+          <i class="fa fa-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
+          <i class="fa fa-sort-down decreaseQualifierCount" {{action "decreaseQualifierCount" target="group"}}></i>
+          <i class="fa fa-plus-circle increaseGroupsize" {{action "addPlayer" target="group"}}></i>
+          <i class="fa fa-minus-circle decreaseGroupsize" {{action "removeLastPlayer" target="group"}}></i>
+          <i class="fa fa-times removeItem" {{action "remove" target="group"}}></i>
+        {{/if}}
+      </span>
+    </th>
+  </thead>
   <tbody>
     {{#each group.table}}
       <tr {{bind-attr class="qualified:qualified :player"}}>
+      <td></td>
       <td class="tableCell" style="text-align: center; vertical-align: middle">
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.
