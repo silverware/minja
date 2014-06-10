@@ -29,6 +29,7 @@ class TournamentEditController extends ControllerBase
     res.render "#{@viewPrefix}/members/edit"
 
   "POST:/:tid/participants/edit": (req, res) =>
+    console.log req.body
     if _.isEmpty req.body
       return res.render "#{@viewPrefix}/members/edit"
     tournamentDao.merge req.tournament.id, members: req.body, ->

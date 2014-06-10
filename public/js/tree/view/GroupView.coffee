@@ -1,9 +1,9 @@
 App.templates.group = """
 
-  <table class="table round-item-table noPadding box" id="groupTable">
+  <table class="round-item-table noPadding box" id="groupTable">
     <col width="5px" />
-    <col width="20px" />
-    <col width="125px" />
+    <col width="18px" />
+    <col width="127px" />
     <col width="40px" />
     <col width="20px" />
   <thead>

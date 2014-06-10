@@ -87,6 +87,7 @@ module.exports =
     navName: "Info"
     description: "Beschreibung"
     venue: "Ort"
+    when: "Beginn"
     startDate: "Beginn"
     stopDate: "Ende"
     host: "Veranstalter"

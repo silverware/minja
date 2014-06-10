@@ -37,7 +37,7 @@ App.templates.tournament = """
       <div class="actions">
         <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.Tournament"}}><i class="fa fa-plus-circle"></i>{{App.i18n.koRound}}</button>
         <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.Tournament"}}><i class="fa fa-plus-circle"></i>{{App.i18n.groupStage}}</button>
-        <button class="btn btn-danger deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{App.i18n.previousRound}}</button>
+        <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{App.i18n.previousRound}}</button>
       </div>
     </div>
     </div>

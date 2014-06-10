@@ -42,6 +42,10 @@ define [
         title: @i18n.addAttribute
         actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
         bodyUrl: "/tournament/members/attribute_popup"
+        afterRendering: ($popup) ->
+          $popup.find("form").submit (event) ->
+            event.preventDefault()
+
 
 
 

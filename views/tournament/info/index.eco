@@ -13,11 +13,11 @@ dl {
   <dl class="dl-horizontal">
     <dt><%= @i18n.info.startDate %></dt>
     <dd>
-      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime %>
+      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime, true %>
     </dd>
     <% if @tournament.info.stopDate: %>
       <dt><%= @i18n.info.stopDate %></dt>
-      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime %></dd>
+      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>
     <% end %>
     <dt><%= @i18n.info.venue %></dt>
     <dd><%= @textOrNa @tournament.info.venue %>

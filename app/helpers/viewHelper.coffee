@@ -39,10 +39,14 @@ module.exports = (req, res, next) ->
   res.locals.isProduction = config.isProduction
   res.locals.rootPath = config.ROOTPATH
 
-  res.locals.printDateAndTime = (date, time) ->
+  res.locals.printDateAndTime = (date, time, icon) ->
+    if icon
+      output = """<i class="fa fa-calendar"></i>&nbsp;"""
+    else
+      output = ""
     if not date
-      return ""
-    output = """<i class="fa fa-calendar"></i>&nbsp; #{date}"""
+      return "n/a"
+    output += """ #{date}"""
     if time
       output += """&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;#{time}"""
     @safe output

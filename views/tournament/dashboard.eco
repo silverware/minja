@@ -21,23 +21,32 @@
   <fieldset>
   <legend><%= @i18n.info.basicData %></legend>
   <dl class="dl-horizontal" style="margin-top: 0px">
-    <dt><%= @i18n.info.startDate %></dt>
+    <dt><i class="fa fa-calendar"></i></dt>
     <dd>
       <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime %>
     </dd>
-    <% if @tournament.info.stopDate: %>
-      <dt><%= @i18n.info.stopDate %></dt>
-      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime %></dd>
-    <% end %>
-    <dt><%= @i18n.info.venue %></dt>
+    <dt><i class="fa fa-map-marker"></i></dt>
     <dd><%= @textOrNa @tournament.info.venue %>
   </dl>
     <dl class="dl-horizontal">
-    <dt><%= @i18n.info.host %></dt>
-    <dd><%= @textOrNa @tournament.info.host %></dd>
-    <dt>E-Mail</dt>
-    <dd><%= @obscured @textOrNa @tournament.info.hostMail %>
+    <% if @tournament.info.host: %>
+      <dt><i class="fa fa-user"></i></dt>
+      <dd><%= @textOrNa @tournament.info.host %></dd>
+    <% end %>
+    <% if @tournament.info.hostMail: %>
+      <dt>E-Mail</dt>
+      <dd><%= @obscured @textOrNa @tournament.info.hostMail %>
+    <% end %>
   </dl>
+  </fieldset>
+</section>
+</a>
+
+<a href="/<%= @tournament.identifier %>/chat">
+<section class="dashboardBox dashboardLightning">
+  <fieldset>
+  <legend><%= @i18n.chat.messageStream %></legend>
+    <div id="chat"></div>
   </fieldset>
 </section>
 </a>
@@ -45,6 +54,7 @@
 
 
 <div class="col-md-6">
+
 <a href="/<%= @tournament.identifier %>/participants">
 <section class="dashboardBox dashboardLightning">
   <fieldset>
@@ -64,28 +74,7 @@
   </fieldset>
 </section>
 </a>
-</div>
 
-
-</div>
-
-
-
-<div class="row">
-
-<div class="col-md-6">
-<a href="/<%= @tournament.identifier %>/chat">
-<section class="dashboardBox dashboardLightning">
-  <fieldset>
-  <legend><%= @i18n.chat.messageStream %></legend>
-    <div id="chat"></div>
-  </fieldset>
-</section>
-</a>
-</div>
-
-
-<div class="col-md-6">
 <a href="/<%= @tournament.identifier %>/bracket">
 <section class="dashboardBox dashboardLightning" id="treeDashboardBox">
   <fieldset>
@@ -93,8 +82,7 @@
   </fieldset>
 </section>
 </a>
-</div>
 
 </div>
-
+</div>
 </div>

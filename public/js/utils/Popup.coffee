@@ -38,13 +38,13 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
 
       ################ ADD CONTENT ######################
       if @bodyUrl?
-        $('.modal-body').load "#{@bodyUrl}.template", @afterRendering
+        $('.modal-body').load "#{@bodyUrl}.template", => @afterRendering($("#popup"))
       else if @bodyContent?
         if typeof @bodyContent is "string"
           $(".modal-body").append @bodyContent
         else
           @bodyContent.appendTo ".modal-body"
-        @afterRendering()
+        @afterRendering($("#popup"))
 
       $("#popup").modal()
 

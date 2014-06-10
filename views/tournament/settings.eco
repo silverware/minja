@@ -16,19 +16,6 @@ require(["settings/Settings"], function(Settings) {
   <div class="row">
   <div class="col-md-6">
   <div class="dashboardBox">
-
-
-    <!--
-    <fieldset>
-      <legend><%= @i18n.settings.color %></legend>
-
-    </fieldset>
-    <fieldset>
-      <legend><%= @i18n.settings.logo %></legend>
-
-    </fieldset>
-
-    -->
     <fieldset>
       <legend><%= @i18n.settings.colorSelection %></legend>
         <%= @formWithActionFor @tournament.colors, "/#{@tournament.id}/settings/colors", (form) => %>
@@ -80,12 +67,7 @@ Nachrichten aktivieren/deaktivieren
 
   -->
 </div>
-</div>
-</div>
-
 <!--
-  <div class="row">
-  <div class="col-md-6">
   <div class="dashboardBox">
 
     <fieldset>
@@ -147,5 +129,8 @@ Nachrichten aktivieren/deaktivieren
 
   document.getElementById('logofile').addEventListener('change', handleFileSelect, false);
 </script>
+-->
 </div>
-</div>-->
+</div>
+</div>
+

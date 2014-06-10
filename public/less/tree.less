@@ -38,7 +38,7 @@ Tournament
   margin-bottom: 10px;
   text-align: center;
   position: relative;
-  padding-top: 35px;
+  padding-top: 45px;
   padding-bottom: 10px;
   min-height: 110px;
 }
@@ -47,12 +47,12 @@ Tournament
 // calculate margins: width of element + 2 * margin from previous level
 .round-1 {
   .roundItem {
-    margin: 0 84px !important;
+    margin: 0 77px !important;
   }
 }
 .round-2 {
   .roundItem {
-    margin: 0 242px !important;
+    margin: 0 230px !important;
   }
 }
 .round-3 {
@@ -171,9 +171,15 @@ Group Stage
   box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 **/
-.qualified td:first-child {
+.qualified td:first-child:before {
+  content: "";
   background-color: rgba(20,170,16,0.5);
-  color: white;
+  color: rgba(20,170,16,0.5);
+  padding: 2px;
+}
+.qualified td:first-child {
+  padding: 0px !important;
+  vertical-align: middle;
 }
 
 .roundItem .blurringBox {
@@ -196,7 +202,7 @@ Group Stage
 }
 
 .noPadding td {
-  padding: 4px 1px !important;
+  padding: 4px 1px;
 }
 
 .result {
@@ -223,7 +229,7 @@ Group Stage
 .round-item-table {
   thead {
     th {
-      padding: 4px !important;
+      padding: 4px;
       font-variant: normal;
     }
   }
