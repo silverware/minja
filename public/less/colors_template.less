@@ -23,6 +23,11 @@
 Colors
 ----------------------------------------------------------------------*/
 
+.fadedBox {
+  background-color: fade(@dark, 15%);
+  border: 1px solid fade(@dark, 25%);
+}
+
 .contentBox(@color) {
   background-color: @normal;
   color: #fff;
@@ -79,8 +84,7 @@ code, pre, .dynamicTextField, legend {
 }
 
 code, pre {
-  background-color: fade(@dark, 10%);
-  border: 1px solid fade(@dark, 15%);
+  .fadedBox;
 }
 
 .table-striped tbody tr:nth-child(odd) td,
@@ -249,8 +253,8 @@ Form
 
 .form-control:hover, .form-control:active, .form-control:focus,
 input:hover, input:active, input:focus {
-  border-color: @dark;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px lighten(@dark, 10%);
+  border-color: fade(@dark, 60%);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px fade(@dark, 40%);
 }
 
 input {
@@ -307,13 +311,13 @@ Tree
 .round-item-table {
   thead {
     th {
-      // border-bottom: 1px solid @dark !important;
+      border-bottom: 1px solid @dark !important;
     }
   }
 }
 
 .roundItem table input.result-textfield {
-  .blackInput;
+  .fadedBox;
   width: 14px;
   max-width: 14px;
 }

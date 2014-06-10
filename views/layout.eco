@@ -35,7 +35,6 @@
       <link href="/css/colors.css" rel="stylesheet">
     <% end %>
     <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/tree.css" rel="stylesheet">
 
     <script src="/lib/require-jquery.js"></script>
     <script src="/js/require-config.js"></script>
