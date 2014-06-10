@@ -253,8 +253,9 @@ Form
 
 .form-control:hover, .form-control:active, .form-control:focus,
 input:hover, input:active, input:focus {
-  border-color: @dark;
-  box-shadow: 0;
+  border: 1px solid @dark;
+  outline: none;
+  box-shadow: none;
 }
 
 input {
@@ -267,12 +268,6 @@ Tree
 
 .loading-screen {
   color: @footerText;
-}
-
-.blackInput {
-  background-color: rgba(0,0,0,0.08);
-  border: 1px solid rgba(0,0,0,0.15);
-  color: @textColor;
 }
 
 .ui-draggable-helper {
@@ -331,11 +326,6 @@ Tree
   color: @footerText;
 }
 
-/**
-.detailView input, .detailView select {
-.blackInput;
-}
- **/
 .detailView {
   .table tbody tr:hover {
     background-color: darken(@normal, 1%);
