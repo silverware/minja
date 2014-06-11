@@ -2,7 +2,7 @@ App.GroupRound = App.Round.extend
   _itemLabel: ""
   isGroupRound: true
 
-  letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  _letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   init: ->
     @_super()
@@ -15,7 +15,7 @@ App.GroupRound = App.Round.extend
       return
     
     group = App.Group.create
-      name:"#{App.i18n.group} " + @letters[@get('items.length')]
+      name:"#{App.i18n.group} " + @_letters[@get('items.length')]
       _round: @
     
     # apply settings of previous group (playercount and qualifiercount)
@@ -33,6 +33,6 @@ App.GroupRound = App.Round.extend
       else
         players.pushObject App.Player.create
           name: "#{App.i18n.player} " + (i + 1)
-    group.set 'players', players 
+    group.set 'players', players
     @get("items").pushObject group
 

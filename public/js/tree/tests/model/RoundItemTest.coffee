@@ -83,3 +83,8 @@ buster.testCase "RoundItem Model",
     assert.equals '0-0', game1.get 'itemId'
     assert.equals '0-1', game2.get 'itemId'
     assert.equals '1-0', game3.get 'itemId'
+
+  "editable setter": ->
+    assert.equals true, @round._editable
+    @round.set "editable", false
+    assert.equals false, @round._editable

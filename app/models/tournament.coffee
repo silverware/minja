@@ -4,16 +4,16 @@ class Tournament extends require './mixIn'
   sport_id: ""
   gallery: {}
   info:
-  	name: ""
-  	description: ""
-  	venue: ""
-  	startDate: ""
-  	startTime: ""
-  	host: ""
-  	hostMail: ""
+    name: ""
+    description: ""
+    venue: ""
+    startDate: ""
+    startTime: ""
+    host: ""
+    hostMail: ""
   members:
-  	members: []
-  	membersAttributes: []
+    members: []
+    membersAttributes: []
   tree: null
   colors:
     default: true

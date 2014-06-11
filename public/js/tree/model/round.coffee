@@ -2,7 +2,7 @@ App.Round = Em.Object.extend
   name: ""
   items: []
   _previousRound: null
-  editable: true
+  _editable: true
   matchesPerGame: 1
 
   games: (->
@@ -29,6 +29,14 @@ App.Round = Em.Object.extend
   init: ->
     @_super()
     @set "items", []
+
+  editable: ((key, value) ->
+    # GETTER
+    if arguments.length == 1
+      return @get '_editable'
+    # SETTER
+    @set "_editable", value
+  ).property('_editable')
 
   isEditable: (->
     App.editable and @get("editable")
