@@ -1,7 +1,7 @@
 cradle = require 'cradle'
 config = require '../server-config'
 
-class DaoBase 
+class DaoBase
   
   constructor: (@dbName) ->
     connection = new (cradle.Connection)(config.DB_HOST, config.DB_PORT, {auth: {username: config.DB_USER, password: config.DB_PASSWORD}, cache: false})
@@ -19,6 +19,10 @@ class DaoBase
     # Extension-Point: initialize Views
 
   testdata: -> []
+
+  getSpec: -> null
+    # Extension-Point: returns model specification.
+    # Used to validate object before merge and save
 
   find: (id, callback) ->
     @db.get id, (error, result) ->
