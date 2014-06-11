@@ -77,12 +77,12 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{App.i18n.schedule}}
 
-      <span style="float:right" class="noPrint">
+      <span style="float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
         {{view App.SearchTextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
     <table class="table tableSchedule">
-      <thead>
+      <thead class="hidden-xs">
         <tr>
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>

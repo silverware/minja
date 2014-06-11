@@ -3,8 +3,9 @@ dao =require "../../app/daos/userDao"
 User = require "../../app/models/user"
 testDb = require './test_db_setup'
 
+
 createUser = (initialData) ->
-  new User initialData
+  User.create initialData
 
 
 ribery = createUser email: "ribery@fcb.de"
@@ -17,6 +18,7 @@ describe 'UserDao', ->
     testDb.setup dao, "user_test", ->
       dao.save ribery, -> done()
   afterEach testDb.tearDown dao
+
 
   describe '#create user with email and password', ->
     it 'should save a user with hashed password', (done) ->

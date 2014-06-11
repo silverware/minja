@@ -24,6 +24,8 @@
     , "moment": "1.7.2"
     , "instaview": "0.6.3"
     , "marked": "0.2.9"
+    , "jayschema": "0.2.7"
+    , "tv4": "1.0.18"
     , "onecolor": "2.3.4"
   }
     ,  "devDependencies": {

@@ -4,7 +4,7 @@ pointsLabel: key of pointsLabel: eg. points, sets, ...
 
 module.exports =
 
-  volleyball: 
+  volleyball:
     pointsPerWin: 2
     pointsPerDraw: 1
     pointsLabel: "sets"
