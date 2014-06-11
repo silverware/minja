@@ -77,9 +77,6 @@ class TournamentDao extends require('./daoBase')
 
   findAllTournamentIdentifiers: (callback) ->
     @db.view "tournament/allIdentifiers", descending: true, (err, tournaments) ->
-      console.log err
-      console.log tournaments
       if err then callback [] else callback tournaments
-
 
 module.exports = new TournamentDao()

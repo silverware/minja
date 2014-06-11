@@ -1,5 +1,10 @@
 App.templates.tournamentPopup = """
 
+  <div class="roundItemTitle">
+    <div class="roundItemTitleLabel">
+        <span class="round-item-name">{{App.i18n.settings}}</span>
+    </div>
+  </div>
 
 <!--
 menu erreichbar über Gruppenübersicht, Spielplan
@@ -15,7 +20,7 @@ menu:
     <div class="row" style="margin: 0; padding: 0">
     <div class="col-md-2">
       <ul id="settings-navigation" class="nav nav-list">
-        <li class="nav-header">{{App.i18n.settings}}</li>
+        <li class="nav-header">Navigation</li>
         <li class="active"><a href="#" data-target="#main-settings">{{App.i18n.pointsModus}}</a></li>
         <li><a href="#" data-target="#gameAttributes">{{App.i18n.gameAttributes}}</a></li>
         <li><a href="#" data-target="#scheduling">{{App.i18n.timeCalculation}}</a></li>

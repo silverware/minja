@@ -1,5 +1,7 @@
+schemaUtils = require './schemaUtils'
+_ = require 'underscore'
 
-authorTypes:
+authorTypes =
   leader: "leader"
   guest: "guest"
 
@@ -17,11 +19,4 @@ messageSchema =
       type: 'string'
   required: ['email']
 
-
-class Message extends require './mixIn'
-  tournament_id: ""
-  author: ""
-  authorType: ""
-  text: ""
-
-module.exports = Message
+module.exports = _.extend schema: messageSchema, schemaUtils

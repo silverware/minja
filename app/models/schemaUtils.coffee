@@ -21,6 +21,7 @@ createFromSchema = (schema) ->
       return obj
 
 module.exports =
+  notBlank: '^(?!\s*$).+'
   create: (data) ->
     _.extend createFromSchema(@schema), data
   validate: (obj) ->

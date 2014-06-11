@@ -8,6 +8,7 @@ userSchema =
     email:
       type: 'string'
       format: 'email'
+      pattern: schemaUtils.notBlank
     password:
       type: 'string'
   required: ['email']

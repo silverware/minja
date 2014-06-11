@@ -4,7 +4,7 @@ Tournament = require "../../app/models/tournament"
 testDb = require './test_db_setup'
 
 createTournament = (initialData) ->
-  new Tournament initialData
+  Tournament.create initialData
 
 paulanercup = createTournament publicName: "paulanercup", user_id: "thomas"
 ricolacup = createTournament publicName: "ricolacup", user_id: "hans"

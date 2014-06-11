@@ -4,9 +4,9 @@ Message = require "../../app/models/message"
 testDb = require './test_db_setup'
 
 messages = [
-  new Message tournament_id: "paulanercup", authorType: dao.authorTypes.leader
-  new Message tournament_id: "paulanercup", authorType: dao.authorTypes.guest, author: "Peter"
-  new Message tournament_id: "ricolacup", authorType: dao.authorTypes.leader
+  Message.create tournament_id: "paulanercup", authorType: dao.authorTypes.leader
+  Message.create tournament_id: "paulanercup", authorType: dao.authorTypes.guest, author: "Peter"
+  Message.create tournament_id: "ricolacup", authorType: dao.authorTypes.leader
 ]
 
 i18n =

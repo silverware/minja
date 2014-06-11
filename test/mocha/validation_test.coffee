@@ -18,11 +18,21 @@ describe '#validation of model', ->
       email: "huhu"
       password: "password"
     assert.ok User.validate(user)
+    user =
+      email: 'email'
+      notDefinedProperty: 22
+    assert.ok User.validate(user)
     done()
 
-  it 'should validate false', (done) ->
+  it 'should validate false due to missing required field', (done) ->
     user =
-      name: "huhu"
+      password: 'password'
     assert.equal false, User.validate(user)
     done()
-      
+
+  it 'should validate false due to blank string', (done) ->
+    user =
+      email: ''
+    assert.equal false, User.validate(user)
+    done()
+

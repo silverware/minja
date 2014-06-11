@@ -6,6 +6,7 @@ moment = require 'moment'
 ControllerBase = require './controllerBase'
 config = require '../server-config'
 colorService = require '../services/colorService'
+Tournament = require '../models/tournament'
 _ = require "underscore"
 gm = require 'gm'
 gm = gm.subClass({ imageMagick: true })
@@ -32,6 +33,9 @@ class TournamentEditController extends ControllerBase
     console.log req.body
     if _.isEmpty req.body
       return res.render "#{@viewPrefix}/members/edit"
+    t = req.tournament
+    t.members = req.body
+    console.log Tournament.validate t
     tournamentDao.merge req.tournament.id, members: req.body, ->
       res.send "ok"
 
