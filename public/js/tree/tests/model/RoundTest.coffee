@@ -120,3 +120,36 @@ buster.testCase "Round Model",
 
     assert.equals game1.players[0], p1
     assert.equals game1.players[1], p3
+
+  "get Games by Player": ->
+    game1 = App.RoundGame.create
+      _round: @round
+    game2 = App.RoundGame.create
+      _round: @round
+
+    @round.items.pushObject game1
+    @round.items.pushObject game2
+    p1 = App.Player.create name: "p1"
+    p2 = App.Player.create name: "p2"
+    p3 = App.Player.create name: "p3"
+    p4 = App.Player.create name: "p4"
+    game1.players.pushObject p1
+    game1.players.pushObject p2
+    game2.players.pushObject p3
+    game2.players.pushObject p4
+
+
+    App.Tournament.addKoRound()
+    lastRound = App.Tournament.lastRound()
+
+    game3 = App.RoundGame.create
+      _round: lastRound
+
+    lastRound.items.pushObject game3
+    game3.players.pushObject p1
+    game3.players.pushObject p3
+
+    rounds = App.Tournament.getGamesByPlayer p1
+    console.debug rounds
+    assert.equals game1.get('games').objectAt(0), rounds[0].games[0]
+    assert.equals game3.get('games').objectAt(0), rounds[1].games[0]

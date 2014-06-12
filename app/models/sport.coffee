@@ -1,10 +1,33 @@
-class Sport extends require './mixIn'
-  sport_id: ""
-  pointsPerWin: 0
-  pointsPerDraw: 0
-  # key of pointsLabel: eg. points, sets, ...
-  pointsLabel: ""
-  # [aggregate, bestof]
-  qualifierModus: ""
+schemaUtils = require './schemaUtils'
+_ = require 'underscore'
 
-module.exports = Sport
+qualifierModi =
+  aggregate: "aggregate"
+  bestof: "bestof"
+
+sportSchema =
+  title: 'Message'
+  type: 'object'
+  properties:
+    sport_id:
+      type: 'string'
+    pointsPerWin:
+      type: 'integer'
+      minimum: 0
+      default: 0
+    pointsPerDraw:
+      type: 'integer'
+      minimum: 0
+      default: 0
+    # key of pointsLabel: eg. points, sets, ...
+    pointsLabel:
+      type: 'string'
+    qualifierModus:
+      enum: [qualifierModi.aggregate, qualifierModi.bestof]
+  required: ['sport_id']
+
+exports =
+  qualifierModi: qualifierModi
+  schema: sportSchema
+
+module.exports = _.extend exports, schemaUtils

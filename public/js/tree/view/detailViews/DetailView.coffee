@@ -22,22 +22,38 @@ App.DetailView = Em.View.extend
 
   init: ->
     @_super()
+    for detailView in App.openDetailViews
+      detailView.hide()
+    App.openDetailViews.pushObject @
     @appendTo "body"
 
   initExitableView: ->
     $(document).bind "keydown", (e) =>
       if e.keyCode is 27 and @
         e.preventDefault()
-        $(document).unbind "keydown"
-        @destroy()
+        if @ is _.last App.openDetailViews
+          $(document).unbind "keydown"
+          @destroy()
 
     @$('.closeButton').click => @destroy()
 
+  hide: ->
+    @$().hide()
+
+  show: ->
+    @$().fadeIn 'medium'
+
   destroy: ->
+    App.openDetailViews.removeObject @
+    lastDetailView = _.last App.openDetailViews
+
     @$().fadeOut 'medium', =>
-      $(".navbar-static-top").removeClass "visible-lg"
-      $(".tournament").fadeIn 'slow', =>
-      App.BracketLineDrawer.show()
+      if not lastDetailView
+        $(".navbar-static-top").removeClass "visible-lg"
+        $(".tournament").fadeIn 'slow', =>
+        App.BracketLineDrawer.show()
+      else
+        lastDetailView.show()
 
     @destroyElement()
     @_super()

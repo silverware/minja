@@ -104,13 +104,13 @@ App.templates.gamesDetail = """
             <td class="hidden-xs"></td>
             <td class="hidden-xs">{{game._roundItemName}}</td>
             <td {{bind-attr class="game.player1Wins:winner"}}>
-              {{game.player1.name}}
+              <a href="#" {{action "openPlayerView" game.player1 target="view"}}>{{game.player1.name}}</a>
             </td>
             {{#if App.editable}}
               <td><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
-              {{game.player2.name}}
+              <a href="#" {{action "openPlayerView" game.player2 target="view"}}>{{game.player2.name}}</a>
             </td>
             {{#each attribute in App.Tournament.gameAttributes}}
               {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
@@ -144,6 +144,10 @@ App.GamesDetailView = App.DetailView.extend
 
   printView: ->
     window.print()
+
+  openPlayerView: (player) ->
+    App.PlayerDetailView.create
+      player: player
 
   gamesCount: (->
     @get('filteredGames').reduce (count, matchDay) ->

@@ -13,9 +13,14 @@ App.Tournament = Em.ArrayController.extend
     , []
   ).property('@each.games')
 
-  gamesByPlayer: (player) ->
-    @get("games").filter (game) ->
-      game.get("players").indexOf player
+  getGamesByPlayer: (player) ->
+    @reduce (games, round) ->
+      roundGames = round.get("games").filter (game) ->
+        game.get("players").contains player
+      if roundGames.length > 0
+        games = games.concat round: round, games: roundGames
+      games
+    , []
 
   addGroupRound: ->
     if @addRound()

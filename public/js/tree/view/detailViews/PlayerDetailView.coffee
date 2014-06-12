@@ -1,22 +1,12 @@
 App.templates.playerDetail = """
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
-      {{#if view.roundItem}}
-        <span class="left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
-          <i class="fa fa-arrow-circle-left"></i>
-        </span>
-
         <span class="round-item-name">{{view.player.name}}</span>
-
-        <span class="right noPrint" title="next" {{action "navigateToRight" target="view"}}>
-          <i class="fa fa-arrow-circle-right"></i>
-        </span>
-      {{/if}}
     </div>
   </div>
 
   <fieldset>
-    <legend>{{App.i18n.games}}
+    <legend>{{App.i18n.games}}</legend>
 
     <table class="table tableSchedule">
       <thead>
@@ -34,8 +24,8 @@ App.templates.playerDetail = """
           <th>{{App.i18n.result}}</th>
         </tr>
       </thead>
-      {{#each round in view.roundSeperatedGames}}
-        <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{round.name}}</td></tr>
+      {{#each round in view.rounds}}
+        <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{round.round.name}}</td></tr>
         {{#each game in round.games}}
           <tr>
             <td class="hidden-xs"></td>
@@ -76,14 +66,8 @@ App.templates.playerDetail = """
 App.PlayerDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.playerDetail
   player: null
-  games: []
+  rounds: []
 
   init: ->
     @_super()
-    @set 'games', App.Tournament.gamesByPlayer @player
-
-
-  roundSeperatedGames: (->
-    @get('games')
-  ).property('games')
-
+    @set 'rounds', App.Tournament.getGamesByPlayer @player

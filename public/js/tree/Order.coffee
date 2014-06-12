@@ -27,6 +27,7 @@ treeFiles  = [
   'view/detailViews/GamesDetailView.coffee'
   'view/detailViews/RoundDetailView.coffee'
   'view/detailViews/RoundItemDetailView.coffee'
+  'view/detailViews/PlayerDetailView.coffee'
   'view/detailViews/helper/GameAttributeValueView.coffee'
   'view/detailViews/helper/GameAttributePrefillPopup.coffee'
   'view/TournamentSettings.coffee'

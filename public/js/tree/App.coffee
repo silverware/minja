@@ -1,4 +1,5 @@
 window.App = Em.Application.create
+  openDetailViews: []
   i18n: {}
   templates: {}
   persist: ->
