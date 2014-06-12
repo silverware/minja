@@ -22,7 +22,7 @@ define [
                 <span title="{{unbound App.i18n.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
                 <span class="seperator">|</span>
                 <span title="{{unbound App.i18n.qualifiers}}">
-                  <i class="icon-level-up"></i>&nbsp;{{round.qualifiers.length}}
+                  <i class="fa fa-level-up"></i>&nbsp;{{round.qualifiers.length}}
                 </span>
               </div>
               <div class="progress">

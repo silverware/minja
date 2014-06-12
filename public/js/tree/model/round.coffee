@@ -31,11 +31,11 @@ App.Round = Em.Object.extend
     @set "items", []
 
   editable: ((key, value) ->
-    # GETTER
-    if arguments.length == 1
-      return @get '_editable'
     # SETTER
-    @set "_editable", value
+    if arguments.length > 1
+      @set "_editable", value
+    # GETTER
+    @get '_editable'
   ).property('_editable')
 
   isEditable: (->

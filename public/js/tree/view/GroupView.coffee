@@ -1,5 +1,4 @@
 App.templates.group = """
-  &nbsp;
   <table class="round-item-table noPadding box" id="groupTable">
     <col width="5px" />
     <col width="18px" />

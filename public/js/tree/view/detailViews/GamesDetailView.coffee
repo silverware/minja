@@ -55,7 +55,7 @@ App.templates.gamesDetail = """
             {{#if App.editable}}
               {{view App.DynamicTextField valueBinding="player.name" classNames="xl" editableBinding="player.editable"}}
             {{else}}
-              <div class="input-padding">{{player.name}}</div>
+              <div class="input-padding"><a href="#" {{action "openPlayerView" player target="view"}}>{{player.name}}</a></div>
             {{/if}}
           </td>
           <td>{{games}}</td>

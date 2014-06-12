@@ -34,6 +34,8 @@ App.BracketLineDrawer =
   draw: (from, to) ->
     posFrom = @centerPos $("." + from.get('itemId')), true
     posTo = @centerPos $("." + to.get('itemId'))
+    if not posFrom or not posTo
+      return
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
     @ctx.lineWidth = 1
@@ -47,6 +49,8 @@ App.BracketLineDrawer =
     @ctx.stroke()
 
   centerPos: (element, top) ->
+    if element.length is 0
+      return undefined
     pos =
       x: element.offset().left + element.width() / 2
       y: element.offset().top + if not top then element.height() else 0

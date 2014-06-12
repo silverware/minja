@@ -1,6 +1,6 @@
 App.templates.game = """
 
-<table class="box {{unbound game.itemId}} round-item-table noPadding" cellpadding="2" width="100%" id="gamesTable">
+<table {{bind-attr class=":box game.itemId :round-item-table :noPadding"}} cellpadding="2" width="100%" id="gamesTable">
   <thead>
     <th colspan="10">
       <span>{{view App.DynamicTextField valueBinding="game.name" editableBinding="App.editable"}}</span>
