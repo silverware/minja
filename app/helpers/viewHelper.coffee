@@ -39,6 +39,12 @@ module.exports = (req, res, next) ->
   res.locals.isProduction = config.isProduction
   res.locals.rootPath = config.ROOTPATH
 
+  res.locals.printDateDbFormat = (date) ->
+    if date
+      return moment(date, "DD.MM.YYYY").format "YYYY-MM-DD"
+    return ""
+
+
   res.locals.printDateAndTime = (date, time, icon) ->
     if icon
       output = """<i class="fa fa-calendar"></i>&nbsp;"""

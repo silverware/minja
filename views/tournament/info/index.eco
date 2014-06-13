@@ -12,7 +12,7 @@ dl {
 
   <dl class="dl-horizontal">
     <dt><%= @i18n.info.startDate %></dt>
-    <dd>
+    <dd itemprop="startDate" content="<%= @printDateDbFormat @tournament.info.startDate %>">
       <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime, true %>
     </dd>
     <% if @tournament.info.stopDate: %>
@@ -20,7 +20,9 @@ dl {
       <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>
     <% end %>
     <dt><%= @i18n.info.venue %></dt>
-    <dd><%= @textOrNa @tournament.info.venue %>
+    <span itemprop="location" itemscope itemtype="http://schema.org/Place">
+    <dd itemprop="name"><%= @textOrNa @tournament.info.venue %></dd>
+    </span>
   </dl>
     <dl class="dl-horizontal">
     <dt><%= @i18n.info.host %></dt>
@@ -29,7 +31,7 @@ dl {
     <dd><%= @obscured @textOrNa @tournament.info.hostMail %>
   </dl>
   <% if @tournament.info.description: %>
-    <div id="description"><%= @markdownToHtml @tournament.info.description %></div>
+    <div itemprop="description" id="description"><%= @markdownToHtml @tournament.info.description %></div>
   <% end %>
 
 </div>

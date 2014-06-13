@@ -80,6 +80,10 @@
   <body>
       <!-- ########################################## NAVIGATION ########################################## -->
 
+
+    <% if @tournament: %>
+      <span itemscope itemtype="http://schema.org/Event">
+    <% end %>
    <!-- Fixed navbar -->
     <div class="navbar navbar-static-top" role="navigation">
       <div class="container">
@@ -95,7 +99,7 @@
                   <small><i class="icon-picture"></i>&nbsp;<%= @i18n.settings.editLogo %></small>
                 </a>-->
               <% end %>
-              <a class="navbar-brand" href="/<%= @tournament.identifier %>">
+              <a class="navbar-brand" href="/<%= @tournament.identifier %>" itemprop="name">
                 
                 <% if @tournament.hasLogo: %>
                   <img style="max-height: 35px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
@@ -278,7 +282,9 @@
 
 
 
-
+    <% if @tournament: %>
+      </span>
+    <% end %>
 <canvas id="bracketLines"></canvas>
   </body>
 </html>
