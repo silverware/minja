@@ -11,7 +11,6 @@ App.utils =
     searchString = filter.search
 
     filtered = games.filter (game) =>
-      console.debug "huhuuuuuuuuuuuuuuuuu", game.get('isCompleted')
       if game.get('isCompleted') and (playedFilter is false)
         return false
 
