@@ -19,7 +19,7 @@ App.templates.gamesDetail = """
         <i class="fa fa-print"></i>
       </span><!--
       <span title="prefill Attributes" class="carousel-control prefillAttributesView" {{action "prefillAttributes" target="view"}}>
-        <i class="icon-ok"></i>
+        <i class="fa fa-check"></i>
       </span>-->
     </div>
 
@@ -108,7 +108,7 @@ App.templates.gamesDetail = """
               <a href="#" {{action "openPlayerView" game.player1 target="view"}}>{{game.player1.name}}</a>
             </td>
             {{#if App.editable}}
-              <td><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
+              <td><i class="fa fa-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               <a href="#" {{action "openPlayerView" game.player2 target="view"}}>{{game.player2.name}}</a>
