@@ -78,6 +78,7 @@ App.templates.gamesDetail = """
     <legend>{{App.i18n.schedule}}
 
       <span style="float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
+        {{view App.FilterButton contentBinding="view.filterOptions" valueBinding="view.gamesPlayedFilter"}}
         {{view App.SearchTextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
     </legend>
@@ -141,6 +142,16 @@ App.templates.gamesDetail = """
 App.GamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.gamesDetail
   gameFilter: ""
+  gamePlayedFilter: undefined
+
+
+  init: ->
+    @_super()
+    @filterOptions = [
+      {id: undefined, label: App.i18n.all}
+      {id: true, label: App.i18n.played}
+      {id: false, label: App.i18n.open}
+    ]
 
   printView: ->
     window.print()

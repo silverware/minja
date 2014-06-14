@@ -24,8 +24,10 @@ App.RoundItemDetailView = App.GamesDetailView.extend
     App.GameAttributePrefillPopup.open @get("roundItem.games")
 
   filteredGames: (->
-    @get("roundItem.matchDays").map (matchDay) =>
+    games = @get("roundItem.matchDays").map (matchDay) =>
       Em.Object.create
-        games: App.utils.filterGames @get("gameFilter"), matchDay.games
+        games: App.utils.filterGames {search: @get("gameFilter"), played: @get("gamesPlayedFilter")}, matchDay.games
         matchDay: matchDay.matchDay
-  ).property("gameFilter", "roundItem.games.@each")
+    console.debug games
+    games
+  ).property("gameFilter", "gamesPlayedFilter", "roundItem.games.@each")

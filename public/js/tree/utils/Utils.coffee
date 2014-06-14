@@ -4,10 +4,23 @@ App.utils =
     if not s then return false
     s.toLowerCase().indexOf(sub.toLowerCase()) isnt -1
 
-  filterGames: (searchString, games) ->
-    if not searchString then return games
-    s = searchString.split ' '
+  filterGames: (filter, games) ->
+    if not filter then return games
+
+    playedFilter = filter.played
+    searchString = filter.search
+
     filtered = games.filter (game) =>
+      console.debug "huhuuuuuuuuuuuuuuuuu", game.get('isCompleted')
+      if game.get('isCompleted') and (playedFilter is false)
+        return false
+
+      if (not game.get('isCompleted')) and (playedFilter is true)
+        return false
+
+      if not searchString then return true
+      s = searchString.split ' '
+
       s.every (ss) =>
         if not ss then return true
         attributes = []
