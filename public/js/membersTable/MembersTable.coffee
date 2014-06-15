@@ -7,12 +7,16 @@ define [
 ], (DynamicTextField, TypeaheadTextField, Serializer, Popup, template) ->
 
   Em.Application.extend
-
+    
     members: []
     attributes: []
 
     init: ->
       @_super()
+      # App.PersistanceManager.build @treeData
+      # App.set "rootElement", '#tree'
+      # App.initialize()
+      # @set "players", App.Tournament.getPlayers()
       if @membersData?
         for member in @membersData.members
           @members.pushObject @Member.create(member)
@@ -97,7 +101,6 @@ define [
         if arguments.length == 1
           return @get("member")[@get("attribute").id]
         # SETTER
-        else
-          @get("member").set @get("attribute").id, value
+        @get("member").set @get("attribute").id, value
       ).property("member", "attribute.name")
 

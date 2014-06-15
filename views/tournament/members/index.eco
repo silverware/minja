@@ -3,6 +3,7 @@
     window.MembersTable = Table.create({
       editable: false,
       membersData: <%- @json @tournament.members %>,
+      treeData: <%- @json @tournament.tree %>,
       i18n: <%- @json @i18n.members %>
     });
   });
@@ -15,4 +16,5 @@
   <% end %>
   </h1>
   <div id="membersTable"></div>
+  <div id="tree"></div>
 </div>

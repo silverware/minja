@@ -22,6 +22,9 @@ App.Tournament = Em.ArrayController.extend
       games
     , []
 
+  getPlayers: ->
+    _.chain(@map (round) -> round.getPlayers()).flatten().uniq().value()
+
   addGroupRound: ->
     if @addRound()
       $("#settings .close").click()

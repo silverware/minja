@@ -150,6 +150,42 @@ buster.testCase "Round Model",
     game3.players.pushObject p3
 
     rounds = App.Tournament.getGamesByPlayer p1
-    console.debug rounds
     assert.equals game1.get('games').objectAt(0), rounds[0].games[0]
     assert.equals game3.get('games').objectAt(0), rounds[1].games[0]
+
+  "get Players": ->
+    game1 = App.RoundGame.create
+      _round: @round
+    game2 = App.RoundGame.create
+      _round: @round
+
+    @round.items.pushObject game1
+    @round.items.pushObject game2
+    p1 = App.Player.create name: "p1"
+    p2 = App.Player.create name: "p2"
+    p3 = App.Player.create name: "p3"
+    p4 = App.Player.create name: "p4"
+    p5 = App.Player.create name: "p5"
+    game1.players.pushObject p1
+    game1.players.pushObject p2
+    game2.players.pushObject p3
+    game2.players.pushObject p4
+
+
+    App.Tournament.addGroupRound()
+    lastRound = App.Tournament.lastRound()
+
+    group = App.Group.create
+      _round: lastRound
+
+    lastRound.items.pushObject group
+    group.players.pushObject p5
+    group.players.pushObject App.Dummy.create()
+
+    players = App.Tournament.getPlayers()
+    assert.equals 5, players.length
+    assert.equals p1, players[0]
+    assert.equals p2, players[1]
+    assert.equals p3, players[2]
+    assert.equals p4, players[3]
+    assert.equals p5, players[4]

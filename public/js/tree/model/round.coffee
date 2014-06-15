@@ -88,8 +88,6 @@ App.Round = Em.Object.extend
     # playerIndex: tupel [roundIndex, Playerindex]
     gamePlayers1 = @items.objectAt(player1Index[0]).players
     gamePlayers2 = @items.objectAt(player2Index[0]).players
-    console.debug player1Index
-    console.debug player2Index
     if gamePlayers1 is gamePlayers2 && @isGroupRound
       return
 
@@ -106,6 +104,9 @@ App.Round = Em.Object.extend
       gamePlayers2.insertAt player2Index[1], player1
       gamePlayers1.insertAt player1Index[1], player2
 
+  getPlayers: ->
+    _.flatten(@get('items').map (item) -> item.get('players')).filter (player) ->
+      player.isPlayer
 
   shuffle: ->
     # TODO: echter Zufall Sequenz generator mit random.org api
