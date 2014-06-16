@@ -12,6 +12,12 @@ tournamentSchema =
           type: 'string'
         name:
           type: 'string'
+        isDummy:
+          type: 'boolean'
+        isPlayer:
+          type: 'boolean'
+        attributes:
+          type: 'object'
       required: ['id', 'name']
     memberAttribute:
       type: 'object'
