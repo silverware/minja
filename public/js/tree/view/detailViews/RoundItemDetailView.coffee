@@ -13,7 +13,6 @@ App.RoundItemDetailView = App.GamesDetailView.extend
     index += offset
     if index < 0 then index = length - 1
     if index >= length then index = 0
-    console.debug index
     newRoundItem = @roundItem._round.items.objectAt index
 
     @$('.detailContent').fadeOut 'medium', =>

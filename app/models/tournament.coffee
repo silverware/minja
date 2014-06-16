@@ -18,7 +18,10 @@ tournamentSchema =
           type: 'boolean'
         attributes:
           type: 'object'
+        isPrivate:
+          type: 'boolean'
       required: ['id', 'name']
+
     memberAttribute:
       type: 'object'
       properties:
@@ -27,6 +30,8 @@ tournamentSchema =
         name:
           type: 'string'
           pattern: schemaUtils.notBlank
+        isPrivate:
+          type: 'boolean'
         type:
           enum: ['textfield', 'checkbox']
       required: ['id', 'type', 'name']

@@ -1,4 +1,8 @@
 App.templates.playerDetail = """
+
+  <!--
+    TODO: Spielerstatistik: siege/un/niederlagen tore/spiel gegentore/spiel
+  -->
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
         <span class="round-item-name">{{view.player.name}}</span>
