@@ -1,9 +1,12 @@
 <script>
-  require(["membersTable/MembersTable"], function(Table) {
-    window.MembersTable = Table.create({
+  require(["membersTable/MembersTable", "tree"], function(Table) {
+    App.init({
       editable: false,
-      membersData: <%- @json @tournament.members %>,
-      treeData: <%- @json @tournament.tree %>,
+      members: <%- @json @tournament.members %>,
+      data: <%- @json @tournament.tree %>,
+      i18n: <%- @json @i18n.members %>
+    });
+    window.MembersTable = Table.create({
       i18n: <%- @json @i18n.members %>
     });
   });
@@ -16,5 +19,4 @@
   <% end %>
   </h1>
   <div id="membersTable"></div>
-  <div id="tree"></div>
 </div>

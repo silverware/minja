@@ -1,8 +1,12 @@
 <script>
-  require(["membersTable/MembersTable"], function(Table) {
+  require(["membersTable/MembersTable", "tree"], function(Table) {
+    App.init({
+      editable: false,
+      members: <%- @json @tournament.members %>,
+      data: <%- @json @tournament.tree %>,
+      i18n: <%- @json @i18n.members %>
+    });
     window.MembersTable = Table.create({
-      editable: true,
-      membersData: <%- @json @tournament.members %>,
       i18n: <%- @json @i18n.members %>
     });
     new Save({

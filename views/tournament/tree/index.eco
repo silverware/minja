@@ -19,7 +19,8 @@
       App.Popup = Popup;
       var treeWrapper = $("<div id='treeWrapper' class='noPrint'>");
       $("#margin-container").after(treeWrapper);
-      treeWrapper.createTree({
+
+      App.init({
         editable: <%= @editable %>,
         i18n: <%- @json @i18n.tree %>,
         isOwner: <%= @tournament.isOwner %>,
@@ -29,6 +30,7 @@
         members: <%- @json @tournament.members %>,
         initialMembers: <%- @json @tournament.members %>
       });
+      treeWrapper.createTree();
   });
 </script>
 

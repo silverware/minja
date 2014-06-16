@@ -1,29 +1,29 @@
 <table class="table table-striped">
   <thead>
     <th>Name</th>
-    {{#each attribute in MembersTable.attributes}}
+    {{#each attribute in App.PlayerPool.attributes}}
       <th>
         {{attribute.name}}
-        {{#if MembersTable.editable}}
+        {{#if App.editable}}
           &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "remove" target="attribute"}}></i>
         {{/if}}
       </th>
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in MembersTable.members}}
+  {{#each member in App.PlayerPool.players}}
     <tr>
       <td style="height: 39px;">
-        {{#if MembersTable.editable}}
+        {{#if App.editable}}
           {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
       </td>
-      {{#each attribute in MembersTable.attributes}}
+      {{#each attribute in App.PlayerPool.attributes}}
         {{#view MembersTable.MemberValueView memberBinding="member" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
-            {{#if MembersTable.editable}}
+            {{#if App.editable}}
               {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
             {{else}}
               {{#if view.memberValue}}
@@ -42,7 +42,7 @@
       {{/each}}
 
       <td width="50px">
-        {{#if MembersTable.editable}}
+        {{#if App.editable}}
           <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
         {{/if}}
       </td>
@@ -50,4 +50,4 @@
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{MembersTable.members.length}} {{MembersTable.i18n.navName}}</em></div>
+<div style="text-align: right"><em>{{App.PlayerPool.players.length}} {{MembersTable.i18n.navName}}</em></div>
