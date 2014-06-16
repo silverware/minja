@@ -18,6 +18,10 @@ $.fn.createTree = (settings) ->
   App.Tournament.set "drawPoints", App.sport.pointsPerDraw
   App.Tournament.set "qualifierModus", App.sport.qualifierModus
 
+  # Initialize Players
+  if settings.members
+    App.PlayerPool.initPlayers settings.members.members
+
   # Build Bracket
   if settings.data
     App.PersistanceManager.build settings.data

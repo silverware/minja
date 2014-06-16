@@ -72,7 +72,7 @@ App.Game = Em.Object.extend
 
     for gameAttribute in App.Tournament.gameAttributes when gameAttribute.type is 'result'
       id = gameAttribute.get 'id'
-      value = @get(id)
+      value = @get id
       if value?.search /:/ isnt -1
         results = value.split ':'
         @set id, results[1] + ':' + results[0]

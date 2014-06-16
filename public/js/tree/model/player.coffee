@@ -2,11 +2,13 @@ App.Player = Em.Object.extend
   name: ""
   isDummy: false
   isPlayer: true
+  isPrivate: false
   attributes: {}
 
   init: ->
     @_super()
-    @id = UniqueId.create()
+    if not @id
+      @set 'id', UniqueId.create()
     @attributes = Em.Object.create()
 
   editable: (->

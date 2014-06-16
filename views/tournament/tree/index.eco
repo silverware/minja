@@ -26,6 +26,7 @@
         colors: <%- @json @colors %>,
         data: <%- @json @tournament.tree %>,
         sport: <%- @json @sport %>,
+        members: <%- @json @tournament.members %>,
         initialMembers: <%- @json @tournament.members %>
       });
   });
