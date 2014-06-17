@@ -1,4 +1,4 @@
-<script>
+<.membersscript>
   require(["membersTable/MembersTable", "tree"], function(Table) {
     App.init({
       editable: false,

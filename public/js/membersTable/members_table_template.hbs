@@ -5,7 +5,7 @@
       <th>
         {{attribute.name}}
         {{#if App.editable}}
-          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "remove" target="attribute"}}></i>
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.PlayerPool"}}></i>
         {{/if}}
       </th>
     {{/each}}
@@ -32,7 +32,7 @@
             {{/if}}
           {{/if}}
           {{#if attribute.isTextfield}}
-            {{#if MembersTable.editable}}
+            {{#if App.editable}}
               {{view view.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
@@ -43,7 +43,7 @@
 
       <td width="50px">
         {{#if App.editable}}
-          <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
+          <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
         {{/if}}
       </td>
     </tr>

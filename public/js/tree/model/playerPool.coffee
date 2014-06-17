@@ -8,20 +8,36 @@ App.PlayerPool = Em.Object.create
     @set 'attributes', []
 
   initPlayers: (members) ->
-    members.forEach (member) =>
+    members?.members?.forEach (member) =>
       @players.pushObject App.Player.create member
-
-  initAttributes: (attributes) ->
-    attributes.forEach (attribute) =>
+    members?.membersAttributes?.forEach (attribute) =>
       @attributes.pushObject App.PlayerAttribute.create attribute
 
-  getNewPlayer: ->
-    
+  getNewPlayer: (data) ->
+   unusedPlayers = _.difference @players, App.Tournament.getPlayers()
+   if unusedPlayers.length > 0
+     return unusedPlayers[0]
+   @createPlayer data
 
   createPlayer: (data) ->
-    if not data?.name
+    if not data
+      data = {}
+    if not data.name
       data.name = 'Player'
     player = App.Player.create data
     @players.pushObject player
     player
+  
+  createAttribute: (data) ->
+    attribute = App.PlayerAttribute.create data
+    @attributes.pushObject attribute
+    attribute
+
+  remove: (player) ->
+    if App.Tournament.getPlayers().contains player
+      return
+    @players.removeObject player
+
+  removeAttribute: (attribute) ->
+    @attributes.removeObject attribute
 

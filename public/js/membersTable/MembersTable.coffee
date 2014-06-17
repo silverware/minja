@@ -15,17 +15,17 @@ define [
 
     data: ->
       data =
-        members: Serializer.emberObjArrToJsonDataArr @members
-        membersAttributes: Serializer.emberObjArrToJsonDataArr @attributes
+        members: Serializer.emberObjArrToJsonDataArr App.PlayerPool.players
+        membersAttributes: Serializer.emberObjArrToJsonDataArr App.PlayerPool.attributes
 
     addMember: ->
-      App.PlayerPool.createNewPlayer()
+      App.PlayerPool.createPlayer()
 
     addAttribute: ->
-      App.PlayerPool.createNewPlayer()
-      @attributes.pushObject @Attribute.create
+      App.PlayerPool.createAttribute
         name: $("#inputname").val()
         type: $("#inputtyp").val()
+        isPrivate: $("#inputprivate").val()
 
     showAttributePopup: ->
       Popup.show

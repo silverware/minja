@@ -1,7 +1,7 @@
 <script>
   require(["membersTable/MembersTable", "tree"], function(Table) {
     App.init({
-      editable: false,
+      editable: true,
       members: <%- @json @tournament.members %>,
       data: <%- @json @tournament.tree %>,
       i18n: <%- @json @i18n.members %>

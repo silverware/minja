@@ -20,8 +20,7 @@ App.init = (settings) ->
 
   # Initialize Players
   if settings.members
-    App.PlayerPool.initPlayers settings.members.members
-    App.PlayerPool.initAttributes settings.members.membersAttributes
+    App.PlayerPool.initPlayers settings.members
 
   # Build Bracket
   if settings.data
