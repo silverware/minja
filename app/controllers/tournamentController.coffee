@@ -44,7 +44,7 @@ class TournamentController extends ControllerBase
     if tournament.isOwner or tournament.members
       nav.push route: "/#{id}/participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
-      nav.push route: "/#{id}/bracket", icon: "table", label: req.i18n.tree.navName
+      nav.push route: "/#{id}/bracket", icon: "sitemap fa-rotate-180", label: req.i18n.tree.navName
     # if config.isDevelopment
     #   if tournament.isOwner or tournament.gallery
     #     nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName

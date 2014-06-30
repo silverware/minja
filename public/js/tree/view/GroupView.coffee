@@ -45,11 +45,16 @@ App.templates.group = """
   </tbody>
 </table>
 
-  <table class="table noPadding groupGames box hide" id="groupGames">
+  <table class="table round-item-table noPadding groupGames box hide" id="groupGames">
   <col width="80px" />
   <col width="8px" />
   <col width="80px" />
   <col width="50px" />
+  <thead>
+    <th colspan="4">
+      {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
+    </th>
+  </thead>
 {{#each view.games}}
   {{#if newRound}}
     <tr>
