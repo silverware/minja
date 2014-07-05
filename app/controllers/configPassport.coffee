@@ -20,10 +20,11 @@ facebookConfig =
   clientID: config.CLIENTID
   clientSecret: config.CLIENTSECRET
   callbackURL: "#{config.ROOTPATH}/auth/facebook/callback"
+  enableProof: false
 
 passport.use(new FacebookStrategy(facebookConfig, (accessToken, refreshToken, profile, done) ->
     userDao.findOrCreateByEmail profile.emails[0].value, (err, user) =>
-      done null, user
+      done err, user
 ))
 
 passport.serializeUser (user, done) ->
