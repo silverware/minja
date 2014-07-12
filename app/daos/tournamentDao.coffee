@@ -1,5 +1,4 @@
 fs = require 'fs'
-im = require 'imagemagick'
 validators = require '../services/validatorService'
 _ = require 'underscore'
 
