@@ -24,6 +24,11 @@ App.Player = Em.Object.extend
     # TODO: set Id to Id of player in player pool with corresponding name, if exists
   ).observes('name')
 
+App.Player.reopenClass
+  createPlayer: (args) ->
+    player = App.Player.create args
+    player.set 'attributes', Em.Object.create args.attributes
+
 App.Dummy = App.Player.extend
   isDummy: true
   isPlayer: false

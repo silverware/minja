@@ -15,7 +15,7 @@ App.PersistanceManager =
     serialized = App.Serializer.emberObjToJsonData tournament
     serialized.rounds = []
     for round in tournament.content
-       serialized.rounds.push App.Serializer.emberObjToJsonData(round)
+       serialized.rounds.push App.Serializer.emberObjToJsonData round
     serialized
 
   extend: (target, source) ->
@@ -80,9 +80,9 @@ App.PersistanceManager =
   buildRoundItem: (roundItem, obj) ->
     roundItem.dummies.clear()
     for dummy in obj.dummies
-      roundItem.dummies.pushObject @createPlayer(dummy)
+      roundItem.dummies.pushObject @createPlayer dummy
     for player in obj.players
-      roundItem.players.pushObject @createPlayer(player)
+      roundItem.players.pushObject @createPlayer player
     roundItem.games.clear()
     for game in obj.games
       roundItem.games.pushObject @buildGame game

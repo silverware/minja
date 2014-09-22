@@ -65,7 +65,7 @@ class TournamentEditController extends ControllerBase
     {tree, members} = req.body.tournament
     members =
       members: members
-      memberAttributes: req.tournament.members?.memberAttributes
+      membersAttributes: req.tournament.members?.membersAttributes
     console.log members
     tournamentDao.merge req.tournament.id, members: members, ->
       tournamentDao.merge req.tournament.id, tree: tree, ->

@@ -9,7 +9,7 @@ App.PlayerPool = Em.Object.create
 
   initPlayers: (members) ->
     members?.members?.forEach (member) =>
-      @players.pushObject App.Player.create member
+      @players.pushObject App.Player.createPlayer member
     members?.membersAttributes?.forEach (attribute) =>
       @attributes.pushObject App.PlayerAttribute.create attribute
 
@@ -23,14 +23,13 @@ App.PlayerPool = Em.Object.create
     if not id then throw 'Id must be set'
     for player in @players when player.id is id
       return player
-      
 
   createPlayer: (data) ->
     if not data
       data = {}
     if not data.name
       data.name = 'Player'
-    player = App.Player.create data
+    player = App.Player.createPlayer data
     @players.pushObject player
     player
   

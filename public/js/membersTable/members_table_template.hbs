@@ -27,7 +27,7 @@
         {{/if}}
       </td>
       {{#each attribute in App.PlayerPool.attributes}}
-        {{#view MembersTable.MemberValueView memberBinding="member" attributeBinding="attribute"}}
+        {{#view MembersTable.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if App.editable}}
               {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
