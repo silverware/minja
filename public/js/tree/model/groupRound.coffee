@@ -17,6 +17,7 @@ App.GroupRound = App.Round.extend
     group = App.Group.create
       name:"#{App.i18n.group} " + @_letters[@get('items.length')]
       _round: @
+    @get("items").pushObject group
     
     # apply settings of previous group (playercount and qualifiercount)
     prevGroup = @get('items.lastObject')
@@ -34,5 +35,4 @@ App.GroupRound = App.Round.extend
         players.pushObject App.PlayerPool.getNewPlayer
           name: "#{App.i18n.player} " + (i + 1)
     group.set 'players', players
-    @get("items").pushObject group
 

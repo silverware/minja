@@ -2,7 +2,16 @@ App.PersistanceManager =
 
   players: []
 
-  persist: (tournament) ->
+  persist: ->
+    tournament:
+      members: @persistPlayers()
+      tree: @persistTree()
+
+  persistPlayers: ->
+    App.Serializer.emberObjArrToJsonDataArr App.PlayerPool.players
+
+  persistTree: ->
+    tournament = App.Tournament
     serialized = App.Serializer.emberObjToJsonData tournament
     serialized.rounds = []
     for round in tournament.content

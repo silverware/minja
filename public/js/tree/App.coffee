@@ -3,14 +3,14 @@ window.App = Em.Application.create
   i18n: {}
   templates: {}
   persist: ->
-    App.PersistanceManager.persist App.Tournament
+    App.PersistanceManager.persist()
 
-App.init = (settings) ->
-  App.editable = settings.editable or false
-  App.isOwner = settings.isOwner or false
-  App.i18n = settings.i18n
-  App.sport = settings.sport
-  App.colors = settings.colors
+App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
+  App.editable = editable or false
+  App.isOwner = isOwner or false
+  App.i18n = i18n
+  App.sport = sport
+  App.colors = colors
 
   # initially fill with sport values
   if App.sport
@@ -19,12 +19,12 @@ App.init = (settings) ->
     App.Tournament.set "qualifierModus", App.sport.qualifierModus
 
   # Initialize Players
-  if settings.members
-    App.PlayerPool.initPlayers settings.members
+  if tournament.members
+    App.PlayerPool.initPlayers tournament.members
 
   # Build Bracket
-  if settings.data
-    App.PersistanceManager.build settings.data
+  if tournament.tree
+    App.PersistanceManager.build tournament.tree
 
 
 $.fn.createTree = ->

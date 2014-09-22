@@ -62,8 +62,10 @@ class TournamentEditController extends ControllerBase
       colors: colorService.getColors req.tournament
 
   "POST:/:tid/bracket/edit": (req, res) =>
-    tournamentDao.merge req.tournament.id, tree: req.body, ->
-      res.send "ok"
+    {tree, members} = req.body.tournament
+    tournamentDao.merge req.tournament.id, members: members, ->
+      tournamentDao.merge req.tournament.id, tree: tree, ->
+        res.send "ok"
 
   "/:tid/gallery/edit": (req, res) =>
     if not req.tournament.gallery?

@@ -2,8 +2,7 @@
   require(["membersTable/MembersTable", "tree"], function(Table) {
     App.init({
       editable: true,
-      members: <%- @json @tournament.members %>,
-      data: <%- @json @tournament.tree %>,
+      tournament: <%- @json @tournament %>,
       i18n: <%- @json @i18n.members %>
     });
     window.MembersTable = Table.create({

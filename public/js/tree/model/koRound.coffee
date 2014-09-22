@@ -14,13 +14,14 @@ App.KoRound = App.Round.extend
     game = App.RoundGame.create
       name: "#{App.i18n.game} " + (@items.get("length") + 1)
       _round: @
+
+    @items.pushObject game
     for i in [0..1]
       if @getFreeMembers()?[i]?
         game.players.pushObject @getFreeMembers()[i]
       else
         game.players.pushObject App.PlayerPool.getNewPlayer
           name: "#{App.i18n.player} " + (i + 1)
-    @items.pushObject game
 
 
 

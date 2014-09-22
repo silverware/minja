@@ -25,10 +25,8 @@
         i18n: <%- @json @i18n.tree %>,
         isOwner: <%= @tournament.isOwner %>,
         colors: <%- @json @colors %>,
-        data: <%- @json @tournament.tree %>,
+        tournament: <%- @json @tournament %>,
         sport: <%- @json @sport %>,
-        members: <%- @json @tournament.members %>,
-        initialMembers: <%- @json @tournament.members %>
       });
       treeWrapper.createTree();
   });

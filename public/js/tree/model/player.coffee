@@ -14,6 +14,11 @@ App.Player = Em.Object.extend
   editable: (->
     @get("isPlayer") and App.editable
   ).property("isPlayer")
+
+  # used in Members Table
+  isPartaking: (->
+    _.contains App.Tournament.getPlayers(), @
+  ).property('App.Tournament.@each')
   
   updateId: (->
     # TODO: set Id to Id of player in player pool with corresponding name, if exists

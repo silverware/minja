@@ -1,5 +1,6 @@
 <table class="table table-striped">
   <thead>
+    <th></th>
     <th>Name</th>
     {{#each attribute in App.PlayerPool.attributes}}
       <th>
@@ -13,6 +14,13 @@
   </thead>
   {{#each member in App.PlayerPool.players}}
     <tr>
+      <td style="height: 39px;">
+        {{#if member.isPartaking}}
+          ja
+        {{else}}
+          nein
+        {{/if}}
+      </td>
       <td style="height: 39px;">
         {{#if App.editable}}
           {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
@@ -43,7 +51,9 @@
 
       <td width="50px">
         {{#if App.editable}}
-          <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
+          {{#unless member.isPartaking}}
+            <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
+          {{/unless}}
         {{/if}}
       </td>
     </tr>
