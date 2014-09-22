@@ -154,6 +154,7 @@ module.exports =
     type: "Type"
     textfield: "Textfield"
     noMembersCreated: ""
+    playerDoPartipate: "is included in bracket"
 
 
 ################################ TREE ########################################################

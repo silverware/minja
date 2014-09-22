@@ -1,6 +1,6 @@
 <table class="table table-striped">
   <thead>
-    <th></th>
+    <th width="25px"></th>
     <th>Name</th>
     {{#each attribute in App.PlayerPool.attributes}}
       <th>
@@ -16,9 +16,7 @@
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
-          ja
-        {{else}}
-          nein
+          <i title="{{unbound App.i18n.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
         {{/if}}
       </td>
       <td style="height: 39px;">
@@ -52,7 +50,7 @@
       <td width="50px">
         {{#if App.editable}}
           {{#unless member.isPartaking}}
-            <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
+            <i class="fa fa-times-circle" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
           {{/unless}}
         {{/if}}
       </td>

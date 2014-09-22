@@ -35,7 +35,7 @@ class TournamentEditController extends ControllerBase
       return res.render "#{@viewPrefix}/members/edit"
     t = req.tournament
     t.members = req.body
-    console.log Tournament.validate t
+    # console.log Tournament.validate t
     tournamentDao.merge req.tournament.id, members: req.body, ->
       res.send "ok"
 
@@ -63,6 +63,10 @@ class TournamentEditController extends ControllerBase
 
   "POST:/:tid/bracket/edit": (req, res) =>
     {tree, members} = req.body.tournament
+    members =
+      members: members
+      memberAttributes: req.tournament.members?.memberAttributes
+    console.log members
     tournamentDao.merge req.tournament.id, members: members, ->
       tournamentDao.merge req.tournament.id, tree: tree, ->
         res.send "ok"

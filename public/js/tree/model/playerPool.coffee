@@ -19,6 +19,12 @@ App.PlayerPool = Em.Object.create
      return unusedPlayers[0]
    @createPlayer data
 
+  getPlayerById: (id) ->
+    if not id then throw 'Id must be set'
+    for player in @players when player.id is id
+      return player
+      
+
   createPlayer: (data) ->
     if not data
       data = {}
@@ -35,6 +41,8 @@ App.PlayerPool = Em.Object.create
 
   remove: (player) ->
     if App.Tournament.getPlayers().contains player
+      return
+    if player.isInitialPlayer
       return
     @players.removeObject player
 

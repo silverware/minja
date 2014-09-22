@@ -1,6 +1,6 @@
 App.PersistanceManager =
 
-  players: []
+  dummies: []
 
   persist: ->
     tournament:
@@ -95,9 +95,10 @@ App.PersistanceManager =
     return obj and obj isnt "false"
 
   createPlayer: (obj) ->
-    return player for player in @players when player.id is obj.id
-    newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.Player.create(obj)
+    return dummy for dummy in @dummies when dummy.id is obj.id
+    newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.PlayerPool.getPlayerById obj.id
     newPlayer.set "id", obj.id
     @extend newPlayer, {}
-    @players.pushObject newPlayer
+    if newPlayer.isDummy
+      @dummies.pushObject newPlayer
     newPlayer

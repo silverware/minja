@@ -18,7 +18,7 @@ App.Player = Em.Object.extend
   # used in Members Table
   isPartaking: (->
     _.contains App.Tournament.getPlayers(), @
-  ).property('App.Tournament.@each')
+  ).property()
   
   updateId: (->
     # TODO: set Id to Id of player in player pool with corresponding name, if exists
