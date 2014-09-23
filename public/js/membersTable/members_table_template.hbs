@@ -12,7 +12,7 @@
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in App.PlayerPool.players}}
+  {{#each member in App.PlayerPool.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
@@ -50,7 +50,9 @@
       <td width="50px">
         {{#if App.editable}}
           {{#unless member.isPartaking}}
-            <i class="fa fa-times-circle" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}}></i>
+            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}} type="button">
+              <i class="fa fa-times-circle"></i>
+            </button>
           {{/unless}}
         {{/if}}
       </td>

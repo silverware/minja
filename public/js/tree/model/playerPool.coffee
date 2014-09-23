@@ -1,5 +1,4 @@
-App.PlayerPool = Em.Object.create
-
+App.PlayerPool = Em.Object.extend
   players: []
   attributes: []
 
@@ -12,6 +11,14 @@ App.PlayerPool = Em.Object.create
       @players.pushObject App.Player.createPlayer member
     members?.membersAttributes?.forEach (attribute) =>
       @attributes.pushObject App.PlayerAttribute.create attribute
+
+  sortedPlayers: (->
+    @get("players").sort (player1, player2) ->
+      if player1.get('isPartaking') is player2.get('isPartaking')
+        return player1.get('name').toLowerCase() > player2.get('name').toLowerCase()
+      return player2.get('isPartaking')
+  ).property("players.@each.name", "players.@each.isPartaking")
+
 
   getNewPlayer: (data) ->
    unusedPlayers = _.difference @players, App.Tournament.getPlayers()
@@ -48,3 +55,8 @@ App.PlayerPool = Em.Object.create
   removeAttribute: (attribute) ->
     @attributes.removeObject attribute
 
+  clear: ->
+    @players.clear()
+    @attributes.clear()
+
+App.PlayerPool = App.PlayerPool.create()

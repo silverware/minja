@@ -78,7 +78,10 @@ menu:
         <td><div class="col-md-4">{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</div></td>
         <td><div class="col-md-4">{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</div></td>
-        <td><i class="fa fa-times" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}}></i>
+        <td>
+          <button class="btn btn-inverse" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}} type="button">
+            <i class="fa fa-times-circle"></i>
+          </button>
         </td>
       </tr>
       {{/each}}

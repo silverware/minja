@@ -18,6 +18,7 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
     App.Tournament.set "drawPoints", App.sport.pointsPerDraw
     App.Tournament.set "qualifierModus", App.sport.qualifierModus
 
+
   # Initialize Players
   if tournament.members
     App.PlayerPool.initPlayers tournament.members

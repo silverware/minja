@@ -62,7 +62,7 @@ class TournamentEditController extends ControllerBase
       colors: colorService.getColors req.tournament
 
   "POST:/:tid/bracket/edit": (req, res) =>
-    {tree, members} = req.body.tournament
+    {tree, members} = req.body
     members =
       members: members
       membersAttributes: req.tournament.members?.membersAttributes

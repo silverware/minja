@@ -3,9 +3,8 @@ App.PersistanceManager =
   dummies: []
 
   persist: ->
-    tournament:
-      members: @persistPlayers()
-      tree: @persistTree()
+    members: @persistPlayers()
+    tree: @persistTree()
 
   persistPlayers: ->
     App.Serializer.emberObjArrToJsonDataArr App.PlayerPool.players
