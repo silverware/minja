@@ -41,7 +41,9 @@ define [
 
     template: Ember.Handlebars.compile template
     didInsertElement: ->
-      @$().hide().fadeIn 1000
+      @$().hide()
+      $('.spinner-wrapper').fadeOut 'fast', =>
+        @$().fadeIn 1000
       @$("[rel='tooltip']").tooltip()
 
 

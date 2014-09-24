@@ -7,7 +7,7 @@
       limit: 2
     });
     TreeStatisticsView.init({
-      data: <%- @json @tournament.tree %>,
+      tournament: <%- @json @tournament %>,
       i18n: <%- @json @i18n.tree %>
     });
   });
@@ -43,9 +43,10 @@
 </a>
 
 <a href="/<%= @tournament.identifier %>/chat">
-<section class="dashboardBox dashboardLightning">
+<section id="messageDashboardBox" class="dashboardBox dashboardLightning">
   <fieldset>
   <legend><%= @i18n.chat.messageStream %></legend>
+    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
     <div id="chat"></div>
   </fieldset>
 </section>
@@ -79,6 +80,7 @@
 <section class="dashboardBox dashboardLightning" id="treeDashboardBox">
   <fieldset>
     <legend><%= @i18n.tree.navName %></legend>
+    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
   </fieldset>
 </section>
 </a>

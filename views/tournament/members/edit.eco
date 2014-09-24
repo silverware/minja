@@ -27,7 +27,9 @@
   </h1>
 
   <form action="#" method="post">
-    <div id="membersTable"></div>
+    <div id="membersTable">
+      <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
+    </div>
     <%= @saveButton @i18n.save, true %>
   </form>
 </div>

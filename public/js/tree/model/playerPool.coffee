@@ -19,11 +19,13 @@ App.PlayerPool = Em.Object.extend
       return player2.get('isPartaking')
   ).property("players.@each.name", "players.@each.isPartaking")
 
-
+  # takes a player thats not present in the bracket
+  # otherwise creates a new player
   getNewPlayer: (data) ->
    unusedPlayers = _.difference @players, App.Tournament.getPlayers()
    if unusedPlayers.length > 0
      return unusedPlayers[0]
+   data._isTemporary = true
    @createPlayer data
 
   getPlayerById: (id) ->
@@ -44,6 +46,11 @@ App.PlayerPool = Em.Object.extend
     attribute = App.PlayerAttribute.create data
     @attributes.pushObject attribute
     attribute
+
+  filterOutTemporaryPlayers: ->
+    playersInBracket = App.Tournament.getPlayers()
+    @get('players').filter (player) ->
+      return not player._isTemporary or playersInBracket.contains player
 
   remove: (player) ->
     if App.Tournament.getPlayers().contains player

@@ -17,5 +17,7 @@
     <%= @headerAction @i18n.edit, "participants/edit", "edit" %>
   <% end %>
   </h1>
-  <div id="membersTable"></div>
+  <div id="membersTable">
+    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
+  </div>
 </div>
