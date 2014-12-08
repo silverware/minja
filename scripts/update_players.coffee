@@ -3,12 +3,13 @@ _ = require "underscore"
 
 extractPlayers = (t) ->
   players = []
-  if t.tree
+  if t.tree and t.tree.rounds
     for round in t.tree.rounds
-      for item in round.items
-        for player in item.players
-          if not _.contains(players, player) and player.isPlayer
-            players.push player
+      if round.items
+        for item in round.items
+          for player in item.players
+            if not _.contains(players, player) and player.isPlayer
+              players.push player
 
   if t.members?.members?.length > 0
     members = t.members.members
