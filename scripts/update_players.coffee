@@ -10,7 +10,7 @@ extractPlayers = (t) ->
           if not _.contains(players, player) and player.isPlayer
             players.push player
 
-  if t.members?.members?
+  if t.members?.members?.length > 0
     members = t.members.members
     for member in members
       if not _.contains players.map((p) -> p.name), member.name
