@@ -17,6 +17,7 @@ menu:
 -->
 
 
+    <div class="container">
     <div class="row" style="margin: 0; padding: 0">
     <div class="col-md-2">
       <ul id="settings-navigation" class="nav nav-list">
@@ -68,15 +69,15 @@ menu:
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>Name</th>
-        <th>Typ</th>
+        <th style="text-align: left">Name</th>
+        <th style="text-align: left">Typ</th>
         <th></th>
       </tr>
       </thead>
       {{#each gameAttribute in App.Tournament.gameAttributes}}
       <tr>
         <td><div class="col-md-4">{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</div></td>
-        <td><div class="col-md-4">{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
+        <td><div class="col-md-6">{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</div></td>
         <td>
           <button class="btn btn-inverse" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}} type="button">
@@ -119,6 +120,7 @@ menu:
       </fieldset>
     </div>
   </div>
+    </div>
     </div>
     </div>
 

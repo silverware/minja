@@ -155,7 +155,7 @@ Group Stage
   content: "";
   background-color: rgba(20,170,16,0.5);
   color: rgba(20,170,16,0.5);
-  padding: 2px;
+  padding: 4px 3px;
 }
 .qualified td:first-child {
   padding: 0px !important;
@@ -198,6 +198,7 @@ Group Stage
     th {
       padding: 2px !important;
       font-variant: normal;
+      border-radius: 6px 2px 0 0;
     }
   }
 }
@@ -344,8 +345,19 @@ Action Box unten
     font-weight: bold;
   }
 
+  .table thead {
+    tr {
+      border-radius: 4px;
+    }
+  }
+
+  .table th {
+     line-height: 15px;
+      text-align: center;
+  }
+
   .tableTable {
-    td,th {
+    td {
       text-align: center;
       line-height: 25px;
     }

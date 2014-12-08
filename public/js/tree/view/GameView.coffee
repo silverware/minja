@@ -15,6 +15,9 @@ App.templates.game = """
       </span>
     </th>
   </thead>
+    <tr>
+      <td class="" colspan="10" style="line-height: 0px">&nbsp;</td>
+    </tr>
   <tr>
     <td style="width: 5px">&nbsp;</td>
     <td style="max-width: 110px; width: 110px" class="player tableCellBottom" title="{{unbound game.player1.name}}">

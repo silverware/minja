@@ -267,7 +267,7 @@ Tree
 ----------------------------------------------------------------------*/
 
 .loading-screen {
-  color: @footerText;
+  color: @textColor;
 }
 
 .ui-draggable-helper {
@@ -297,16 +297,14 @@ Tree
   color: @footerText;
 }
 
-.roundItem .blurringBox {
-  thead {
-    color: @textColor;
-  }
-}
-
-.round-item-table {
+.round-item-table, .detailView .table, .table-striped{
   thead {
     th {
-      border-bottom: 1px solid @dark !important;
+      input {
+        color: @footerText !important;
+      }
+      color: @footerText !important;
+      .gradient(lighten(@dark, 8%), @dark);
     }
   }
 }
@@ -328,6 +326,7 @@ Tree
 }
 
 .detailView {
+  .table 
   .table tbody tr:hover {
     background-color: darken(@normal, 1%);
     color: @textColor;

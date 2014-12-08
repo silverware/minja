@@ -9,6 +9,9 @@ App.templates.playerDetail = """
     </div>
   </div>
 
+
+  <div class="container">
+  <div class="row">
   <fieldset>
     <legend>{{App.i18n.games}}</legend>
 
@@ -46,7 +49,7 @@ App.templates.playerDetail = """
             {{#each attribute in App.Tournament.gameAttributes}}
               {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
-            <td>
+            <td style="text-align: center">
             {{#if App.editable}}
                 <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
@@ -65,6 +68,7 @@ App.templates.playerDetail = """
         {{/each}}
       {{/each}}
     </table>
+    </div></div>
 """
 
 App.PlayerDetailView = App.DetailView.extend
