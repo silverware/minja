@@ -4,9 +4,27 @@ window.UniqueId =
     id += Math.random().toString(36).substr(2) while id.length < length
     id.substr 0, length
 
+############ error handling ##################
+window.onerror = (errorMessage, errorUrl, errorLine) ->
+    $.ajax
+        type: 'POST',
+        url: '/errors/report',
+        data:
+            msg: errorMessage,
+            url: errorUrl,
+            line: errorLine
+            hostUrl: document.URL
+        success: ->
+            if (console && console.log)
+                console.log('JS error report successful.')
+        error: ->
+            if (console && console.error)
+                console.error('JS error report submission failed!')
+    return false
+
 ############ after each Page-Load ##################
-require ->
-  $("[rel='tooltip']").tooltip()
+$(document).ready ->
+  # $("[rel='tooltip']").tooltip()
 
   # Favorite Tournament Toggle
   $favIcon = $("#favoriteStar")
