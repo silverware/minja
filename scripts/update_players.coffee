@@ -34,5 +34,5 @@ dao.findAllTournamentIdentifiers (result) ->
         # console.log tournament._id
         # console.log tournament
         dao.merge r.id, {members: members}, (result, err) ->
-          console.log err
+          console.log "merged " + tournament.info?.name
 
