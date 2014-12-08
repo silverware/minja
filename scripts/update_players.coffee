@@ -1,5 +1,5 @@
 dao = require "../app/daos/tournamentDao"
-_ = require "Underscore"
+_ = require "underscore"
 
 extractPlayers = (t) ->
   players = []
