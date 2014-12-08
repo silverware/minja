@@ -22,13 +22,17 @@ transform = (t) ->
   members =
     members: players
     membersAttributes: t.members?.membersAttributes
+# data = {info: {name: "Paule"}}
+# dao.find  "ea53c3954a7bfd802b348288ab00177b", (result) ->
+#   console.log result
 
 dao.findAllTournamentIdentifiers (result) ->
-  result.forEach (id) ->
-    dao.findTournamentByIdentifier id, (tournament) ->
-      members = transform tournament
-      console.log tournament._id
-      console.log tournament
-      dao.merge tournament._id, members: members, (result, err) ->
-        console.log err
+  for r in result
+    do (r)->
+      dao.findTournamentByIdentifier r.id, (tournament) ->
+        members = transform tournament
+        # console.log tournament._id
+        # console.log tournament
+        dao.merge r.id, {members: members}, (result, err) ->
+          console.log err
 
