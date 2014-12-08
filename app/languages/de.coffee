@@ -146,6 +146,7 @@ module.exports =
     type: "Typ"
     textfield: "Textfeld"
     noMembersCreated: "Es wurden noch keine Teilnehmer erfasst."
+    playerDoPartipate: "ist im Turnierbaum erfasst"
 
 
   ################################ TREE ########################################################

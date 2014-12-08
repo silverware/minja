@@ -6,40 +6,26 @@ define [
   "text!./members_table_template.hbs"
 ], (DynamicTextField, TypeaheadTextField, Serializer, Popup, template) ->
 
-  Em.Application.extend
-    
-    members: []
-    attributes: []
+  Em.View.extend
+    DynamicTextField: DynamicTextField
 
     init: ->
       @_super()
-      # App.PersistanceManager.build @treeData
-      # App.set "rootElement", '#tree'
-      # App.initialize()
-      # @set "players", App.Tournament.getPlayers()
-      if @membersData?
-        for member in @membersData.members
-          @members.pushObject @Member.create(member)
-
-        if @membersData.membersAttributes?
-          for attribute in @membersData.membersAttributes
-            @attributes.pushObject @Attribute.create(attribute)
-
-      @view.appendTo("#membersTable")
+      @appendTo("#membersTable")
 
     data: ->
       data =
-        members: Serializer.emberObjArrToJsonDataArr @members
-        membersAttributes: Serializer.emberObjArrToJsonDataArr @attributes
+        members: Serializer.emberObjArrToJsonDataArr App.PlayerPool.players
+        membersAttributes: Serializer.emberObjArrToJsonDataArr App.PlayerPool.attributes
 
     addMember: ->
-      @members.pushObject @Member.create()
-
+      App.PlayerPool.createPlayer()
 
     addAttribute: ->
-      @attributes.pushObject @Attribute.create
+      App.PlayerPool.createAttribute
         name: $("#inputname").val()
         type: $("#inputtyp").val()
+        isPrivate: $("#inputprivate").val()
 
     showAttributePopup: ->
       Popup.show
@@ -51,43 +37,14 @@ define [
             event.preventDefault()
 
 
-
-
-    # ------------------------ MODELS ----------------------------#
-
-    Member: Em.Object.extend
-      name: ""
-      remove: ->
-        MembersTable.members.removeObject @
-
-
-    Attribute: Em.Object.extend
-      name: ""
-      type: "textfield"
-      id: ""
-
-      init: ->
-        @_super()
-        @id = UniqueId.create() if not @id
-
-      isCheckbox: (->
-        @get("type") == "checkbox"
-      ).property("type")
-      isTextfield: (->
-        @get("type") == "textfield"
-      ).property("type")
-      remove: ->
-        MembersTable.attributes.removeObject @
-
-
     # ------------------------ VIEWS ----------------------------#
 
-    view: Ember.View.create
-      DynamicTextField: DynamicTextField
-      template: Ember.Handlebars.compile template
-      didInsertElement: ->
-        @$().hide().fadeIn 1000
-        @$("[rel='tooltip']").tooltip()
+    template: Ember.Handlebars.compile template
+    didInsertElement: ->
+      @$().hide()
+      $('.spinner-wrapper').fadeOut 'fast', =>
+        @$().fadeIn 1000
+      @$("[rel='tooltip']").tooltip()
 
 
     MemberValueView: Ember.View.extend

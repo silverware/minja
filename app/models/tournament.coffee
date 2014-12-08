@@ -36,6 +36,18 @@ tournamentSchema =
           enum: ['textfield', 'checkbox']
       required: ['id', 'type', 'name']
 
+    gameAttribute:
+      type: 'object'
+      properties:
+        id:
+          type: 'string'
+        name:
+          type: 'string'
+          pattern: schemaUtils.notBlank
+        type:
+          enum: ['textfield', 'checkbox']
+      required: ['id', 'type', 'name']
+
   required: ['user_id']
 
   properties:
@@ -77,6 +89,25 @@ tournamentSchema =
           type: 'array'
           items:
             '$ref': 'memberAttribute'
+
+    tree:
+      type: 'object'
+      properties:
+        winPoints:
+          type: 'integer'
+        drawPoints:
+          type: 'integer'
+        timePerGame:
+          type: 'integer'
+        gamesParallel:
+          type: 'integer'
+        qualifierModus:
+          type:
+            enum: ['aggregate', 'bestof']
+        gameAttributes:
+          type: 'array'
+          items:
+            '$ref': 'gameAttribute'
     colors:
       type: 'object'
       properties:

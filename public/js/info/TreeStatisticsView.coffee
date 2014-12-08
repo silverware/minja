@@ -6,9 +6,8 @@ define [
   $statisticsContent = $("#treeDashboardBox").find "fieldset"
 
   exports =
-    init: ({data, i18n}) ->
-      App.PersistanceManager.build data
-      App.i18n = i18n
+    init: (args) ->
+      App.init args
       App.set "rootElement", "#treeDashboardBox"
       App.initialize()
       view = Em.View.create
@@ -39,6 +38,8 @@ define [
         """
 
         didInsertElement: ->
-          @$().hide().fadeIn 1000
+          @$().hide()
+          $('#treeDashboardBox .fa-spinner').fadeOut 'fast', =>
+            @$().fadeIn 1000
       view.appendTo("#treeDashboardBox fieldset")
 

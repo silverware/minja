@@ -26,13 +26,13 @@ App.GroupRound = App.Round.extend
 
     playersCount = (prevPlayersLength - 1) or 3
 
+    @get("items").pushObject group
     players = []
     for i in [0..playersCount]
-      if @getFreeMembers()?[i]?
-        players.pushObject @getFreeMembers()[i]
+      if @getFreeMembers()?[0]?
+        players.pushObject @getFreeMembers()[0]
       else
-        players.pushObject App.Player.create
+        players.pushObject App.PlayerPool.getNewPlayer
           name: "#{App.i18n.player} " + (i + 1)
-    group.set 'players', players
-    @get("items").pushObject group
+      group.set 'players', players
 

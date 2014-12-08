@@ -15,7 +15,7 @@ App.DetailView = Em.View.extend
     App.BracketLineDrawer.hide()
     $(".tournament").fadeOut 'medium', =>
       $(".navbar-static-top").addClass "visible-lg"
-      @$().fadeIn 'slow', =>
+      @$().fadeIn 'medium', =>
         @initExitableView()
       #@$(".detailContent").mCustomScrollbar scrollInertia: 10
 
@@ -47,13 +47,13 @@ App.DetailView = Em.View.extend
     App.openDetailViews.removeObject @
     lastDetailView = _.last App.openDetailViews
 
+    if lastDetailView
+      lastDetailView.$().show()
     @$().fadeOut 'medium', =>
       if not lastDetailView
         $(".navbar-static-top").removeClass "visible-lg"
         $(".tournament").fadeIn 'slow', =>
         App.BracketLineDrawer.show()
-      else
-        lastDetailView.show()
 
     @destroyElement()
     @_super()

@@ -72,12 +72,9 @@ App.Tournament = Em.ArrayController.extend
         if round is fromRound
           isFurtherRound = true
 
-
 App.qualifierModi =
   BEST_OF: Em.Object.create {id: "bestof", label: "Best Of X"}
   AGGREGATE: Em.Object.create {id: "aggregate", label: "Aggregated"}
-
-
 
 
 App.Tournament = App.Tournament.create()

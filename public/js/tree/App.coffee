@@ -3,39 +3,39 @@ window.App = Em.Application.create
   i18n: {}
   templates: {}
   persist: ->
-    App.PersistanceManager.persist App.Tournament
+    App.PersistanceManager.persist()
 
-$.fn.createTree = (settings) ->
-  view = App.TournamentView.create()
-  App.editable = settings.editable or false
-  App.isOwner = settings.isOwner or false
-  App.i18n = settings.i18n
-  App.sport = settings.sport
-  App.colors = settings.colors
+App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
+  App.editable = editable or false
+  App.isOwner = isOwner or false
+  App.i18n = i18n
+  App.sport = sport
+  App.colors = colors
 
   # initially fill with sport values
-  App.Tournament.set "winPoints", App.sport.pointsPerWin
-  App.Tournament.set "drawPoints", App.sport.pointsPerDraw
-  App.Tournament.set "qualifierModus", App.sport.qualifierModus
+  if App.sport
+    App.Tournament.set "winPoints", App.sport.pointsPerWin
+    App.Tournament.set "drawPoints", App.sport.pointsPerDraw
+    App.Tournament.set "qualifierModus", App.sport.qualifierModus
+
+
+  # Initialize Players
+  if tournament.members
+    App.PlayerPool.initPlayers tournament.members
 
   # Build Bracket
-  if settings.data
-    App.PersistanceManager.build settings.data
+  if tournament.tree
+    App.PersistanceManager.build tournament.tree
 
-    # Schließe Runden Settings
-    setTimeout (->
-      $("#settings .close").click()
-      $("#tournamentAddRemoveActions").click()), 50
+
+$.fn.createTree = ->
+  view = App.TournamentView.create()
+
+  # Schließe Runden Settings
+  setTimeout (->
+    $("#settings .close").click()
+    $("#tournamentAddRemoveActions").click()), 50
 
   view.appendTo @
   App.Observer.snapshot()
-
-  # Übernimmt die Teilnehmer aus der Teilnehmerliste
-  if not settings.data and settings.initialMembers
-    App.initialMembers = []
-    for member in settings.initialMembers.members
-      player = App.Player.create
-        name: member.name
-      App.initialMembers.pushObject player
-
 

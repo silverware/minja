@@ -12,6 +12,8 @@ treeFiles  = [
   'model/game.coffee'
   'model/gameAttribute.coffee'
   'model/player.coffee'
+  'model/PlayerAttribute.coffee'
+  'model/playerPool.coffee'
   'view/TournamentView.coffee'
   'view/RoundItemView.coffee'
   'view/RoundSettingView.coffee'

@@ -29,7 +29,7 @@ App.Group = App.RoundItem.extend
 
   removeLastPlayer: ->
     if @get("players.length") > 2
-      @get("players").popObject()
+      player = @get("players").popObject()
     @onPlayerSizeChange()
 
   addPlayer: ->
@@ -37,7 +37,7 @@ App.Group = App.RoundItem.extend
     if freeMembers?.length > 0
       @get("players").pushObject freeMembers[0]
     else
-      @get("players").pushObject App.Player.create
+      @get("players").pushObject App.PlayerPool.getNewPlayer
         name: "Player"
     @onPlayerSizeChange()
 

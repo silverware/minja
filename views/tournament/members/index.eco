@@ -1,9 +1,11 @@
 <script>
-  require(["membersTable/MembersTable"], function(Table) {
-    window.MembersTable = Table.create({
+  require(["membersTable/MembersTable", "tree"], function(Table) {
+    App.init({
       editable: false,
-      membersData: <%- @json @tournament.members %>,
-      treeData: <%- @json @tournament.tree %>,
+      tournament: <%- @json @tournament %>,
+      i18n: <%- @json @i18n.members %>
+    });
+    window.MembersTable = Table.create({
       i18n: <%- @json @i18n.members %>
     });
   });
@@ -15,6 +17,7 @@
     <%= @headerAction @i18n.edit, "participants/edit", "edit" %>
   <% end %>
   </h1>
-  <div id="membersTable"></div>
-  <div id="tree"></div>
+  <div id="membersTable">
+    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
+  </div>
 </div>

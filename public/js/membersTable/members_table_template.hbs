@@ -1,29 +1,35 @@
 <table class="table table-striped">
   <thead>
+    <th width="25px"></th>
     <th>Name</th>
-    {{#each attribute in MembersTable.attributes}}
+    {{#each attribute in App.PlayerPool.attributes}}
       <th>
         {{attribute.name}}
-        {{#if MembersTable.editable}}
-          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "remove" target="attribute"}}></i>
+        {{#if App.editable}}
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.PlayerPool"}}></i>
         {{/if}}
       </th>
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in MembersTable.members}}
+  {{#each member in App.PlayerPool.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
-        {{#if MembersTable.editable}}
+        {{#if member.isPartaking}}
+          <i title="{{unbound App.i18n.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
+        {{/if}}
+      </td>
+      <td style="height: 39px;">
+        {{#if App.editable}}
           {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
       </td>
-      {{#each attribute in MembersTable.attributes}}
-        {{#view MembersTable.MemberValueView memberBinding="member" attributeBinding="attribute"}}
+      {{#each attribute in App.PlayerPool.attributes}}
+        {{#view MembersTable.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
-            {{#if MembersTable.editable}}
+            {{#if App.editable}}
               {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
             {{else}}
               {{#if view.memberValue}}
@@ -32,7 +38,7 @@
             {{/if}}
           {{/if}}
           {{#if attribute.isTextfield}}
-            {{#if MembersTable.editable}}
+            {{#if App.editable}}
               {{view view.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
@@ -42,12 +48,16 @@
       {{/each}}
 
       <td width="50px">
-        {{#if MembersTable.editable}}
-          <i class="fa fa-times" rel="tooltip" title="Delete" {{action "remove" target="member"}}></i>
+        {{#if App.editable}}
+          {{#unless member.isPartaking}}
+            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}} type="button">
+              <i class="fa fa-times-circle"></i>
+            </button>
+          {{/unless}}
         {{/if}}
       </td>
     </tr>
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{MembersTable.members.length}} {{MembersTable.i18n.navName}}</em></div>
+<div style="text-align: right"><em>{{App.PlayerPool.players.length}} {{MembersTable.i18n.navName}}</em></div>

@@ -61,4 +61,5 @@ define ["text!./chat_template.hbs"], (template) ->
       template: Ember.Handlebars.compile template
       didInsertElement: ->
         @$().hide().fadeIn 1000
+        $('#messageDashboardBox .fa-spinner').hide()
 
