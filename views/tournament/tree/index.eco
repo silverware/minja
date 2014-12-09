@@ -9,14 +9,7 @@
   loading...
 </div>
 <script>
-  require(["utils/DynamicTextField",
-    "utils/EmberSerializer",
-    "utils/Popup",
-    "typeahead",
-    "tree"], function(dynamicTextField, Serializer, Popup) {
-      App.DynamicTextField = dynamicTextField;
-      App.Serializer = Serializer;
-      App.Popup = Popup;
+  require(["tree"], function() {
       var treeWrapper = $("<div id='treeWrapper' class='noPrint'>");
       $("#margin-container").after(treeWrapper);
 

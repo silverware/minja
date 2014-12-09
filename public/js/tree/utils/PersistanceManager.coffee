@@ -94,11 +94,8 @@ App.PersistanceManager =
     return obj and obj isnt "false"
 
   createPlayer: (obj) ->
-    console.debug App.PlayerPool.get('players')
     return dummy for dummy in @dummies when dummy.id is obj.id
     newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.PlayerPool.getPlayerById obj.id
-    console.debug obj
-    console.debug newPlayer
     newPlayer.set "id", obj.id
     @extend newPlayer, {}
     if newPlayer.isDummy

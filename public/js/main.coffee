@@ -14,6 +14,7 @@ window.onerror = (errorMessage, errorUrl, errorLine) ->
             url: errorUrl,
             line: errorLine
             hostUrl: document.URL
+            userAgent: navigator?.userAgent
         success: ->
             if (console && console.log)
                 console.log('JS error report successful.')

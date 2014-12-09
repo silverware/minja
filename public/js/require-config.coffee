@@ -1,6 +1,7 @@
 requirejs.config
   baseUrl: "/js"
   deps: ['threejs', 'bootstrap', 'underscore']
+  waitSeconds: 200
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'

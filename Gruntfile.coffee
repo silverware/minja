@@ -1,4 +1,4 @@
-treeOrderedFiles = require './public/js/tree/Order'
+treeOrder = require './public/js/tree/Order'
 
 module.exports = (grunt) ->
 
@@ -14,19 +14,25 @@ module.exports = (grunt) ->
         options:
           join: true
         files:
-          'public/js/tree.js': treeOrderedFiles
+          'public/js/tree.js': treeOrder.files
       treeTests:
         options:
           join: true
         files:
           'public/js/tree-test.js': ['public/js/tree/tests/**/*.coffee']
-
       all:
         expand: true
         cwd: 'public/js'
         src: ['**/*.coffee']
         dest: 'public/js'
         ext: '.js'
+
+    wrap:
+      basic:
+        src: 'public/js/tree.js',
+        dest: 'public/js/tree.js',
+        options:
+          wrapper: [treeOrder.wrapperTop, treeOrder.wrapperBottom]
 
     less:
       production:
@@ -89,7 +95,7 @@ module.exports = (grunt) ->
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
-  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'coffee:treeTests', 'less']
+  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'wrap', 'coffee:treeTests', 'less']
   grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify', 'less']
   grunt.registerTask 'default', ['compile', 'concurrent']
   grunt.registerTask 'test', ['mochaTest', 'cucumberjs']

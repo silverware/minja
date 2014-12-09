@@ -42,4 +42,22 @@ treeFiles  = [
   'utils/BracketLineDrawer.coffee'
 ]
 
-module.exports = treeFiles.map (name) -> root + name
+wrapperTop = """
+  define(["utils/DynamicTextField",\n
+    "utils/EmberSerializer",\n
+    "utils/Popup",\n
+    "typeahead",\n
+    "tree"], function(dynamicTextField, Serializer, Popup) {\n
+"""
+
+wrapperBottom = """
+    App.DynamicTextField = dynamicTextField;\n
+    App.Serializer = Serializer;\n
+    App.Popup = Popup;\n
+    });\n
+"""
+
+module.exports =
+  files: treeFiles.map (name) -> root + name
+  wrapperTop: wrapperTop
+  wrapperBottom: wrapperBottom
