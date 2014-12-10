@@ -12,10 +12,9 @@ App.DetailView = Em.View.extend
     @_super()
     @$().hide()
     @$("rel[tooltip]").tooltip()
-    # App.BracketLineDrawer.hide()
+    App.BracketLineDrawer.hide()
 
     container = @getContainer()
-    console.debug container
 
     container.fadeOut 'medium', =>
       $(".navbar-static-top").addClass "visible-lg"
