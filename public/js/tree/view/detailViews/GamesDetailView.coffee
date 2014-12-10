@@ -114,7 +114,7 @@ App.templates.gamesDetail = """
             {{#each attribute in App.Tournament.gameAttributes}}
               {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
-            <td style="text-align: center">
+            <td class="center">
             {{#if App.editable}}
                 <div class="result-container">
                 {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}

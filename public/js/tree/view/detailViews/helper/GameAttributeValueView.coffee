@@ -43,6 +43,7 @@ App.GameAttributeValueView = Ember.View.extend
   tagName: 'td'
   game: null
   attribute: null
+  classNames: ['center']
 
   didInsertElement: ->
     if @get("attribute.isDate")

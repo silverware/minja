@@ -20,11 +20,11 @@ App.templates.playerDetail = """
         <tr>
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>
-          <th>{{App.i18n.home}}</th>
+          <th class="left">{{App.i18n.home}}</th>
           {{#if App.editable}}
             <th></th>
           {{/if}}
-          <th>{{App.i18n.guest}}</th>
+          <th class="left">{{App.i18n.guest}}</th>
           {{#each attribute in App.Tournament.gameAttributes}}
             <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
