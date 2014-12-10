@@ -36,6 +36,10 @@ define [
           $popup.find("form").submit (event) ->
             event.preventDefault()
 
+    openPlayerView: (player) ->
+      App.PlayerDetailView.create
+        player: player
+
 
     # ------------------------ VIEWS ----------------------------#
 

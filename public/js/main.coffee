@@ -4,6 +4,9 @@ window.UniqueId =
     id += Math.random().toString(36).substr(2) while id.length < length
     id.substr 0, length
 
+$.fn.exists = ->
+    return this.length isnt 0
+
 ############ error handling ##################
 window.onerror = (errorMessage, errorUrl, errorLine) ->
     $.ajax

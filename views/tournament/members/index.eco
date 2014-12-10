@@ -3,7 +3,7 @@
     App.init({
       editable: false,
       tournament: <%- @json @tournament %>,
-      i18n: <%- @json @i18n.members %>
+      i18n: <%- @json @i18n.tree %>
     });
     window.MembersTable = Table.create({
       i18n: <%- @json @i18n.members %>
@@ -11,7 +11,7 @@
   });
 </script>
 
-<div class="container container-normal">
+<div class="container container-normal" id="players-container">
   <h1><%= @i18n.members.navName %>
   <% if @tournament.isOwner: %>
     <%= @headerAction @i18n.edit, "participants/edit", "edit" %>

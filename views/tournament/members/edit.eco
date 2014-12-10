@@ -3,19 +3,20 @@
     App.init({
       editable: true,
       tournament: <%- @json @tournament %>,
-      i18n: <%- @json @i18n.members %>
+      i18n: <%- @json @i18n.tree %>
     });
     window.MembersTable = Table.create({
       i18n: <%- @json @i18n.members %>
     });
     new Save({
       form: $("form"),
-      data: MembersTable.data.bind(MembersTable)
+      data: MembersTable.data.bind(MembersTable),
+      onSave: function() { App.Observer.snapshot()}
     });
   });
 </script>
 
-<div class="container container-normal">
+<div class="container container-normal" id="players-container">
   <h1>
     <%= @i18n.members.navName %><%= @headerAction @i18n.show, "../participants", "eye-open" %>
     <a style="float: right; margin-right: 10px" href="#">

@@ -12,8 +12,12 @@ App.DetailView = Em.View.extend
     @_super()
     @$().hide()
     @$("rel[tooltip]").tooltip()
-    App.BracketLineDrawer.hide()
-    $(".tournament").fadeOut 'medium', =>
+    # App.BracketLineDrawer.hide()
+
+    container = @getContainer()
+    console.debug container
+
+    container.fadeOut 'medium', =>
       $(".navbar-static-top").addClass "visible-lg"
       @$().fadeIn 'medium', =>
         @initExitableView()
@@ -43,6 +47,13 @@ App.DetailView = Em.View.extend
   show: ->
     @$().fadeIn 'medium'
 
+  getContainer: ->
+    if $(".tournament").exists()
+      return $(".tournament")
+    if $("#players-container").exists()
+      return $("#players-container")
+    throw 'no container found'
+
   destroy: ->
     App.openDetailViews.removeObject @
     lastDetailView = _.last App.openDetailViews
@@ -52,7 +63,7 @@ App.DetailView = Em.View.extend
     @$().fadeOut 'medium', =>
       if not lastDetailView
         $(".navbar-static-top").removeClass "visible-lg"
-        $(".tournament").fadeIn 'slow', =>
+        @getContainer().fadeIn 'slow', =>
         App.BracketLineDrawer.show()
 
     @destroyElement()
