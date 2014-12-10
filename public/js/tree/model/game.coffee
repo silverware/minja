@@ -33,6 +33,10 @@ App.Game = Em.Object.extend
     if player is @player1 then return @get("goals1")
     if player is @player2 then return @get("goals2")
 
+  getGoalsAgainstByPlayer: (player) ->
+    if player is @player1 then return @get("goals2")
+    if player is @player2 then return @get("goals1")
+
   getWinner: ->
     if not @get("isCompleted") then return null
     if @get("goals1") > @get("goals2") then return @get("player1")

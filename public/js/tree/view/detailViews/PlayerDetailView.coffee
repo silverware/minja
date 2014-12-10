@@ -11,12 +11,32 @@ App.templates.playerDetail = """
 
 
   <div class="container">
-  <!--<div class="row">
+  <div class="row">
   <fieldset>
     <legend>{{App.i18n.statistic}}</legend>
-    <div id="win-chart"></div>
+    <div class="col-md-6">
+      <div id="win-chart"></div>
+    </div>
+    <div class="col-md-6">
+      <dl class="dl-horizontal">
+      <dt>Games</dt>
+      <dd>
+        <div>
+          <div style="display: inline-block; float: right; font-size: 12px">
+            {{view.statistics.games}}/{{view.statistics.totalGames}}
+          </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: {{unbound view.statistics.gamesCompletion}}%"></div>
+          </div>
+          </div>
+      <dd>
+      <dt>Tore/Spiel</dt>
+      <dd>{{view.statistics.goals}}<dd>
+      <dt>Gegentore/Spiel</dt>
+      <dd>1</dd>
+    </div>
   </fieldset>
-  </div>-->
+  </div>
   <div class="row">
   <fieldset>
     <legend>{{App.i18n.games}}</legend>
@@ -82,15 +102,17 @@ App.templates.playerDetail = """
 App.PlayerDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.playerDetail
   player: null
+  statistics: null
   rounds: []
 
   init: ->
     @_super()
     @set 'rounds', App.Tournament.getGamesByPlayer @player
+    @setStatistics()
 
   didInsertElement: ->
     @_super()
-    # @renderDonutChart()
+    @renderDonutChart()
 
   renderDonutChart: ->
     width = 260
@@ -110,7 +132,9 @@ App.PlayerDetailView = App.DetailView.extend
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-    data = [ 12, 2,  2 ]
+    data = [@statistics.get('wins') , @statistics.get('draws'), @statistics.get('defeats') ]
+
+    data = data.filter (value) -> value > 0
 
     g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc")
 
@@ -122,3 +146,28 @@ App.PlayerDetailView = App.DetailView.extend
       .style("text-anchor", "middle")
       .text((d) -> d.data)
 
+  setStatistics: ->
+    stats =
+      totalGames: 0
+      games: 0
+      goals: 0
+      goalsAgainst: 0
+      wins: 0
+      draws: 0
+      defeats: 0
+    statistics = App.Tournament.get('games').reduce((statistics, game) =>
+      if not game.get('players').contains @player then return statistics
+      if game.get('isCompleted')
+        statistics.games++
+        switch game.getWinner()
+          when @player then statistics.wins++
+          when false then statistics.draws++
+          else statistics.defeats++
+        statistics.goals += game.getGoalsByPlayer @player
+        statistics.goalsAgainst += game.getGoalsAgainstByPlayer @player
+      statistics.totalGames++
+      statistics
+    , stats)
+    statistics.gamesCompletion = 100 * statistics.games / statistics.totalGames
+    @set 'statistics', Ember.Object.create statistics
+      

@@ -28,11 +28,11 @@ App.DetailView = Em.View.extend
     @appendTo "body"
 
   initExitableView: ->
-    $(document).bind "keydown", (e) =>
+    $(document).bind "keydown." + @get('elementId'), (e) =>
       if e.keyCode is 27 and @
         e.preventDefault()
         if @ is _.last App.openDetailViews
-          $(document).unbind "keydown"
+          $(document).unbind "keydown." + @get('elementId')
           @destroy()
 
     @$('.closeButton').click => @destroy()
