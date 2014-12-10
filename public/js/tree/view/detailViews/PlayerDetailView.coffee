@@ -11,6 +11,12 @@ App.templates.playerDetail = """
 
 
   <div class="container">
+  <!--<div class="row">
+  <fieldset>
+    <legend>{{App.i18n.statistic}}</legend>
+    <div id="win-chart"></div>
+  </fieldset>
+  </div>-->
   <div class="row">
   <fieldset>
     <legend>{{App.i18n.games}}</legend>
@@ -61,6 +67,8 @@ App.templates.playerDetail = """
             {{else}}
               {{#if game.isCompleted}}
                 <b>{{game.result1}} : {{game.result2}}</b>
+              {{else}}
+                <b>-&nbsp;:&nbsp;-</b>
               {{/if}}
             {{/if}}
             </td>
@@ -79,3 +87,38 @@ App.PlayerDetailView = App.DetailView.extend
   init: ->
     @_super()
     @set 'rounds', App.Tournament.getGamesByPlayer @player
+
+  didInsertElement: ->
+    @_super()
+    # @renderDonutChart()
+
+  renderDonutChart: ->
+    width = 260
+    height = 200
+    radius = Math.min(width, height) / 2
+
+    color = d3.scale.ordinal()
+      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
+
+    arc = d3.svg.arc().outerRadius(radius - 10).innerRadius(radius - 70)
+
+    pie = d3.layout.pie().sort(null).value((d) -> d)
+
+    svg = d3.select("#win-chart").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+    data = [ 12, 2,  2 ]
+
+    g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc")
+
+    g.append("path").attr("d", arc).style("fill", (d) -> color(d.data))
+
+    g.append("text")
+      .attr("transform", (d) -> "translate(" + arc.centroid(d) + ")")
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text((d) -> d.data)
+

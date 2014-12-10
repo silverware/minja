@@ -126,6 +126,8 @@ App.templates.gamesDetail = """
             {{else}}
               {{#if game.isCompleted}}
                 <b>{{game.result1}} : {{game.result2}}</b>
+              {{else}}
+                <b>-&nbsp;:&nbsp;-</b>
               {{/if}}
             {{/if}}
             </td>

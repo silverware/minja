@@ -187,6 +187,7 @@ module.exports =
     actions: "Actions"
     save: "Save"
     saved: "Saved"
+    statistic: "Statistics"
     pointsModus: "Points/Modus"
     pointsPerWin: "Points/Win"
     pointsPerDraw: "Points/Draw"
