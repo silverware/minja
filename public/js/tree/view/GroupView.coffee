@@ -24,9 +24,6 @@ App.templates.group = """
     </th>
   </thead>
   <tbody>
-    <tr>
-      <td class="" colspan="10" style="line-height: 0px">&nbsp;</td>
-    </tr>
     {{#each group.table}}
       <tr {{bind-attr class="qualified:qualified :player"}}>
       <td></td>
