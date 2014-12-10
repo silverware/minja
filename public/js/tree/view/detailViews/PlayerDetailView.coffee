@@ -15,7 +15,7 @@ App.templates.playerDetail = """
   <fieldset>
     <legend>{{App.i18n.statistic}}</legend>
     <div class="col-md-6">
-      <div id="win-chart"></div>
+      <div id="win-chart" class="center"></div>
     </div>
     <div class="col-md-6">
         <div>
