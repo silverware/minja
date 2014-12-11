@@ -2,9 +2,15 @@ App.templates.groupRound = """
 {{view App.RoundSetting roundBinding="round"}}
 
 <div class="box toolbar">
-  <i class="fa fa-table" {{action "displayTables" target="view"}} id="showTables" style="display: none"></i>
-  <i class="fa fa-list" {{action "displayGames" target="view"}} id="showGames"></i>
-  <i id="openDetailView" class="fa fa-search"></i>
+      <button class="btn-inverse" id="showTables" style="display: none" {{action "displayTables" target="view"}}>
+        <i class="fa fa-table"></i>
+      </button>
+      <button class="btn-inverse" id="showGames" {{action "displayGames" target="view"}}>
+        <i class="fa fa-list"></i>
+      </button>
+      <button class="btn-inverse" id="openDetailView">
+        <i class="fa fa-search"></i>
+      </button>
   <!--<i class="fa fa-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i>-->
 </div>
 

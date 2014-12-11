@@ -18,6 +18,18 @@
   background: linear-gradient(to bottom,  @from 0%,@to 100%); /* W3C */
 }
 
+.inset-box-shadow(@x1, @x2, @x3, @x4, @color) {
+  -webkit-box-shadow: inset @x1 @x2 @x3 @x4 @color;
+  -moz-box-shadow: inset @x1 @x2 @x3 @x4 @color;
+  box-shadow: inset @x1 @x2 @x3 @x4 @color;
+}
+
+.box-shadow(@x1, @x2, @x3, @x4, @color) {
+  -webkit-box-shadow:  @x1 @x2 @x3 @x4 @color;
+  -moz-box-shadow:  @x1 @x2 @x3 @x4 @color;
+  box-shadow:  @x1 @x2 @x3 @x4 @color;
+}
+
 
 /* ---------------------------------------------------------------------
 Colors
@@ -209,17 +221,31 @@ Bootstrap
   font-size: 14px;
 }
 
+// .btn-inverse {
+//   background-color: @dark !important;
+//   color: @footerText;
+//   border: 1px solid darken(@dark, 5%);
+// }
 
-.btn-inverse {
-  background-color: @dark !important;
-  color: @footerText;
-  border: 1px solid darken(@dark, 5%);
+// .btn-inverse:hover, .btn-inverse:focus {
+//   background-color: darken(@dark, 10%) !important;
+//   color: @footerText;
+//   outline: 0;
+// }
+
+.btn-inverse, .input-group-addon {
+  background-color: rgba(0,0,0,0.0) !important;
+  color: @textColor;
+  border: 1px solid fadeout(@textColor, 50%);
+  border-radius: 2px;
+  // .box-shadow(0px, 0px, 0px, 1px, rgba(0,0,0,0.39));
+  // .inset-box-shadow(0px, 0px, 0px, 1px, rgba(0,0,0,0.39));
 }
 
-.btn-inverse:hover, .btn-inverse:focus {
-  background-color: darken(@dark, 10%) !important;
-  color: @footerText;
-  outline: 0;
+.btn-inverse:hover, .btn-inverse:focus, .input-group-addon:hover {
+  background-color: rgba(0,0,0,0.0) !important;
+  color: @textColor;
+  .box-shadow(0px, 0px, 5px, -2px, @textColor);
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,
@@ -235,12 +261,6 @@ Bootstrap
 .bootstrap-datetimepicker-widget td span:hover, 
 .bootstrap-datetimepicker-widget thead tr:first-child th:hover, 
 .bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover {
-  background-color: @dark;
-  color: @footerText;
-}
-
-.input-group-addon {
-  border: 1px solid darken(@dark, 10%);
   background-color: @dark;
   color: @footerText;
 }

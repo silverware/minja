@@ -32,9 +32,9 @@ App.RoundItemView = Em.View.extend
         tds = $(helper).find('td')
         if tds.length > 0
           $(tds[0]).empty()
-          $(tds[2]).empty()
+          $(tds[1]).empty()
           $(tds[3]).empty()
-          console.debug tds
+          $(tds[4]).empty()
       stop: =>
         setTimeout (=> @draggable true), 20
 

@@ -14,7 +14,7 @@ require(["info/InfoSave"], function(InfoSave) {
     <fieldset>
       <legend><%= @i18n.info.basicData %></legend>
       <%= form.textField @i18n.tournamentName, "name", {class: "required", formControl: "col-md-4"} %>
-      <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><input type="button" class="btn btn-inverse" style="margin-top: 20px" onclick="save.openPreview()" value="#{@i18n.info.preview}">""", "description" %>
+      <%= form.textarea """#{@i18n.info.description}<br /><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a><br /><button class="btn btn-inverse" style="margin-top: 20px" onclick="save.openPreview()">#{@i18n.info.preview}</button>""", "description" %>
 
       <%= form.textField @i18n.info.venue, "venue", {formControl: 'col-md-4'} %>
       <div class="form-group">
