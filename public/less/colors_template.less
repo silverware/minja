@@ -234,18 +234,19 @@ Bootstrap
 // }
 
 .btn-inverse, .input-group-addon, {
-  background-color: rgba(0,0,0,0.0) !important;
+  background-color: fade(@textColor, 5%) !important;
   color: @textColor;
-  border: 1px solid fadeout(@textColor, 50%);
+  border: 1px solid fade(@textColor, 25%);
   border-radius: 2px;
   // .box-shadow(0px, 0px, 0px, 1px, rgba(0,0,0,0.39));
-  .inset-box-shadow(0px, 0px, 0px, 1px, darken(@normal, 10%));
+  .inset-box-shadow(0px, 0px, 0px, 1px, darken(@normal, 5%));
 }
 
 .btn-inverse:hover, .btn-inverse:focus, .input-group-addon:hover {
-  background-color: rgba(0,0,0,0.0) !important;
+  // background-color: rgba(0,0,0,0.0) !important;
   color: @textColor;
-  .box-shadow(0px, 0px, 5px, -2px, @textColor);
+  border: 1px solid fade(@textColor, 50%);
+  .box-shadow(0px, 0px, 1px, 1px, fade(@textColor, 10%));
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,
@@ -271,13 +272,13 @@ Form
 .form-control {
   // background-color: lighten(@normal, 10%);
   // color: @textColor;
-  border-color: fadeout(@textColor, 50%);
+  border-color: fade(@textColor, 50%);
 }
 
 .form-control:hover, .form-control:active, .form-control:focus,
 input:hover, input:active, input:focus {
   border: 1px solid fadeout(@textColor, 50%);
-  .box-shadow(0px, 0px, 5px, -2px, @textColor);
+  .box-shadow(0px, 0px, 1px, 1px, fade(@textColor, 10%));
   // outline: none;
   // box-shadow: none;
 }
