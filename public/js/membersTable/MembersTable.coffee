@@ -36,6 +36,12 @@ define [
           $popup.find("form").submit (event) ->
             event.preventDefault()
 
+    addNoItemsRow: (->
+      # if App.PlayerPool.get('sortedPlayers').length == 0
+      #   @$('table').after('<p>asdlfkj</p>')
+    
+    ).observes('App.PlayerPool.sortedPlayers')
+
     openPlayerView: (player) ->
       App.PlayerDetailView.create
         player: player
@@ -49,6 +55,7 @@ define [
       $('.spinner-wrapper').fadeOut 'fast', =>
         @$().fadeIn 1000
       @$("[rel='tooltip']").tooltip()
+      App.Observer.snapshot()
 
 
     MemberValueView: Ember.View.extend

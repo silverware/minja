@@ -30,7 +30,7 @@ App.templates.roundSetting = """
       <label>{{App.i18n.actions}}</label>
     <div>
     <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.shuffle}}</button>
-    <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus-circle"></i>{{round._itemLabel}}</button>
+    <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus"></i>{{round._itemLabel}}</button>
     </div>
   </form>
 

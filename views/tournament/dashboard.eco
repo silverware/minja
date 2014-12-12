@@ -56,7 +56,9 @@
 
 <div class="col-md-6">
 
+<% if @tournament.members: %>
 <a href="/<%= @tournament.identifier %>/participants">
+<% end %>
 <section class="dashboardBox dashboardLightning">
   <fieldset>
     <legend><%= @i18n.members.navName %></legend>
@@ -74,16 +76,22 @@
     <% end %>
   </fieldset>
 </section>
+<% if @tournament.members: %>
 </a>
+<% end %>
 
+<% if @tournament.tree: %>
 <a href="/<%= @tournament.identifier %>/bracket">
+<% end %>
 <section class="dashboardBox dashboardLightning" id="treeDashboardBox">
   <fieldset>
     <legend><%= @i18n.tree.navName %></legend>
     <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
   </fieldset>
 </section>
+<% if @tournament.tree: %>
 </a>
+<% end %>
 
 </div>
 </div>

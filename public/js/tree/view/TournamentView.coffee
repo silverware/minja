@@ -14,7 +14,7 @@ App.templates.tournament = """
         <span>
           <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="fa fa-cog"></i>{{App.i18n.settings}}</button>
           <button type="submit" class="btn btn-inverse">{{App.i18n.save}}</button>
-          <i class="fa-spinner fa-spin ajaxLoader"></i>
+          <i class="fa fa-spinner fa-spin ajaxLoader"></i>
           <span class="successIcon"><i class="fa fa-check"></i> {{App.i18n.saved}}</span>
         </span>
       </form>
@@ -35,8 +35,8 @@ App.templates.tournament = """
     <div class="roundSetting box">
       <span  id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
       <div class="actions">
-        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.Tournament"}}><i class="fa fa-plus-circle"></i>{{App.i18n.koRound}}</button>
-        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.Tournament"}}><i class="fa fa-plus-circle"></i>{{App.i18n.groupStage}}</button>
+        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.Tournament"}}><i class="fa fa-plus"></i>{{App.i18n.koRound}}</button>
+        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.Tournament"}}><i class="fa fa-plus"></i>{{App.i18n.groupStage}}</button>
         <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{App.i18n.previousRound}}</button>
       </div>
     </div>

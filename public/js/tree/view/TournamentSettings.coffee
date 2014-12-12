@@ -81,13 +81,13 @@ menu:
           optionValuePath="content.type" optionLabelPath="content.label" valueBinding="gameAttribute.type"}}</div></td>
         <td>
           <button class="btn btn-inverse" rel="tooltip" title="{{unbound App.i18n.deleteGameAttribute}}" {{action "remove" target="gameAttribute"}} type="button">
-            <i class="fa fa-times-circle"></i>
+            <i class="fa fa-times"></i>
           </button>
         </td>
       </tr>
       {{/each}}
     </table>
-  <span class='btn btn-link' {{action "addAttribute" target="view"}}><i class="fa fa-plus-circle"></i>&nbsp;{{App.i18n.addAttribute}}</span>
+  <span class='btn btn-inverse' {{action "addAttribute" target="view"}}><i class="fa fa-plus"></i>&nbsp;{{App.i18n.addAttribute}}</span>
   </fieldset>
   </div>
 
