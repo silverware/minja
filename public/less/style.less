@@ -32,9 +32,28 @@ body {
   z-index: -1;
 }
 */
+
+@media (max-width: @screen-md-max) {
+    body{font-size: 14px;}
+}
+
+@media (max-width: @screen-xs-max) {
+    body{font-size: 12px;}
+}
+
 h1 {
   margin-bottom: 20px;
+  font-size: 3em;
 }
+
+legend {
+  font-size: 1.5em;
+}
+
+dl {
+  font-size: 1em;
+}
+
 
 hr {
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -176,10 +195,10 @@ a:hover {
 
 @media (max-width: @screen-xs-max) {
   .container-normal {
-    margin: 0;
+    margin: 15px;
   }
   .container-small {
-    margin: 0;
+    margin: 15px;
   }
 }
 
@@ -284,6 +303,7 @@ button i, .btn-link i {
 // }
 
 .dashboard {
+  margin-top: 30px;
   fieldset {
     padding-bottom: 30px;
   }
@@ -292,11 +312,15 @@ button i, .btn-link i {
 @media (max-width: @screen-xs-max) {
   .dashboard {
     padding: 0;
+    margin-top: 0px;
     .row {
       margin-right: 0;
     }
     .col-md-6 {
       padding-right: 0;
+    }
+  .dashboardBox {
+    margin: 15px;
     }
   }
 }
@@ -307,7 +331,7 @@ button i, .btn-link i {
   margin-bottom: 20px;
   .transition(0.5s);
   .label {
-    font-size: 14px;
+    font-size: 1em;
     margin: 4px;
     font-weight: normal;
   }
@@ -457,6 +481,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   height: 23px;
   width: 23px;
   top: 30px;
+}
+
+.dropdown-menu {
+  font-size: 1em;
 }
 
 .popover {

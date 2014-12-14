@@ -40,9 +40,8 @@ Colors
   border: 1px solid fade(@dark, 25%);
 }
 
-.contentBox(@color) {
+.contentBox {
   background-color: @normal;
-  color: #fff;
   position: relative;
   border-radius: 5px 5px 5px 5px;
   border: 1px solid darken(@light, 10%);
@@ -78,8 +77,8 @@ body {
   color: @textColor;
 }
 
-.container-normal, .container-small, .feature div, .dashboardBox, .box, .detailView {
-  .contentBox(@normal);
+.container-normal, .container-small, .feature div, .dashboardBox, .box, .detailView, .loading-screen-inner {
+  .contentBox;
   color: @textColor;
 }
 
@@ -290,10 +289,6 @@ input {
 /* ---------------------------------------------------------------------
 Tree
 ----------------------------------------------------------------------*/
-
-.loading-screen {
-  color: @normalOpaque;
-}
 
 .ui-draggable-helper {
   background-color: @dark;

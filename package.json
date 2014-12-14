@@ -41,7 +41,6 @@
     "grunt-contrib-uglify" : "*",
     "grunt-cucumber": "*",
     "grunt-wrap": "0.3.0",
-    "grunt-webdriver": "0.4.0",
     "matchdep" : "*",
     "grunt-express": "~1.0.0"
   }
