@@ -35,6 +35,7 @@ treeFiles  = [
   'view/detailViews/helper/GameAttributePrefillPopup.coffee'
   'view/TournamentSettings.coffee'
   'components/IconButtonComponent.coffee'
+  'components/PlayerLinkComponent.coffee'
   'utils/Utils.coffee'
   'utils/Observer.coffee'
   'utils/PersistanceManager.coffee'
@@ -46,8 +47,7 @@ wrapperTop = """
   define(["utils/DynamicTextField",\n
     "utils/EmberSerializer",\n
     "utils/Popup",\n
-    "typeahead",\n
-    "tree"], function(dynamicTextField, Serializer, Popup) {\n
+    "typeahead"], function(dynamicTextField, Serializer, Popup) {\n
 """
 
 wrapperBottom = """

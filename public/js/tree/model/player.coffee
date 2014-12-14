@@ -19,6 +19,11 @@ App.Player = Em.Object.extend
   isPartaking: (->
     _.contains App.Tournament.getPlayers(), @
   ).property()
+
+  # real, if its no dummy player or placeholder
+  isRealPlayer: (->
+    return @get 'isPlayer' and not @get 'isPrivate'
+  ).property('isDummy', 'isPrivate')
   
   updateId: (->
     # TODO: set Id to Id of player in player pool with corresponding name, if exists

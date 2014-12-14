@@ -20,11 +20,11 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
 
 
   # Initialize Players
-  if tournament.members
+  if tournament?.members
     App.PlayerPool.initPlayers tournament.members
 
   # Build Bracket
-  if tournament.tree
+  if tournament?.tree
     App.PersistanceManager.build tournament.tree
 
 
