@@ -4,7 +4,7 @@ App.FilterButton = Ember.View.extend
   value: ''
 
   template: Ember.Handlebars.compile """
-      <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+      <button type="button" class="btn btn-inverse dropdown-toggle noPrint" data-toggle="dropdown">
         <i class="fa fa-filter"></i>{{view.buttonLabel}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">

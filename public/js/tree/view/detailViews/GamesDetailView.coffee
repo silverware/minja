@@ -97,6 +97,7 @@ App.templates.gamesDetail = """
         </tr>
       </thead>
       {{#each matchday in view.filteredGames}}
+        <tbody style="page-break-after: always">
         <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
         {{#each game in matchday.games}}
           <tr>
@@ -133,6 +134,7 @@ App.templates.gamesDetail = """
             </td>
           </tr>
         {{/each}}
+        </tbody>
       {{/each}}
     </table>
     <div style="text-align: right" class="noPrint"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>

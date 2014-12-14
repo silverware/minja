@@ -16,20 +16,18 @@ Tournament
 *********************************/
 
 .loading-screen {
-  text-align: center;
-  margin-top: 70px;
-  width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  .fa-spinner {
-    font-size: 3em;
-    margin-bottom: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: auto;
+  .loading-screen-inner {
+    position: relative;
+    left: -50%;
+    top: -50%;
+    .fa-spinner {
+      font-size: 3em;
+    }
   }
-}
-
-.box {
-  border-radius: 6px 2px 2px 2px;
 }
 
 .round {

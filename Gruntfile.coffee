@@ -92,6 +92,16 @@ module.exports = (grunt) ->
         'public/css/**/*.css'
       ]
 
+    webdriver:
+      options:
+        desiredCapabilities:
+            browserName: 'chrome'
+      login:
+        tests: ['test/selenium/*.coffee'],
+        options:
+            desiredCapabilities:
+                browserName: 'firefox'
+
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 

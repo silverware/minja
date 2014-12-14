@@ -3,9 +3,10 @@
 
 
 <div class="container" id="margin-container" style="height: 30px"></div>
-<div class="loading-screen box">
-  <i class="fa fa-spinner fa-spin"></i><br />
-  loading...
+<div class="loading-screen">
+  <div class="loading-screen-inner">
+    <i class="fa fa-spinner fa-spin"></i>
+  </div>
 </div>
 <script>
   require(["tree"], function() {
