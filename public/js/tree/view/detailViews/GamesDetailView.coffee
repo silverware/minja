@@ -74,8 +74,7 @@ App.templates.gamesDetail = """
 {{/if}}
   <fieldset>
     <legend>{{App.i18n.schedule}}
-
-      <span style="float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
+      <span style="font-size: 1rem; float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
         {{view App.FilterButton contentBinding="view.filterOptions" valueBinding="view.gamesPlayedFilter"}}
         {{view App.SearchTextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
       </span>
