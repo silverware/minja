@@ -1,8 +1,4 @@
 App.templates.playerDetail = """
-
-  <!--
-    TODO: Spielerstatistik: siege/un/niederlagen tore/spiel gegentore/spiel
-  -->
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
         <span class="round-item-name">{{view.player.name}}</span>
@@ -139,6 +135,11 @@ App.PlayerDetailView = App.DetailView.extend
     ]
 
     data = data.filter (value) -> value.value > 0
+    noGames = false
+    if data.length is 0
+      noGames = true
+      data.push
+        label: App.i18n.games, value: 1
 
     g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc")
 
@@ -148,7 +149,9 @@ App.PlayerDetailView = App.DetailView.extend
       .attr("transform", (d) -> "translate(" + arc.centroid(d) + ")")
       .attr("dy", ".35em")
       .style("text-anchor", "middle")
-      .text((d, i) -> data[i].label + ': ' + data[i].value)
+      .text((d, i) ->
+        if noGames then data[i].value = 0
+        data[i].label + ': ' + data[i].value)
 
   setStatistics: ->
     stats =

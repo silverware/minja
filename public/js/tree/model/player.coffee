@@ -22,17 +22,14 @@ App.Player = Em.Object.extend
 
   # real, if its no dummy player or placeholder
   isRealPlayer: (->
-    return @get 'isPlayer' and not @get 'isPrivate'
-  ).property('isDummy', 'isPrivate')
+    return (@get('isPlayer') and not @get('isPrivate'))
+  ).property('isDummy', 'isPlayer', 'isPrivate')
   
-  updateId: (->
-    # TODO: set Id to Id of player in player pool with corresponding name, if exists
-  ).observes('name')
-
 App.Player.reopenClass
   createPlayer: (args) ->
     player = App.Player.create args
     player.set 'attributes', Em.Object.create args.attributes
+    player
 
 App.Dummy = App.Player.extend
   isDummy: true
