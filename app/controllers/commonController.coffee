@@ -7,6 +7,9 @@ class CommonController
   "/": (req, res) =>
     res.render 'index'
 
+  "/homepage": (req, res) =>
+    res.render 'homepage'
+
   "/site/impressum": (req, res) =>
     res.render 'impressum'
 
