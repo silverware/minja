@@ -38,7 +38,7 @@ App.BracketLineDrawer =
       return
 
     midY = posFrom.y + ((posTo.y - posFrom.y) / 2)
-    @ctx.lineWidth = 1
+    @ctx.lineWidth = 2
     @ctx.beginPath()
     @ctx.moveTo posFrom.x, posFrom.y
     @ctx.lineTo posFrom.x, midY

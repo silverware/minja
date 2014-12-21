@@ -64,7 +64,7 @@
     <legend><%= @i18n.members.navName %></legend>
     <% if @tournament.members: %>
     <% for member in @tournament.members.members: %>
-      <span class="label"><%= member.name %></span>
+      <span class="label" style="display: inline-block"><%= member.name %></span>
     <% end %>
     <div class="bottomRight">
       <em><%= "#{@tournament.members.members.length} #{@i18n.members.navName}" %></em>
