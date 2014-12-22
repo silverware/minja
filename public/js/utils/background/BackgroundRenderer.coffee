@@ -101,7 +101,7 @@ define ['threejs'], ->
     void main() {
       vec2 position = gl_FragCoord.xy / resolution;
       float color = 0.5;
-      color += sin(position.x * TAU * 0.6 + (time * 2.0)) * 0.4;
+      color += sin(position.y * TAU * 0.6 + (time * 2.0)) * sin(position.x * TAU * 0.6 + (time * 2.0)) * 0.4;
       color += snoise(position.xy * 3.0 - (time * 0.5)) * 0.1;
       gl_FragColor = vec4(vec3(color), 1.0);
     }
@@ -168,7 +168,7 @@ define ['threejs'], ->
     scene.add camera
 
     renderer = new THREE.WebGLRenderer
-      antialias: false
+      antialias: true
     renderer.setSize width(), height()
     canvas = $(renderer.domElement).hide().fadeIn(6000)
     canvas.addClass "noPrint"

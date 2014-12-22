@@ -3,24 +3,29 @@ App.RoundItemView = Em.View.extend
   # To Override
   round: null
 
-  onEditableChanged: (->
-    @draggable @get("round").get("isEditable")
-  ).observes("round.isEditable")
-
   didInsertElement: ->
     @$(".fa-search").tooltip
       title: App.i18n.detailView
     if App.editable
       @initDraggable()
-      @draggable false
+      @draggable()
     if @get("round").get("isEditable")
       @$(".removeItem").tooltip
         title: App.i18n.remove
-      @draggable true
+      @draggable()
 
-  draggable: (enable) ->
+  isDraggable: (->
+    return (App.editable and @get('round.isNotStarted'))
+  ).property('App.editable', 'round.isNotStarted')
+
+  draggable: ->
+    enable = @get('isDraggable')
     @$('.player').draggable if enable then "enable" else "disable"
     @$(".player").css "cursor", if enable then "move" else "default"
+
+  onDraggableChanged: (->
+    @draggable()
+  ).observes('isDraggable')
 
   initDraggable: ->
     @$(".player").draggable
@@ -36,11 +41,11 @@ App.RoundItemView = Em.View.extend
           $(tds[3]).empty()
           $(tds[4]).empty()
       stop: =>
-        setTimeout (=> @draggable true), 20
+        setTimeout (=> @draggable()), 20
 
     @$(".player").droppable
       drop: (event, ui) =>
-        setTimeout (=> @draggable true), 20
+        setTimeout (=> @draggable()), 20
         dragElement = $ ui.draggable[0]
         dropElement = $ event.target
         @get("round").swapPlayers(

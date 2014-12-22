@@ -109,7 +109,7 @@ App.GroupView = App.RoundItemView.extend
 
   # Wettlauf beachten
   onRedrawTable: (->
-    if @get("round").get("isEditable")
+    if @get("isDraggable")
       setTimeout((=> @initDraggable()), 50)
   ).observes("group.table")
 

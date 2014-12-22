@@ -138,6 +138,10 @@ App.Round = Em.Object.extend
     completion
   ).property("items.@each.completion")
 
+  isNotStarted: (->
+    @get('completion') is 0
+  ).property('completion')
+
   completionRatio: (->
     @get("completion") / @get("gamesCount") * 100
   ).property("completion", "gamesCount")
