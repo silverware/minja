@@ -1,18 +1,16 @@
 <script src="/lib/jquery-ui.js"></script>
-<script src="/lib/jquery.mCustomScrollbar.concat.min.js"></script>
 
-
+<!--
 <div class="container" id="margin-container" style="height: 30px"></div>
 <div class="loading-screen">
   <div class="loading-screen-inner">
     <i class="fa fa-spinner fa-spin"></i>
   </div>
-</div>
+</div>-->
 <script>
-  require(["tree"], function() {
-      var treeWrapper = $("<div id='treeWrapper' class='noPrint'>");
-      $("#margin-container").after(treeWrapper);
-
+  require(["app"], function() {
+      /* var treeWrapper = $("<div id='treeWrapper' class='noPrint'>"); */
+      /* $("#margin-container").after(treeWrapper); */
       App.init({
         editable: <%= @editable %>,
         i18n: <%- @json @i18n.tree %>,
@@ -21,7 +19,7 @@
         tournament: <%- @json @tournament %>,
         sport: <%- @json @sport %>,
       });
-      treeWrapper.createTree();
+      /* treeWrapper.createTree(); */
   });
 </script>
 

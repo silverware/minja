@@ -1,16 +1,21 @@
-root = "public/js/app/tree/"
+bracketRoot = "public/js/app/bracket/"
+appRoot = "public/js/app/"
 
 appFiles = [
   'App.coffee'
-  'routes/routes.coffee'
-  'routes/BracketRoute.coffee'
-  'routes/InfoRoute.coffee'
-  'routes/SettingsRoute.coffee'
-  'routes/ParticipantsRoute.coffee'
-  'participants/ParticipantsTable.coffee'
+  'routes.coffee'
+  'bracket/BracketRoute.coffee'
+  'application/ApplicationRoute.coffee'
+  'application/ApplicationController.coffee'
+  'info/InfoRoute.coffee'
+  'info/InfoView.coffee'
+  'settings/SettingsRoute.coffee'
+  'settings/SettingsView.coffee'
+  'participants/ParticipantsRoute.coffee'
+  'participants/ParticipantsView.coffee'
 ]
 
-treeFiles  = [
+bracketFiles  = [
   'model/tournament.coffee'
   'model/round.coffee'
   'model/koRound.coffee'
