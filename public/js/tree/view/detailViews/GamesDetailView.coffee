@@ -48,7 +48,7 @@ App.templates.gamesDetail = """
         {{#each view.roundItem.table}}
           <tr {{bind-attr class=":player qualified:qualified"}} >
           <td></td>
-          <td>
+          <td class="rank-cell">
             {{rank}}.
           </td>
           <td style="text-align: left">
@@ -101,7 +101,7 @@ App.templates.gamesDetail = """
         {{#each game in matchday.games}}
           <tr>
             <td class="hidden-xs"></td>
-            <td class="hidden-xs">{{game._roundItemName}}</td>
+            <td class="hidden-xs rank-cell">{{game._roundItemName}}</td>
             <td {{bind-attr class="game.player1Wins:winner"}}>
               <a href="#" {{action "openPlayerView" game.player1 target="view"}}>{{game.player1.name}}</a>
             </td>
