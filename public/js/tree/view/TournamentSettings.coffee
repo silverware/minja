@@ -97,14 +97,14 @@ menu:
         <form class="form-horizontal">
           <div class="form-group">
             <label class="control-label col-sm-2" for="timePerGame">{{App.i18n.timePerGame}}</label>
-            <div class="col-sm-10 col-md-4">
+            <div class="col-sm-10 col-md-1">
               {{view App.NumberField classNames="form-control" id="timePerGame" valueBinding="App.Tournament.timePerGame"}}
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
-            <div class="col-sm-10 col-md-4">
+            <div class="col-sm-10 col-md-1">
               {{view App.NumberField classNames="form-control" id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
             </div>
           </div>

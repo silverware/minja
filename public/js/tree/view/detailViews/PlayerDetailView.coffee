@@ -26,9 +26,9 @@ App.templates.playerDetail = """
           <br /> <br />
       <dl class="dl-horizontal">
       <dt>{{App.i18n.goals}}</dt>
-      <dd>{{view.statistics.goals}}<dd>
+      <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>
       <dt>{{App.i18n.goalsAgainst}}</dt>
-      <dd>{{view.statistics.goalsAgainst}}</dd>
+      <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>
       </dl>
     </div>
   </fieldset>
@@ -176,5 +176,9 @@ App.PlayerDetailView = App.DetailView.extend
       statistics
     , stats)
     statistics.gamesCompletion = 100 * statistics.games / statistics.totalGames
+    statistics.hasPlayedGames = statistics.games > 0
+    if statistics.hasPlayedGames
+      statistics.goalsAvg = Math.round(statistics.goals / statistics.games * 100) / 100
+      statistics.goalsAgainstAvg = Math.round(statistics.goalsAgainst / statistics.games * 100) / 100
     @set 'statistics', Ember.Object.create statistics
       
