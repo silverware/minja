@@ -12,6 +12,7 @@ appFiles = [
   'utils/EmberSerializer.coffee'
   'application/ApplicationRoute.coffee'
   'application/ApplicationController.coffee'
+  'application/ApplicationView.coffee'
   'info/InfoRoute.coffee'
   'info/InfoView.coffee'
   'settings/SettingsRoute.coffee'

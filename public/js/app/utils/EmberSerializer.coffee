@@ -11,26 +11,26 @@ App.Serializer =
       continue if value == undefined
       continue if /^_/.test key
       if value instanceof Em.ArrayController
-        jsonObj[key] = serialize.emberObjArrToJsonDataArr(value.content)
+        jsonObj[key] = @emberObjArrToJsonDataArr(value.content)
       else if typeof(value) == 'object' and value instanceof Array
-        jsonObj[key] = serialize.emberObjArrToJsonDataArr(value)
+        jsonObj[key] = @emberObjArrToJsonDataArr(value)
       else
         jsonObj[key] = value
     jsonObj
 
   toJsonData: ->
     # mixin method for Ember objects
-    serialize.emberObjToJsonData @
+    @emberObjToJsonData @
 
   emberObjArrToJsonDataArr: (objArray) ->
-    serialize.emberObjToJsonData obj for obj in objArray
+    @emberObjToJsonData obj for obj in objArray
 
   controllerToJson: (controller) ->
-    serialize.emberObjArrToJsonDataArr controller.content
+    @emberObjArrToJsonDataArr controller.content
 
   toJsonDataArray: (arrayProperty) ->
     # mixin method for Ember objects
-    serialize.emberObjArrToJsonDataArr @get arrayProperty
+    @emberObjArrToJsonDataArr @get arrayProperty
 
   dataArrayToEmberObjArray: (EmberClass, dataArray) ->
     EmberClass.create obj for obj in dataArray

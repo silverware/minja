@@ -1,14 +1,17 @@
 App.templates.dashboard = """
   settings
+  aldskfj asödlfkj
+
+  aödslfkjadöfl jölaskdfj ölkj
+
+
+  alsdfkja dflkj
 """
 
 App.DashboardView = Em.View.extend
-
   template: Ember.Handlebars.compile App.templates.dashboard
   didInsertElement: ->
-    @$().hide()
-    $('.spinner-wrapper').fadeOut 'fast', =>
-      @$().fadeIn 1000
-    @$("[rel='tooltip']").tooltip()
+    @_super()
+    console.debug "alsdfkj asd lasdkj "
     App.Observer.snapshot()
 

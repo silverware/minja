@@ -2,6 +2,9 @@
   var _this = this;
 
   window.App = Em.Application.create({
+    LOG_TRANSITIONS: true,
+    rootElement: '#appRoot',
+    LOG_TRANSITIONS_INTERNAL: true,
     openDetailViews: [],
     i18n: {},
     templates: {},
@@ -2394,19 +2397,22 @@
   };
 
   App.Router.map(function() {
-    return this.resource('dashboard', {
-      path: '/:tid'
-    }, function() {
-      this.route('info');
-      this.route('participants');
-      this.route('bracket');
-      this.route('settings');
-      return this.route('chat');
+    this.route('dashboard', {
+      path: '/'
     });
+    this.route('info');
+    this.route('participants');
+    this.route('bracket');
+    this.route('settings');
+    return this.route('chat');
   });
 
   App.Router.reopen({
-    location: 'history'
+    location: 'history',
+    init: function() {
+      this.set('rootURL', window.location.pathname.match('(/[^/]*)')[0]);
+      return this._super();
+    }
   });
 
   App.BracketRoute = Ember.Route.extend({
@@ -2528,9 +2534,9 @@
           continue;
         }
         if (value instanceof Em.ArrayController) {
-          jsonObj[key] = serialize.emberObjArrToJsonDataArr(value.content);
+          jsonObj[key] = this.emberObjArrToJsonDataArr(value.content);
         } else if (typeof value === 'object' && value instanceof Array) {
-          jsonObj[key] = serialize.emberObjArrToJsonDataArr(value);
+          jsonObj[key] = this.emberObjArrToJsonDataArr(value);
         } else {
           jsonObj[key] = value;
         }
@@ -2538,22 +2544,22 @@
       return jsonObj;
     },
     toJsonData: function() {
-      return serialize.emberObjToJsonData(this);
+      return this.emberObjToJsonData(this);
     },
     emberObjArrToJsonDataArr: function(objArray) {
       var obj, _i, _len, _results;
       _results = [];
       for (_i = 0, _len = objArray.length; _i < _len; _i++) {
         obj = objArray[_i];
-        _results.push(serialize.emberObjToJsonData(obj));
+        _results.push(this.emberObjToJsonData(obj));
       }
       return _results;
     },
     controllerToJson: function(controller) {
-      return serialize.emberObjArrToJsonDataArr(controller.content);
+      return this.emberObjArrToJsonDataArr(controller.content);
     },
     toJsonDataArray: function(arrayProperty) {
-      return serialize.emberObjArrToJsonDataArr(this.get(arrayProperty));
+      return this.emberObjArrToJsonDataArr(this.get(arrayProperty));
     },
     dataArrayToEmberObjArray: function(EmberClass, dataArray) {
       var obj, _i, _len, _results;
@@ -2578,6 +2584,39 @@
     },
     logout: function() {
       return Chat.logout();
+    }
+  });
+
+  App.ApplicationView = Em.View.extend({
+    classNames: ['chat'],
+    defaultTemplate: Ember.Handlebars.compile("{{outlet}}"),
+    didInsertElement: function() {
+      this._super();
+      return console.debug("Application view");
+    },
+    isExpanded: true,
+    actions: {
+      toggleExpansion: function() {
+        return this.expand(!this.get("isExpanded"));
+      }
+    },
+    expand: function(expand) {
+      var links;
+      links = this.$('.nav-0 li');
+      if (expand) {
+        $('body').removeClass('contracted');
+        links.tooltip('destroy');
+      } else {
+        $('body').addClass('contracted');
+        links.each(function(i, link) {
+          return $(link).tooltip({
+            placement: 'right',
+            title: $(link).text(),
+            animation: false
+          });
+        });
+      }
+      return this.set("isExpanded", expand);
     }
   });
 
@@ -2638,17 +2677,13 @@
     }
   });
 
-  App.templates.dashboard = "settings";
+  App.templates.dashboard = "settings\naldskfj as�dlfkj\n\na�dslfkjad�fl j�laskdfj �lkj\n\n\nalsdfkja dflkj";
 
   App.DashboardView = Em.View.extend({
     template: Ember.Handlebars.compile(App.templates.dashboard),
     didInsertElement: function() {
-      var _this = this;
-      this.$().hide();
-      $('.spinner-wrapper').fadeOut('fast', function() {
-        return _this.$().fadeIn(1000);
-      });
-      this.$("[rel='tooltip']").tooltip();
+      this._super();
+      console.debug("alsdfkj asd lasdkj ");
       return App.Observer.snapshot();
     }
   });

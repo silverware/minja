@@ -1,12 +1,12 @@
 App.ApplicationView = Em.View.extend
   classNames: ['chat']
   defaultTemplate: Ember.Handlebars.compile """
-  hallos asdf asdf adsfadf
-
-  a
-  sdfasdlöfkj
     {{outlet}}
     """
+
+  didInsertElement: ->
+    @_super()
+    console.debug "Application view"
 
   isExpanded: true
 
