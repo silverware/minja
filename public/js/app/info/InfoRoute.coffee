@@ -1,10 +1,6 @@
-Chat.ChanRoute = Ember.Route.extend Chat.EnsureAuthentificationMixin,
-  model: ({chan_name}) ->
-    chan = Chat.getChanByName chan_name
-    if chan
-      chan.set "newMessages", 0
-      return chan
-    Chat.join chan_name
+App.InfoRoute = Ember.Route.extend
+  model: ->
+    $.get '/ajax/chans'
 
   renderTemplate: ->
     @_super()
@@ -14,6 +10,3 @@ Chat.ChanRoute = Ember.Route.extend Chat.EnsureAuthentificationMixin,
   setupController: (controller, chan) ->
     @_super controller, chan
     controller.set "title", chan.name
-
-
-

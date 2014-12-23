@@ -1,4 +1,4 @@
-treeOrder = require './public/js/tree/Order'
+emberAppOrder = require './public/js/app/Order'
 
 module.exports = (grunt) ->
 
@@ -6,20 +6,20 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['public/js/tree/**/*.coffee', 'public/less/**/*.less']
+        files: ['public/js/app/**/*.coffee', 'public/less/**/*.less']
         tasks: 'compile'
 
     coffee:
-      tree:
+      emberApp:
         options:
           join: true
         files:
-          'public/js/tree.js': treeOrder.files
+          'public/js/app.js': emberAppOrder.files
       treeTests:
         options:
           join: true
         files:
-          'public/js/tree-test.js': ['public/js/tree/tests/**/*.coffee']
+          'public/js/tree-test.js': ['public/js/app/bracket/tests/**/*.coffee']
       all:
         expand: true
         cwd: 'public/js'
@@ -32,7 +32,7 @@ module.exports = (grunt) ->
         src: 'public/js/tree.js',
         dest: 'public/js/tree.js',
         options:
-          wrapper: [treeOrder.wrapperTop, treeOrder.wrapperBottom]
+          wrapper: [emberAppOrder.wrapperTop, emberAppOrder.wrapperBottom]
 
     less:
       production:
@@ -105,7 +105,7 @@ module.exports = (grunt) ->
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
-  grunt.registerTask 'compile', ['clean', 'coffee:tree', 'wrap', 'coffee:treeTests', 'less']
+  grunt.registerTask 'compile', ['clean', 'coffee:emberApp', 'wrap', 'coffee:treeTests', 'less']
   grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify', 'less']
   grunt.registerTask 'default', ['compile', 'concurrent']
   grunt.registerTask 'test', ['mochaTest', 'cucumberjs']

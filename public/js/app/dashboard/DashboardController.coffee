@@ -1,4 +1,4 @@
-Chat.LoginController = Ember.Controller.extend
+App.DashboardController = Ember.Controller.extend
   initialTab: ""
   actions:
     login: ->

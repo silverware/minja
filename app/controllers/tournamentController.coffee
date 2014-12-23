@@ -86,7 +86,10 @@ class TournamentController extends ControllerBase
   ]
 
   "/:tid": (req, res) =>
-    res.render "#{@viewPrefix}/dashboard"
+    res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
+    res.render "#{@viewPrefix}/index",
+      editable: req.tournament.isOwner
+      colors: colorService.getColors req.tournament
 
   "/:tid/info": (req, res) =>
     if req.tournament.isOwner and not req.tournament.info.description?

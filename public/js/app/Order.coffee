@@ -1,17 +1,27 @@
+_ = require 'underscore'
+
 bracketRoot = "public/js/app/bracket/"
 appRoot = "public/js/app/"
 
 appFiles = [
-  'App.coffee'
   'routes.coffee'
   'bracket/BracketRoute.coffee'
+  'utils/DynamicTextField.coffee'
+  'utils/DynamicTypeAheadTextField.coffee'
+  'utils/NumberSpinner.coffee'
+  'utils/EmberSerializer.coffee'
   'application/ApplicationRoute.coffee'
   'application/ApplicationController.coffee'
   'info/InfoRoute.coffee'
   'info/InfoView.coffee'
   'settings/SettingsRoute.coffee'
+  'settings/SettingsController.coffee'
   'settings/SettingsView.coffee'
+  'dashboard/DashboardView.coffee'
+  'dashboard/DashboardRoute.coffee'
+  'dashboard/DashboardController.coffee'
   'participants/ParticipantsRoute.coffee'
+  'participants/ParticipantsController.coffee'
   'participants/ParticipantsView.coffee'
 ]
 
@@ -58,20 +68,17 @@ bracketFiles  = [
 ]
 
 wrapperTop = """
-  define(["utils/DynamicTextField",\n
-    "utils/EmberSerializer",\n
+  define([
     "utils/Popup",\n
-    "typeahead"], function(dynamicTextField, Serializer, Popup) {\n
+    "typeahead"], function(Popup) {\n
 """
 
 wrapperBottom = """
-    App.DynamicTextField = dynamicTextField;\n
-    App.Serializer = Serializer;\n
     App.Popup = Popup;\n
     });\n
 """
 
 module.exports =
-  files: treeFiles.map (name) -> root + name
+  files: [appRoot + 'App.coffee'].concat (bracketFiles.map((n) -> bracketRoot + n)).concat(appFiles.map((name) -> appRoot + name))
   wrapperTop: wrapperTop
   wrapperBottom: wrapperBottom

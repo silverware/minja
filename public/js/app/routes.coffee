@@ -1,9 +1,11 @@
-Chat.Router.map ->
-  @route 'info'
-  @route 'participants'
-  @route 'bracket'
-  @route 'settings'
-  @route 'chat'
+App.Router.map ->
 
-Chat.Router.reopen
+  @resource 'dashboard', {path: '/:tid'}, ->
+    @route 'info'
+    @route 'participants'
+    @route 'bracket'
+    @route 'settings'
+    @route 'chat'
+
+App.Router.reopen
   location: 'history'
