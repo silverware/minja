@@ -7,6 +7,8 @@ window.App = Em.Application.create
   templates: {}
   persist: ->
     App.PersistanceManager.persist()
+  transitionTo: (route) ->
+    App.Router.router.transitionTo route
 
 App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   App.editable = editable or false
@@ -29,6 +31,9 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   # Build Bracket
   if tournament?.tree
     App.PersistanceManager.build tournament.tree
+
+  App.Tournament.set "info", tournament.info
+  App.Tournament.set "settings", tournament.settings
 
 
 $.fn.createTree = ->

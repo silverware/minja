@@ -4,6 +4,8 @@ App.Tournament = Em.ArrayController.extend
   qualifierModus: "aggregate"
   timePerGame: 20
   gamesParallel: 1
+  info: {}
+  settings: {}
   gameAttributes: []
   content: []
 

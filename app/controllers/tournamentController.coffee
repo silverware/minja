@@ -40,17 +40,17 @@ class TournamentController extends ControllerBase
   @navigation: (req) ->
     tournament = req.tournament
     id = tournament.identifier
-    nav = [route: "/info", icon: "info-circle", label: req.i18n.info.navName]
+    nav = [route: "info", icon: "info-circle", label: req.i18n.info.navName]
     if tournament.isOwner or tournament.members
-      nav.push route: "/#{id}/participants", icon: "group", label: req.i18n.members.navName
+      nav.push route: "participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
-      nav.push route: "/#{id}/bracket", icon: "sitemap fa-rotate-180", label: req.i18n.tree.navName
+      nav.push route: "bracket", icon: "sitemap fa-rotate-180", label: req.i18n.tree.navName
     # if config.isDevelopment
     #   if tournament.isOwner or tournament.gallery
     #     nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
-    nav.push route: "/#{id}/chat", icon: "wechat", label: req.i18n.chat.messageStream, xs: true
+    nav.push route: "chat", icon: "wechat", label: req.i18n.chat.messageStream, xs: true
     if tournament.isOwner
-      nav.push route: "/#{id}/settings", icon: "cog", label: req.i18n.settings.navName, xs: true
+      nav.push route: "settings", icon: "cog", label: req.i18n.settings.navName, xs: true
 
     for navItem in nav
       navItem.selectedClass = "active" if req.url.indexOf(navItem.route) isnt - 1

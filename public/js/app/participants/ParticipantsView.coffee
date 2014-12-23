@@ -1,4 +1,10 @@
 App.templates.participants = """
+<div class="container container-normal" id="players-container">
+  <h1>{{App.i18n.members.navName}}
+  <% if @tournament.isOwner: %>
+    <%= @headerAction @i18n.edit, "participants/edit", "edit" %>
+  <% end %>
+  </h1>
 <table class="table table-striped">
   <thead>
     <th width="25px"></th>
@@ -68,7 +74,8 @@ App.templates.participants = """
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{App.PlayerPool.players.length}} {{MembersTable.i18n.navName}}</em></div>
+<div style="text-align: right"><em>{{App.PlayerPool.players.length}} {{App.i18n.members.navName}}</em></div>
+</div>
 """
 
 App.ParticipantsView = Em.View.extend
@@ -111,12 +118,7 @@ App.ParticipantsView = Em.View.extend
 
   template: Ember.Handlebars.compile App.templates.participants
   didInsertElement: ->
-    @$().hide()
-    $('.spinner-wrapper').fadeOut 'fast', =>
-      @$().fadeIn 1000
     @$("[rel='tooltip']").tooltip()
-    App.Observer.snapshot()
-
 
   MemberValueView: Ember.View.extend
     tagName: 'td'
