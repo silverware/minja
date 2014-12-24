@@ -52,8 +52,8 @@ App.Game = Em.Object.extend
   ).property('isCompleted', 'player2')
 
   getPoints: (playerNumber) ->
-    winPoints = parseInt App.Tournament.get "winPoints"
-    drawPoints = parseInt App.Tournament.get "drawPoints"
+    winPoints = parseInt App.Tournament.Bracket.get "winPoints"
+    drawPoints = parseInt App.Tournament.Bracket.get "drawPoints"
     if not @get("isCompleted") then return 0
 
     player = @get "player#{playerNumber}"
@@ -74,7 +74,7 @@ App.Game = Em.Object.extend
 
     # swap result attributes
 
-    for gameAttribute in App.Tournament.gameAttributes when gameAttribute.type is 'result'
+    for gameAttribute in App.Tournament.Bracket.gameAttributes when gameAttribute.type is 'result'
       id = gameAttribute.get 'id'
       value = @get id
       if value?.search /:/ isnt -1

@@ -5,6 +5,12 @@
     LOG_TRANSITIONS: true,
     rootElement: '#appRoot',
     LOG_TRANSITIONS_INTERNAL: true,
+    Tournament: Ember.Object.create({
+      Info: null,
+      Settings: null,
+      Bracket: null,
+      Participants: null
+    }),
     openDetailViews: [],
     i18n: {},
     templates: {},
@@ -25,18 +31,18 @@
     App.sport = sport;
     App.colors = colors;
     if (App.sport) {
-      App.Tournament.set("winPoints", App.sport.pointsPerWin);
-      App.Tournament.set("drawPoints", App.sport.pointsPerDraw);
-      App.Tournament.set("qualifierModus", App.sport.qualifierModus);
+      App.Tournament.Bracket.set("winPoints", App.sport.pointsPerWin);
+      App.Tournament.Bracket.set("drawPoints", App.sport.pointsPerDraw);
+      App.Tournament.Bracket.set("qualifierModus", App.sport.qualifierModus);
     }
     if (tournament != null ? tournament.members : void 0) {
-      App.PlayerPool.initPlayers(tournament.members);
+      App.Tournament.Participants.initPlayers(tournament.members);
     }
     if (tournament != null ? tournament.tree : void 0) {
-      App.PersistanceManager.build(tournament.tree);
+      App.PersistanceManager.buildBracket(tournament.tree);
     }
-    App.Tournament.set("info", tournament.info);
-    return App.Tournament.set("settings", tournament.settings);
+    App.Tournament.set("Info", tournament.info);
+    return App.Tournament.set("Settings", tournament.settings);
   };
 
   $.fn.createTree = function() {
@@ -50,7 +56,7 @@
     return App.Observer.snapshot();
   };
 
-  App.Tournament = Em.ArrayController.extend({
+  App.Tournament.Bracket = Em.ArrayController.extend({
     winPoints: 3,
     drawPoints: 1,
     qualifierModus: "aggregate",
@@ -113,7 +119,7 @@
       } else {
         App.Popup.showInfo({
           title: "",
-          bodyContent: App.i18n.lastRoundNotValid
+          bodyContent: App.i18n.bracket.lastRoundNotValid
         });
         return false;
       }
@@ -162,7 +168,7 @@
     })
   };
 
-  App.Tournament = App.Tournament.create();
+  App.Tournament.Bracket = App.Tournament.Bracket.create();
 
   App.Round = Em.Object.extend({
     name: "",
@@ -253,8 +259,8 @@
       return !_this.get("_previousRound");
     },
     isLastRound: (function() {
-      return App.Tournament.lastRound() === this;
-    }).property("App.Tournament.@each"),
+      return App.Tournament.Bracket.lastRound() === this;
+    }).property("App.Tournament.Bracket.@each"),
     validate: function() {
       return (this.getFreeMembers() === null || this.getFreeMembers().length === 0) && this.get("qualifiers").length > 1;
     },
@@ -368,7 +374,7 @@
         if (((_ref = this.getFreeMembers()) != null ? _ref[0] : void 0) != null) {
           _results.push(game.players.pushObject(this.getFreeMembers()[0]));
         } else {
-          _results.push(game.players.pushObject(App.PlayerPool.getNewPlayer({
+          _results.push(game.players.pushObject(App.Tournament.Participants.getNewPlayer({
             name: ("" + App.i18n.player + " ") + (i + 1)
           })));
         }
@@ -410,7 +416,7 @@
         if (((_ref = this.getFreeMembers()) != null ? _ref[0] : void 0) != null) {
           players.pushObject(this.getFreeMembers()[0]);
         } else {
-          players.pushObject(App.PlayerPool.getNewPlayer({
+          players.pushObject(App.Tournament.Participants.getNewPlayer({
             name: ("" + App.i18n.player + " ") + (i + 1)
           }));
         }
@@ -436,7 +442,7 @@
       return this._round.removeItem(this);
     },
     replace: function(from, to) {
-      return App.Tournament.replacePlayer(from, to, this.get("_round"));
+      return App.Tournament.Bracket.replacePlayer(from, to, this.get("_round"));
     },
     matchDays: (function() {
       var gamesPerMatchDay, matchDays, playerCount, roundItemName;
@@ -475,7 +481,7 @@
     itemId: (function() {
       var itemIndex, roundIndex;
       itemIndex = this.get('_round.items').indexOf(this);
-      roundIndex = App.Tournament.indexOf(this.get('_round'));
+      roundIndex = App.Tournament.Bracket.indexOf(this.get('_round'));
       return roundIndex + '-' + itemIndex;
     }).property('_round.items.@each')
   });
@@ -526,7 +532,7 @@
       if ((freeMembers != null ? freeMembers.length : void 0) > 0) {
         this.get("players").pushObject(freeMembers[0]);
       } else {
-        this.get("players").pushObject(App.PlayerPool.getNewPlayer({
+        this.get("players").pushObject(App.Tournament.Participants.getNewPlayer({
           name: "Player"
         }));
       }
@@ -560,7 +566,7 @@
         sorted[index - 1].qualified = index <= this.get("qualifierCount");
       }
       return sorted;
-    }).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.winPoints", "App.Tournament.drawPoints"),
+    }).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.Bracket.winPoints", "App.Tournament.Bracket.drawPoints"),
     generateGames: (function() {
       var game, games, i, p1, p2, _i, _ref, _results;
       this.games.clear();
@@ -688,7 +694,7 @@
         this.replace(this.get("player2"), winner);
         return [winner];
       }
-    }).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.Tournament.qualifierModus"),
+    }).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.Tournament.Bracket.qualifierModus"),
     init: function() {
       this._super();
       return this.dummies.pushObject(App.Dummy.create());
@@ -696,7 +702,7 @@
     getWinner: function() {
       var goalsPlayer1, goalsPlayer2, wins1, wins2,
         _this = this;
-      if (App.Tournament.get('qualifierModus') === App.qualifierModi.AGGREGATE.id) {
+      if (App.Tournament.Bracket.get('qualifierModus') === App.qualifierModi.AGGREGATE.id) {
         goalsPlayer1 = 0;
         goalsPlayer2 = 0;
         this.games.forEach(function(game) {
@@ -708,7 +714,7 @@
         } else {
           return this.get("player1");
         }
-      } else if (App.Tournament.get('qualifierModus') === App.qualifierModi.BEST_OF.id) {
+      } else if (App.Tournament.Bracket.get('qualifierModus') === App.qualifierModi.BEST_OF.id) {
         wins1 = 0;
         wins2 = 0;
         this.games.forEach(function(game) {
@@ -819,8 +825,8 @@
     }).property('isCompleted', 'player2'),
     getPoints: function(playerNumber) {
       var drawPoints, player, winPoints, winner;
-      winPoints = parseInt(App.Tournament.get("winPoints"));
-      drawPoints = parseInt(App.Tournament.get("drawPoints"));
+      winPoints = parseInt(App.Tournament.Bracket.get("winPoints"));
+      drawPoints = parseInt(App.Tournament.Bracket.get("drawPoints"));
       if (!this.get("isCompleted")) {
         return 0;
       }
@@ -844,7 +850,7 @@
       tempResult = this.get('result1');
       this.set('result1', this.get('result2'));
       this.set('result2', tempResult);
-      _ref = App.Tournament.gameAttributes;
+      _ref = App.Tournament.Bracket.gameAttributes;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         gameAttribute = _ref[_i];
         if (!(gameAttribute.type === 'result')) {
@@ -895,7 +901,7 @@
         title: App.i18n.deleteGameAttribute,
         bodyContent: App.i18n.reallyDeleteGameAttribute,
         onConfirm: function() {
-          return App.Tournament.gameAttributes.removeObject(_this);
+          return App.Tournament.Bracket.gameAttributes.removeObject(_this);
         }
       });
     }
@@ -924,7 +930,7 @@
       return this.get("isPlayer") && App.editable;
     }).property("isPlayer"),
     isPartaking: (function() {
-      return _.contains(App.Tournament.getPlayers(), this);
+      return _.contains(App.Tournament.Bracket.getPlayers(), this);
     }).property(),
     isRealPlayer: (function() {
       return this.get('isPlayer') && !this.get('isPrivate');
@@ -963,7 +969,7 @@
     }).property("type")
   });
 
-  App.PlayerPool = Em.Object.extend({
+  App.Tournament.Participants = Em.Object.extend({
     players: [],
     attributes: [],
     init: function() {
@@ -994,7 +1000,7 @@
     }).property("players.@each.name", "players.@each.isPartaking"),
     getNewPlayer: function(data) {
       var unusedPlayers;
-      unusedPlayers = _.difference(this.players, App.Tournament.getPlayers());
+      unusedPlayers = _.difference(this.players, App.Tournament.Bracket.getPlayers());
       if (unusedPlayers.length > 0) {
         return unusedPlayers[0];
       }
@@ -1057,7 +1063,826 @@
     }
   });
 
-  App.PlayerPool = App.PlayerPool.create();
+  App.Tournament.Participants = App.Tournament.Participants.create();
+
+  App.Router.map(function() {
+    this.route('dashboard', {
+      path: '/'
+    });
+    this.route('info');
+    this.route('participants');
+    this.route('bracket');
+    this.route('settings');
+    return this.route('chat');
+  });
+
+  App.Router.reopen({
+    location: 'history',
+    init: function() {
+      this.set('rootURL', window.location.pathname.match('(/[^/]*)')[0]);
+      return this._super();
+    }
+  });
+
+  App.BracketRoute = Ember.Route.extend({
+    setupController: function(controller, videoChat) {
+      this._super(controller, videoChat);
+      return controller.set("title", "Video Chat");
+    },
+    renderTemplate: function() {
+      return this.render('bracket');
+    }
+  });
+
+  App.DynamicTextField = Ember.TextField.extend({
+    classNames: ['s', 'dynamicTextField'],
+    minWidth: 20,
+    editable: true,
+    onValueChanged: (function() {
+      return this.updateWidth();
+    }).observes("value"),
+    didInsertElement: function() {
+      this.updateWidth();
+      return this.onEditableChange();
+    },
+    onEditableChange: (function() {
+      return this.$().attr("disabled", !this.get("editable"));
+    }).observes("editable"),
+    updateWidth: function() {
+      var sensor, width;
+      sensor = $('<label>' + this.get("value") + '</label>').css({
+        margin: 0,
+        padding: 0,
+        display: "inline-block"
+      });
+      $("body").append(sensor);
+      width = sensor.width() + 6;
+      sensor.remove();
+      return this.$().width(Math.max(this.minWidth, width) + "px");
+    }
+  });
+
+  App.DynamicTypeAheadTextField = App.DynamicTextField.extend({
+    name: null,
+    didInsertElement: function() {
+      this._super();
+      return this.$().addClass(this.name);
+    },
+    focusIn: function() {
+      var input, values;
+      this._super();
+      values = (function() {
+        var _i, _len, _ref, _results;
+        _ref = $("." + this.name);
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          input = _ref[_i];
+          _results.push(input.value);
+        }
+        return _results;
+      }).call(this);
+      return this.$().typeahead({
+        source: _.uniq(values)
+      });
+    }
+  });
+
+  App.NumberSpinner = Ember.TextField.extend({
+    classNames: ['input-mini spinner-input'],
+    editable: true,
+    didInsertElement: function() {
+      this.wrapper = $("<div id=\"MySpinner\" class=\"spinner\"></div>");
+      this.$().wrap(this.wrapper);
+      this.$().after("  <div class=\"spinner-buttons btn-group btn-group-vertical\">\n<button type=\"button\" class=\"btn spinner-up\">\n<i class=\"icon-chevron-up\"></i>\n</button>\n<button type=\"button\" class=\"btn spinner-down\">\n<i class=\"icon-chevron-down\"></i>\n</button>\n</div>");
+      this.wrapper.spinner();
+      return this.onEditableChange();
+    },
+    onValueChanged: (function() {
+      this.set('value', parseInt(this.onlyNumber(this.get('value'))));
+      return console.debug(this.get("value"));
+    }).observes("value"),
+    onEditableChange: (function() {
+      if (this.get("editable")) {
+        return this.get("wrapper").spinner("enable");
+      } else {
+        return this.get("wrapper").spinner("disable");
+      }
+    }).observes("editable"),
+    onlyNumber: function(input) {
+      if (input) {
+        return input.replace(/[^\d]/g, "");
+      }
+    }
+  });
+
+  App.Serializer = {
+    emberObjToJsonData: function(obj) {
+      var emberObj, jsonObj, key, value;
+      if (!(obj instanceof Ember.Object)) {
+        throw TypeError("argument is not an Ember Object");
+      }
+      jsonObj = {};
+      emberObj = Ember.ArrayController.create({
+        content: []
+      });
+      for (key in obj) {
+        value = obj[key];
+        if (Ember.typeOf(value) === 'function') {
+          continue;
+        }
+        if (emberObj[key] !== void 0) {
+          continue;
+        }
+        if (value === 'toString') {
+          continue;
+        }
+        if (value === void 0) {
+          continue;
+        }
+        if (/^_/.test(key)) {
+          continue;
+        }
+        if (value instanceof Em.ArrayController) {
+          jsonObj[key] = this.emberObjArrToJsonDataArr(value.content);
+        } else if (typeof value === 'object' && value instanceof Array) {
+          jsonObj[key] = this.emberObjArrToJsonDataArr(value);
+        } else {
+          jsonObj[key] = value;
+        }
+      }
+      return jsonObj;
+    },
+    toJsonData: function() {
+      return this.emberObjToJsonData(this);
+    },
+    emberObjArrToJsonDataArr: function(objArray) {
+      var obj, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = objArray.length; _i < _len; _i++) {
+        obj = objArray[_i];
+        _results.push(this.emberObjToJsonData(obj));
+      }
+      return _results;
+    },
+    controllerToJson: function(controller) {
+      return this.emberObjArrToJsonDataArr(controller.content);
+    },
+    toJsonDataArray: function(arrayProperty) {
+      return this.emberObjArrToJsonDataArr(this.get(arrayProperty));
+    },
+    dataArrayToEmberObjArray: function(EmberClass, dataArray) {
+      var obj, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = dataArray.length; _i < _len; _i++) {
+        obj = dataArray[_i];
+        _results.push(EmberClass.create(obj));
+      }
+      return _results;
+    }
+  };
+
+  App.ApplicationRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      return controller.set("initialTab", "login");
+    }
+  });
+
+  App.ApplicationController = Ember.Controller.extend({
+    init: function() {
+      return this._super();
+    },
+    logout: function() {
+      return Chat.logout();
+    }
+  });
+
+  App.ApplicationView = Em.View.extend({
+    classNames: ['chat'],
+    defaultTemplate: Ember.Handlebars.compile("{{outlet}}"),
+    didInsertElement: function() {
+      this._super();
+      return console.debug("Application view");
+    },
+    isExpanded: true,
+    actions: {
+      toggleExpansion: function() {
+        return this.expand(!this.get("isExpanded"));
+      }
+    },
+    expand: function(expand) {
+      var links;
+      links = this.$('.nav-0 li');
+      if (expand) {
+        $('body').removeClass('contracted');
+        links.tooltip('destroy');
+      } else {
+        $('body').addClass('contracted');
+        links.each(function(i, link) {
+          return $(link).tooltip({
+            placement: 'right',
+            title: $(link).text(),
+            animation: false
+          });
+        });
+      }
+      return this.set("isExpanded", expand);
+    }
+  });
+
+  App.InfoRoute = Ember.Route.extend({
+    model: function() {
+      return App.Tournament.info;
+    }
+  });
+
+  App.templates.info = "<style type=\"text/css\">\ndl {\n  font-size: 16px;\n}\n</style>\n<div class=\"container container-normal\">\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"info/edit\", \"edit\" %>\n  <% end %>\n  <h1>{{App.i18n.info.header}}</h1>\n  <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.startDate}}</dt>\n    <dd itemprop=\"startDate\" content=\"<%= @printDateDbFormat @tournament.info.startDate %>\">\n      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime, true %>\n    </dd>\n    {{#if App.Tournament.info.stopDate}}\n      <dt>{{App.i18n.info.stopDate}}</dt>\n      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>\n    {{/if}}\n    <dt>{{App.i18n.info.venue}}</dt>\n    <span itemprop=\"location\" itemscope itemtype=\"http://schema.org/Place\">\n    <dd itemprop=\"name\">{{App.Tournament.info.venue}}</dd>\n    </span>\n  </dl>\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.host}}</dt>\n    <dd>{{App.Tournament.info.host}}</dd>\n    <dt>E-Mail</dt>\n    <dd>{{App.Tournament.info.hostMail}}\n  </dl>\n  <div itemprop=\"description\" id=\"description\">{{App.Tournament.info.descriptionCompiled}}</div>\n</div>";
+
+  App.InfoView = Em.View.extend({
+    template: Ember.Handlebars.compile(App.templates.info),
+    didInsertElement: function() {
+      return this._super();
+    }
+  });
+
+  App.SettingsRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      return controller.set("initialTab", "login");
+    }
+  });
+
+  App.SettingsController = Ember.Controller.extend({
+    initialTab: "",
+    actions: {
+      login: function() {
+        var previousTransition;
+        previousTransition = this.get('previousTransition');
+        if (previousTransition) {
+          this.set('previousTransition', null);
+          if (typeof previousTransition === 'string') {
+            return this.transitionTo(previousTransition);
+          } else {
+            return previousTransition.retry();
+          }
+        } else {
+          return this.transitionToRoute('index');
+        }
+      }
+    }
+  });
+
+  App.templates.settings = "<div class=\"container dashboard\">\n  <div class=\"row\">\n  <div class=\"col-md-6\">\n  <div class=\"dashboardBox\">\n    <fieldset>\n      <legend>{{App.i18n.settings.colorSelection}}</legend>\n        <%= @formWithActionFor @tournament.colors, \"/tournament.id/settings/colors\", (form) => %>\n          <div class=\"form-group\">\n            <label class=\"control-label col-sm-2\">{{App.i18n.settings.theme}}</label>\n            <div class=\"col-sm-10\">\n              <span class=\"btn btn-link\" id=\"selectTheme\"><i class=\"fa fa-picture-o\"></i><%= @i18n.settings.selectTheme %></span>\n            </div>\n          </div>\n          <%= form.colorSelect @i18n.settings.background, \"background\", {placeholder: @i18n.color} %>\n          <br />\n          <%= form.colorSelect @i18n.settings.content, \"content\", {placeholder: @i18n.color} %>\n          <%= form.colorSelect @i18n.settings.contentText, \"contentText\", {placeholder: @i18n.color} %>\n          <br />\n          <%= form.colorSelect @i18n.settings.footer, \"footer\", {placeholder: @i18n.color} %>\n          <%= form.colorSelect @i18n.settings.footerText, \"footerText\", {placeholder: @i18n.color} %>\n          <%= form.button @i18n.settings.applyColor %>\n        <% end %>\n    </fieldset>\n  </div>\n  </div>\n\n  <div class=\"col-md-6\">\n  <div class=\"dashboardBox\">\n    <fieldset>\n      <legend>{{App.i18n.settings.publicName}}</legend>\n        <%= @infoHint => %>\n          <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>\n          <br /> <br />\n          {{App.i18n.settings.publicNameRestriction}}\n          <ul>\n            <li>{{App.i18n.settings.publicNameRestriction1}}</li>\n            <li>{{App.i18n.settings.publicNameRestriction2}}</li>\n            <li>{{App.i18n.settings.publicNameRestriction3}}</li>\n          </ul>\n        <% end %>\n        <br />\n\n        <%= @formFor @tournament, (form) => %>\n          <%= form.textField 'Name', \"publicName\", {class: \"publicName\", placeholder: @i18n.settings.publicName} %>\n          <%= form.button @i18n.save %>\n        <% end %>\n    </fieldset>\n    <!--\n    <fieldset>\n      <legend><%= @i18n.settings.messages %></legend>\n\nNachrichten aktivieren/deaktivieren\n\n  -->\n</div>";
+
+  App.SettingsView = Em.View.extend({
+    template: Ember.Handlebars.compile(App.templates.settings),
+    didInsertElement: function() {
+      return this._super();
+    }
+  });
+
+  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.Tournament.Info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.Tournament.Info.venue}}\n    </dl>\n    <dl class=\"dl-horizontal\">\n      <dt><i class=\"fa fa-user\"></i></dt>\n      <dd>{{App.Tournament.Info.host}}</dd>\n      <dt>E-Mail</dt>\n      <dd>{{App.Tournament.Info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.Tournament.Participants.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{participantCount}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n    <section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n      <fieldset>\n        <legend>{{App.i18n.tree.navName}}</legend>\n        <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n      </fieldset>\n    </section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
+
+  App.DashboardView = Em.View.extend({
+    template: Ember.Handlebars.compile(App.templates.dashboard),
+    didInsertElement: function() {
+      return this._super();
+    }
+  });
+
+  App.DashboardRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      return controller.set("initialTab", "login");
+    }
+  });
+
+  App.DashboardController = Ember.Controller.extend({
+    initialTab: "",
+    actions: {
+      login: function() {
+        var previousTransition;
+        previousTransition = this.get('previousTransition');
+        if (previousTransition) {
+          this.set('previousTransition', null);
+          if (typeof previousTransition === 'string') {
+            return this.transitionTo(previousTransition);
+          } else {
+            return previousTransition.retry();
+          }
+        } else {
+          return this.transitionToRoute('index');
+        }
+      }
+    },
+    participantCount: (function() {
+      return App.Tournament.Participants.players.length;
+    }).property('App.Tournament.Participants.players')
+  });
+
+  App.ParticipantsRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      return controller.set("initialTab", "login");
+    }
+  });
+
+  App.ParticipantsController = Ember.Controller.extend({
+    initialTab: "",
+    actions: {
+      login: function() {
+        var previousTransition;
+        previousTransition = this.get('previousTransition');
+        if (previousTransition) {
+          this.set('previousTransition', null);
+          if (typeof previousTransition === 'string') {
+            return this.transitionTo(previousTransition);
+          } else {
+            return previousTransition.retry();
+          }
+        } else {
+          return this.transitionToRoute('index');
+        }
+      }
+    }
+  });
+
+  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.Tournament.Participants.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if App.editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.Tournament.Participants\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.Tournament.Participants.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if App.editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.Tournament.Participants.attributes}}\n        {{#view MembersTable.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if App.editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\" editableBinding=\"MembersTable.editable\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if App.editable}}\n              {{view view.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless App.editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if App.editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.Tournament.Participants\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
+
+  App.ParticipantsView = Em.View.extend({
+    data: function() {
+      var data;
+      return data = {
+        members: Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.players),
+        membersAttributes: Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.attributes)
+      };
+    },
+    addMember: function() {
+      return App.Tournament.Participants.createPlayer();
+    },
+    addAttribute: function() {
+      return App.Tournament.Participants.createAttribute({
+        name: $("#inputname").val(),
+        type: $("#inputtyp").val(),
+        isPrivate: $("#inputprivate").val()
+      });
+    },
+    showAttributePopup: function() {
+      var _this = this;
+      return Popup.show({
+        title: this.i18n.addAttribute,
+        actions: [
+          {
+            closePopup: true,
+            label: this.i18n.addAttribute,
+            action: function() {
+              return _this.addAttribute();
+            }
+          }
+        ],
+        bodyUrl: "/tournament/members/attribute_popup",
+        afterRendering: function($popup) {
+          return $popup.find("form").submit(function(event) {
+            return event.preventDefault();
+          });
+        }
+      });
+    },
+    addNoItemsRow: (function() {}).observes('App.Tournament.Participants.sortedPlayers'),
+    openPlayerView: function(player) {
+      return App.PlayerDetailView.create({
+        player: player
+      });
+    },
+    template: Ember.Handlebars.compile(App.templates.participants),
+    didInsertElement: function() {
+      return this.$("[rel='tooltip']").tooltip();
+    },
+    MemberValueView: Ember.View.extend({
+      tagName: 'td',
+      member: null,
+      attribute: null,
+      memberValue: (function(key, value) {
+        if (arguments.length === 1) {
+          return this.get("member")[this.get("attribute").id];
+        }
+        return this.get("member").set(this.get("attribute").id, value);
+      }).property("member", "attribute.name")
+    })
+  });
+
+  App.utils = {
+    subStringContained: function(s, sub) {
+      if (!s) {
+        return false;
+      }
+      return s.toLowerCase().indexOf(sub.toLowerCase()) !== -1;
+    },
+    filterGames: function(filter, games) {
+      var filtered, playedFilter, searchString,
+        _this = this;
+      if (!filter) {
+        return games;
+      }
+      playedFilter = filter.played;
+      searchString = filter.search;
+      return filtered = games.filter(function(game) {
+        var s;
+        if (game.get('isCompleted') && (playedFilter === false)) {
+          return false;
+        }
+        if ((!game.get('isCompleted')) && (playedFilter === true)) {
+          return false;
+        }
+        if (!searchString) {
+          return true;
+        }
+        s = searchString.split(' ');
+        return s.every(function(ss) {
+          var attribute, attributes, attrs, p1, p2, _i, _len, _ref;
+          if (!ss) {
+            return true;
+          }
+          attributes = [];
+          p1 = _this.subStringContained(game.player1.name, ss);
+          p2 = _this.subStringContained(game.player2.name, ss);
+          _ref = App.Tournament.gameAttributes;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            attribute = _ref[_i];
+            if (attribute.get("isTextfield")) {
+              attributes.push(attribute.id);
+            }
+          }
+          attrs = attributes.some(function(attr) {
+            return _this.subStringContained(game[attr], ss);
+          });
+          return p1 || p2 || attrs;
+        });
+      });
+    }
+  };
+
+  window.onbeforeunload = function() {
+    if (App.editable && App.Observer.hasChanges()) {
+      return App.i18n.unsavedChanges;
+    }
+  };
+
+  App.Observer = {
+    _snapshot: null,
+    snapshot: function() {
+      return this._snapshot = App.persist();
+    },
+    hasChanges: function() {
+      return !_.isEqual(this._snapshot, App.persist());
+    }
+  };
+
+  App.PersistanceManager = {
+    dummies: [],
+    persist: function() {
+      return {
+        members: this.persistPlayers(),
+        tree: this.persistTree()
+      };
+    },
+    persistPlayers: function() {
+      return App.Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.filterOutTemporaryPlayers());
+    },
+    persistTree: function() {
+      var round, serialized, tournament, _i, _len, _ref;
+      tournament = App.Tournament.Bracket;
+      serialized = App.Serializer.emberObjToJsonData(tournament);
+      serialized.rounds = [];
+      _ref = tournament.content;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        round = _ref[_i];
+        serialized.rounds.push(App.Serializer.emberObjToJsonData(round));
+      }
+      return serialized;
+    },
+    extend: function(target, source) {
+      var key, method, name, value, _results;
+      for (name in source) {
+        method = source[name];
+        target.set(name, method);
+      }
+      _results = [];
+      for (key in target) {
+        value = target[key];
+        if (typeof value === 'string') {
+          if (value === 'false') {
+            target.set(key, false);
+          }
+          if (value === 'true') {
+            target.set(key, true);
+          }
+          if (value === 'null') {
+            _results.push(target.set(key, null));
+          } else {
+            _results.push(void 0);
+          }
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    },
+    removeValue: function(obj, key) {
+      var value;
+      value = _.pick(obj, key);
+      delete obj[key];
+      return value[key];
+    },
+    buildBracket: function(obj) {
+      var gRound, gameAttribute, gameAttributes, item, kRound, round, roundItems, tournamentRounds, _i, _j, _k, _l, _len, _len1, _len2, _len3, _results;
+      if (!(obj != null ? obj.rounds : void 0)) {
+        return;
+      }
+      tournamentRounds = this.removeValue(obj, "rounds");
+      gameAttributes = this.removeValue(obj, "gameAttributes");
+      this.extend(App.Tournament.Bracket, obj);
+      App.Tournament.Bracket.clear();
+      for (_i = 0, _len = tournamentRounds.length; _i < _len; _i++) {
+        round = tournamentRounds[_i];
+        if (round.isGroupRound) {
+          gRound = App.Tournament.Bracket.addGroupRound();
+          roundItems = this.removeValue(round, "items");
+          this.extend(gRound, round);
+          for (_j = 0, _len1 = roundItems.length; _j < _len1; _j++) {
+            item = roundItems[_j];
+            gRound.items.pushObject(this.buildGroup(item, gRound));
+          }
+        }
+        if (round.isKoRound) {
+          kRound = App.Tournament.Bracket.addKoRound();
+          roundItems = this.removeValue(round, "items");
+          this.extend(kRound, round);
+          for (_k = 0, _len2 = roundItems.length; _k < _len2; _k++) {
+            item = roundItems[_k];
+            kRound.items.pushObject(this.buildRoundGame(item, kRound));
+          }
+        }
+      }
+      _results = [];
+      for (_l = 0, _len3 = gameAttributes.length; _l < _len3; _l++) {
+        gameAttribute = gameAttributes[_l];
+        _results.push(App.Tournament.Bracket.gameAttributes.pushObject(App.GameAttribute.create(gameAttribute)));
+      }
+      return _results;
+    },
+    buildGroup: function(obj, round) {
+      var group;
+      group = App.Group.create({
+        _round: round
+      });
+      this.buildRoundItem(group, obj);
+      return group;
+    },
+    buildRoundGame: function(obj, round) {
+      var roundGame;
+      roundGame = App.RoundGame.create({
+        _round: round
+      });
+      this.buildRoundItem(roundGame, obj);
+      return roundGame;
+    },
+    buildGame: function(obj) {
+      var game;
+      game = App.Game.create({
+        player1: this.createPlayer(obj.player1),
+        player2: this.createPlayer(obj.player2)
+      });
+      delete obj.player1;
+      delete obj.player2;
+      this.extend(game, obj);
+      return game;
+    },
+    buildRoundItem: function(roundItem, obj) {
+      var dummy, game, player, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      roundItem.dummies.clear();
+      _ref = obj.dummies;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        dummy = _ref[_i];
+        roundItem.dummies.pushObject(this.createPlayer(dummy));
+      }
+      _ref1 = obj.players;
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        player = _ref1[_j];
+        roundItem.players.pushObject(this.createPlayer(player));
+      }
+      roundItem.games.clear();
+      _ref2 = obj.games;
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+        game = _ref2[_k];
+        roundItem.games.pushObject(this.buildGame(game));
+      }
+      delete obj.games;
+      delete obj.dummies;
+      delete obj.players;
+      return this.extend(roundItem, obj);
+    },
+    isTrue: function(obj) {
+      return obj && obj !== "false";
+    },
+    createPlayer: function(obj) {
+      var dummy, newPlayer, _i, _len, _ref;
+      _ref = this.dummies;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        dummy = _ref[_i];
+        if (dummy.id === obj.id) {
+          return dummy;
+        }
+      }
+      newPlayer = this.isTrue(obj.isDummy) ? App.Dummy.create(obj) : App.Tournament.Participants.getPlayerById(obj.id);
+      newPlayer.set("id", obj.id);
+      this.extend(newPlayer, {});
+      if (newPlayer.isDummy) {
+        this.dummies.pushObject(newPlayer);
+      }
+      return newPlayer;
+    }
+  };
+
+  /*
+    RoundRobin eine Klasse um in einer Liga Spieltage zu erzeugen.
+    Der Algorithmus der Berechnung folgt in etwa dem, der auf dieser Seite beschrieben wird: http://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php
+    
+    @author  M.Richter
+    @version  1.0.0
+    @date  12:21 10.07.2012
+  */
+
+
+  App.RoundRobin = {
+    generateGames: function(players) {
+      var game, games, result, _i, _len;
+      if (!players) {
+        throw new TypeError("Parameter must be greater than zero");
+      }
+      if (players.length % 2 !== 0) {
+        games = this.generate(players.length + 1);
+      } else {
+        games = this.generate(players.length);
+      }
+      result = [];
+      for (_i = 0, _len = games.length; _i < _len; _i++) {
+        game = games[_i];
+        if (players[game[0] - 1] && players[game[1] - 1]) {
+          result.push([players[game[0] - 1], players[game[1] - 1]]);
+        }
+      }
+      return result;
+    },
+    generate: function(teamCount) {
+      var a, h, i, k, n, spiele, temp, _i, _j, _ref, _ref1;
+      if ((teamCount % 2) !== 0) {
+        return false;
+      }
+      if (teamCount === 2) {
+        return [[1, 2]];
+      }
+      n = teamCount - 1;
+      spiele = [];
+      for (i = _i = 1, _ref = teamCount - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
+        h = teamCount;
+        a = i;
+        if ((i % 2) !== 0) {
+          temp = a;
+          a = h;
+          h = temp;
+        }
+        spiele.push([h, a]);
+        for (k = _j = 1, _ref1 = (teamCount / 2) - 1; 1 <= _ref1 ? _j <= _ref1 : _j >= _ref1; k = 1 <= _ref1 ? ++_j : --_j) {
+          if ((i - k) < 0) {
+            a = n + (i - k);
+          } else {
+            a = (i - k) % n;
+            a = a === 0 ? n : a;
+          }
+          h = (i + k) % n;
+          h = h === 0 ? n : h;
+          if ((k % 2) === 0) {
+            temp = a;
+            a = h;
+            h = temp;
+          }
+          spiele.push([h, a]);
+        }
+      }
+      return spiele;
+    }
+  };
+
+  App.BracketLineDrawer = {
+    ctx: null,
+    canvas: null,
+    lastChange: new Date().getTime(),
+    init: function() {
+      var _this = this;
+      this.canvas = document.getElementById("bracketLines");
+      $(this.canvas).hide();
+      this.ctx = this.canvas.getContext("2d");
+      window.addEventListener('resize', (function() {
+        return _this.update();
+      }), false);
+      $("#treeWrapper").bind("DOMSubtreeModified", function() {
+        return setTimeout((function() {
+          return _this.update();
+        }), 10);
+      });
+      this.update();
+      return $(this.canvas).fadeIn('slow');
+    },
+    update: function() {
+      var _this = this;
+      if (!this.ctx) {
+        return;
+      }
+      if (new Date().getTime() - this.lastChange < 500) {
+        return;
+      }
+      this.lastChange = new Date().getTime();
+      this.clear();
+      this.resize();
+      return App.Tournament.forEach(function(round) {
+        var gameCurrent, gamePrev, playersCurrent, prev, _i, _len, _ref, _results;
+        prev = round._previousRound;
+        if (!prev) {
+          return;
+        }
+        if (prev.isGroupRound || round.isGroupRound) {
+          return;
+        }
+        _ref = round.items;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          gameCurrent = _ref[_i];
+          playersCurrent = gameCurrent.get("players");
+          _results.push((function() {
+            var _j, _len1, _ref1, _results1;
+            _ref1 = prev.items;
+            _results1 = [];
+            for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+              gamePrev = _ref1[_j];
+              if (_.intersection(playersCurrent, gamePrev.get("qualifiers")).length > 0) {
+                _results1.push(this.draw(gameCurrent, gamePrev));
+              } else {
+                _results1.push(void 0);
+              }
+            }
+            return _results1;
+          }).call(_this));
+        }
+        return _results;
+      });
+    },
+    draw: function(from, to) {
+      var midY, posFrom, posTo;
+      posFrom = this.centerPos($("." + from.get('itemId')), true);
+      posTo = this.centerPos($("." + to.get('itemId')));
+      if (!posFrom || !posTo) {
+        return;
+      }
+      midY = posFrom.y + ((posTo.y - posFrom.y) / 2);
+      this.ctx.lineWidth = 2;
+      this.ctx.beginPath();
+      this.ctx.moveTo(posFrom.x, posFrom.y);
+      this.ctx.lineTo(posFrom.x, midY);
+      this.ctx.lineTo(posTo.x, midY);
+      this.ctx.lineTo(posTo.x, posTo.y);
+      this.ctx.strokeStyle = App.colors.content;
+      return this.ctx.stroke();
+    },
+    centerPos: function(element, top) {
+      var pos;
+      if (element.length === 0) {
+        return void 0;
+      }
+      return pos = {
+        x: element.offset().left + element.width() / 2,
+        y: element.offset().top + (!top ? element.height() : 0)
+      };
+    },
+    resize: function() {
+      this.canvas.width = this.width();
+      return this.canvas.height = this.height();
+    },
+    width: function() {
+      return $(window).width();
+    },
+    height: function() {
+      return $('body').height();
+    },
+    show: function() {
+      return $(this.canvas).fadeIn('slow');
+    },
+    hide: function() {
+      return $(this.canvas).fadeOut('medium');
+    },
+    clear: function() {
+      if (!this.ctx) {
+        return;
+      }
+      return this.ctx.clearRect(0, 0, this.width(), this.height());
+    }
+  };
 
   App.templates.tournament = "{{#each round in App.Tournament}}\n  {{#if round.isGroupRound}}\n    {{view App.GroupRoundView roundBinding=\"round\"}}\n  {{/if}}\n  {{#if round.isKoRound}}\n    {{view App.RoundView roundBinding=\"round\"}}\n  {{/if}}\n{{/each}}\n\n{{#if App.editable}}\n  <div class=\"saveActions box\">\n    <form action=\"#\" method=\"post\" style=\"margin: 1px 20px\">\n      <span>\n        <button class=\"btn btn-inverse\" {{action \"edit\" target=\"view\"}} ><i class=\"fa fa-cog\"></i>{{App.i18n.settings}}</button>\n        <button type=\"submit\" class=\"btn btn-inverse\">{{App.i18n.save}}</button>\n        <i class=\"fa fa-spinner fa-spin ajaxLoader\"></i>\n        <span class=\"successIcon\"><i class=\"fa fa-check\"></i> {{App.i18n.saved}}</span>\n      </span>\n    </form>\n  </div>\n{{else}}\n  {{#if App.isOwner}}\n    <div class=\"saveActions box\">\n      <a href=\"bracket/edit\">\n        <button  style=\"margin: 1px 20px\" class=\"btn btn-inverse\"><i class=\"fa fa-edit\"></i>{{App.i18n.edit}}</button>\n      </a>\n    </div>\n  {{/if}}\n{{/if}}\n\n\n{{#if App.editable}}\n  <div class=\"tournamentActions\">\n  <div class=\"roundSetting box\">\n    <span  id=\"tournamentAddRemoveActions\" class=\"roundName\"><i class=\"icon-plus\"></i></span>\n    <div class=\"actions\">\n      <button class=\"btn btn-inverse addKoRound\" {{action \"addKoRound\" target=\"App.Tournament\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.koRound}}</button>\n      <button class=\"btn btn-inverse addGroupStage\" {{action \"addGroupRound\" target=\"App.Tournament\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.groupStage}}</button>\n      <button class=\"btn btn-inverse deletePrevRound\" {{action \"removeLastRound\" target=\"view\"}}><i class=\"fa fa-trash-o\"></i>{{App.i18n.previousRound}}</button>\n    </div>\n  </div>\n  </div>\n{{/if}}\n\n<div style=\"clear: both\"></div>";
 
@@ -1984,822 +2809,6 @@
     didInsertElement: function() {
       return console.debug('huhu');
     }
-  });
-
-  App.utils = {
-    subStringContained: function(s, sub) {
-      if (!s) {
-        return false;
-      }
-      return s.toLowerCase().indexOf(sub.toLowerCase()) !== -1;
-    },
-    filterGames: function(filter, games) {
-      var filtered, playedFilter, searchString,
-        _this = this;
-      if (!filter) {
-        return games;
-      }
-      playedFilter = filter.played;
-      searchString = filter.search;
-      return filtered = games.filter(function(game) {
-        var s;
-        if (game.get('isCompleted') && (playedFilter === false)) {
-          return false;
-        }
-        if ((!game.get('isCompleted')) && (playedFilter === true)) {
-          return false;
-        }
-        if (!searchString) {
-          return true;
-        }
-        s = searchString.split(' ');
-        return s.every(function(ss) {
-          var attribute, attributes, attrs, p1, p2, _i, _len, _ref;
-          if (!ss) {
-            return true;
-          }
-          attributes = [];
-          p1 = _this.subStringContained(game.player1.name, ss);
-          p2 = _this.subStringContained(game.player2.name, ss);
-          _ref = App.Tournament.gameAttributes;
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            attribute = _ref[_i];
-            if (attribute.get("isTextfield")) {
-              attributes.push(attribute.id);
-            }
-          }
-          attrs = attributes.some(function(attr) {
-            return _this.subStringContained(game[attr], ss);
-          });
-          return p1 || p2 || attrs;
-        });
-      });
-    }
-  };
-
-  window.onbeforeunload = function() {
-    if (App.editable && App.Observer.hasChanges()) {
-      return App.i18n.unsavedChanges;
-    }
-  };
-
-  App.Observer = {
-    _snapshot: null,
-    snapshot: function() {
-      return this._snapshot = App.persist();
-    },
-    hasChanges: function() {
-      return !_.isEqual(this._snapshot, App.persist());
-    }
-  };
-
-  App.PersistanceManager = {
-    dummies: [],
-    persist: function() {
-      return {
-        members: this.persistPlayers(),
-        tree: this.persistTree()
-      };
-    },
-    persistPlayers: function() {
-      return App.Serializer.emberObjArrToJsonDataArr(App.PlayerPool.filterOutTemporaryPlayers());
-    },
-    persistTree: function() {
-      var round, serialized, tournament, _i, _len, _ref;
-      tournament = App.Tournament;
-      serialized = App.Serializer.emberObjToJsonData(tournament);
-      serialized.rounds = [];
-      _ref = tournament.content;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        round = _ref[_i];
-        serialized.rounds.push(App.Serializer.emberObjToJsonData(round));
-      }
-      return serialized;
-    },
-    extend: function(target, source) {
-      var key, method, name, value, _results;
-      for (name in source) {
-        method = source[name];
-        target.set(name, method);
-      }
-      _results = [];
-      for (key in target) {
-        value = target[key];
-        if (typeof value === 'string') {
-          if (value === 'false') {
-            target.set(key, false);
-          }
-          if (value === 'true') {
-            target.set(key, true);
-          }
-          if (value === 'null') {
-            _results.push(target.set(key, null));
-          } else {
-            _results.push(void 0);
-          }
-        } else {
-          _results.push(void 0);
-        }
-      }
-      return _results;
-    },
-    removeValue: function(obj, key) {
-      var value;
-      value = _.pick(obj, key);
-      delete obj[key];
-      return value[key];
-    },
-    build: function(obj) {
-      var gRound, gameAttribute, gameAttributes, item, kRound, round, roundItems, tournamentRounds, _i, _j, _k, _l, _len, _len1, _len2, _len3, _results;
-      if (!(obj != null ? obj.rounds : void 0)) {
-        return;
-      }
-      tournamentRounds = this.removeValue(obj, "rounds");
-      gameAttributes = this.removeValue(obj, "gameAttributes");
-      this.extend(App.Tournament, obj);
-      App.Tournament.clear();
-      for (_i = 0, _len = tournamentRounds.length; _i < _len; _i++) {
-        round = tournamentRounds[_i];
-        if (round.isGroupRound) {
-          gRound = App.Tournament.addGroupRound();
-          roundItems = this.removeValue(round, "items");
-          this.extend(gRound, round);
-          for (_j = 0, _len1 = roundItems.length; _j < _len1; _j++) {
-            item = roundItems[_j];
-            gRound.items.pushObject(this.buildGroup(item, gRound));
-          }
-        }
-        if (round.isKoRound) {
-          kRound = App.Tournament.addKoRound();
-          roundItems = this.removeValue(round, "items");
-          this.extend(kRound, round);
-          for (_k = 0, _len2 = roundItems.length; _k < _len2; _k++) {
-            item = roundItems[_k];
-            kRound.items.pushObject(this.buildRoundGame(item, kRound));
-          }
-        }
-      }
-      _results = [];
-      for (_l = 0, _len3 = gameAttributes.length; _l < _len3; _l++) {
-        gameAttribute = gameAttributes[_l];
-        _results.push(App.Tournament.gameAttributes.pushObject(App.GameAttribute.create(gameAttribute)));
-      }
-      return _results;
-    },
-    buildGroup: function(obj, round) {
-      var group;
-      group = App.Group.create({
-        _round: round
-      });
-      this.buildRoundItem(group, obj);
-      return group;
-    },
-    buildRoundGame: function(obj, round) {
-      var roundGame;
-      roundGame = App.RoundGame.create({
-        _round: round
-      });
-      this.buildRoundItem(roundGame, obj);
-      return roundGame;
-    },
-    buildGame: function(obj) {
-      var game;
-      game = App.Game.create({
-        player1: this.createPlayer(obj.player1),
-        player2: this.createPlayer(obj.player2)
-      });
-      delete obj.player1;
-      delete obj.player2;
-      this.extend(game, obj);
-      return game;
-    },
-    buildRoundItem: function(roundItem, obj) {
-      var dummy, game, player, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
-      roundItem.dummies.clear();
-      _ref = obj.dummies;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        dummy = _ref[_i];
-        roundItem.dummies.pushObject(this.createPlayer(dummy));
-      }
-      _ref1 = obj.players;
-      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-        player = _ref1[_j];
-        roundItem.players.pushObject(this.createPlayer(player));
-      }
-      roundItem.games.clear();
-      _ref2 = obj.games;
-      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-        game = _ref2[_k];
-        roundItem.games.pushObject(this.buildGame(game));
-      }
-      delete obj.games;
-      delete obj.dummies;
-      delete obj.players;
-      return this.extend(roundItem, obj);
-    },
-    isTrue: function(obj) {
-      return obj && obj !== "false";
-    },
-    createPlayer: function(obj) {
-      var dummy, newPlayer, _i, _len, _ref;
-      _ref = this.dummies;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        dummy = _ref[_i];
-        if (dummy.id === obj.id) {
-          return dummy;
-        }
-      }
-      newPlayer = this.isTrue(obj.isDummy) ? App.Dummy.create(obj) : App.PlayerPool.getPlayerById(obj.id);
-      newPlayer.set("id", obj.id);
-      this.extend(newPlayer, {});
-      if (newPlayer.isDummy) {
-        this.dummies.pushObject(newPlayer);
-      }
-      return newPlayer;
-    }
-  };
-
-  /*
-    RoundRobin eine Klasse um in einer Liga Spieltage zu erzeugen.
-    Der Algorithmus der Berechnung folgt in etwa dem, der auf dieser Seite beschrieben wird: http://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php
-    
-    @author  M.Richter
-    @version  1.0.0
-    @date  12:21 10.07.2012
-  */
-
-
-  App.RoundRobin = {
-    generateGames: function(players) {
-      var game, games, result, _i, _len;
-      if (!players) {
-        throw new TypeError("Parameter must be greater than zero");
-      }
-      if (players.length % 2 !== 0) {
-        games = this.generate(players.length + 1);
-      } else {
-        games = this.generate(players.length);
-      }
-      result = [];
-      for (_i = 0, _len = games.length; _i < _len; _i++) {
-        game = games[_i];
-        if (players[game[0] - 1] && players[game[1] - 1]) {
-          result.push([players[game[0] - 1], players[game[1] - 1]]);
-        }
-      }
-      return result;
-    },
-    generate: function(teamCount) {
-      var a, h, i, k, n, spiele, temp, _i, _j, _ref, _ref1;
-      if ((teamCount % 2) !== 0) {
-        return false;
-      }
-      if (teamCount === 2) {
-        return [[1, 2]];
-      }
-      n = teamCount - 1;
-      spiele = [];
-      for (i = _i = 1, _ref = teamCount - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
-        h = teamCount;
-        a = i;
-        if ((i % 2) !== 0) {
-          temp = a;
-          a = h;
-          h = temp;
-        }
-        spiele.push([h, a]);
-        for (k = _j = 1, _ref1 = (teamCount / 2) - 1; 1 <= _ref1 ? _j <= _ref1 : _j >= _ref1; k = 1 <= _ref1 ? ++_j : --_j) {
-          if ((i - k) < 0) {
-            a = n + (i - k);
-          } else {
-            a = (i - k) % n;
-            a = a === 0 ? n : a;
-          }
-          h = (i + k) % n;
-          h = h === 0 ? n : h;
-          if ((k % 2) === 0) {
-            temp = a;
-            a = h;
-            h = temp;
-          }
-          spiele.push([h, a]);
-        }
-      }
-      return spiele;
-    }
-  };
-
-  App.BracketLineDrawer = {
-    ctx: null,
-    canvas: null,
-    lastChange: new Date().getTime(),
-    init: function() {
-      var _this = this;
-      this.canvas = document.getElementById("bracketLines");
-      $(this.canvas).hide();
-      this.ctx = this.canvas.getContext("2d");
-      window.addEventListener('resize', (function() {
-        return _this.update();
-      }), false);
-      $("#treeWrapper").bind("DOMSubtreeModified", function() {
-        return setTimeout((function() {
-          return _this.update();
-        }), 10);
-      });
-      this.update();
-      return $(this.canvas).fadeIn('slow');
-    },
-    update: function() {
-      var _this = this;
-      if (!this.ctx) {
-        return;
-      }
-      if (new Date().getTime() - this.lastChange < 500) {
-        return;
-      }
-      this.lastChange = new Date().getTime();
-      this.clear();
-      this.resize();
-      return App.Tournament.forEach(function(round) {
-        var gameCurrent, gamePrev, playersCurrent, prev, _i, _len, _ref, _results;
-        prev = round._previousRound;
-        if (!prev) {
-          return;
-        }
-        if (prev.isGroupRound || round.isGroupRound) {
-          return;
-        }
-        _ref = round.items;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          gameCurrent = _ref[_i];
-          playersCurrent = gameCurrent.get("players");
-          _results.push((function() {
-            var _j, _len1, _ref1, _results1;
-            _ref1 = prev.items;
-            _results1 = [];
-            for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-              gamePrev = _ref1[_j];
-              if (_.intersection(playersCurrent, gamePrev.get("qualifiers")).length > 0) {
-                _results1.push(this.draw(gameCurrent, gamePrev));
-              } else {
-                _results1.push(void 0);
-              }
-            }
-            return _results1;
-          }).call(_this));
-        }
-        return _results;
-      });
-    },
-    draw: function(from, to) {
-      var midY, posFrom, posTo;
-      posFrom = this.centerPos($("." + from.get('itemId')), true);
-      posTo = this.centerPos($("." + to.get('itemId')));
-      if (!posFrom || !posTo) {
-        return;
-      }
-      midY = posFrom.y + ((posTo.y - posFrom.y) / 2);
-      this.ctx.lineWidth = 2;
-      this.ctx.beginPath();
-      this.ctx.moveTo(posFrom.x, posFrom.y);
-      this.ctx.lineTo(posFrom.x, midY);
-      this.ctx.lineTo(posTo.x, midY);
-      this.ctx.lineTo(posTo.x, posTo.y);
-      this.ctx.strokeStyle = App.colors.content;
-      return this.ctx.stroke();
-    },
-    centerPos: function(element, top) {
-      var pos;
-      if (element.length === 0) {
-        return void 0;
-      }
-      return pos = {
-        x: element.offset().left + element.width() / 2,
-        y: element.offset().top + (!top ? element.height() : 0)
-      };
-    },
-    resize: function() {
-      this.canvas.width = this.width();
-      return this.canvas.height = this.height();
-    },
-    width: function() {
-      return $(window).width();
-    },
-    height: function() {
-      return $('body').height();
-    },
-    show: function() {
-      return $(this.canvas).fadeIn('slow');
-    },
-    hide: function() {
-      return $(this.canvas).fadeOut('medium');
-    },
-    clear: function() {
-      if (!this.ctx) {
-        return;
-      }
-      return this.ctx.clearRect(0, 0, this.width(), this.height());
-    }
-  };
-
-  App.Router.map(function() {
-    this.route('dashboard', {
-      path: '/'
-    });
-    this.route('info');
-    this.route('participants');
-    this.route('bracket');
-    this.route('settings');
-    return this.route('chat');
-  });
-
-  App.Router.reopen({
-    location: 'history',
-    init: function() {
-      this.set('rootURL', window.location.pathname.match('(/[^/]*)')[0]);
-      return this._super();
-    }
-  });
-
-  App.BracketRoute = Ember.Route.extend({
-    setupController: function(controller, videoChat) {
-      this._super(controller, videoChat);
-      return controller.set("title", "Video Chat");
-    },
-    renderTemplate: function() {
-      return this.render('bracket');
-    }
-  });
-
-  App.DynamicTextField = Ember.TextField.extend({
-    classNames: ['s', 'dynamicTextField'],
-    minWidth: 20,
-    editable: true,
-    onValueChanged: (function() {
-      return this.updateWidth();
-    }).observes("value"),
-    didInsertElement: function() {
-      this.updateWidth();
-      return this.onEditableChange();
-    },
-    onEditableChange: (function() {
-      return this.$().attr("disabled", !this.get("editable"));
-    }).observes("editable"),
-    updateWidth: function() {
-      var sensor, width;
-      sensor = $('<label>' + this.get("value") + '</label>').css({
-        margin: 0,
-        padding: 0,
-        display: "inline-block"
-      });
-      $("body").append(sensor);
-      width = sensor.width() + 6;
-      sensor.remove();
-      return this.$().width(Math.max(this.minWidth, width) + "px");
-    }
-  });
-
-  App.DynamicTypeAheadTextField = App.DynamicTextField.extend({
-    name: null,
-    didInsertElement: function() {
-      this._super();
-      return this.$().addClass(this.name);
-    },
-    focusIn: function() {
-      var input, values;
-      this._super();
-      values = (function() {
-        var _i, _len, _ref, _results;
-        _ref = $("." + this.name);
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          input = _ref[_i];
-          _results.push(input.value);
-        }
-        return _results;
-      }).call(this);
-      return this.$().typeahead({
-        source: _.uniq(values)
-      });
-    }
-  });
-
-  App.NumberSpinner = Ember.TextField.extend({
-    classNames: ['input-mini spinner-input'],
-    editable: true,
-    didInsertElement: function() {
-      this.wrapper = $("<div id=\"MySpinner\" class=\"spinner\"></div>");
-      this.$().wrap(this.wrapper);
-      this.$().after("  <div class=\"spinner-buttons btn-group btn-group-vertical\">\n<button type=\"button\" class=\"btn spinner-up\">\n<i class=\"icon-chevron-up\"></i>\n</button>\n<button type=\"button\" class=\"btn spinner-down\">\n<i class=\"icon-chevron-down\"></i>\n</button>\n</div>");
-      this.wrapper.spinner();
-      return this.onEditableChange();
-    },
-    onValueChanged: (function() {
-      this.set('value', parseInt(this.onlyNumber(this.get('value'))));
-      return console.debug(this.get("value"));
-    }).observes("value"),
-    onEditableChange: (function() {
-      if (this.get("editable")) {
-        return this.get("wrapper").spinner("enable");
-      } else {
-        return this.get("wrapper").spinner("disable");
-      }
-    }).observes("editable"),
-    onlyNumber: function(input) {
-      if (input) {
-        return input.replace(/[^\d]/g, "");
-      }
-    }
-  });
-
-  App.Serializer = {
-    emberObjToJsonData: function(obj) {
-      var emberObj, jsonObj, key, value;
-      if (!(obj instanceof Ember.Object)) {
-        throw TypeError("argument is not an Ember Object");
-      }
-      jsonObj = {};
-      emberObj = Ember.ArrayController.create({
-        content: []
-      });
-      for (key in obj) {
-        value = obj[key];
-        if (Ember.typeOf(value) === 'function') {
-          continue;
-        }
-        if (emberObj[key] !== void 0) {
-          continue;
-        }
-        if (value === 'toString') {
-          continue;
-        }
-        if (value === void 0) {
-          continue;
-        }
-        if (/^_/.test(key)) {
-          continue;
-        }
-        if (value instanceof Em.ArrayController) {
-          jsonObj[key] = this.emberObjArrToJsonDataArr(value.content);
-        } else if (typeof value === 'object' && value instanceof Array) {
-          jsonObj[key] = this.emberObjArrToJsonDataArr(value);
-        } else {
-          jsonObj[key] = value;
-        }
-      }
-      return jsonObj;
-    },
-    toJsonData: function() {
-      return this.emberObjToJsonData(this);
-    },
-    emberObjArrToJsonDataArr: function(objArray) {
-      var obj, _i, _len, _results;
-      _results = [];
-      for (_i = 0, _len = objArray.length; _i < _len; _i++) {
-        obj = objArray[_i];
-        _results.push(this.emberObjToJsonData(obj));
-      }
-      return _results;
-    },
-    controllerToJson: function(controller) {
-      return this.emberObjArrToJsonDataArr(controller.content);
-    },
-    toJsonDataArray: function(arrayProperty) {
-      return this.emberObjArrToJsonDataArr(this.get(arrayProperty));
-    },
-    dataArrayToEmberObjArray: function(EmberClass, dataArray) {
-      var obj, _i, _len, _results;
-      _results = [];
-      for (_i = 0, _len = dataArray.length; _i < _len; _i++) {
-        obj = dataArray[_i];
-        _results.push(EmberClass.create(obj));
-      }
-      return _results;
-    }
-  };
-
-  App.ApplicationRoute = Ember.Route.extend({
-    setupController: function(controller) {
-      return controller.set("initialTab", "login");
-    }
-  });
-
-  App.ApplicationController = Ember.Controller.extend({
-    init: function() {
-      return this._super();
-    },
-    logout: function() {
-      return Chat.logout();
-    }
-  });
-
-  App.ApplicationView = Em.View.extend({
-    classNames: ['chat'],
-    defaultTemplate: Ember.Handlebars.compile("{{outlet}}"),
-    didInsertElement: function() {
-      this._super();
-      return console.debug("Application view");
-    },
-    isExpanded: true,
-    actions: {
-      toggleExpansion: function() {
-        return this.expand(!this.get("isExpanded"));
-      }
-    },
-    expand: function(expand) {
-      var links;
-      links = this.$('.nav-0 li');
-      if (expand) {
-        $('body').removeClass('contracted');
-        links.tooltip('destroy');
-      } else {
-        $('body').addClass('contracted');
-        links.each(function(i, link) {
-          return $(link).tooltip({
-            placement: 'right',
-            title: $(link).text(),
-            animation: false
-          });
-        });
-      }
-      return this.set("isExpanded", expand);
-    }
-  });
-
-  App.InfoRoute = Ember.Route.extend({
-    model: function() {
-      return App.Tournament.info;
-    }
-  });
-
-  App.templates.info = "<style type=\"text/css\">\ndl {\n  font-size: 16px;\n}\n</style>\n<div class=\"container container-normal\">\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"info/edit\", \"edit\" %>\n  <% end %>\n  <h1>{{App.i18n.info.header}}</h1>\n  <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.startDate}}</dt>\n    <dd itemprop=\"startDate\" content=\"<%= @printDateDbFormat @tournament.info.startDate %>\">\n      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime, true %>\n    </dd>\n    {{#if App.Tournament.info.stopDate}}\n      <dt>{{App.i18n.info.stopDate}}</dt>\n      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>\n    {{/if}}\n    <dt>{{App.i18n.info.venue}}</dt>\n    <span itemprop=\"location\" itemscope itemtype=\"http://schema.org/Place\">\n    <dd itemprop=\"name\">{{App.Tournament.info.venue}}</dd>\n    </span>\n  </dl>\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.host}}</dt>\n    <dd>{{App.Tournament.info.host}}</dd>\n    <dt>E-Mail</dt>\n    <dd>{{App.Tournament.info.hostMail}}\n  </dl>\n  <div itemprop=\"description\" id=\"description\">{{App.Tournament.info.descriptionCompiled}}</div>\n</div>";
-
-  App.InfoView = Em.View.extend({
-    template: Ember.Handlebars.compile(App.templates.info),
-    didInsertElement: function() {
-      return this._super();
-    }
-  });
-
-  App.SettingsRoute = Ember.Route.extend({
-    setupController: function(controller) {
-      return controller.set("initialTab", "login");
-    }
-  });
-
-  App.SettingsController = Ember.Controller.extend({
-    initialTab: "",
-    actions: {
-      login: function() {
-        var previousTransition;
-        previousTransition = this.get('previousTransition');
-        if (previousTransition) {
-          this.set('previousTransition', null);
-          if (typeof previousTransition === 'string') {
-            return this.transitionTo(previousTransition);
-          } else {
-            return previousTransition.retry();
-          }
-        } else {
-          return this.transitionToRoute('index');
-        }
-      }
-    }
-  });
-
-  App.templates.settings = "<div class=\"container dashboard\">\n  <div class=\"row\">\n  <div class=\"col-md-6\">\n  <div class=\"dashboardBox\">\n    <fieldset>\n      <legend>{{App.i18n.settings.colorSelection}}</legend>\n        <%= @formWithActionFor @tournament.colors, \"/tournament.id/settings/colors\", (form) => %>\n          <div class=\"form-group\">\n            <label class=\"control-label col-sm-2\">{{App.i18n.settings.theme}}</label>\n            <div class=\"col-sm-10\">\n              <span class=\"btn btn-link\" id=\"selectTheme\"><i class=\"fa fa-picture-o\"></i><%= @i18n.settings.selectTheme %></span>\n            </div>\n          </div>\n          <%= form.colorSelect @i18n.settings.background, \"background\", {placeholder: @i18n.color} %>\n          <br />\n          <%= form.colorSelect @i18n.settings.content, \"content\", {placeholder: @i18n.color} %>\n          <%= form.colorSelect @i18n.settings.contentText, \"contentText\", {placeholder: @i18n.color} %>\n          <br />\n          <%= form.colorSelect @i18n.settings.footer, \"footer\", {placeholder: @i18n.color} %>\n          <%= form.colorSelect @i18n.settings.footerText, \"footerText\", {placeholder: @i18n.color} %>\n          <%= form.button @i18n.settings.applyColor %>\n        <% end %>\n    </fieldset>\n  </div>\n  </div>\n\n  <div class=\"col-md-6\">\n  <div class=\"dashboardBox\">\n    <fieldset>\n      <legend>{{App.i18n.settings.publicName}}</legend>\n        <%= @infoHint => %>\n          <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>\n          <br /> <br />\n          {{App.i18n.settings.publicNameRestriction}}\n          <ul>\n            <li>{{App.i18n.settings.publicNameRestriction1}}</li>\n            <li>{{App.i18n.settings.publicNameRestriction2}}</li>\n            <li>{{App.i18n.settings.publicNameRestriction3}}</li>\n          </ul>\n        <% end %>\n        <br />\n\n        <%= @formFor @tournament, (form) => %>\n          <%= form.textField 'Name', \"publicName\", {class: \"publicName\", placeholder: @i18n.settings.publicName} %>\n          <%= form.button @i18n.save %>\n        <% end %>\n    </fieldset>\n    <!--\n    <fieldset>\n      <legend><%= @i18n.settings.messages %></legend>\n\nNachrichten aktivieren/deaktivieren\n\n  -->\n</div>";
-
-  App.SettingsView = Em.View.extend({
-    template: Ember.Handlebars.compile(App.templates.settings),
-    didInsertElement: function() {
-      return this._super();
-    }
-  });
-
-  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.Tournament.info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.Tournament.info.venue}}\n    </dl>\n      <dl class=\"dl-horizontal\">\n      {{#if App.Tournament.info.host}}\n        <dt><i class=\"fa fa-user\"></i></dt>\n        <dd>{{App.Tournament.info.host}}</dd>\n      {{/if}}\n      <dt>E-Mail</dt>\n      <dd>{{App.Tournament.info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.PlayerPool.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{App.PlayerPool.length}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n<section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n  <fieldset>\n    <legend>{{App.i18n.tree.navName}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
-
-  App.DashboardView = Em.View.extend({
-    template: Ember.Handlebars.compile(App.templates.dashboard),
-    didInsertElement: function() {
-      return this._super();
-    }
-  });
-
-  App.DashboardRoute = Ember.Route.extend({
-    setupController: function(controller) {
-      return controller.set("initialTab", "login");
-    }
-  });
-
-  App.DashboardController = Ember.Controller.extend({
-    initialTab: "",
-    actions: {
-      login: function() {
-        var previousTransition;
-        previousTransition = this.get('previousTransition');
-        if (previousTransition) {
-          this.set('previousTransition', null);
-          if (typeof previousTransition === 'string') {
-            return this.transitionTo(previousTransition);
-          } else {
-            return previousTransition.retry();
-          }
-        } else {
-          return this.transitionToRoute('index');
-        }
-      }
-    }
-  });
-
-  App.ParticipantsRoute = Ember.Route.extend({
-    setupController: function(controller) {
-      return controller.set("initialTab", "login");
-    }
-  });
-
-  App.ParticipantsController = Ember.Controller.extend({
-    initialTab: "",
-    actions: {
-      login: function() {
-        var previousTransition;
-        previousTransition = this.get('previousTransition');
-        if (previousTransition) {
-          this.set('previousTransition', null);
-          if (typeof previousTransition === 'string') {
-            return this.transitionTo(previousTransition);
-          } else {
-            return previousTransition.retry();
-          }
-        } else {
-          return this.transitionToRoute('index');
-        }
-      }
-    }
-  });
-
-  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.PlayerPool.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if App.editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.PlayerPool\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.PlayerPool.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if App.editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.PlayerPool.attributes}}\n        {{#view MembersTable.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if App.editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\" editableBinding=\"MembersTable.editable\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if App.editable}}\n              {{view view.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless App.editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if App.editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.PlayerPool\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.PlayerPool.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
-
-  App.ParticipantsView = Em.View.extend({
-    data: function() {
-      var data;
-      return data = {
-        members: Serializer.emberObjArrToJsonDataArr(App.PlayerPool.players),
-        membersAttributes: Serializer.emberObjArrToJsonDataArr(App.PlayerPool.attributes)
-      };
-    },
-    addMember: function() {
-      return App.PlayerPool.createPlayer();
-    },
-    addAttribute: function() {
-      return App.PlayerPool.createAttribute({
-        name: $("#inputname").val(),
-        type: $("#inputtyp").val(),
-        isPrivate: $("#inputprivate").val()
-      });
-    },
-    showAttributePopup: function() {
-      var _this = this;
-      return Popup.show({
-        title: this.i18n.addAttribute,
-        actions: [
-          {
-            closePopup: true,
-            label: this.i18n.addAttribute,
-            action: function() {
-              return _this.addAttribute();
-            }
-          }
-        ],
-        bodyUrl: "/tournament/members/attribute_popup",
-        afterRendering: function($popup) {
-          return $popup.find("form").submit(function(event) {
-            return event.preventDefault();
-          });
-        }
-      });
-    },
-    addNoItemsRow: (function() {}).observes('App.PlayerPool.sortedPlayers'),
-    openPlayerView: function(player) {
-      return App.PlayerDetailView.create({
-        player: player
-      });
-    },
-    template: Ember.Handlebars.compile(App.templates.participants),
-    didInsertElement: function() {
-      return this.$("[rel='tooltip']").tooltip();
-    },
-    MemberValueView: Ember.View.extend({
-      tagName: 'td',
-      member: null,
-      attribute: null,
-      memberValue: (function(key, value) {
-        if (arguments.length === 1) {
-          return this.get("member")[this.get("attribute").id];
-        }
-        return this.get("member").set(this.get("attribute").id, value);
-      }).property("member", "attribute.name")
-    })
   });
 
 }).call(this);

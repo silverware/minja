@@ -1,4 +1,4 @@
-App.PlayerPool = Em.Object.extend
+App.Tournament.Participants = Em.Object.extend
   players: []
   attributes: []
 
@@ -22,7 +22,7 @@ App.PlayerPool = Em.Object.extend
   # takes a player thats not present in the bracket
   # otherwise creates a new player
   getNewPlayer: (data) ->
-   unusedPlayers = _.difference @players, App.Tournament.getPlayers()
+   unusedPlayers = _.difference @players, App.Tournament.Bracket.getPlayers()
    if unusedPlayers.length > 0
      return unusedPlayers[0]
    data._isTemporary = true
@@ -66,4 +66,4 @@ App.PlayerPool = Em.Object.extend
     @players.clear()
     @attributes.clear()
 
-App.PlayerPool = App.PlayerPool.create()
+App.Tournament.Participants = App.Tournament.Participants.create()

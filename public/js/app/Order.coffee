@@ -4,6 +4,18 @@ bracketRoot = "public/js/app/bracket/"
 appRoot = "public/js/app/"
 
 appFiles = [
+  'models/bracket/bracket.coffee'
+  'models/bracket/round.coffee'
+  'models/bracket/koRound.coffee'
+  'models/bracket/groupRound.coffee'
+  'models/bracket/roundItem.coffee'
+  'models/bracket/group.coffee'
+  'models/bracket/roundGame.coffee'
+  'models/bracket/game.coffee'
+  'models/bracket/gameAttribute.coffee'
+  'models/bracket/player.coffee'
+  'models/bracket/playerAttribute.coffee'
+  'models/participants.coffee'
   'routes.coffee'
   'bracket/BracketRoute.coffee'
   'utils/DynamicTextField.coffee'
@@ -24,22 +36,15 @@ appFiles = [
   'participants/ParticipantsRoute.coffee'
   'participants/ParticipantsController.coffee'
   'participants/ParticipantsView.coffee'
+  'utils/Utils.coffee'
+  'utils/Observer.coffee'
+  'utils/PersistanceManager.coffee'
+  'utils/RoundRobin.coffee'
+  'utils/BracketLineDrawer.coffee'
 ]
 
 bracketFiles  = [
-  'model/tournament.coffee'
-  'model/round.coffee'
-  'model/koRound.coffee'
-  'model/groupRound.coffee'
-  'model/roundItem.coffee'
-  'model/group.coffee'
-  'model/roundGame.coffee'
-  'model/game.coffee'
-  'model/gameAttribute.coffee'
-  'model/player.coffee'
-  'model/playerAttribute.coffee'
-  'model/playerPool.coffee'
-  'view/TournamentView.coffee'
+  'view/BracketView.coffee'
   'view/RoundItemView.coffee'
   'view/RoundSettingView.coffee'
   'view/RoundView.coffee'
@@ -61,11 +66,6 @@ bracketFiles  = [
   'view/TournamentSettings.coffee'
   'components/IconButtonComponent.coffee'
   'components/PlayerLinkComponent.coffee'
-  'utils/Utils.coffee'
-  'utils/Observer.coffee'
-  'utils/PersistanceManager.coffee'
-  'utils/RoundRobin.coffee'
-  'utils/BracketLineDrawer.coffee'
 ]
 
 wrapperTop = """
@@ -80,6 +80,6 @@ wrapperBottom = """
 """
 
 module.exports =
-  files: [appRoot + 'App.coffee'].concat (bracketFiles.map((n) -> bracketRoot + n)).concat(appFiles.map((name) -> appRoot + name))
+  files: [appRoot + 'App.coffee'].concat (appFiles.map((name) -> appRoot + name)).concat(bracketFiles.map((n) -> bracketRoot + n))
   wrapperTop: wrapperTop
   wrapperBottom: wrapperBottom

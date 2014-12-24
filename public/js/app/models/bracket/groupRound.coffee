@@ -32,7 +32,7 @@ App.GroupRound = App.Round.extend
       if @getFreeMembers()?[0]?
         players.pushObject @getFreeMembers()[0]
       else
-        players.pushObject App.PlayerPool.getNewPlayer
+        players.pushObject App.Tournament.Participants.getNewPlayer
           name: "#{App.i18n.player} " + (i + 1)
       group.set 'players', players
 

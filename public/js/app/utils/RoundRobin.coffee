@@ -52,11 +52,11 @@ App.RoundRobin =
             a = (i-k) % n
             a = if (a == 0) then n else a # 0 -> n-1
 
-          h = (i+k) % n;
+          h = (i+k) % n
           h = if (h == 0) then n else h    # 0 -> n-1
 
           # heimspiel? auswärtsspiel?
-          if ((k % 2) == 0) 
+          if ((k % 2) == 0)
              temp = a
              a    = h
              h    = temp

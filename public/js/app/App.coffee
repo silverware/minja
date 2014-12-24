@@ -2,6 +2,13 @@ window.App = Em.Application.create
   LOG_TRANSITIONS: true,
   rootElement: '#appRoot'
   LOG_TRANSITIONS_INTERNAL: true
+
+  Tournament: Ember.Object.create
+    Info: null
+    Settings: null
+    Bracket: null
+    Participants: null
+
   openDetailViews: []
   i18n: {}
   templates: {}
@@ -9,6 +16,7 @@ window.App = Em.Application.create
     App.PersistanceManager.persist()
   transitionTo: (route) ->
     App.Router.router.transitionTo route
+
 
 App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   App.editable = editable or false
@@ -19,21 +27,21 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
 
   # initially fill with sport values
   if App.sport
-    App.Tournament.set "winPoints", App.sport.pointsPerWin
-    App.Tournament.set "drawPoints", App.sport.pointsPerDraw
-    App.Tournament.set "qualifierModus", App.sport.qualifierModus
+    App.Tournament.Bracket.set "winPoints", App.sport.pointsPerWin
+    App.Tournament.Bracket.set "drawPoints", App.sport.pointsPerDraw
+    App.Tournament.Bracket.set "qualifierModus", App.sport.qualifierModus
 
 
   # Initialize Players
   if tournament?.members
-    App.PlayerPool.initPlayers tournament.members
+    App.Tournament.Participants.initPlayers tournament.members
 
   # Build Bracket
   if tournament?.tree
-    App.PersistanceManager.build tournament.tree
+    App.PersistanceManager.buildBracket tournament.tree
 
-  App.Tournament.set "info", tournament.info
-  App.Tournament.set "settings", tournament.settings
+  App.Tournament.set "Info", tournament.info
+  App.Tournament.set "Settings", tournament.settings
 
 
 $.fn.createTree = ->

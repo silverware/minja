@@ -37,7 +37,7 @@ App.Group = App.RoundItem.extend
     if freeMembers?.length > 0
       @get("players").pushObject freeMembers[0]
     else
-      @get("players").pushObject App.PlayerPool.getNewPlayer
+      @get("players").pushObject App.Tournament.Participants.getNewPlayer
         name: "Player"
     @onPlayerSizeChange()
 
@@ -67,7 +67,7 @@ App.Group = App.RoundItem.extend
       sorted[index - 1].qualified = index <= @get("qualifierCount")
 
     sorted
-  ).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.winPoints", "App.Tournament.drawPoints")
+  ).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.Bracket.winPoints", "App.Tournament.Bracket.drawPoints")
 
   generateGames: (->
     @games.clear()

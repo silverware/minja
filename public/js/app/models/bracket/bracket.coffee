@@ -1,4 +1,4 @@
-App.Tournament = Em.ArrayController.extend
+App.Tournament.Bracket = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
   qualifierModus: "aggregate"
@@ -48,7 +48,7 @@ App.Tournament = Em.ArrayController.extend
     else
       App.Popup.showInfo
         title: ""
-        bodyContent: App.i18n.lastRoundNotValid
+        bodyContent: App.i18n.bracket.lastRoundNotValid
       return false
 
   lastRound: ->
@@ -79,4 +79,4 @@ App.qualifierModi =
   AGGREGATE: Em.Object.create {id: "aggregate", label: "Aggregated"}
 
 
-App.Tournament = App.Tournament.create()
+App.Tournament.Bracket = App.Tournament.Bracket.create()

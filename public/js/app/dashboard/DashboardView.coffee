@@ -9,18 +9,16 @@ App.templates.dashboard = """
     <dl class="dl-horizontal" style="margin-top: 0px">
       <dt><i class="fa fa-calendar"></i></dt>
       <dd>
-        {{App.Tournament.info.startDate}}
+        {{App.Tournament.Info.startDate}}
       </dd>
       <dt><i class="fa fa-map-marker"></i></dt>
-      <dd>{{App.Tournament.info.venue}}
+      <dd>{{App.Tournament.Info.venue}}
     </dl>
-      <dl class="dl-horizontal">
-      {{#if App.Tournament.info.host}}
-        <dt><i class="fa fa-user"></i></dt>
-        <dd>{{App.Tournament.info.host}}</dd>
-      {{/if}}
+    <dl class="dl-horizontal">
+      <dt><i class="fa fa-user"></i></dt>
+      <dd>{{App.Tournament.Info.host}}</dd>
       <dt>E-Mail</dt>
-      <dd>{{App.Tournament.info.hostMail}}
+      <dd>{{App.Tournament.Info.hostMail}}
     </dl>
     </fieldset>
   </section>
@@ -45,11 +43,11 @@ App.templates.dashboard = """
 <section class="dashboardBox dashboardLightning">
   <fieldset>
     <legend>{{App.i18n.members.navName}}</legend>
-    {{#each member in App.PlayerPool.players}}
+    {{#each member in App.Tournament.Participants.players}}
       <span class="label" style="display: inline-block">{{member.name}}</span>
       {{/each}}
     <div class="bottomRight">
-      <em>{{App.PlayerPool.length}} {{App.i18n.members.navName}}</em>
+      <em>{{participantCount}} {{App.i18n.members.navName}}</em>
     </div>
     </span>
   </fieldset>
@@ -57,12 +55,12 @@ App.templates.dashboard = """
   {{/link-to}}
 
   {{#link-to 'bracket'}}
-<section class="dashboardBox dashboardLightning" id="treeDashboardBox">
-  <fieldset>
-    <legend>{{App.i18n.tree.navName}}</legend>
-    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
-  </fieldset>
-</section>
+    <section class="dashboardBox dashboardLightning" id="treeDashboardBox">
+      <fieldset>
+        <legend>{{App.i18n.tree.navName}}</legend>
+        <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
+      </fieldset>
+    </section>
   {{/link-to}}
 
 </div>

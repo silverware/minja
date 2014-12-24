@@ -17,7 +17,7 @@ App.Player = Em.Object.extend
 
   # used in Members Table
   isPartaking: (->
-    _.contains App.Tournament.getPlayers(), @
+    _.contains App.Tournament.Bracket.getPlayers(), @
   ).property()
 
   # real, if its no dummy player or placeholder

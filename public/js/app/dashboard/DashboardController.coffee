@@ -1,5 +1,6 @@
 App.DashboardController = Ember.Controller.extend
   initialTab: ""
+
   actions:
     login: ->
       #Log the user in, then reattempt previous transition if it exists.
@@ -13,3 +14,7 @@ App.DashboardController = Ember.Controller.extend
       else
         #Default back to homepage
         @transitionToRoute 'index'
+
+  participantCount: (->
+    App.Tournament.Participants.players.length
+  ).property('App.Tournament.Participants.players')

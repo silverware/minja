@@ -9,17 +9,17 @@ App.templates.participants = """
   <thead>
     <th width="25px"></th>
     <th>Name</th>
-    {{#each attribute in App.PlayerPool.attributes}}
+    {{#each attribute in App.Tournament.Participants.attributes}}
       <th>
         {{attribute.name}}
         {{#if App.editable}}
-          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.PlayerPool"}}></i>
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.Tournament.Participants"}}></i>
         {{/if}}
       </th>
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in App.PlayerPool.sortedPlayers}}
+  {{#each member in App.Tournament.Participants.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
@@ -33,7 +33,7 @@ App.templates.participants = """
           {{member.name}}
         {{/if}}
       </td>
-      {{#each attribute in App.PlayerPool.attributes}}
+      {{#each attribute in App.Tournament.Participants.attributes}}
         {{#view MembersTable.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if App.editable}}
@@ -64,7 +64,7 @@ App.templates.participants = """
         {{/unless}}
         {{#if App.editable}}
           {{#unless member.isPartaking}}
-            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.PlayerPool"}} type="button">
+            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.Tournament.Participants"}} type="button">
               <i class="fa fa-times"></i>
             </button>
           {{/unless}}
@@ -74,7 +74,7 @@ App.templates.participants = """
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{App.PlayerPool.players.length}} {{App.i18n.members.navName}}</em></div>
+<div style="text-align: right"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>
 </div>
 """
 
@@ -82,14 +82,14 @@ App.ParticipantsView = Em.View.extend
 
   data: ->
     data =
-      members: Serializer.emberObjArrToJsonDataArr App.PlayerPool.players
-      membersAttributes: Serializer.emberObjArrToJsonDataArr App.PlayerPool.attributes
+      members: Serializer.emberObjArrToJsonDataArr App.Tournament.Participants.players
+      membersAttributes: Serializer.emberObjArrToJsonDataArr App.Tournament.Participants.attributes
 
   addMember: ->
-    App.PlayerPool.createPlayer()
+    App.Tournament.Participants.createPlayer()
 
   addAttribute: ->
-    App.PlayerPool.createAttribute
+    App.Tournament.Participants.createAttribute
       name: $("#inputname").val()
       type: $("#inputtyp").val()
       isPrivate: $("#inputprivate").val()
@@ -107,7 +107,7 @@ App.ParticipantsView = Em.View.extend
     # if App.PlayerPool.get('sortedPlayers').length == 0
     #   @$('table').after('<p>asdlfkj</p>')
   
-  ).observes('App.PlayerPool.sortedPlayers')
+  ).observes('App.Tournament.Participants.sortedPlayers')
 
   openPlayerView: (player) ->
     App.PlayerDetailView.create
