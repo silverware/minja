@@ -1044,13 +1044,13 @@
     },
     filterOutTemporaryPlayers: function() {
       var playersInBracket;
-      playersInBracket = App.tournament.getPlayers();
+      playersInBracket = App.tournament.bracket.getPlayers();
       return this.get('players').filter(function(player) {
         return !player._isTemporary || playersInBracket.contains(player);
       });
     },
     remove: function(player) {
-      if (App.tournament.getPlayers().contains(player)) {
+      if (App.tournament.bracket.getPlayers().contains(player)) {
         return;
       }
       if (player.isInitialPlayer) {
@@ -1072,7 +1072,9 @@
       path: '/'
     });
     this.route('info');
-    this.resource('participants', function() {
+    this.resource('participants', {
+      path: '/participants'
+    }, function() {
       return this.route('edit');
     });
     this.route('bracket');
@@ -1299,7 +1301,7 @@
     }
   });
 
-  App.templates.info = "<style type=\"text/css\">\ndl {\n  font-size: 16px;\n}\n</style>\n<div class=\"container container-normal\">\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"info/edit\", \"edit\" %>\n  <% end %>\n  <h1>{{App.i18n.info.header}}</h1>\n  <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.startDate}}</dt>\n    <dd itemprop=\"startDate\" content=\"<%= @printDateDbFormat @tournament.info.startDate %>\">\n      <%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.startDate), @tournament.info.startTime, true %>\n    </dd>\n    {{#if App.Tournament.info.stopDate}}\n      <dt>{{App.i18n.info.stopDate}}</dt>\n      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>\n    {{/if}}\n    <dt>{{App.i18n.info.venue}}</dt>\n    <span itemprop=\"location\" itemscope itemtype=\"http://schema.org/Place\">\n    <dd itemprop=\"name\">{{App.Tournament.info.venue}}</dd>\n    </span>\n  </dl>\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.host}}</dt>\n    <dd>{{App.Tournament.info.host}}</dd>\n    <dt>E-Mail</dt>\n    <dd>{{App.Tournament.info.hostMail}}\n  </dl>\n  <div itemprop=\"description\" id=\"description\">{{App.Tournament.info.descriptionCompiled}}</div>\n</div>";
+  App.templates.info = "<style type=\"text/css\">\ndl {\n  font-size: 16px;\n}\n</style>\n<div class=\"container container-normal\">\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"info/edit\", \"edit\" %>\n  <% end %>\n  <h1>{{App.i18n.info.header}}</h1>\n  <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.startDate}}</dt>\n    <dd itemprop=\"startDate\" content=\"<%= @printDateDbFormat @tournament.info.startDate %>\">\n      {{App.tournament.info.startDate}}\n    </dd>\n    {{#if App.tournament.info.stopDate}}\n      <dt>{{App.i18n.info.stopDate}}</dt>\n      <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>\n    {{/if}}\n    <dt>{{App.i18n.info.venue}}</dt>\n    <span itemprop=\"location\" itemscope itemtype=\"http://schema.org/Place\">\n    <dd itemprop=\"name\">{{App.tournament.info.venue}}</dd>\n    </span>\n  </dl>\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.info.host}}</dt>\n    <dd>{{App.tournament.info.host}}</dd>\n    <dt>E-Mail</dt>\n    <dd>{{App.tournament.info.hostMail}}\n  </dl>\n  <div itemprop=\"description\" id=\"description\">{{App.tournament.info.descriptionCompiled}}</div>\n</div>";
 
   App.InfoView = Em.View.extend({
     template: Ember.Handlebars.compile(App.templates.info),
@@ -1343,13 +1345,17 @@
     }
   });
 
-  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.Tournament.Info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.Tournament.Info.venue}}\n    </dl>\n    <dl class=\"dl-horizontal\">\n      <dt><i class=\"fa fa-user\"></i></dt>\n      <dd>{{App.Tournament.Info.host}}</dd>\n      <dt>E-Mail</dt>\n      <dd>{{App.Tournament.Info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.tournament.participants.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{participantCount}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n    <section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n      <fieldset>\n        <legend>{{App.i18n.tree.navName}}</legend>\n        <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n      </fieldset>\n    </section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
+  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.tournament.info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.tournament.info.venue}}\n    </dl>\n    <dl class=\"dl-horizontal\">\n      <dt><i class=\"fa fa-user\"></i></dt>\n      <dd>{{App.tournament.info.host}}</dd>\n      <dt>E-Mail</dt>\n      <dd>{{App.tournament.info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.tournament.participants.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{participantCount}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n    <section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n      <fieldset>\n        <legend>{{App.i18n.bracket.navName}}</legend>\n        {{view App.BracketStatisticsView}}\n      </fieldset>\n    </section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
 
   App.DashboardView = Em.View.extend({
     template: Ember.Handlebars.compile(App.templates.dashboard),
     didInsertElement: function() {
       return this._super();
     }
+  });
+
+  App.BracketStatisticsView = Ember.View.extend({
+    template: Ember.Handlebars.compile("{{#each round in App.tournament.bracket}}\n  <div>\n    <b>{{round.name}}</b>\n    <div style=\"display: inline-block; float: right; font-size: 12px\">\n      {{round.completion}}/{{round.gamesCount}} {{App.i18n.bracket.games}}\n      <span class=\"seperator\">|</span>\n      <span title=\"{{unbound App.i18n.bracket.gamesPerMatch}}\"># {{round.matchesPerGame}}</span>\n      <span class=\"seperator\">|</span>\n      <span title=\"{{unbound App.i18n.bracket.qualifiers}}\">\n        <i class=\"fa fa-level-up\"></i>&nbsp;{{round.qualifiers.length}}\n      </span>\n    </div>\n    <div class=\"progress\">\n        <div class=\"progress-bar progress-bar-success\" style=\"width: {{unbound round.completionRatio}}%\"></div>\n      </div>\n  </div>\n    {{#unless round.isLastRound}}\n      <div style=\"text-align: center\" >\n        <i class=\"icon-double-angle-down\"title=\"KO-Phase\"></i>\n      </div>\n    {{/unless}}\n{{/each}}\n<br /><br />")
   });
 
   App.DashboardRoute = Ember.Route.extend({
@@ -1383,45 +1389,39 @@
 
   App.ParticipantsRoute = Ember.Route.extend({
     setupController: function(controller) {
-      return controller.set("initialTab", "login");
+      return controller.set("editable", false);
+    }
+  });
+
+  App.ParticipantsEditRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      return controller.set("editable", true);
     }
   });
 
   App.ParticipantsController = Ember.Controller.extend({
-    initialTab: "",
     actions: {
-      login: function() {
-        var previousTransition;
-        previousTransition = this.get('previousTransition');
-        if (previousTransition) {
-          this.set('previousTransition', null);
-          if (typeof previousTransition === 'string') {
-            return this.transitionTo(previousTransition);
-          } else {
-            return previousTransition.retry();
-          }
-        } else {
-          return this.transitionToRoute('index');
-        }
+      save: function() {
+        return console.debug("save");
       }
     }
   });
 
-  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  {{edit-link}}\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.tournament.participants.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if App.editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.Tournament.Participants\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.tournament.participants.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if App.editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.Tournament.Participants.attributes}}\n        {{#view MembersTable.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if App.editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\" editableBinding=\"MembersTable.editable\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if App.editable}}\n              {{view view.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless App.editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if App.editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.Tournament.Participants\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
+  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  {{edit-link}}\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.tournament.participants.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.tournament.participants\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.tournament.participants.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.tournament.participants.attributes}}\n        {{#view view.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if editable}}\n              {{view App.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.Tournament.Participants\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.tournament.participants.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
 
   App.ParticipantsView = Em.View.extend({
     data: function() {
       var data;
       return data = {
-        members: Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.players),
-        membersAttributes: Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.attributes)
+        members: App.Serializer.emberObjArrToJsonDataArr(App.tournament.participants.players),
+        membersAttributes: App.Serializer.emberObjArrToJsonDataArr(App.tournament.participants.attributes)
       };
     },
     addMember: function() {
-      return App.Tournament.Participants.createPlayer();
+      return App.tournament.participants.createPlayer();
     },
     addAttribute: function() {
-      return App.Tournament.Participants.createAttribute({
+      return App.tournament.participants.createAttribute({
         name: $("#inputname").val(),
         type: $("#inputtyp").val(),
         isPrivate: $("#inputprivate").val()
@@ -1429,7 +1429,7 @@
     },
     showAttributePopup: function() {
       var _this = this;
-      return Popup.show({
+      return App.Popup.show({
         title: this.i18n.addAttribute,
         actions: [
           {
@@ -1448,7 +1448,7 @@
         }
       });
     },
-    addNoItemsRow: (function() {}).observes('App.Tournament.Participants.sortedPlayers'),
+    addNoItemsRow: (function() {}).observes('App.tournament.participants.sortedPlayers'),
     openPlayerView: function(player) {
       return App.PlayerDetailView.create({
         player: player
@@ -2574,7 +2574,7 @@
     }).property("gameFilter", "gamesPlayedFilter", "roundItem.games.@each")
   });
 
-  App.templates.playerDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n      <span class=\"round-item-name\">{{view.player.name}}</span>\n  </div>\n</div>\n\n\n<div class=\"container\">\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.statistic}}</legend>\n  <div class=\"col-md-6\">\n    <div id=\"win-chart\" class=\"center\"></div>\n  </div>\n  <div class=\"col-md-6\">\n      <div>\n        <b>{{App.i18n.games}}</b>\n        <div style=\"display: inline-block; float: right; font-size: 12px\">\n          {{view.statistics.games}}/{{view.statistics.totalGames}}\n        </div>\n      <div class=\"progress\">\n          <div class=\"progress-bar progress-bar-success\" style=\"width: {{unbound view.statistics.gamesCompletion}}%\"></div>\n        </div>\n        </div>\n        <br /> <br />\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.goals}}</dt>\n    <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>\n    <dt>{{App.i18n.goalsAgainst}}</dt>\n    <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>\n    </dl>\n  </div>\n</fieldset>\n</div>\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.games}}</legend>\n\n  <table class=\"table tableSchedule\">\n    <thead>\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th class=\"left\">{{App.i18n.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th class=\"left\">{{App.i18n.guest}}</th>\n        {{#each attribute in App.tournament.bracket.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.result}}</th>\n      </tr>\n    </thead>\n    {{#each round in view.rounds}}\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{round.round.name}}</td></tr>\n      {{#each game in round.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            {{game.player1.name}}\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"icon-exchange\" title=\"{{unbound App.i18n.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            {{game.player2.name}}\n          </td>\n          {{#each attribute in App.tournament.bracket.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td style=\"text-align: center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n    {{/each}}\n  </table>\n  </div></div>";
+  App.templates.playerDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n      <span class=\"round-item-name\">{{view.player.name}}</span>\n  </div>\n</div>\n\n\n<div class=\"container\">\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.bracket.statistic}}</legend>\n  <div class=\"col-md-6\">\n    <div id=\"win-chart\" class=\"center\"></div>\n  </div>\n  <div class=\"col-md-6\">\n      <div>\n        <b>{{App.i18n.bracket.games}}</b>\n        <div style=\"display: inline-block; float: right; font-size: 12px\">\n          {{view.statistics.games}}/{{view.statistics.totalGames}}\n        </div>\n      <div class=\"progress\">\n          <div class=\"progress-bar progress-bar-success\" style=\"width: {{unbound view.statistics.gamesCompletion}}%\"></div>\n        </div>\n        </div>\n        <br /> <br />\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.bracket.goals}}</dt>\n    <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>\n    <dt>{{App.i18n.bracket.goalsAgainst}}</dt>\n    <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>\n    </dl>\n  </div>\n</fieldset>\n</div>\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.bracket.games}}</legend>\n\n  <table class=\"table tableSchedule\">\n    <thead>\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th class=\"left\">{{App.i18n.bracket.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th class=\"left\">{{App.i18n.bracket.guest}}</th>\n        {{#each attribute in App.tournament.bracket.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.bracket.result}}</th>\n      </tr>\n    </thead>\n    {{#each round in view.rounds}}\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{round.round.name}}</td></tr>\n      {{#each game in round.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            {{game.player1.name}}\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"icon-exchange\" title=\"{{unbound App.i18n.bracket.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            {{game.player2.name}}\n          </td>\n          {{#each attribute in App.tournament.bracket.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td style=\"text-align: center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n    {{/each}}\n  </table>\n  </div></div>";
 
   App.PlayerDetailView = App.DetailView.extend({
     template: Ember.Handlebars.compile(App.templates.playerDetail),
@@ -2603,13 +2603,13 @@
       svg = d3.select("#win-chart").append("svg").attr("width", width).attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
       data = [
         {
-          label: App.i18n.wins,
+          label: App.i18n.bracket.wins,
           value: this.statistics.get('wins')
         }, {
-          label: App.i18n.draws,
+          label: App.i18n.bracket.draws,
           value: this.statistics.get('draws')
         }, {
-          label: App.i18n.defeats,
+          label: App.i18n.bracket.defeats,
           value: this.statistics.get('defeats')
         }
       ];
@@ -2620,7 +2620,7 @@
       if (data.length === 0) {
         noGames = true;
         data.push({
-          label: App.i18n.games,
+          label: App.i18n.bracket.games,
           value: 1
         });
       }
@@ -2649,7 +2649,7 @@
         draws: 0,
         defeats: 0
       };
-      statistics = App.Tournament.get('games').reduce(function(statistics, game) {
+      statistics = App.tournament.bracket.get('games').reduce(function(statistics, game) {
         if (!game.get('players').contains(_this.player)) {
           return statistics;
         }

@@ -24,11 +24,6 @@ class TournamentEditController extends ControllerBase
         res.redirect "/"
     next()
 
-  "/:tid/participants/edit": (req, res) =>
-    if not req.tournament.members?
-      res.addInfo req.i18n.infoAlert.members
-    res.render "#{@viewPrefix}/members/edit"
-
   "POST:/:tid/participants/edit": (req, res) =>
     console.log req.body
     if _.isEmpty req.body
@@ -39,27 +34,12 @@ class TournamentEditController extends ControllerBase
     tournamentDao.merge req.tournament.id, members: req.body, ->
       res.send "ok"
 
-  "/:tid/info/edit": (req, res) =>
-    if not req.tournament.info.description?
-      res.addInfo req.i18n.infoAlert.info
-    tournament = res.locals.tournament
-    tournament.info.startDate = moment().format("DD.MM.YYYY") if not tournament.info.startDate
-    res.render "#{@viewPrefix}/info/edit"
-
   "POST:/:tid/info/edit": (req, res) =>
     tournamentDao.merge req.tournament.id, info: req.body, ->
       res.send "ok"
 
   "/:tid/tree/edit": (req, res) =>
     res.redirect "/#{req.params.tid}/bracket/edit"
-
-  "/:tid/bracket/edit": (req, res) =>
-    if not req.tournament.tree?
-      res.addInfo req.i18n.infoAlert.tree
-    res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
-    res.render "#{@viewPrefix}/tree",
-      editable: true
-      colors: colorService.getColors req.tournament
 
   "POST:/:tid/bracket/edit": (req, res) =>
     {tree, members} = req.body

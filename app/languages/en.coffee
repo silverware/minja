@@ -1,6 +1,7 @@
 moment = require 'moment'
 
 module.exports =
+  lang: 'en'
 
   show: "View"
   edit: "Edit"
@@ -158,7 +159,7 @@ module.exports =
 
 
 ################################ TREE ########################################################
-  tree:
+  bracket:
     navName: "Bracket"
     groupStage: "Group Stage"
     koRound: "Knockout Phase"

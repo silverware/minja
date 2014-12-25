@@ -9,16 +9,16 @@ App.templates.dashboard = """
     <dl class="dl-horizontal" style="margin-top: 0px">
       <dt><i class="fa fa-calendar"></i></dt>
       <dd>
-        {{App.Tournament.Info.startDate}}
+        {{App.tournament.info.startDate}}
       </dd>
       <dt><i class="fa fa-map-marker"></i></dt>
-      <dd>{{App.Tournament.Info.venue}}
+      <dd>{{App.tournament.info.venue}}
     </dl>
     <dl class="dl-horizontal">
       <dt><i class="fa fa-user"></i></dt>
-      <dd>{{App.Tournament.Info.host}}</dd>
+      <dd>{{App.tournament.info.host}}</dd>
       <dt>E-Mail</dt>
-      <dd>{{App.Tournament.Info.hostMail}}
+      <dd>{{App.tournament.info.hostMail}}
     </dl>
     </fieldset>
   </section>
@@ -57,8 +57,8 @@ App.templates.dashboard = """
   {{#link-to 'bracket'}}
     <section class="dashboardBox dashboardLightning" id="treeDashboardBox">
       <fieldset>
-        <legend>{{App.i18n.tree.navName}}</legend>
-        <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
+        <legend>{{App.i18n.bracket.navName}}</legend>
+        {{view App.BracketStatisticsView}}
       </fieldset>
     </section>
   {{/link-to}}

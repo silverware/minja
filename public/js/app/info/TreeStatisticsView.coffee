@@ -16,11 +16,11 @@ define [
             <div>
               <b>{{round.name}}</b>
               <div style="display: inline-block; float: right; font-size: 12px">
-                {{round.completion}}/{{round.gamesCount}} {{App.i18n.games}}
+                {{round.completion}}/{{round.gamesCount}} {{App.i18n.bracket.games}}
                 <span class="seperator">|</span>
-                <span title="{{unbound App.i18n.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
+                <span title="{{unbound App.i18n.bracket.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
                 <span class="seperator">|</span>
-                <span title="{{unbound App.i18n.qualifiers}}">
+                <span title="{{unbound App.i18n.bracket.qualifiers}}">
                   <i class="fa fa-level-up"></i>&nbsp;{{round.qualifiers.length}}
                 </span>
               </div>

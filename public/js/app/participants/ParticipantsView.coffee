@@ -13,8 +13,8 @@ App.templates.participants = """
     {{#each attribute in App.tournament.participants.attributes}}
       <th>
         {{attribute.name}}
-        {{#if App.editable}}
-          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.Tournament.Participants"}}></i>
+        {{#if editable}}
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.tournament.participants"}}></i>
         {{/if}}
       </th>
     {{/each}}
@@ -28,17 +28,17 @@ App.templates.participants = """
         {{/if}}
       </td>
       <td style="height: 39px;">
-        {{#if App.editable}}
+        {{#if editable}}
           {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
       </td>
-      {{#each attribute in App.Tournament.Participants.attributes}}
-        {{#view MembersTable.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
+      {{#each attribute in App.tournament.participants.attributes}}
+        {{#view view.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
-            {{#if App.editable}}
-              {{view Ember.Checkbox checkedBinding="view.memberValue" editableBinding="MembersTable.editable"}}
+            {{#if editable}}
+              {{view Ember.Checkbox checkedBinding="view.memberValue"}}
             {{else}}
               {{#if view.memberValue}}
                 <i class="fa fa-check" />
@@ -46,8 +46,8 @@ App.templates.participants = """
             {{/if}}
           {{/if}}
           {{#if attribute.isTextfield}}
-            {{#if App.editable}}
-              {{view view.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
+            {{#if editable}}
+              {{view App.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
             {{/if}}
@@ -56,14 +56,14 @@ App.templates.participants = """
       {{/each}}
 
       <td width="50px">
-        {{#unless App.editable}}
+        {{#unless editable}}
           {{#if member.isPartaking}}
             <button class="btn btn-inverse" rel="tooltip" title="Info" {{action "openPlayerView" member target="view"}} type="button">
               <i class="fa fa-info"></i>
             </button>
           {{/if}}
         {{/unless}}
-        {{#if App.editable}}
+        {{#if editable}}
           {{#unless member.isPartaking}}
             <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.Tournament.Participants"}} type="button">
               <i class="fa fa-times"></i>
@@ -75,7 +75,7 @@ App.templates.participants = """
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>
+<div style="text-align: right"><em>{{App.tournament.participants.players.length}} {{App.i18n.members.navName}}</em></div>
 </div>
 """
 
@@ -83,20 +83,20 @@ App.ParticipantsView = Em.View.extend
 
   data: ->
     data =
-      members: Serializer.emberObjArrToJsonDataArr App.Tournament.Participants.players
-      membersAttributes: Serializer.emberObjArrToJsonDataArr App.Tournament.Participants.attributes
+      members: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.players
+      membersAttributes: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.attributes
 
   addMember: ->
-    App.Tournament.Participants.createPlayer()
+    App.tournament.participants.createPlayer()
 
   addAttribute: ->
-    App.Tournament.Participants.createAttribute
+    App.tournament.participants.createAttribute
       name: $("#inputname").val()
       type: $("#inputtyp").val()
       isPrivate: $("#inputprivate").val()
 
   showAttributePopup: ->
-    Popup.show
+    App.Popup.show
       title: @i18n.addAttribute
       actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
       bodyUrl: "/tournament/members/attribute_popup"
@@ -108,7 +108,7 @@ App.ParticipantsView = Em.View.extend
     # if App.PlayerPool.get('sortedPlayers').length == 0
     #   @$('table').after('<p>asdlfkj</p>')
   
-  ).observes('App.Tournament.Participants.sortedPlayers')
+  ).observes('App.tournament.participants.sortedPlayers')
 
   openPlayerView: (player) ->
     App.PlayerDetailView.create

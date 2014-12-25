@@ -48,12 +48,12 @@ App.Participants = Em.Object.extend
     attribute
 
   filterOutTemporaryPlayers: ->
-    playersInBracket = App.tournament.getPlayers()
+    playersInBracket = App.tournament.bracket.getPlayers()
     @get('players').filter (player) ->
       return not player._isTemporary or playersInBracket.contains player
 
   remove: (player) ->
-    if App.tournament.getPlayers().contains player
+    if App.tournament.bracket.getPlayers().contains player
       return
     if player.isInitialPlayer
       return

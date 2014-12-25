@@ -18,3 +18,4 @@ App.DashboardController = Ember.Controller.extend
   participantCount: (->
     App.tournament.participants.players.length
   ).property('App.tournament.participants.players')
+

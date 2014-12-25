@@ -1,12 +1,14 @@
 requirejs.config
   baseUrl: "/js"
-  deps: ['threejs', 'bootstrap', 'underscore', 'd3', 'moment']
+  deps: ['threejs', 'bootstrap', 'underscore', 'd3', 'moment', 'marked']
   waitSeconds: 200
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'
     datepicker: '../lib/bootstrap-modules/datetimepicker/js/bootstrap-datetimepicker.min'
     moment: '../lib/moment.min'
+    marked: '../lib/marked.min'
+    handlebars: '../lib/handlebars-2.0.0.min'
     bootstrap: '../lib/bootstrap/js/bootstrap.min'
     underscore: '../lib/underscore'
     threejs: '../lib/three'

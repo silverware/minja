@@ -44,7 +44,7 @@ class TournamentController extends ControllerBase
     if tournament.isOwner or tournament.members
       nav.push route: "participants", icon: "group", label: req.i18n.members.navName
     if tournament.isOwner or tournament.tree
-      nav.push route: "bracket", icon: "sitemap fa-rotate-180", label: req.i18n.tree.navName
+      nav.push route: "bracket", icon: "sitemap fa-rotate-180", label: req.i18n.bracket.navName
     # if config.isDevelopment
     #   if tournament.isOwner or tournament.gallery
     #     nav.push route: "/#{id}/gallery", icon: "picture", label: req.i18n.gallery.navName
@@ -85,35 +85,39 @@ class TournamentController extends ControllerBase
       res.redirect "#{result.id}/info"
   ]
 
-  "/:tid": (req, res) =>
+  renderTournament: (req, res) ->
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/index",
       editable: req.tournament.isOwner
+      isOwner: req.tournament.isOwner
       colors: colorService.getColors req.tournament
 
+  "/:tid": (req, res) =>
+    @renderTournament req, res
+
   "/:tid/info": (req, res) =>
-    if req.tournament.isOwner and not req.tournament.info.description?
-      @redirectToEdit req, res
-    res.render "#{@viewPrefix}/info"
+    @renderTournament req, res
+
+  "/:tid/info/edit": (req, res) =>
+    @renderTournament req, res
 
   "/:tid/participants": (req, res) =>
-    if req.tournament.isOwner and not req.tournament.members?
-      @redirectToEdit req, res
-    res.render "#{@viewPrefix}/members"
+    @renderTournament req, res
+
+  "/:tid/participants/edit": (req, res) =>
+    @renderTournament req, res
 
   "/:tid/tree": (req, res) =>
     res.redirect "/#{req.params.tid}/bracket"
 
   "/:tid/bracket": (req, res) =>
-    if req.tournament.isOwner and not req.tournament.tree?
-      @redirectToEdit req, res
-    res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
-    res.render "#{@viewPrefix}/tree",
-      editable: false
-      colors: colorService.getColors req.tournament
+    @renderTournament req, res
+
+  "/:tid/bracket/edit": (req, res) =>
+    @renderTournament req, res
 
   "/:tid/dashboard": (req, res) =>
-    res.render "#{@viewPrefix}/dashboard"
+    @renderTournament req, res
 
   "/:tid/gallery": (req, res) =>
     if req.tournament.isOwner and not req.tournament.gallery?
@@ -122,8 +126,7 @@ class TournamentController extends ControllerBase
       editable: false
 
   "/:tid/chat": (req, res) =>
-    res.render "#{@viewPrefix}/chat",
-      editable: false
+    res.render "#{@viewPrefix}/dashboard"
 
   "/:tid/image/:imageId": (req, res) =>
     url = config.DB_URL + "/tournaments/#{req.params.tid}/image/#{req.params.imageId}"

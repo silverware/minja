@@ -32,6 +32,7 @@ appFiles = [
   'settings/SettingsController.coffee'
   'settings/SettingsView.coffee'
   'dashboard/DashboardView.coffee'
+  'dashboard/BracketStatisticsView.coffee'
   'dashboard/DashboardRoute.coffee'
   'dashboard/DashboardController.coffee'
   'participants/ParticipantsRoute.coffee'

@@ -9,13 +9,13 @@ App.templates.playerDetail = """
   <div class="container">
   <div class="row">
   <fieldset>
-    <legend>{{App.i18n.statistic}}</legend>
+    <legend>{{App.i18n.bracket.statistic}}</legend>
     <div class="col-md-6">
       <div id="win-chart" class="center"></div>
     </div>
     <div class="col-md-6">
         <div>
-          <b>{{App.i18n.games}}</b>
+          <b>{{App.i18n.bracket.games}}</b>
           <div style="display: inline-block; float: right; font-size: 12px">
             {{view.statistics.games}}/{{view.statistics.totalGames}}
           </div>
@@ -25,9 +25,9 @@ App.templates.playerDetail = """
           </div>
           <br /> <br />
       <dl class="dl-horizontal">
-      <dt>{{App.i18n.goals}}</dt>
+      <dt>{{App.i18n.bracket.goals}}</dt>
       <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>
-      <dt>{{App.i18n.goalsAgainst}}</dt>
+      <dt>{{App.i18n.bracket.goalsAgainst}}</dt>
       <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>
       </dl>
     </div>
@@ -35,22 +35,22 @@ App.templates.playerDetail = """
   </div>
   <div class="row">
   <fieldset>
-    <legend>{{App.i18n.games}}</legend>
+    <legend>{{App.i18n.bracket.games}}</legend>
 
     <table class="table tableSchedule">
       <thead>
         <tr>
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>
-          <th class="left">{{App.i18n.home}}</th>
+          <th class="left">{{App.i18n.bracket.home}}</th>
           {{#if App.editable}}
             <th></th>
           {{/if}}
-          <th class="left">{{App.i18n.guest}}</th>
+          <th class="left">{{App.i18n.bracket.guest}}</th>
           {{#each attribute in App.tournament.bracket.gameAttributes}}
             <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
-          <th>{{App.i18n.result}}</th>
+          <th>{{App.i18n.bracket.result}}</th>
         </tr>
       </thead>
       {{#each round in view.rounds}}
@@ -63,7 +63,7 @@ App.templates.playerDetail = """
               {{game.player1.name}}
             </td>
             {{#if App.editable}}
-              <td><i class="icon-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
+              <td><i class="icon-exchange" title="{{unbound App.i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
@@ -129,9 +129,9 @@ App.PlayerDetailView = App.DetailView.extend
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
     data = [
-      {label: App.i18n.wins, value: @statistics.get('wins')}
-      {label: App.i18n.draws, value: @statistics.get('draws')}
-      {label: App.i18n.defeats, value: @statistics.get('defeats')}
+      {label: App.i18n.bracket.wins, value: @statistics.get('wins')}
+      {label: App.i18n.bracket.draws, value: @statistics.get('draws')}
+      {label: App.i18n.bracket.defeats, value: @statistics.get('defeats')}
     ]
 
     data = data.filter (value) -> value.value > 0
@@ -139,7 +139,7 @@ App.PlayerDetailView = App.DetailView.extend
     if data.length is 0
       noGames = true
       data.push
-        label: App.i18n.games, value: 1
+        label: App.i18n.bracket.games, value: 1
 
     g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc")
 
@@ -162,7 +162,7 @@ App.PlayerDetailView = App.DetailView.extend
       wins: 0
       draws: 0
       defeats: 0
-    statistics = App.Tournament.get('games').reduce((statistics, game) =>
+    statistics = App.tournament.bracket.get('games').reduce((statistics, game) =>
       if not game.get('players').contains @player then return statistics
       if game.get('isCompleted')
         statistics.games++
