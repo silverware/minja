@@ -89,7 +89,7 @@ App.templates.gamesDetail = """
             <th></th>
           {{/if}}
           <th style="text-align: left">{{App.i18n.guest}}</th>
-          {{#each attribute in App.Tournament.gameAttributes}}
+          {{#each attribute in App.tournament.bracket.gameAttributes}}
             <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
           <th>{{App.i18n.result}}</th>
@@ -111,7 +111,7 @@ App.templates.gamesDetail = """
             <td {{bind-attr class="game.player2Wins:winner"}}>
               <a href="#" {{action "openPlayerView" game.player2 target="view"}}>{{game.player2.name}}</a>
             </td>
-            {{#each attribute in App.Tournament.gameAttributes}}
+            {{#each attribute in App.tournament.bracket.gameAttributes}}
               {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td class="center">

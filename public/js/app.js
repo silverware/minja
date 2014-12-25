@@ -5,12 +5,7 @@
     LOG_TRANSITIONS: true,
     rootElement: '#appRoot',
     LOG_TRANSITIONS_INTERNAL: true,
-    Tournament: Ember.Object.create({
-      Info: null,
-      Settings: null,
-      Bracket: null,
-      Participants: null
-    }),
+    tournament: null,
     openDetailViews: [],
     i18n: {},
     templates: {},
@@ -25,24 +20,27 @@
   App.init = function(_arg) {
     var colors, editable, i18n, isOwner, sport, tournament;
     isOwner = _arg.isOwner, editable = _arg.editable, i18n = _arg.i18n, sport = _arg.sport, colors = _arg.colors, tournament = _arg.tournament;
+    App.set('tournament', App.Tournament.create());
+    App.set('tournament.bracket', App.Bracket.create());
+    App.set('tournament.participants', App.Participants.create());
     App.editable = editable || false;
-    App.isOwner = isOwner || false;
+    App.tournament.isOwner = isOwner || false;
     App.i18n = i18n;
     App.sport = sport;
     App.colors = colors;
     if (App.sport) {
-      App.Tournament.Bracket.set("winPoints", App.sport.pointsPerWin);
-      App.Tournament.Bracket.set("drawPoints", App.sport.pointsPerDraw);
-      App.Tournament.Bracket.set("qualifierModus", App.sport.qualifierModus);
+      App.tournament.bracket.set("winPoints", App.sport.pointsPerWin);
+      App.tournament.bracket.set("drawPoints", App.sport.pointsPerDraw);
+      App.tournament.bracket.set("qualifierModus", App.sport.qualifierModus);
     }
     if (tournament != null ? tournament.members : void 0) {
-      App.Tournament.Participants.initPlayers(tournament.members);
+      App.tournament.participants.initPlayers(tournament.members);
     }
     if (tournament != null ? tournament.tree : void 0) {
       App.PersistanceManager.buildBracket(tournament.tree);
     }
-    App.Tournament.set("Info", tournament.info);
-    return App.Tournament.set("Settings", tournament.settings);
+    App.tournament.set("info", tournament.info);
+    return App.tournament.set("settings", tournament.settings);
   };
 
   $.fn.createTree = function() {
@@ -56,13 +54,21 @@
     return App.Observer.snapshot();
   };
 
-  App.Tournament.Bracket = Em.ArrayController.extend({
+  App.Tournament = Em.Object.extend({
+    isOwner: false,
+    identifier: '',
+    info: null,
+    settings: null,
+    bracket: null,
+    participants: null
+  });
+
+  App.Bracket = Em.ArrayController.extend({
     winPoints: 3,
     drawPoints: 1,
     qualifierModus: "aggregate",
     timePerGame: 20,
     gamesParallel: 1,
-    info: {},
     settings: {},
     gameAttributes: [],
     content: [],
@@ -168,8 +174,6 @@
     })
   };
 
-  App.Tournament.Bracket = App.Tournament.Bracket.create();
-
   App.Round = Em.Object.extend({
     name: "",
     items: [],
@@ -259,8 +263,8 @@
       return !_this.get("_previousRound");
     },
     isLastRound: (function() {
-      return App.Tournament.Bracket.lastRound() === this;
-    }).property("App.Tournament.Bracket.@each"),
+      return App.tournament.bracket.lastRound() === this;
+    }).property("App.tournament.bracket.@each"),
     validate: function() {
       return (this.getFreeMembers() === null || this.getFreeMembers().length === 0) && this.get("qualifiers").length > 1;
     },
@@ -374,7 +378,7 @@
         if (((_ref = this.getFreeMembers()) != null ? _ref[0] : void 0) != null) {
           _results.push(game.players.pushObject(this.getFreeMembers()[0]));
         } else {
-          _results.push(game.players.pushObject(App.Tournament.Participants.getNewPlayer({
+          _results.push(game.players.pushObject(App.tournament.participants.getNewPlayer({
             name: ("" + App.i18n.player + " ") + (i + 1)
           })));
         }
@@ -416,7 +420,7 @@
         if (((_ref = this.getFreeMembers()) != null ? _ref[0] : void 0) != null) {
           players.pushObject(this.getFreeMembers()[0]);
         } else {
-          players.pushObject(App.Tournament.Participants.getNewPlayer({
+          players.pushObject(App.tournament.participants.getNewPlayer({
             name: ("" + App.i18n.player + " ") + (i + 1)
           }));
         }
@@ -442,7 +446,7 @@
       return this._round.removeItem(this);
     },
     replace: function(from, to) {
-      return App.Tournament.Bracket.replacePlayer(from, to, this.get("_round"));
+      return App.tournament.bracket.replacePlayer(from, to, this.get("_round"));
     },
     matchDays: (function() {
       var gamesPerMatchDay, matchDays, playerCount, roundItemName;
@@ -481,7 +485,7 @@
     itemId: (function() {
       var itemIndex, roundIndex;
       itemIndex = this.get('_round.items').indexOf(this);
-      roundIndex = App.Tournament.Bracket.indexOf(this.get('_round'));
+      roundIndex = App.tournament.bracket.indexOf(this.get('_round'));
       return roundIndex + '-' + itemIndex;
     }).property('_round.items.@each')
   });
@@ -532,7 +536,7 @@
       if ((freeMembers != null ? freeMembers.length : void 0) > 0) {
         this.get("players").pushObject(freeMembers[0]);
       } else {
-        this.get("players").pushObject(App.Tournament.Participants.getNewPlayer({
+        this.get("players").pushObject(App.tournament.participants.getNewPlayer({
           name: "Player"
         }));
       }
@@ -566,7 +570,7 @@
         sorted[index - 1].qualified = index <= this.get("qualifierCount");
       }
       return sorted;
-    }).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.Tournament.Bracket.winPoints", "App.Tournament.Bracket.drawPoints"),
+    }).property("players.@each", "qualifierCount", "games.@each.result1", "games.@each.result2", "App.tournament.bracket.winPoints", "App.tournament.bracket.drawPoints"),
     generateGames: (function() {
       var game, games, i, p1, p2, _i, _ref, _results;
       this.games.clear();
@@ -694,7 +698,7 @@
         this.replace(this.get("player2"), winner);
         return [winner];
       }
-    }).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.Tournament.Bracket.qualifierModus"),
+    }).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.tournament.bracket.qualifierModus"),
     init: function() {
       this._super();
       return this.dummies.pushObject(App.Dummy.create());
@@ -702,7 +706,7 @@
     getWinner: function() {
       var goalsPlayer1, goalsPlayer2, wins1, wins2,
         _this = this;
-      if (App.Tournament.Bracket.get('qualifierModus') === App.qualifierModi.AGGREGATE.id) {
+      if (App.tournament.bracket.get('qualifierModus') === App.qualifierModi.AGGREGATE.id) {
         goalsPlayer1 = 0;
         goalsPlayer2 = 0;
         this.games.forEach(function(game) {
@@ -714,7 +718,7 @@
         } else {
           return this.get("player1");
         }
-      } else if (App.Tournament.Bracket.get('qualifierModus') === App.qualifierModi.BEST_OF.id) {
+      } else if (App.tournament.bracket.get('qualifierModus') === App.qualifierModi.BEST_OF.id) {
         wins1 = 0;
         wins2 = 0;
         this.games.forEach(function(game) {
@@ -825,8 +829,8 @@
     }).property('isCompleted', 'player2'),
     getPoints: function(playerNumber) {
       var drawPoints, player, winPoints, winner;
-      winPoints = parseInt(App.Tournament.Bracket.get("winPoints"));
-      drawPoints = parseInt(App.Tournament.Bracket.get("drawPoints"));
+      winPoints = parseInt(App.tournament.bracket.get("winPoints"));
+      drawPoints = parseInt(App.tournament.bracket.get("drawPoints"));
       if (!this.get("isCompleted")) {
         return 0;
       }
@@ -850,7 +854,7 @@
       tempResult = this.get('result1');
       this.set('result1', this.get('result2'));
       this.set('result2', tempResult);
-      _ref = App.Tournament.Bracket.gameAttributes;
+      _ref = App.tournament.bracket.gameAttributes;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         gameAttribute = _ref[_i];
         if (!(gameAttribute.type === 'result')) {
@@ -901,7 +905,7 @@
         title: App.i18n.deleteGameAttribute,
         bodyContent: App.i18n.reallyDeleteGameAttribute,
         onConfirm: function() {
-          return App.Tournament.Bracket.gameAttributes.removeObject(_this);
+          return App.tournament.bracket.gameAttributes.removeObject(_this);
         }
       });
     }
@@ -930,7 +934,7 @@
       return this.get("isPlayer") && App.editable;
     }).property("isPlayer"),
     isPartaking: (function() {
-      return _.contains(App.Tournament.Bracket.getPlayers(), this);
+      return _.contains(App.tournament.bracket.getPlayers(), this);
     }).property(),
     isRealPlayer: (function() {
       return this.get('isPlayer') && !this.get('isPrivate');
@@ -969,7 +973,7 @@
     }).property("type")
   });
 
-  App.Tournament.Participants = Em.Object.extend({
+  App.Participants = Em.Object.extend({
     players: [],
     attributes: [],
     init: function() {
@@ -1000,7 +1004,7 @@
     }).property("players.@each.name", "players.@each.isPartaking"),
     getNewPlayer: function(data) {
       var unusedPlayers;
-      unusedPlayers = _.difference(this.players, App.Tournament.Bracket.getPlayers());
+      unusedPlayers = _.difference(this.players, App.tournament.bracket.getPlayers());
       if (unusedPlayers.length > 0) {
         return unusedPlayers[0];
       }
@@ -1040,13 +1044,13 @@
     },
     filterOutTemporaryPlayers: function() {
       var playersInBracket;
-      playersInBracket = App.Tournament.getPlayers();
+      playersInBracket = App.tournament.getPlayers();
       return this.get('players').filter(function(player) {
         return !player._isTemporary || playersInBracket.contains(player);
       });
     },
     remove: function(player) {
-      if (App.Tournament.getPlayers().contains(player)) {
+      if (App.tournament.getPlayers().contains(player)) {
         return;
       }
       if (player.isInitialPlayer) {
@@ -1063,14 +1067,14 @@
     }
   });
 
-  App.Tournament.Participants = App.Tournament.Participants.create();
-
   App.Router.map(function() {
     this.route('dashboard', {
       path: '/'
     });
     this.route('info');
-    this.route('participants');
+    this.resource('participants', function() {
+      return this.route('edit');
+    });
     this.route('bracket');
     this.route('settings');
     return this.route('chat');
@@ -1339,7 +1343,7 @@
     }
   });
 
-  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.Tournament.Info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.Tournament.Info.venue}}\n    </dl>\n    <dl class=\"dl-horizontal\">\n      <dt><i class=\"fa fa-user\"></i></dt>\n      <dd>{{App.Tournament.Info.host}}</dd>\n      <dt>E-Mail</dt>\n      <dd>{{App.Tournament.Info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.Tournament.Participants.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{participantCount}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n    <section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n      <fieldset>\n        <legend>{{App.i18n.tree.navName}}</legend>\n        <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n      </fieldset>\n    </section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
+  App.templates.dashboard = "<div class=\"container dashboard\">\n<div class=\"row\">\n<div class=\"col-md-6\">\n  {{#link-to 'info'}}\n  <section class=\"dashboardBox dashboardLightning\">\n    <fieldset>\n    <legend>{{App.i18n.info.basicData}}</legend>\n    <dl class=\"dl-horizontal\" style=\"margin-top: 0px\">\n      <dt><i class=\"fa fa-calendar\"></i></dt>\n      <dd>\n        {{App.Tournament.Info.startDate}}\n      </dd>\n      <dt><i class=\"fa fa-map-marker\"></i></dt>\n      <dd>{{App.Tournament.Info.venue}}\n    </dl>\n    <dl class=\"dl-horizontal\">\n      <dt><i class=\"fa fa-user\"></i></dt>\n      <dd>{{App.Tournament.Info.host}}</dd>\n      <dt>E-Mail</dt>\n      <dd>{{App.Tournament.Info.hostMail}}\n    </dl>\n    </fieldset>\n  </section>\n  {{/link-to}}\n\n\n  {{#link-to 'chat'}}\n<section id=\"messageDashboardBox\" class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n  <legend>{{App.i18n.chat.messageStream}}</legend>\n    <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n    <div id=\"chat\"></div>\n  </fieldset>\n</section>\n  {{/link-to}}\n</div>\n\n\n<div class=\"col-md-6\">\n\n  {{#link-to 'participants'}}\n<section class=\"dashboardBox dashboardLightning\">\n  <fieldset>\n    <legend>{{App.i18n.members.navName}}</legend>\n    {{#each member in App.tournament.participants.players}}\n      <span class=\"label\" style=\"display: inline-block\">{{member.name}}</span>\n      {{/each}}\n    <div class=\"bottomRight\">\n      <em>{{participantCount}} {{App.i18n.members.navName}}</em>\n    </div>\n    </span>\n  </fieldset>\n</section>\n  {{/link-to}}\n\n  {{#link-to 'bracket'}}\n    <section class=\"dashboardBox dashboardLightning\" id=\"treeDashboardBox\">\n      <fieldset>\n        <legend>{{App.i18n.tree.navName}}</legend>\n        <center class=\"spinner-wrapper\"><i class=\"fa fa-spinner fa-spin\"></i></center>\n      </fieldset>\n    </section>\n  {{/link-to}}\n\n</div>\n</div>\n</div>";
 
   App.DashboardView = Em.View.extend({
     template: Ember.Handlebars.compile(App.templates.dashboard),
@@ -1373,8 +1377,8 @@
       }
     },
     participantCount: (function() {
-      return App.Tournament.Participants.players.length;
-    }).property('App.Tournament.Participants.players')
+      return App.tournament.participants.players.length;
+    }).property('App.tournament.participants.players')
   });
 
   App.ParticipantsRoute = Ember.Route.extend({
@@ -1403,7 +1407,7 @@
     }
   });
 
-  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.Tournament.Participants.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if App.editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.Tournament.Participants\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.Tournament.Participants.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if App.editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.Tournament.Participants.attributes}}\n        {{#view MembersTable.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if App.editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\" editableBinding=\"MembersTable.editable\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if App.editable}}\n              {{view view.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless App.editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if App.editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.Tournament.Participants\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
+  App.templates.participants = "<div class=\"container container-normal\" id=\"players-container\">\n  <h1>{{App.i18n.members.navName}}\n  <% if @tournament.isOwner: %>\n    <%= @headerAction @i18n.edit, \"participants/edit\", \"edit\" %>\n  <% end %>\n  {{edit-link}}\n  </h1>\n<table class=\"table table-striped\">\n  <thead>\n    <th width=\"25px\"></th>\n    <th>Name</th>\n    {{#each attribute in App.tournament.participants.attributes}}\n      <th>\n        {{attribute.name}}\n        {{#if App.editable}}\n          &nbsp;&nbsp;<i class=\"fa fa-times-circle\" rel=\"tooltip\" {{action \"removeAttribute\" attribute target=\"App.Tournament.Participants\"}}></i>\n        {{/if}}\n      </th>\n    {{/each}}\n    <th></th>\n  </thead>\n  {{#each member in App.tournament.participants.sortedPlayers}}\n    <tr>\n      <td style=\"height: 39px;\">\n        {{#if member.isPartaking}}\n          <i title=\"{{unbound App.i18n.playerDoPartipate}}\" class=\"fa fa-fw fa-sitemap fa-rotate-180\"></i>\n        {{/if}}\n      </td>\n      <td style=\"height: 39px;\">\n        {{#if App.editable}}\n          {{view Em.TextField valueBinding=\"member.name\" classNames=\"form-control required l\" placeholder=\"Name\"}}\n        {{else}}\n          {{member.name}}\n        {{/if}}\n      </td>\n      {{#each attribute in App.Tournament.Participants.attributes}}\n        {{#view MembersTable.MemberValueView memberBinding=\"member.attributes\" attributeBinding=\"attribute\"}}\n          {{#if attribute.isCheckbox}}\n            {{#if App.editable}}\n              {{view Ember.Checkbox checkedBinding=\"view.memberValue\" editableBinding=\"MembersTable.editable\"}}\n            {{else}}\n              {{#if view.memberValue}}\n                <i class=\"fa fa-check\" />\n              {{/if}}\n            {{/if}}\n          {{/if}}\n          {{#if attribute.isTextfield}}\n            {{#if App.editable}}\n              {{view view.TypeaheadTextField classNames=\"m form-control\" nameBinding=\"attribute.id\" valueBinding=\"view.memberValue\"}}\n            {{else}}\n              {{view.memberValue}}\n            {{/if}}\n          {{/if}}\n        {{/view}}\n      {{/each}}\n\n      <td width=\"50px\">\n        {{#unless App.editable}}\n          {{#if member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Info\" {{action \"openPlayerView\" member target=\"view\"}} type=\"button\">\n              <i class=\"fa fa-info\"></i>\n            </button>\n          {{/if}}\n        {{/unless}}\n        {{#if App.editable}}\n          {{#unless member.isPartaking}}\n            <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"Delete\" {{action \"remove\" member target=\"App.Tournament.Participants\"}} type=\"button\">\n              <i class=\"fa fa-times\"></i>\n            </button>\n          {{/unless}}\n        {{/if}}\n      </td>\n    </tr>\n  {{/each}}\n</table>\n\n<div style=\"text-align: right\"><em>{{App.Tournament.Participants.players.length}} {{App.i18n.members.navName}}</em></div>\n</div>";
 
   App.ParticipantsView = Em.View.extend({
     data: function() {
@@ -1539,15 +1543,15 @@
     persist: function() {
       return {
         members: this.persistPlayers(),
-        tree: this.persistTree()
+        tree: this.persistBracket()
       };
     },
     persistPlayers: function() {
-      return App.Serializer.emberObjArrToJsonDataArr(App.Tournament.Participants.filterOutTemporaryPlayers());
+      return App.Serializer.emberObjArrToJsonDataArr(App.tournament.participants.filterOutTemporaryPlayers());
     },
-    persistTree: function() {
+    persistBracket: function() {
       var round, serialized, tournament, _i, _len, _ref;
-      tournament = App.Tournament.Bracket;
+      tournament = App.tournament.bracket;
       serialized = App.Serializer.emberObjToJsonData(tournament);
       serialized.rounds = [];
       _ref = tournament.content;
@@ -1597,12 +1601,12 @@
       }
       tournamentRounds = this.removeValue(obj, "rounds");
       gameAttributes = this.removeValue(obj, "gameAttributes");
-      this.extend(App.Tournament.Bracket, obj);
-      App.Tournament.Bracket.clear();
+      this.extend(App.tournament.bracket, obj);
+      App.tournament.bracket.clear();
       for (_i = 0, _len = tournamentRounds.length; _i < _len; _i++) {
         round = tournamentRounds[_i];
         if (round.isGroupRound) {
-          gRound = App.Tournament.Bracket.addGroupRound();
+          gRound = App.tournament.bracket.addGroupRound();
           roundItems = this.removeValue(round, "items");
           this.extend(gRound, round);
           for (_j = 0, _len1 = roundItems.length; _j < _len1; _j++) {
@@ -1611,7 +1615,7 @@
           }
         }
         if (round.isKoRound) {
-          kRound = App.Tournament.Bracket.addKoRound();
+          kRound = App.tournament.bracket.addKoRound();
           roundItems = this.removeValue(round, "items");
           this.extend(kRound, round);
           for (_k = 0, _len2 = roundItems.length; _k < _len2; _k++) {
@@ -1623,7 +1627,7 @@
       _results = [];
       for (_l = 0, _len3 = gameAttributes.length; _l < _len3; _l++) {
         gameAttribute = gameAttributes[_l];
-        _results.push(App.Tournament.Bracket.gameAttributes.pushObject(App.GameAttribute.create(gameAttribute)));
+        _results.push(App.tournament.bracket.gameAttributes.pushObject(App.GameAttribute.create(gameAttribute)));
       }
       return _results;
     },
@@ -1690,7 +1694,7 @@
           return dummy;
         }
       }
-      newPlayer = this.isTrue(obj.isDummy) ? App.Dummy.create(obj) : App.Tournament.Participants.getPlayerById(obj.id);
+      newPlayer = this.isTrue(obj.isDummy) ? App.Dummy.create(obj) : App.tournament.participants.getPlayerById(obj.id);
       newPlayer.set("id", obj.id);
       this.extend(newPlayer, {});
       if (newPlayer.isDummy) {
@@ -1884,7 +1888,22 @@
     }
   };
 
-  App.templates.tournament = "{{#each round in App.Tournament}}\n  {{#if round.isGroupRound}}\n    {{view App.GroupRoundView roundBinding=\"round\"}}\n  {{/if}}\n  {{#if round.isKoRound}}\n    {{view App.RoundView roundBinding=\"round\"}}\n  {{/if}}\n{{/each}}\n\n{{#if App.editable}}\n  <div class=\"saveActions box\">\n    <form action=\"#\" method=\"post\" style=\"margin: 1px 20px\">\n      <span>\n        <button class=\"btn btn-inverse\" {{action \"edit\" target=\"view\"}} ><i class=\"fa fa-cog\"></i>{{App.i18n.settings}}</button>\n        <button type=\"submit\" class=\"btn btn-inverse\">{{App.i18n.save}}</button>\n        <i class=\"fa fa-spinner fa-spin ajaxLoader\"></i>\n        <span class=\"successIcon\"><i class=\"fa fa-check\"></i> {{App.i18n.saved}}</span>\n      </span>\n    </form>\n  </div>\n{{else}}\n  {{#if App.isOwner}}\n    <div class=\"saveActions box\">\n      <a href=\"bracket/edit\">\n        <button  style=\"margin: 1px 20px\" class=\"btn btn-inverse\"><i class=\"fa fa-edit\"></i>{{App.i18n.edit}}</button>\n      </a>\n    </div>\n  {{/if}}\n{{/if}}\n\n\n{{#if App.editable}}\n  <div class=\"tournamentActions\">\n  <div class=\"roundSetting box\">\n    <span  id=\"tournamentAddRemoveActions\" class=\"roundName\"><i class=\"icon-plus\"></i></span>\n    <div class=\"actions\">\n      <button class=\"btn btn-inverse addKoRound\" {{action \"addKoRound\" target=\"App.Tournament\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.koRound}}</button>\n      <button class=\"btn btn-inverse addGroupStage\" {{action \"addGroupRound\" target=\"App.Tournament\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.groupStage}}</button>\n      <button class=\"btn btn-inverse deletePrevRound\" {{action \"removeLastRound\" target=\"view\"}}><i class=\"fa fa-trash-o\"></i>{{App.i18n.previousRound}}</button>\n    </div>\n  </div>\n  </div>\n{{/if}}\n\n<div style=\"clear: both\"></div>";
+  App.EditLinkComponent = Ember.Component.extend({
+    template: Ember.Handlebars.compile("<h5>\n  halllllllllllllllllllllllllllllo\n</h5>\nalsdkf")
+  });
+
+  App.IconButtonComponent = Ember.Component.extend({
+    template: Ember.Handlebars.compile("<h5>\n  halllllllllllllllllllllllllllllo\n</h5>\nalsdkf")
+  });
+
+  App.PlayerLinkComponent = Ember.Component.extend({
+    template: Ember.Handlebars.compile("<h5>\n  halllllllllllllllllllllllllllllo\n</h5>\nalsdkf"),
+    didInsertElement: function() {
+      return console.debug('huhu');
+    }
+  });
+
+  App.templates.tournament = "{{#each round in App.tournament.bracket}}\n  {{#if round.isGroupRound}}\n    {{view App.GroupRoundView roundBinding=\"round\"}}\n  {{/if}}\n  {{#if round.isKoRound}}\n    {{view App.RoundView roundBinding=\"round\"}}\n  {{/if}}\n{{/each}}\n\n{{#if App.editable}}\n  <div class=\"saveActions box\">\n    <form action=\"#\" method=\"post\" style=\"margin: 1px 20px\">\n      <span>\n        <button class=\"btn btn-inverse\" {{action \"edit\" target=\"view\"}} ><i class=\"fa fa-cog\"></i>{{App.i18n.settings}}</button>\n        <button type=\"submit\" class=\"btn btn-inverse\">{{App.i18n.save}}</button>\n        <i class=\"fa fa-spinner fa-spin ajaxLoader\"></i>\n        <span class=\"successIcon\"><i class=\"fa fa-check\"></i> {{App.i18n.saved}}</span>\n      </span>\n    </form>\n  </div>\n{{else}}\n  {{#if App.isOwner}}\n    <div class=\"saveActions box\">\n      <a href=\"bracket/edit\">\n        <button  style=\"margin: 1px 20px\" class=\"btn btn-inverse\"><i class=\"fa fa-edit\"></i>{{App.i18n.edit}}</button>\n      </a>\n    </div>\n  {{/if}}\n{{/if}}\n\n\n{{#if App.editable}}\n  <div class=\"tournamentActions\">\n  <div class=\"roundSetting box\">\n    <span  id=\"tournamentAddRemoveActions\" class=\"roundName\"><i class=\"icon-plus\"></i></span>\n    <div class=\"actions\">\n      <button class=\"btn btn-inverse addKoRound\" {{action \"addKoRound\" target=\"App.tournament.bracket\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.koRound}}</button>\n      <button class=\"btn btn-inverse addGroupStage\" {{action \"addGroupRound\" target=\"App.tournament.bracket\"}}><i class=\"fa fa-plus\"></i>{{App.i18n.groupStage}}</button>\n      <button class=\"btn btn-inverse deletePrevRound\" {{action \"removeLastRound\" target=\"view\"}}><i class=\"fa fa-trash-o\"></i>{{App.i18n.previousRound}}</button>\n    </div>\n  </div>\n  </div>\n{{/if}}\n\n<div style=\"clear: both\"></div>";
 
   App.TournamentView = Em.View.extend({
     classNames: ["tournament"],
@@ -1924,9 +1943,7 @@
       }
     },
     edit: function() {
-      return App.TournamentSettings.create({
-        tournament: App.Tournament
-      });
+      return App.TournamentSettingsView.create();
     },
     removeLastRound: function() {
       var _this = this;
@@ -1934,7 +1951,7 @@
         title: App.i18n.deletePreviousRound,
         bodyContent: App.i18n.deletePreviousRoundInfo,
         onConfirm: function() {
-          return App.Tournament.removeLastRound();
+          return App.tournament.bracket.removeLastRound();
         }
       });
     }
@@ -2454,7 +2471,7 @@
     }
   });
 
-  App.templates.gamesDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n    {{#if view.roundItem}}\n      <span class=\"left noPrint\" title=\"previous\" {{action \"navigateToLeft\" target=\"view\"}}>\n        <i class=\"fa fa-arrow-circle-left\"></i>\n      </span>\n\n      <span class=\"round-item-name\">{{view.roundItem.name}}</span>\n\n      <span class=\"right noPrint\" title=\"next\" {{action \"navigateToRight\" target=\"view\"}}>\n        <i class=\"fa fa-arrow-circle-right\"></i>\n      </span>\n    {{/if}}\n  </div>\n</div>\n  <div class=\"noPrint actionButtons\">\n    <span title=\"print\" class=\"printView hidden-xs hidden-sm\" {{action \"printView\" target=\"view\"}}>\n      <i class=\"fa fa-print\"></i>\n    </span><!--\n    <span title=\"prefill Attributes\" class=\"carousel-control prefillAttributesView\" {{action \"prefillAttributes\" target=\"view\"}}>\n      <i class=\"fa fa-check\"></i>\n    </span>-->\n  </div>\n\n  <div class=\"container\">\n  <div class=\"row\">\n{{#if view.table}}\n<fieldset>\n  <legend>{{App.i18n.table}}</legend>\n\n  <table class=\"table tableTable col-md-8 col-xs-12\">\n    <thead>\n      <tr>\n        <th style=\"width: 5px\"></th>\n        <th width=\"20px\">{{App.i18n.rank}}</th>\n        <th style=\"text-align: left\">Name</th>\n        <th>{{App.i18n.games}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.wins}}\">{{App.i18n.winsShort}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.draws}}\">{{App.i18n.drawsShort}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.defeats}}\">{{App.i18n.defeatsShort}}</th>\n        <th style=\"cursor: help\" title=\"{{unbound App.i18n.goals}}\">{{App.i18n.goalsShort}}</th>\n        <th style=\"cursor: help\" class=\"hidden-xs\" title=\"{{unbound App.i18n.difference}}\">+/-</th>\n        <th>{{App.i18n.points}}</th>\n      </tr>\n    </thead>\n    <tbody>\n      {{#each view.roundItem.table}}\n        <tr {{bind-attr class=\":player qualified:qualified\"}} >\n        <td></td>\n        <td class=\"rank-cell\">\n          {{rank}}.\n        </td>\n        <td style=\"text-align: left\">\n          {{#if App.editable}}\n            {{view App.DynamicTextField valueBinding=\"player.name\" classNames=\"xl\" editableBinding=\"player.editable\"}}\n          {{else}}\n            <div class=\"input-padding\"><a href=\"#\" {{action \"openPlayerView\" player target=\"view\"}}>{{player.name}}</a></div>\n          {{/if}}\n        </td>\n        <td>{{games}}</td>\n        <td class=\"hidden-xs\">{{wins}}</td>\n        <td class=\"hidden-xs\">{{draws}}</td>\n        <td class=\"hidden-xs\">{{defeats}}</td>\n        <td>{{goals}} : {{goalsAgainst}}</td>\n        <td class=\"hidden-xs\">{{difference}}</td>\n        <td><b>{{points}}</b></td>\n      </tr>\n      {{/each}}\n    </tbody>\n  </table>\n</fieldset>\n<br />\n{{/if}}\n<fieldset>\n  <legend>{{App.i18n.schedule}}\n    <span style=\"font-size: 1rem; float:right; margin-bottom: 5px;\" class=\"hidden-xs\" class=\"noPrint\">\n      {{view App.FilterButton contentBinding=\"view.filterOptions\" valueBinding=\"view.gamesPlayedFilter\"}}\n      {{view App.SearchTextField valueBinding=\"view.gameFilter\" placeholder=\"Filter ...\"}}\n    </span>\n  </legend>\n  <table class=\"table tableSchedule\">\n    <thead class=\"hidden-xs\">\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th style=\"text-align: left\">{{App.i18n.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th style=\"text-align: left\">{{App.i18n.guest}}</th>\n        {{#each attribute in App.Tournament.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.result}}</th>\n      </tr>\n    </thead>\n    {{#each matchday in view.filteredGames}}\n      <tbody style=\"page-break-after: always\">\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>\n      {{#each game in matchday.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs rank-cell\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            <a href=\"#\" {{action \"openPlayerView\" game.player1 target=\"view\"}}>{{game.player1.name}}</a>\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"fa fa-exchange\" title=\"{{unbound App.i18n.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            <a href=\"#\" {{action \"openPlayerView\" game.player2 target=\"view\"}}>{{game.player2.name}}</a>\n          </td>\n          {{#each attribute in App.Tournament.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td class=\"center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n      </tbody>\n    {{/each}}\n  </table>\n  <div style=\"text-align: right\" class=\"noPrint\"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>\n</fieldset>\n  </div></div>";
+  App.templates.gamesDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n    {{#if view.roundItem}}\n      <span class=\"left noPrint\" title=\"previous\" {{action \"navigateToLeft\" target=\"view\"}}>\n        <i class=\"fa fa-arrow-circle-left\"></i>\n      </span>\n\n      <span class=\"round-item-name\">{{view.roundItem.name}}</span>\n\n      <span class=\"right noPrint\" title=\"next\" {{action \"navigateToRight\" target=\"view\"}}>\n        <i class=\"fa fa-arrow-circle-right\"></i>\n      </span>\n    {{/if}}\n  </div>\n</div>\n  <div class=\"noPrint actionButtons\">\n    <span title=\"print\" class=\"printView hidden-xs hidden-sm\" {{action \"printView\" target=\"view\"}}>\n      <i class=\"fa fa-print\"></i>\n    </span><!--\n    <span title=\"prefill Attributes\" class=\"carousel-control prefillAttributesView\" {{action \"prefillAttributes\" target=\"view\"}}>\n      <i class=\"fa fa-check\"></i>\n    </span>-->\n  </div>\n\n  <div class=\"container\">\n  <div class=\"row\">\n{{#if view.table}}\n<fieldset>\n  <legend>{{App.i18n.table}}</legend>\n\n  <table class=\"table tableTable col-md-8 col-xs-12\">\n    <thead>\n      <tr>\n        <th style=\"width: 5px\"></th>\n        <th width=\"20px\">{{App.i18n.rank}}</th>\n        <th style=\"text-align: left\">Name</th>\n        <th>{{App.i18n.games}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.wins}}\">{{App.i18n.winsShort}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.draws}}\">{{App.i18n.drawsShort}}</th>\n        <th class=\"hidden-xs\" style=\"cursor: help\" title=\"{{unbound App.i18n.defeats}}\">{{App.i18n.defeatsShort}}</th>\n        <th style=\"cursor: help\" title=\"{{unbound App.i18n.goals}}\">{{App.i18n.goalsShort}}</th>\n        <th style=\"cursor: help\" class=\"hidden-xs\" title=\"{{unbound App.i18n.difference}}\">+/-</th>\n        <th>{{App.i18n.points}}</th>\n      </tr>\n    </thead>\n    <tbody>\n      {{#each view.roundItem.table}}\n        <tr {{bind-attr class=\":player qualified:qualified\"}} >\n        <td></td>\n        <td class=\"rank-cell\">\n          {{rank}}.\n        </td>\n        <td style=\"text-align: left\">\n          {{#if App.editable}}\n            {{view App.DynamicTextField valueBinding=\"player.name\" classNames=\"xl\" editableBinding=\"player.editable\"}}\n          {{else}}\n            <div class=\"input-padding\"><a href=\"#\" {{action \"openPlayerView\" player target=\"view\"}}>{{player.name}}</a></div>\n          {{/if}}\n        </td>\n        <td>{{games}}</td>\n        <td class=\"hidden-xs\">{{wins}}</td>\n        <td class=\"hidden-xs\">{{draws}}</td>\n        <td class=\"hidden-xs\">{{defeats}}</td>\n        <td>{{goals}} : {{goalsAgainst}}</td>\n        <td class=\"hidden-xs\">{{difference}}</td>\n        <td><b>{{points}}</b></td>\n      </tr>\n      {{/each}}\n    </tbody>\n  </table>\n</fieldset>\n<br />\n{{/if}}\n<fieldset>\n  <legend>{{App.i18n.schedule}}\n    <span style=\"font-size: 1rem; float:right; margin-bottom: 5px;\" class=\"hidden-xs\" class=\"noPrint\">\n      {{view App.FilterButton contentBinding=\"view.filterOptions\" valueBinding=\"view.gamesPlayedFilter\"}}\n      {{view App.SearchTextField valueBinding=\"view.gameFilter\" placeholder=\"Filter ...\"}}\n    </span>\n  </legend>\n  <table class=\"table tableSchedule\">\n    <thead class=\"hidden-xs\">\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th style=\"text-align: left\">{{App.i18n.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th style=\"text-align: left\">{{App.i18n.guest}}</th>\n        {{#each attribute in App.tournament.bracket.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.result}}</th>\n      </tr>\n    </thead>\n    {{#each matchday in view.filteredGames}}\n      <tbody style=\"page-break-after: always\">\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>\n      {{#each game in matchday.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs rank-cell\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            <a href=\"#\" {{action \"openPlayerView\" game.player1 target=\"view\"}}>{{game.player1.name}}</a>\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"fa fa-exchange\" title=\"{{unbound App.i18n.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            <a href=\"#\" {{action \"openPlayerView\" game.player2 target=\"view\"}}>{{game.player2.name}}</a>\n          </td>\n          {{#each attribute in App.tournament.bracket.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td class=\"center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n      </tbody>\n    {{/each}}\n  </table>\n  <div style=\"text-align: right\" class=\"noPrint\"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>\n</fieldset>\n  </div></div>";
 
   App.GamesDetailView = App.DetailView.extend({
     template: Ember.Handlebars.compile(App.templates.gamesDetail),
@@ -2557,7 +2574,7 @@
     }).property("gameFilter", "gamesPlayedFilter", "roundItem.games.@each")
   });
 
-  App.templates.playerDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n      <span class=\"round-item-name\">{{view.player.name}}</span>\n  </div>\n</div>\n\n\n<div class=\"container\">\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.statistic}}</legend>\n  <div class=\"col-md-6\">\n    <div id=\"win-chart\" class=\"center\"></div>\n  </div>\n  <div class=\"col-md-6\">\n      <div>\n        <b>{{App.i18n.games}}</b>\n        <div style=\"display: inline-block; float: right; font-size: 12px\">\n          {{view.statistics.games}}/{{view.statistics.totalGames}}\n        </div>\n      <div class=\"progress\">\n          <div class=\"progress-bar progress-bar-success\" style=\"width: {{unbound view.statistics.gamesCompletion}}%\"></div>\n        </div>\n        </div>\n        <br /> <br />\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.goals}}</dt>\n    <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>\n    <dt>{{App.i18n.goalsAgainst}}</dt>\n    <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>\n    </dl>\n  </div>\n</fieldset>\n</div>\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.games}}</legend>\n\n  <table class=\"table tableSchedule\">\n    <thead>\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th class=\"left\">{{App.i18n.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th class=\"left\">{{App.i18n.guest}}</th>\n        {{#each attribute in App.Tournament.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.result}}</th>\n      </tr>\n    </thead>\n    {{#each round in view.rounds}}\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{round.round.name}}</td></tr>\n      {{#each game in round.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            {{game.player1.name}}\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"icon-exchange\" title=\"{{unbound App.i18n.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            {{game.player2.name}}\n          </td>\n          {{#each attribute in App.Tournament.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td style=\"text-align: center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n    {{/each}}\n  </table>\n  </div></div>";
+  App.templates.playerDetail = "<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n      <span class=\"round-item-name\">{{view.player.name}}</span>\n  </div>\n</div>\n\n\n<div class=\"container\">\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.statistic}}</legend>\n  <div class=\"col-md-6\">\n    <div id=\"win-chart\" class=\"center\"></div>\n  </div>\n  <div class=\"col-md-6\">\n      <div>\n        <b>{{App.i18n.games}}</b>\n        <div style=\"display: inline-block; float: right; font-size: 12px\">\n          {{view.statistics.games}}/{{view.statistics.totalGames}}\n        </div>\n      <div class=\"progress\">\n          <div class=\"progress-bar progress-bar-success\" style=\"width: {{unbound view.statistics.gamesCompletion}}%\"></div>\n        </div>\n        </div>\n        <br /> <br />\n    <dl class=\"dl-horizontal\">\n    <dt>{{App.i18n.goals}}</dt>\n    <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>\n    <dt>{{App.i18n.goalsAgainst}}</dt>\n    <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>\n    </dl>\n  </div>\n</fieldset>\n</div>\n<div class=\"row\">\n<fieldset>\n  <legend>{{App.i18n.games}}</legend>\n\n  <table class=\"table tableSchedule\">\n    <thead>\n      <tr>\n        <th class=\"hidden-xs\" width=\"70px\"></th>\n        <th class=\"hidden-xs\"></th>\n        <th class=\"left\">{{App.i18n.home}}</th>\n        {{#if App.editable}}\n          <th></th>\n        {{/if}}\n        <th class=\"left\">{{App.i18n.guest}}</th>\n        {{#each attribute in App.tournament.bracket.gameAttributes}}\n          <th class=\"hidden-xs\">{{attribute.name}}</th>\n        {{/each}}\n        <th>{{App.i18n.result}}</th>\n      </tr>\n    </thead>\n    {{#each round in view.rounds}}\n      <tr class=\"matchday-separator\"><td colspan=\"15\" class=\"matchday-separator\">{{round.round.name}}</td></tr>\n      {{#each game in round.games}}\n        <tr>\n          <td class=\"hidden-xs\"></td>\n          <td class=\"hidden-xs\">{{game._roundItemName}}</td>\n          <td {{bind-attr class=\"game.player1Wins:winner\"}}>\n            {{game.player1.name}}\n          </td>\n          {{#if App.editable}}\n            <td><i class=\"icon-exchange\" title=\"{{unbound App.i18n.swapPlayers}}\"{{action swapPlayers target=\"game\"}}></i></td>\n          {{/if}}\n          <td {{bind-attr class=\"game.player2Wins:winner\"}}>\n            {{game.player2.name}}\n          </td>\n          {{#each attribute in App.tournament.bracket.gameAttributes}}\n            {{view App.GameAttributeValueView classNames=\"hidden-xs\" attributeBinding=\"attribute\" gameBinding=\"game\"}}\n          {{/each}}\n          <td style=\"text-align: center\">\n          {{#if App.editable}}\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result1\"}}\n              </div>\n              &nbsp;\n              <div class=\"result-container\">\n              {{view App.NumberField classNames=\"form-control\" editableBinding=\"App.editable\" valueBinding=\"game.result2\"}}\n              </div>\n          {{else}}\n            {{#if game.isCompleted}}\n              <b>{{game.result1}} : {{game.result2}}</b>\n            {{else}}\n              <b>-&nbsp;:&nbsp;-</b>\n            {{/if}}\n          {{/if}}\n          </td>\n        </tr>\n      {{/each}}\n    {{/each}}\n  </table>\n  </div></div>";
 
   App.PlayerDetailView = App.DetailView.extend({
     template: Ember.Handlebars.compile(App.templates.playerDetail),
@@ -2566,7 +2583,7 @@
     rounds: [],
     init: function() {
       this._super();
-      this.set('rounds', App.Tournament.getGamesByPlayer(this.player));
+      this.set('rounds', App.tournament.bracket.getGamesByPlayer(this.player));
       return this.setStatistics();
     },
     didInsertElement: function() {
@@ -2741,74 +2758,5 @@
       });
     }
   };
-
-  App.templates.tournamentPopup = "\n<div class=\"roundItemTitle\">\n  <div class=\"roundItemTitleLabel\">\n      <span class=\"round-item-name\">{{App.i18n.settings}}</span>\n  </div>\n</div>\n\n<!--\nmenu erreichbar �ber Gruppen�bersicht, Spielplan\nReturn-Icon links oben\nmenu: \n- standings, games settings\n- TimeCalculations\n- Punkteberechnung\n\n-->\n\n\n  <div class=\"container\">\n  <div class=\"row\" style=\"margin: 0; padding: 0\">\n  <div class=\"col-md-2\">\n    <ul id=\"settings-navigation\" class=\"nav nav-list\">\n      <li class=\"nav-header\">Navigation</li>\n      <li class=\"active\"><a href=\"#\" data-target=\"#main-settings\">{{App.i18n.pointsModus}}</a></li>\n      <li><a href=\"#\" data-target=\"#gameAttributes\">{{App.i18n.gameAttributes}}</a></li>\n      <li><a href=\"#\" data-target=\"#scheduling\">{{App.i18n.timeCalculation}}</a></li>\n  </ul> \n    \n  </div>\n  <div class=\"col-md-10\">\n  <div class=\"tab-content\">\n  <div id=\"main-settings\" class=\"tab-pane active\">\n<form class=\"form-horizontal\" role=\"form\">\n<fieldset>\n  <legend>{{App.i18n.groupStage}}</legend>\n<div class=\"form-group\">\n  <label class=\"control-label col-sm-2\" for=\"pointsPerWin\">{{App.i18n.pointsPerWin}}</label>\n  <div class=\"col-sm-10 col-md-1\">\n    {{view App.NumberField id=\"pointsPerWin\" classNames=\"form-control\" valueBinding=\"App.Tournament.winPoints\"}}\n  </div>\n</div>\n<div class=\"form-group\">\n  <label class=\"control-label col-sm-2\" for=\"pointsPerDraw\">{{App.i18n.pointsPerDraw}}</label>\n  <div class=\"col-sm-10 col-md-1\">\n    {{view App.NumberField id=\"pointsPerDraw\" classNames=\"form-control\" valueBinding=\"App.Tournament.drawPoints\"}}\n\n    <i rel=\"popover\" ref=\"points-per-draw\" class=\"hide fa fa-info-circle\" data-title=\"{{unbound App.i18n.pointsPerDraw}}\"></i>\n    <div id=\"points-per-draw\" class=\"hide\">{{App.i18n.pointsPerDrawHelp}}</div>\n  </div>\n</div>\n</fieldset>\n<fieldset>\n  <legend>{{App.i18n.koRound}}</legend>\n  <div class=\"form-group\">\n  <label class=\"control-label col-sm-2\" for=\"qualifierModus\">Modus</label>\n  <div class=\"col-sm-10 col-md-2\">\n    {{view Ember.Select id=\"qualifierModus\" contentBinding=\"view.qualifierModiOptions\" classNames=\"form-control\" \n        optionValuePath=\"content.id\" optionLabelPath=\"content.label\" valueBinding=\"App.Tournament.qualifierModus\"}}\n  </div>\n</div>\n</fieldset>\n\n  </form>\n  </div>\n  <div id=\"gameAttributes\" class=\"tab-pane\">\n<fieldset>\n  <legend>{{App.i18n.gameAttributes}}</legend>\n  <table class=\"table table-striped\">\n    <thead>\n    <tr>\n      <th style=\"text-align: left\">Name</th>\n      <th style=\"text-align: left\">Typ</th>\n      <th></th>\n    </tr>\n    </thead>\n    {{#each gameAttribute in App.Tournament.gameAttributes}}\n    <tr>\n      <td><div class=\"col-md-4\">{{view Em.TextField valueBinding=\"gameAttribute.name\" classNames=\"form-control\"}}</div></td>\n      <td><div class=\"col-md-6\">{{view Ember.Select contentBinding=\"view.gameAttributeOptions\" classNames=\"form-control\"\n        optionValuePath=\"content.type\" optionLabelPath=\"content.label\" valueBinding=\"gameAttribute.type\"}}</div></td>\n      <td>\n        <button class=\"btn btn-inverse\" rel=\"tooltip\" title=\"{{unbound App.i18n.deleteGameAttribute}}\" {{action \"remove\" target=\"gameAttribute\"}} type=\"button\">\n          <i class=\"fa fa-times\"></i>\n        </button>\n      </td>\n    </tr>\n    {{/each}}\n  </table>\n<span class='btn btn-inverse' {{action \"addAttribute\" target=\"view\"}}><i class=\"fa fa-plus\"></i>&nbsp;{{App.i18n.addAttribute}}</span>\n</fieldset>\n</div>\n\n  <div id=\"scheduling\" class=\"tab-pane\">\n    <fieldset>\n      <legend>{{App.i18n.timeCalculation}}</legend>\n      <form class=\"form-horizontal\">\n        <div class=\"form-group\">\n          <label class=\"control-label col-sm-2\" for=\"timePerGame\">{{App.i18n.timePerGame}}</label>\n          <div class=\"col-sm-10 col-md-1\">\n            {{view App.NumberField classNames=\"form-control\" id=\"timePerGame\" valueBinding=\"App.Tournament.timePerGame\"}}\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"control-label col-sm-2\" for=\"gamesParallel\">{{App.i18n.gamesParallel}}</label>\n          <div class=\"col-sm-10 col-md-1\">\n            {{view App.NumberField classNames=\"form-control\" id=\"gamesParallel\" valueBinding=\"App.Tournament.gamesParallel\"}}\n          </div>\n        </div>\n      </form>\n      <dl class=\"dl-horizontal\">\n        <dt>Rounds</dt>\n        <dd>{{view.roundCount}}</dd>\n        <dt>Total Games</dt>\n        <dd>{{view.gamesCount}}</dd>\n        <dt>Estimated total time</dt>\n        <dd>{{view.timeCount}} min</dd>\n      </dl>\n    </fieldset>\n  </div>\n</div>\n  </div>\n  </div>\n  </div>\n";
-
-  App.TournamentSettings = App.DetailView.extend({
-    template: Ember.Handlebars.compile(App.templates.tournamentPopup),
-    tournament: null,
-    didInsertElement: function() {
-      this._super();
-      this.$("[rel=popover]").popover({
-        html: true,
-        trigger: "hover",
-        content: function() {
-          return $("#" + ($(this).attr('ref'))).html();
-        }
-      });
-      return this.$('#settings-navigation a').click(function(event) {
-        event.preventDefault();
-        console.debug(this);
-        return $(this).tab('show');
-      });
-    },
-    addAttribute: function() {
-      return App.Tournament.gameAttributes.pushObject(App.GameAttribute.create());
-    },
-    roundCount: (function() {
-      return this.get('tournament.length');
-    }).property('tournament.@each'),
-    gamesCount: (function() {
-      return this.get('tournament').reduce(function(count, item) {
-        return count += item.get('games.length');
-      }, 0);
-    }).property('tournament.@each'),
-    timeCount: (function() {
-      var minutes;
-      minutes = this.get('gamesCount') * this.get('tournament.timePerGame') / this.get('tournament.gamesParallel');
-      return minutes.toFixed();
-    }).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel'),
-    gameAttributeOptions: (function() {
-      return [
-        Em.Object.create({
-          type: "checkbox",
-          label: "Checkbox"
-        }), Em.Object.create({
-          type: "textfield",
-          label: App.i18n.textfield
-        }), Em.Object.create({
-          type: "result",
-          label: App.i18n.result
-        }), Em.Object.create({
-          type: "number",
-          label: App.i18n.number
-        })
-      ];
-    }).property(),
-    qualifierModiOptions: (function() {
-      return [App.qualifierModi.BEST_OF, App.qualifierModi.AGGREGATE];
-    }).property()
-  });
-
-  App.IconButtonComponent = Ember.Component.extend({
-    template: Ember.Handlebars.compile("<h5>\n  halllllllllllllllllllllllllllllo\n</h5>\nalsdkf")
-  });
-
-  App.PlayerLinkComponent = Ember.Component.extend({
-    template: Ember.Handlebars.compile("<h5>\n  halllllllllllllllllllllllllllllo\n</h5>\nalsdkf"),
-    didInsertElement: function() {
-      return console.debug('huhu');
-    }
-  });
 
 }).call(this);

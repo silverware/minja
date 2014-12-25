@@ -4,6 +4,7 @@ bracketRoot = "public/js/app/bracket/"
 appRoot = "public/js/app/"
 
 appFiles = [
+  'models/Tournament.coffee'
   'models/bracket/bracket.coffee'
   'models/bracket/round.coffee'
   'models/bracket/koRound.coffee'
@@ -41,6 +42,9 @@ appFiles = [
   'utils/PersistanceManager.coffee'
   'utils/RoundRobin.coffee'
   'utils/BracketLineDrawer.coffee'
+  'components/EditLinkComponent.coffee'
+  'components/IconButtonComponent.coffee'
+  'components/PlayerLinkComponent.coffee'
 ]
 
 bracketFiles  = [
@@ -64,8 +68,6 @@ bracketFiles  = [
   'view/detailViews/helper/GameAttributeValueView.coffee'
   'view/detailViews/helper/GameAttributePrefillPopup.coffee'
   'view/TournamentSettings.coffee'
-  'components/IconButtonComponent.coffee'
-  'components/PlayerLinkComponent.coffee'
 ]
 
 wrapperTop = """

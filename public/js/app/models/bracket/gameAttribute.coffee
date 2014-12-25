@@ -36,7 +36,7 @@ App.GameAttribute = Em.Object.extend
       title: App.i18n.deleteGameAttribute
       bodyContent: App.i18n.reallyDeleteGameAttribute
       onConfirm: =>
-        App.Tournament.Bracket.gameAttributes.removeObject @
+        App.tournament.bracket.gameAttributes.removeObject @
 
 
 

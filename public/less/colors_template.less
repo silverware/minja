@@ -273,9 +273,12 @@ Bootstrap
 Form
 ----------------------------------------------------------------------*/
 .form-control {
-  // background-color: lighten(@normal, 10%);
-  // color: @textColor;
-  border-color: fade(@textColor, 50%);
+  background-color: fade(@textColor, 6%);
+  color: @textColor;
+  border: 1px solid fade(@textColor, 25%);
+  border-radius: 2px;
+  // .box-shadow(0px, 0px, 0px, 1px, rgba(0,0,0,0.39));
+  .inset-box-shadow(0px, 0px, 0px, 1px, darken(@normal, 5%));
 }
 
 .form-control:hover, .form-control:active, .form-control:focus,

@@ -4,12 +4,13 @@ App.templates.participants = """
   <% if @tournament.isOwner: %>
     <%= @headerAction @i18n.edit, "participants/edit", "edit" %>
   <% end %>
+  {{edit-link}}
   </h1>
 <table class="table table-striped">
   <thead>
     <th width="25px"></th>
     <th>Name</th>
-    {{#each attribute in App.Tournament.Participants.attributes}}
+    {{#each attribute in App.tournament.participants.attributes}}
       <th>
         {{attribute.name}}
         {{#if App.editable}}
@@ -19,7 +20,7 @@ App.templates.participants = """
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in App.Tournament.Participants.sortedPlayers}}
+  {{#each member in App.tournament.participants.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}

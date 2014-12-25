@@ -127,7 +127,7 @@ define ['threejs'], ->
   time = new Date().getSeconds()
 
   init = ->
-    return
+    # return
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
 
     ###--------------------------------------------------------------------------

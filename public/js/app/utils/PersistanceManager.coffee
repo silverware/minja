@@ -4,13 +4,13 @@ App.PersistanceManager =
 
   persist: ->
     members: @persistPlayers()
-    tree: @persistTree()
+    tree: @persistBracket()
 
   persistPlayers: ->
-    App.Serializer.emberObjArrToJsonDataArr App.Tournament.Participants.filterOutTemporaryPlayers()
+    App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.filterOutTemporaryPlayers()
 
-  persistTree: ->
-    tournament = App.Tournament.Bracket
+  persistBracket: ->
+    tournament = App.tournament.bracket
     serialized = App.Serializer.emberObjToJsonData tournament
     serialized.rounds = []
     for round in tournament.content
@@ -37,23 +37,23 @@ App.PersistanceManager =
     if not obj?.rounds then return
     tournamentRounds = @removeValue obj, "rounds"
     gameAttributes = @removeValue obj, "gameAttributes"
-    @extend App.Tournament.Bracket, obj
-    App.Tournament.Bracket.clear()
+    @extend App.tournament.bracket, obj
+    App.tournament.bracket.clear()
     for round in tournamentRounds
       if round.isGroupRound
-        gRound = App.Tournament.Bracket.addGroupRound()
+        gRound = App.tournament.bracket.addGroupRound()
         roundItems = @removeValue round, "items"
         @extend gRound, round
         for item in roundItems
           gRound.items.pushObject @buildGroup item, gRound
       if round.isKoRound
-        kRound = App.Tournament.Bracket.addKoRound()
+        kRound = App.tournament.bracket.addKoRound()
         roundItems = @removeValue round, "items"
         @extend kRound, round
         for item in roundItems
           kRound.items.pushObject @buildRoundGame item, kRound
     for gameAttribute in gameAttributes
-      App.Tournament.Bracket.gameAttributes.pushObject App.GameAttribute.create gameAttribute
+      App.tournament.bracket.gameAttributes.pushObject App.GameAttribute.create gameAttribute
 
   buildGroup: (obj, round) ->
     group = App.Group.create
@@ -95,7 +95,7 @@ App.PersistanceManager =
 
   createPlayer: (obj) ->
     return dummy for dummy in @dummies when dummy.id is obj.id
-    newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.Tournament.Participants.getPlayerById obj.id
+    newPlayer = if @isTrue(obj.isDummy) then App.Dummy.create(obj) else App.tournament.participants.getPlayerById obj.id
     newPlayer.set "id", obj.id
     @extend newPlayer, {}
     if newPlayer.isDummy

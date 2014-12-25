@@ -1,10 +1,9 @@
-App.Tournament.Bracket = Em.ArrayController.extend
+App.Bracket = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
   qualifierModus: "aggregate"
   timePerGame: 20
   gamesParallel: 1
-  info: {}
   settings: {}
   gameAttributes: []
   content: []
@@ -77,6 +76,3 @@ App.Tournament.Bracket = Em.ArrayController.extend
 App.qualifierModi =
   BEST_OF: Em.Object.create {id: "bestof", label: "Best Of X"}
   AGGREGATE: Em.Object.create {id: "aggregate", label: "Aggregated"}
-
-
-App.Tournament.Bracket = App.Tournament.Bracket.create()

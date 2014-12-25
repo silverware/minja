@@ -15,7 +15,7 @@ App.RoundItem = Em.Object.extend
     @_round.removeItem @
 
   replace: (from, to) ->
-    App.Tournament.Bracket.replacePlayer from, to, @get("_round")
+    App.tournament.bracket.replacePlayer from, to, @get("_round")
 
   matchDays: (->
     matchDays = []
@@ -50,7 +50,7 @@ App.RoundItem = Em.Object.extend
 
   itemId: (->
     itemIndex = @get('_round.items').indexOf @
-    roundIndex = App.Tournament.Bracket.indexOf @get('_round')
+    roundIndex = App.tournament.bracket.indexOf @get('_round')
     roundIndex + '-' + itemIndex
   ).property('_round.items.@each')
 

@@ -16,5 +16,5 @@ App.DashboardController = Ember.Controller.extend
         @transitionToRoute 'index'
 
   participantCount: (->
-    App.Tournament.Participants.players.length
-  ).property('App.Tournament.Participants.players')
+    App.tournament.participants.players.length
+  ).property('App.tournament.participants.players')

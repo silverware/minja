@@ -1,5 +1,5 @@
 App.templates.tournament = """
-  {{#each round in App.Tournament}}
+  {{#each round in App.tournament.bracket}}
     {{#if round.isGroupRound}}
       {{view App.GroupRoundView roundBinding="round"}}
     {{/if}}
@@ -35,8 +35,8 @@ App.templates.tournament = """
     <div class="roundSetting box">
       <span  id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
       <div class="actions">
-        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.Tournament"}}><i class="fa fa-plus"></i>{{App.i18n.koRound}}</button>
-        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.Tournament"}}><i class="fa fa-plus"></i>{{App.i18n.groupStage}}</button>
+        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.tournament.bracket"}}><i class="fa fa-plus"></i>{{App.i18n.koRound}}</button>
+        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.tournament.bracket"}}><i class="fa fa-plus"></i>{{App.i18n.groupStage}}</button>
         <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{App.i18n.previousRound}}</button>
       </div>
     </div>
@@ -77,12 +77,11 @@ App.TournamentView = Em.View.extend
           @$(".tournamentActions .actions").show "medium"
 
   edit: ->
-    App.TournamentSettings.create
-      tournament: App.Tournament
+    App.TournamentSettingsView.create()
 
   removeLastRound: ->
     App.Popup.showQuestion
       title: App.i18n.deletePreviousRound
       bodyContent: App.i18n.deletePreviousRoundInfo
       onConfirm: =>
-        App.Tournament.removeLastRound()
+        App.tournament.bracket.removeLastRound()

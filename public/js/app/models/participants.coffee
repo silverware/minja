@@ -1,4 +1,4 @@
-App.Tournament.Participants = Em.Object.extend
+App.Participants = Em.Object.extend
   players: []
   attributes: []
 
@@ -22,7 +22,7 @@ App.Tournament.Participants = Em.Object.extend
   # takes a player thats not present in the bracket
   # otherwise creates a new player
   getNewPlayer: (data) ->
-   unusedPlayers = _.difference @players, App.Tournament.Bracket.getPlayers()
+   unusedPlayers = _.difference @players, App.tournament.bracket.getPlayers()
    if unusedPlayers.length > 0
      return unusedPlayers[0]
    data._isTemporary = true
@@ -48,12 +48,12 @@ App.Tournament.Participants = Em.Object.extend
     attribute
 
   filterOutTemporaryPlayers: ->
-    playersInBracket = App.Tournament.getPlayers()
+    playersInBracket = App.tournament.getPlayers()
     @get('players').filter (player) ->
       return not player._isTemporary or playersInBracket.contains player
 
   remove: (player) ->
-    if App.Tournament.getPlayers().contains player
+    if App.tournament.getPlayers().contains player
       return
     if player.isInitialPlayer
       return
@@ -65,5 +65,3 @@ App.Tournament.Participants = Em.Object.extend
   clear: ->
     @players.clear()
     @attributes.clear()
-
-App.Tournament.Participants = App.Tournament.Participants.create()

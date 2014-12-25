@@ -69,8 +69,8 @@ App.Round = Em.Object.extend
     !@get "_previousRound"
 
   isLastRound: (->
-    App.Tournament.Bracket.lastRound() is @
-  ).property("App.Tournament.Bracket.@each")
+    App.tournament.bracket.lastRound() is @
+  ).property("App.tournament.bracket.@each")
 
   validate: ->
     return (@getFreeMembers() is null or @getFreeMembers().length == 0) and @get("qualifiers").length > 1

@@ -1,7 +1,8 @@
 App.Router.map ->
   @route 'dashboard', {path: '/'}
   @route 'info'
-  @route 'participants'
+  @resource 'participants', ->
+    @route 'edit'
   @route 'bracket'
   @route 'settings'
   @route 'chat'

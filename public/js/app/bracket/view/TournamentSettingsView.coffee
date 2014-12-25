@@ -1,4 +1,4 @@
-App.templates.tournamentPopup = """
+App.templates.tournamentSettings = """
 
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
@@ -37,13 +37,13 @@ menu:
   <div class="form-group">
     <label class="control-label col-sm-2" for="pointsPerWin">{{App.i18n.pointsPerWin}}</label>
     <div class="col-sm-10 col-md-1">
-      {{view App.NumberField id="pointsPerWin" classNames="form-control" valueBinding="App.Tournament.winPoints"}}
+      {{view App.NumberField id="pointsPerWin" classNames="form-control" valueBinding="App.tournament.winPoints"}}
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="pointsPerDraw">{{App.i18n.pointsPerDraw}}</label>
     <div class="col-sm-10 col-md-1">
-      {{view App.NumberField id="pointsPerDraw" classNames="form-control" valueBinding="App.Tournament.drawPoints"}}
+      {{view App.NumberField id="pointsPerDraw" classNames="form-control" valueBinding="App.tournament.drawPoints"}}
 
       <i rel="popover" ref="points-per-draw" class="hide fa fa-info-circle" data-title="{{unbound App.i18n.pointsPerDraw}}"></i>
       <div id="points-per-draw" class="hide">{{App.i18n.pointsPerDrawHelp}}</div>
@@ -56,7 +56,7 @@ menu:
     <label class="control-label col-sm-2" for="qualifierModus">Modus</label>
     <div class="col-sm-10 col-md-2">
       {{view Ember.Select id="qualifierModus" contentBinding="view.qualifierModiOptions" classNames="form-control" 
-          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.Tournament.qualifierModus"}}
+          optionValuePath="content.id" optionLabelPath="content.label" valueBinding="App.tournament.qualifierModus"}}
     </div>
   </div>
   </fieldset>
@@ -74,7 +74,7 @@ menu:
         <th></th>
       </tr>
       </thead>
-      {{#each gameAttribute in App.Tournament.gameAttributes}}
+      {{#each gameAttribute in App.tournament.gameAttributes}}
       <tr>
         <td><div class="col-md-4">{{view Em.TextField valueBinding="gameAttribute.name" classNames="form-control"}}</div></td>
         <td><div class="col-md-6">{{view Ember.Select contentBinding="view.gameAttributeOptions" classNames="form-control"
@@ -98,14 +98,14 @@ menu:
           <div class="form-group">
             <label class="control-label col-sm-2" for="timePerGame">{{App.i18n.timePerGame}}</label>
             <div class="col-sm-10 col-md-1">
-              {{view App.NumberField classNames="form-control" id="timePerGame" valueBinding="App.Tournament.timePerGame"}}
+              {{view App.NumberField classNames="form-control" id="timePerGame" valueBinding="App.tournament.timePerGame"}}
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="gamesParallel">{{App.i18n.gamesParallel}}</label>
             <div class="col-sm-10 col-md-1">
-              {{view App.NumberField classNames="form-control" id="gamesParallel" valueBinding="App.Tournament.gamesParallel"}}
+              {{view App.NumberField classNames="form-control" id="gamesParallel" valueBinding="App.tournament.gamesParallel"}}
             </div>
           </div>
         </form>
@@ -125,9 +125,8 @@ menu:
     </div>
 
 """
-App.TournamentSettings = App.DetailView.extend
-  template: Ember.Handlebars.compile App.templates.tournamentPopup
-  tournament: null
+App.TournamentSettingsView = App.DetailView.extend
+  template: Ember.Handlebars.compile App.templates.tournamentSettings
 
   didInsertElement: ->
     @_super()
@@ -143,23 +142,23 @@ App.TournamentSettings = App.DetailView.extend
 
 
   addAttribute: ->
-    App.Tournament.gameAttributes.pushObject App.GameAttribute.create()
+    App.tournament.gameAttributes.pushObject App.GameAttribute.create()
 
   roundCount: (->
-    @get 'tournament.length'
-  ).property('tournament.@each')
+    @get 'App.tournament.bracket.length'
+  ).property('App.tournament.bracket.@each')
 
   gamesCount: (->
     @get('tournament').reduce (count, item) ->
       count += item.get('games.length')
     , 0
-  ).property('tournament.@each')
+  ).property('App.tournament.bracket.@each')
 
   timeCount: (->
-    minutes = @get('gamesCount') * @get('tournament.timePerGame') / @get('tournament.gamesParallel')
+    minutes = @get('gamesCount') * @get('App.tournament.bracket.timePerGame') / @get('App.tournament.bracket.gamesParallel')
     minutes.toFixed()
     #moment('mm', minutes).format('h m')
-  ).property('gamesCount', 'tournament.timePerGame', 'tournament.gamesParallel')
+  ).property('gamesCount', 'App.tournament.bracket.timePerGame', 'App.tournament.bracket.gamesParallel')
 
   gameAttributeOptions: (->
     [

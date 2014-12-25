@@ -43,7 +43,7 @@ App.templates.dashboard = """
 <section class="dashboardBox dashboardLightning">
   <fieldset>
     <legend>{{App.i18n.members.navName}}</legend>
-    {{#each member in App.Tournament.Participants.players}}
+    {{#each member in App.tournament.participants.players}}
       <span class="label" style="display: inline-block">{{member.name}}</span>
       {{/each}}
     <div class="bottomRight">
