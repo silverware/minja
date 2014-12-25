@@ -41,7 +41,7 @@ App.Bracket = Em.ArrayController.extend
         _previousRound: @lastRound()
 
   addRound: ->
-    if @content.length is 0 or @lastRound().validate()
+    if @get('content.length') is 0 or @lastRound().validate()
       @lastRound()?.set "editable", false
       return true
     else
@@ -51,7 +51,7 @@ App.Bracket = Em.ArrayController.extend
       return false
 
   lastRound: ->
-    _.last @content
+    _.last @get('content')
 
   removeLastRound: ->
     @removeObject @lastRound()

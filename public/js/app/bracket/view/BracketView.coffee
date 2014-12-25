@@ -1,43 +1,43 @@
 App.templates.tournament = """
-  {{#each round in App.tournament.bracket}}
+  {{#each round in bracket}}
     {{#if round.isGroupRound}}
-      {{view App.GroupRoundView roundBinding="round"}}
+      {{view 'groupRound' roundBinding="round"}}
     {{/if}}
     {{#if round.isKoRound}}
-      {{view App.RoundView roundBinding="round"}}
+      {{view 'round' roundBinding="round"}}
     {{/if}}
   {{/each}}
 
-  {{#if App.editable}}
+  {{#if editable}}
     <div class="saveActions box">
       <form action="#" method="post" style="margin: 1px 20px">
         <span>
-          <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="fa fa-cog"></i>{{App.i18n.settings}}</button>
-          <button type="submit" class="btn btn-inverse">{{App.i18n.save}}</button>
+          <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="fa fa-cog"></i>{{i18n.settings}}</button>
+          <button type="submit" class="btn btn-inverse">{{i18n.save}}</button>
           <i class="fa fa-spinner fa-spin ajaxLoader"></i>
-          <span class="successIcon"><i class="fa fa-check"></i> {{App.i18n.saved}}</span>
+          <span class="successIcon"><i class="fa fa-check"></i> {{i18n.saved}}</span>
         </span>
       </form>
     </div>
   {{else}}
-    {{#if App.isOwner}}
+    {{#if tournament.isOwner}}
       <div class="saveActions box">
         <a href="bracket/edit">
-          <button  style="margin: 1px 20px" class="btn btn-inverse"><i class="fa fa-edit"></i>{{App.i18n.edit}}</button>
+          <button  style="margin: 1px 20px" class="btn btn-inverse"><i class="fa fa-edit"></i>{{i18n.edit}}</button>
         </a>
       </div>
     {{/if}}
   {{/if}}
 
 
-  {{#if App.editable}}
+  {{#if editable}}
     <div class="tournamentActions">
     <div class="roundSetting box">
       <span  id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
       <div class="actions">
-        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="App.tournament.bracket"}}><i class="fa fa-plus"></i>{{App.i18n.koRound}}</button>
-        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="App.tournament.bracket"}}><i class="fa fa-plus"></i>{{App.i18n.groupStage}}</button>
-        <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{App.i18n.previousRound}}</button>
+        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="bracket"}}><i class="fa fa-plus"></i>{{i18n.koRound}}</button>
+        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="bracket"}}><i class="fa fa-plus"></i>{{i18n.groupStage}}</button>
+        <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{i18n.previousRound}}</button>
       </div>
     </div>
     </div>
@@ -46,7 +46,7 @@ App.templates.tournament = """
   <div style="clear: both"></div>
 """
 
-App.TournamentView = Em.View.extend
+App.BracketView = Em.View.extend
   classNames: ["tournament"]
   template: Ember.Handlebars.compile App.templates.tournament
 

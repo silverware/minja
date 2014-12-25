@@ -136,14 +136,6 @@ class TournamentEditController extends ControllerBase
         tournamentDao.removeAttachments( req.tournament, ["logo"], () =>
           res.render "#{@viewPrefix}/settings", hasLogo: false)
 
-  "/:tid/settings": (req, res) =>
-    tournament = res.locals.tournament
-    if not colorService.isColorSelected req.tournament
-      tournament.colors = colorService.defaultColors
-
-    res.render "#{@viewPrefix}/settings",
-      hasLogo: req.tournament.hasLogo
-
   "POST:/:tid/settings/colors": (req, res) =>
     if colorService.isDefaultColor req.body
       req.body = null

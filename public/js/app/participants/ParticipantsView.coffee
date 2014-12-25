@@ -1,30 +1,25 @@
 App.templates.participants = """
 <div class="container container-normal" id="players-container">
-  <h1>{{App.i18n.members.navName}}
-  <% if @tournament.isOwner: %>
-    <%= @headerAction @i18n.edit, "participants/edit", "edit" %>
-  <% end %>
-  {{edit-link}}
-  </h1>
+  <h1>{{i18n.members.navName}} {{edit-link editable=editable route="participants"}} </h1>
 <table class="table table-striped">
   <thead>
     <th width="25px"></th>
     <th>Name</th>
-    {{#each attribute in App.tournament.participants.attributes}}
+    {{#each attribute in participants.attributes}}
       <th>
         {{attribute.name}}
         {{#if editable}}
-          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="App.tournament.participants"}}></i>
+          &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="participants"}}></i>
         {{/if}}
       </th>
     {{/each}}
     <th></th>
   </thead>
-  {{#each member in App.tournament.participants.sortedPlayers}}
+  {{#each member in participants.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
-          <i title="{{unbound App.i18n.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
+          <i title="{{unbound i18n.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
         {{/if}}
       </td>
       <td style="height: 39px;">
@@ -34,7 +29,7 @@ App.templates.participants = """
           {{member.name}}
         {{/if}}
       </td>
-      {{#each attribute in App.tournament.participants.attributes}}
+      {{#each attribute in participants.attributes}}
         {{#view view.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if editable}}
@@ -47,7 +42,7 @@ App.templates.participants = """
           {{/if}}
           {{#if attribute.isTextfield}}
             {{#if editable}}
-              {{view App.TypeaheadTextField classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
+              {{view 'typeaheadTextField' classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
             {{/if}}
@@ -65,7 +60,7 @@ App.templates.participants = """
         {{/unless}}
         {{#if editable}}
           {{#unless member.isPartaking}}
-            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="App.Tournament.Participants"}} type="button">
+            <button class="btn btn-inverse" rel="tooltip" title="Delete" {{action "remove" member target="participants"}} type="button">
               <i class="fa fa-times"></i>
             </button>
           {{/unless}}
@@ -75,7 +70,7 @@ App.templates.participants = """
   {{/each}}
 </table>
 
-<div style="text-align: right"><em>{{App.tournament.participants.players.length}} {{App.i18n.members.navName}}</em></div>
+<div style="text-align: right"><em>{{participants.players.length}} {{i18n.members.navName}}</em></div>
 </div>
 """
 

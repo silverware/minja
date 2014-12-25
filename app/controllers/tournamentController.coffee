@@ -91,6 +91,7 @@ class TournamentController extends ControllerBase
       editable: req.tournament.isOwner
       isOwner: req.tournament.isOwner
       colors: colorService.getColors req.tournament
+      hasLogo: req.tournament.hasLogo
 
   "/:tid": (req, res) =>
     @renderTournament req, res
@@ -117,6 +118,9 @@ class TournamentController extends ControllerBase
     @renderTournament req, res
 
   "/:tid/dashboard": (req, res) =>
+    @renderTournament req, res
+
+  "/:tid/settings": (req, res) =>
     @renderTournament req, res
 
   "/:tid/gallery": (req, res) =>

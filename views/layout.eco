@@ -43,12 +43,11 @@
     <script src="/js/require-config.js"></script>
     <script src="/lib/chosen.jquery.min.js"></script>
     <script src="/lib/jquery.validate.min.js"></script>
+    <script src="/lib/handlebars-2.0.0.js"></script>
     <% if @isProduction: %>
-    <script src="/lib/handlebars-2.0.0.min.js"></script>
-    <script src="/lib/ember-1.0.0.min.js"></script>
+    <script src="/lib/ember-1.9.1.min.js"></script>
     <% else: %>
-    <script src="/lib/handlebars-1.0.0.js"></script>
-    <script src="/lib/ember-1.0.0.js"></script>
+    <script src="/lib/ember-1.9.1.js"></script>
     <% end %>
 
     <script src="/js/form/FormValidator.js"></script>

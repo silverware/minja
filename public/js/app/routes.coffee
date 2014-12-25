@@ -14,3 +14,4 @@ App.Router.reopen
    ## rootURL based on current window location
    @set('rootURL', window.location.pathname.match('(/[^/]*)')[0])
    @_super()
+

@@ -1,14 +1,14 @@
 App.BracketStatisticsView = Ember.View.extend
   template: Ember.Handlebars.compile """
-    {{#each round in App.tournament.bracket}}
+    {{#each round in bracket}}
       <div>
         <b>{{round.name}}</b>
         <div style="display: inline-block; float: right; font-size: 12px">
-          {{round.completion}}/{{round.gamesCount}} {{App.i18n.bracket.games}}
+          {{round.completion}}/{{round.gamesCount}} {{i18n.bracket.games}}
           <span class="seperator">|</span>
-          <span title="{{unbound App.i18n.bracket.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
+          <span title="{{unbound i18n.bracket.gamesPerMatch}}"># {{round.matchesPerGame}}</span>
           <span class="seperator">|</span>
-          <span title="{{unbound App.i18n.bracket.qualifiers}}">
+          <span title="{{unbound i18n.bracket.qualifiers}}">
             <i class="fa fa-level-up"></i>&nbsp;{{round.qualifiers.length}}
           </span>
         </div>

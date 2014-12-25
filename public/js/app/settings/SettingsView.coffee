@@ -3,16 +3,21 @@ App.templates.settings = """
   <div class="row">
   <div class="col-md-6">
   <div class="dashboardBox">
+"""
+
+
+App.SettingsView = Em.View.extend
+  temp: """
     <fieldset>
       <legend>{{App.i18n.settings.colorSelection}}</legend>
         <%= @formWithActionFor @tournament.colors, "/tournament.id/settings/colors", (form) => %>
           <div class="form-group">
             <label class="control-label col-sm-2">{{App.i18n.settings.theme}}</label>
             <div class="col-sm-10">
-              <span class="btn btn-link" id="selectTheme"><i class="fa fa-picture-o"></i><%= @i18n.settings.selectTheme %></span>
+              <span class="btn btn-link" id="selectTheme"><i class="fa fa-picture-o"></i>{{App.i18n.settings.selectTheme}}</span>
             </div>
           </div>
-          <%= form.colorSelect @i18n.settings.background, "background", {placeholder: @i18n.color} %>
+          {{App.ColorSelectionTextField @i18n.settings.background, "background", {placeholder: @i18n.color}}}
           <br />
           <%= form.colorSelect @i18n.settings.content, "content", {placeholder: @i18n.color} %>
           <%= form.colorSelect @i18n.settings.contentText, "contentText", {placeholder: @i18n.color} %>
@@ -54,9 +59,7 @@ Nachrichten aktivieren/deaktivieren
 
   -->
 </div>
-"""
-
-App.SettingsView = Em.View.extend
+  """
   template: Ember.Handlebars.compile App.templates.settings
   didInsertElement: ->
     @_super()
