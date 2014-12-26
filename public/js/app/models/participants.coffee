@@ -17,7 +17,7 @@ App.Participants = Em.Object.extend
       if player1.get('isPartaking') is player2.get('isPartaking')
         return player1.get('name').toLowerCase() > player2.get('name').toLowerCase()
       return player2.get('isPartaking')
-  ).property("players.@each", "players.@each.isPartaking")
+  ).property("players.@each.id", "players.@each.isPartaking")
 
   # takes a player thats not present in the bracket
   # otherwise creates a new player

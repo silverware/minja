@@ -18,6 +18,7 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
     identifier: tournament.identifier
   App.set 'tournament.bracket', App.Bracket.create()
   App.set 'tournament.participants', App.Participants.create()
+  App.set 'tournament.info', App.Info.create()
 
   App.editable = editable or false
   App.tournament.isOwner = isOwner or false
@@ -39,7 +40,7 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   if tournament?.tree
     App.PersistanceManager.buildBracket tournament.tree
 
-  App.tournament.set "info", tournament.info
+  App.tournament.set "info", App.Info.create(tournament.info)
   App.tournament.set "settings", Ember.Object.create(tournament.settings)
 
 

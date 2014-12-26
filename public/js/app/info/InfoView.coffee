@@ -9,12 +9,14 @@ App.templates.info = """
     <h1>{{i18n.info.header}}</h1>
     <dl class="dl-horizontal">
       <dt>{{i18n.info.startDate}}</dt>
-      <dd itemprop="startDate" content="<%= @printDateDbFormat @tournament.info.startDate %>">
-        {{info.startDate}}
+      <dd itemprop="startDate" content="{{unbound info.startDateDb}}">
+        {{pretty-date-time withIcon=true date=info.startDate time=info.startTime}}
       </dd>
-      {{#if App.tournament.info.stopDate}}
+      {{#if info.stopDate}}
         <dt>{{i18n.info.stopDate}}</dt>
-        <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>
+        <dd>
+          {{pretty-date-time withIcon=true date=info.stopDate time=info.stopTime}}
+        </dd>
       {{/if}}
       <dt>{{i18n.info.venue}}</dt>
       <span itemprop="location" itemscope itemtype="http://schema.org/Place">
@@ -27,7 +29,7 @@ App.templates.info = """
       <dt>E-Mail</dt>
       <dd>{{info.hostMail}}
     </dl>
-    <div itemprop="description" id="description">{{App.tournament.info.descriptionCompiled}}</div>
+    <div itemprop="description" id="description">{{info.descriptionCompiled}}</div>
   </div>
 """
 

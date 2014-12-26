@@ -4,7 +4,7 @@ bracketRoot = "public/js/app/bracket/"
 appRoot = "public/js/app/"
 
 appFiles = [
-  'models/Tournament.coffee'
+  'models/tournament.coffee'
   'models/bracket/bracket.coffee'
   'models/bracket/round.coffee'
   'models/bracket/koRound.coffee'
@@ -17,11 +17,13 @@ appFiles = [
   'models/bracket/player.coffee'
   'models/bracket/playerAttribute.coffee'
   'models/participants.coffee'
+  'models/info.coffee'
   'routes.coffee'
   'bracket/BracketRoute.coffee'
   'form/DynamicTextField.coffee'
   'form/SaveButtonComponent.coffee'
   'form/ColorSelectionTextFieldView.coffee'
+  'form/DateTimeComponent.coffee'
   'form/DynamicTypeAheadTextField.coffee'
   'form/TypeAheadTextField.coffee'
   'form/NumberSpinner.coffee'
@@ -54,6 +56,7 @@ appFiles = [
   'components/IconButtonComponent.coffee'
   'components/PlayerLinkComponent.coffee'
   'components/FormGroupComponent.coffee'
+  'components/PrettyDateTimeComponent.coffee'
 ]
 
 bracketFiles  = [
@@ -82,11 +85,12 @@ bracketFiles  = [
 wrapperTop = """
   define([
     "utils/Popup",\n
-    "typeahead"], function(Popup) {\n
+    "typeahead", "marked"], function(Popup, type, marked) {\n
 """
 
 wrapperBottom = """
     App.Popup = Popup;\n
+    window.marked = marked;\n
     });\n
 """
 
