@@ -22,14 +22,14 @@ App.templates.roundSetting = """
   </form>
   <form role="form" style="float: left">
     <div>
-      <label>{{App.i18n.games}}</label>
+      <label>{{App.i18n.bracket.games}}</label>
       {{view App.NumberField classNames="form-control xs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
     </div>
   </form>
   <form role="form" style="float: left">
-      <label>{{App.i18n.actions}}</label>
+      <label>{{App.i18n.bracket.actions}}</label>
     <div>
-    <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.shuffle}}</button>
+    <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.bracket.shuffle}}</button>
     <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus"></i>{{round._itemLabel}}</button>
     </div>
   </form>
@@ -58,8 +58,8 @@ App.RoundSetting = Em.View.extend
     # Warnung ausgeben, falls dadurch Ergebnisse verfallen
     if true
       App.Popup.showQuestion
-        title: App.i18n.shufflePlayers
-        bodyContent: App.i18n.shufflePlayersDescription
+        title: App.i18n.bracket.shufflePlayers
+        bodyContent: App.i18n.bracket.shufflePlayersDescription
         onConfirm: =>
           @round.shuffle()
     else

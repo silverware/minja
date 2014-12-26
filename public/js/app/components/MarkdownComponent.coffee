@@ -1,12 +1,12 @@
-App.MarkdownComponent = Ember.Component.extend
+App.MarkDownComponent = Ember.Component.extend
   text: null
 
-  template: Ember.Handlebars.compile """
+  layout: Ember.Handlebars.compile """
     {{markedText}}
   """
 
   markedText: (->
-    marked @get('text')
+    new Handlebars.SafeString marked @get('text')
   ).property('text')
 
 

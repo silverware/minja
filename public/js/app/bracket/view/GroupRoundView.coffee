@@ -15,7 +15,7 @@ App.templates.groupRound = """
 </div>
 
 {{#each group in round.items}}
-  {{view App.GroupView groupBinding="group" showTablesBinding="view.showTables"}}
+  {{view 'group' group=group showTables=view.showTables}}
 {{/each}}
 """
 
@@ -26,10 +26,10 @@ App.GroupRoundView = App.RoundView.extend
   didInsertElement: ->
     @_super()
     @$("#showTables").tooltip
-      title: App.i18n.table
+      title: App.i18n.bracket.table
       placement: 'left'
     @$("#showGames").tooltip
-      title: App.i18n.schedule
+      title: App.i18n.bracket.schedule
       placement: 'left'
 
   displayTables: ->

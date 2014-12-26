@@ -29,7 +29,7 @@ App.templates.info = """
       <dt>E-Mail</dt>
       <dd>{{info.hostMail}}
     </dl>
-    <div itemprop="description" id="description">{{info.descriptionCompiled}}</div>
+    <div itemprop="description" id="description">{{mark-down text=info.description}}</div>
   </div>
 """
 

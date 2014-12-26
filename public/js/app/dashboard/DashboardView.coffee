@@ -9,7 +9,7 @@ App.templates.dashboard = """
     <dl class="dl-horizontal" style="margin-top: 0px">
       <dt><i class="fa fa-calendar"></i></dt>
       <dd>
-        {{info.startDate}}
+        {{pretty-date-time date=info.startDate time=info.startTime}}
       </dd>
       <dt><i class="fa fa-map-marker"></i></dt>
       <dd>{{info.venue}}

@@ -26,9 +26,8 @@ App.PrettyDateTimeComponent = Ember.Component.extend
   ).property()
 
   prettyDate: (->
-    # moment.lang App.i18n.lang
-    # moment(@get('date'), "DD.MM.YYYY").format "dddd, DD. MMMM YYYY"
-    return "asdlf"
+    moment.lang App.i18n.lang
+    moment(@get('date'), "DD.MM.YYYY").format "dddd, DD. MMMM YYYY"
   ).property()
 
   didInsertElement: ->

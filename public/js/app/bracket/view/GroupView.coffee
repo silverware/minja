@@ -7,7 +7,7 @@ App.templates.group = """
     <col width="20px" />
   <thead>
     <th colspan="5">
-      {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
+      {{view 'dynamicTextField' valueBinding="group.name" editableBinding="App.editable"}}
 
       <span class="actionIcons">
         {{#if App.editable}}
@@ -33,7 +33,7 @@ App.templates.group = """
       </td>
       <td class="tableCell" style="max-width: 130px">
         {{#if App.editable}}
-          {{view App.DynamicTextField valueBinding="player.name" editableBinding="player.editable"}}
+          {{view 'dynamicTextField' valueBinding="player.name" editableBinding="player.editable"}}
         {{else}}
           {{player.name}}
         {{/if}}
@@ -52,7 +52,7 @@ App.templates.group = """
   <col width="50px" />
   <thead>
     <th colspan="4">
-      {{view App.DynamicTextField valueBinding="group.name" editableBinding="App.editable"}}
+      {{view 'dynamicTextField' valueBinding="group.name" editableBinding="App.editable"}}
     </th>
   </thead>
 {{#each view.games}}
@@ -90,13 +90,13 @@ App.GroupView = App.RoundItemView.extend
   didInsertElement: ->
     @_super()
     @$(".increaseGroupsize").tooltip
-      title: App.i18n.groupSizeUp
+      title: App.i18n.bracket.groupSizeUp
     @$(".decreaseGroupsize").tooltip
-      title: App.i18n.groupSizeDown
+      title: App.i18n.bracket.groupSizeDown
     @$(".increaseQualifierCount").tooltip
-      title: App.i18n.qualifiersUp
+      title: App.i18n.bracket.qualifiersUp
     @$(".decreaseQualifierCount").tooltip
-      title: App.i18n.qualifiersDow
+      title: App.i18n.bracket.qualifiersDow
     @toggleTableGames()
 
     if App.editable

@@ -20,6 +20,7 @@ appFiles = [
   'models/info.coffee'
   'routes.coffee'
   'bracket/BracketRoute.coffee'
+  'bracket/BracketController.coffee'
   'form/DynamicTextField.coffee'
   'form/SaveButtonComponent.coffee'
   'form/ColorSelectionTextFieldView.coffee'
@@ -57,6 +58,7 @@ appFiles = [
   'components/PlayerLinkComponent.coffee'
   'components/FormGroupComponent.coffee'
   'components/PrettyDateTimeComponent.coffee'
+  'components/MarkdownComponent.coffee'
 ]
 
 bracketFiles  = [

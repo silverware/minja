@@ -1,4 +1,6 @@
-App.templates.tournament = """
+App.templates.bracket = """
+  <div class="container" id="margin-container" style="height: 30px"></div>
+  <div id="treeWrapper">
   {{#each round in bracket}}
     {{#if round.isGroupRound}}
       {{view 'groupRound' roundBinding="round"}}
@@ -22,9 +24,9 @@ App.templates.tournament = """
   {{else}}
     {{#if tournament.isOwner}}
       <div class="saveActions box">
-        <a href="bracket/edit">
+        {{#link-to 'bracket.edit'}}
           <button  style="margin: 1px 20px" class="btn btn-inverse"><i class="fa fa-edit"></i>{{i18n.edit}}</button>
-        </a>
+        {{/link-to}}
       </div>
     {{/if}}
   {{/if}}
@@ -33,28 +35,28 @@ App.templates.tournament = """
   {{#if editable}}
     <div class="tournamentActions">
     <div class="roundSetting box">
-      <span  id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
+      <span id="tournamentAddRemoveActions" class="roundName"><i class="icon-plus"></i></span>
       <div class="actions">
-        <button class="btn btn-inverse addKoRound" {{action "addKoRound" target="bracket"}}><i class="fa fa-plus"></i>{{i18n.koRound}}</button>
-        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound" target="bracket"}}><i class="fa fa-plus"></i>{{i18n.groupStage}}</button>
-        <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound" target="view"}}><i class="fa fa-trash-o"></i>{{i18n.previousRound}}</button>
+        <button class="btn btn-inverse addKoRound" {{action "addKoRound"}}><i class="fa fa-plus"></i>{{i18n.bracket.koRound}}</button>
+        <button class="btn btn-inverse addGroupStage" {{action "addGroupRound"}}><i class="fa fa-plus"></i>{{i18n.bracket.groupStage}}</button>
+        <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound"}}><i class="fa fa-trash-o"></i>{{i18n.bracket.previousRound}}</button>
       </div>
     </div>
     </div>
   {{/if}}
 
   <div style="clear: both"></div>
+  </div>
 """
 
 App.BracketView = Em.View.extend
   classNames: ["tournament"]
-  template: Ember.Handlebars.compile App.templates.tournament
+  template: Ember.Handlebars.compile App.templates.bracket
 
   didInsertElement: ->
-    @$().hide()
     $(".loading-screen").fadeOut 'medium', =>
-      @$().fadeIn 'slow', ->
-        App.BracketLineDrawer.init()
+      # @$().fadeIn 'slow', ->
+      #   App.BracketLineDrawer.init()
 
     new Save
       form: $ "form"
@@ -75,13 +77,14 @@ App.BracketView = Em.View.extend
           @$(".tournamentActions .actions").hide "medium"
         else
           @$(".tournamentActions .actions").show "medium"
+    #
+    # Schließe Runden Settings
+    # setTimeout (->
+    #   $("#settings .close").click()
+    #   $("#tournamentAddRemoveActions").click()), 50
+
+    App.Observer.snapshot()
 
   edit: ->
     App.TournamentSettingsView.create()
 
-  removeLastRound: ->
-    App.Popup.showQuestion
-      title: App.i18n.deletePreviousRound
-      bodyContent: App.i18n.deletePreviousRoundInfo
-      onConfirm: =>
-        App.tournament.bracket.removeLastRound()

@@ -4,7 +4,8 @@ App.Router.map ->
   @route 'info.edit', {path: "/info/edit"}
   @resource 'participants', {path: '/participants'}, ->
     @route 'edit'
-  @route 'bracket'
+  @resource 'bracket', {path: '/bracket'}, ->
+    @route 'edit'
   @route 'settings'
   @route 'chat'
 

@@ -45,8 +45,6 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
 
 
 $.fn.createTree = ->
-  view = App.TournamentView.create()
-
   # Schließe Runden Settings
   setTimeout (->
     $("#settings .close").click()

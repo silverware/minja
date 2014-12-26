@@ -7,7 +7,7 @@ App.RoundView = Em.View.extend
     </div>
 
     {{#each game in round.items}}
-      {{view App.GameView gameBinding="game"}}
+      {{view 'game' gameBinding="game"}}
     {{/each}}
   """
 

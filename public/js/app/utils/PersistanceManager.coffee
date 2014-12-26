@@ -13,7 +13,7 @@ App.PersistanceManager =
     tournament = App.tournament.bracket
     serialized = App.Serializer.emberObjToJsonData tournament
     serialized.rounds = []
-    for round in tournament.content
+    tournament.forEach (round) ->
        serialized.rounds.push App.Serializer.emberObjToJsonData round
     serialized
 
@@ -52,8 +52,9 @@ App.PersistanceManager =
         @extend kRound, round
         for item in roundItems
           kRound.items.pushObject @buildRoundGame item, kRound
-    for gameAttribute in gameAttributes
-      App.tournament.bracket.gameAttributes.pushObject App.GameAttribute.create gameAttribute
+    if gameAttributes
+      for gameAttribute in gameAttributes
+        App.tournament.bracket.gameAttributes.pushObject App.GameAttribute.create gameAttribute
 
   buildGroup: (obj, round) ->
     group = App.Group.create

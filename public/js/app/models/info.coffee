@@ -9,10 +9,3 @@ App.Info = Em.Object.extend
   host: ''
   hostMail: ''
 
-  descriptionCompiled: (->
-    marked @get 'description'
-  ).property('description')
-
-  prettyStartDateTime: (->
-  
-  ).property('startDate', 'startTime')

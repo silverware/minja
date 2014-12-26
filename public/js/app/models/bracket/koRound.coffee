@@ -9,10 +9,10 @@ App.KoRound = App.Round.extend
   addItem: ->
     if not @get('editable')
       App.Popup.showInfo
-        bodyContent: App.i18n.roundItemNotAddable
+        bodyContent: App.i18n.bracket.roundItemNotAddable
       return
     game = App.RoundGame.create
-      name: "#{App.i18n.game} " + (@items.get("length") + 1)
+      name: "#{App.i18n.bracket.game} " + (@items.get("length") + 1)
       _round: @
 
     @items.pushObject game
@@ -21,7 +21,7 @@ App.KoRound = App.Round.extend
         game.players.pushObject @getFreeMembers()[0]
       else
         game.players.pushObject App.tournament.participants.getNewPlayer
-          name: "#{App.i18n.player} " + (i + 1)
+          name: "#{App.i18n.bracket.player} " + (i + 1)
 
 
 
