@@ -5,9 +5,7 @@ App.templates.info = """
   }
   </style>
   <div class="container container-normal">
-    <% if @tournament.isOwner: %>
-      <%= @headerAction @i18n.edit, "info/edit", "edit" %>
-    <% end %>
+    {{edit-link editable=editable route="info.edit"}} 
     <h1>{{App.i18n.info.header}}</h1>
     <dl class="dl-horizontal">
       <dt>{{App.i18n.info.startDate}}</dt>

@@ -1,4 +1,4 @@
-App.DynamicTypeAheadTextField = App.DynamicTextField.extend
+App.DynamicTypeAheadTextFieldView = App.DynamicTextFieldView.extend
 
   # name: String
   #   Name der Klasse, zu der alle Inputelements gesucht werden,

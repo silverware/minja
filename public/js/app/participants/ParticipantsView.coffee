@@ -1,6 +1,17 @@
 App.templates.participants = """
 <div class="container container-normal" id="players-container">
-  <h1>{{i18n.members.navName}} {{edit-link editable=editable route="participants"}} </h1>
+  {{#if editable}}
+    {{edit-link editable=editable route="participants"}} 
+      <a style="margin-right: 10px" class="float-right" href="#">
+        <button type="button" class="btn btn-inverse" {{action 'showAttributePopup' target="view"}}><i class="fa fa-plus"></i>{{i18n.members.attribute }}</button>
+      </a>
+      <a style="float: right; margin-right: 10px" href="#" {{action "createPlayer" target="participants"}}>
+        <button type="button" class="btn btn-inverse"><i class="fa fa-plus"></i>{{i18n.members.member}}</button>
+    </a>
+  {{else}}
+    {{edit-link editable=editable route="participants.edit"}} 
+  {{/if}}
+  <h1>{{i18n.members.navName}}</h1>
 <table class="table table-striped">
   <thead>
     <th width="25px"></th>
@@ -24,7 +35,7 @@ App.templates.participants = """
       </td>
       <td style="height: 39px;">
         {{#if editable}}
-          {{view Em.TextField valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
+          {{input valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
@@ -33,7 +44,7 @@ App.templates.participants = """
         {{#view view.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if editable}}
-              {{view Ember.Checkbox checkedBinding="view.memberValue"}}
+              {{view 'checkbox' checkedBinding="view.memberValue"}}
             {{else}}
               {{#if view.memberValue}}
                 <i class="fa fa-check" />
@@ -42,7 +53,7 @@ App.templates.participants = """
           {{/if}}
           {{#if attribute.isTextfield}}
             {{#if editable}}
-              {{view 'typeaheadTextField' classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
+              {{view 'typeAheadTextField' classNames="m form-control" nameBinding="attribute.id" valueBinding="view.memberValue"}}
             {{else}}
               {{view.memberValue}}
             {{/if}}
@@ -80,9 +91,6 @@ App.ParticipantsView = Em.View.extend
     data =
       members: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.players
       membersAttributes: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.attributes
-
-  addMember: ->
-    App.tournament.participants.createPlayer()
 
   addAttribute: ->
     App.tournament.participants.createAttribute

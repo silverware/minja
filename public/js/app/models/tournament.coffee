@@ -12,7 +12,7 @@ Ember.Controller.reopen
   ).property()
   participants: (->
     return App.tournament.participants
-  ).property()
+  ).property('App.tournament.participants')
   bracket: (->
     return App.tournament.bracket
   ).property()

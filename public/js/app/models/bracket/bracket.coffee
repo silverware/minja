@@ -30,14 +30,14 @@ App.Bracket = Em.ArrayController.extend
     if @addRound()
       $("#settings .close").click()
       @pushObject App.GroupRound.create
-        name: App.i18n.groupStage
+        name: App.i18n.bracket.groupStage
         _previousRound: @lastRound()
 
   addKoRound: ->
     if @addRound()
       $("#settings .close").click()
       @pushObject App.KoRound.create
-        name: App.i18n.koRound
+        name: App.i18n.bracket.koRound
         _previousRound: @lastRound()
 
   addRound: ->

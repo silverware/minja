@@ -3,20 +3,16 @@ App.EditLinkComponent = Ember.Component.extend
   route: 'info'
 
   template: Ember.Handlebars.compile """
-    {{#link-to url}}
-      <button class="btn btn-inverse"><i class="fa fa-{{icon}}"></i>{{label}}</button>
+    {{#if isOwner}}
+    {{#link-to route class='float-right'}}
+      <button class="btn btn-inverse"><i class="fa fa-{{unbound icon}}"></i>{{label}}</button>
     {{/link-to}}
+    {{/if}}
   """
-
-  url: (->
-    if @get 'editable'
-      return @get 'route'
-    return @get('route') + '/edit'
-  ).property('editable', 'route')
 
   label: (->
     if @get 'editable'
-      return App.i18n.view
+      return App.i18n.show
     return App.i18n.edit
   ).property('editable')
 
@@ -25,3 +21,7 @@ App.EditLinkComponent = Ember.Component.extend
       return 'eye'
     return 'edit'
   ).property('editable')
+
+  isOwner: (->
+    App.tournament.isOwner
+  ).property('App.tournament.isOwner')
