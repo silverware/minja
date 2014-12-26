@@ -1,28 +1,24 @@
-define ["utils/Popup", "./ColorThemes"], (Popup, themes) ->
-
-  template = """
+App.ColorSelectionPopup = Ember.View.extend
+  themes: App.ColorThemes.list()
+  template: Ember.Handlebars.compile """
     {{#each theme in view.themes}}
-      <div class="selection-item" {{action onSelection theme target="view"}}>
+      <div class="selection-item" {{action 'selectTheme' theme target="view"}}>
         {{theme.name}}
         <img />
       </div>
     {{/each}}
   """
 
-  view = Ember.View.extend
-    template: Ember.Handlebars.compile template
-    i18n: null
-    themes: themes
+  init: ->
+    @_super()
+    App.Popup.show
+      title: App.i18n.settings.colorSelection
+      cancelble: false
+      bodyContent: @
 
-    init: ->
-      @_super()
-      @append Ember.Application.create
-        rootElement: ".modal"
-      Popup.show
-        title: @i18n.colorSelection
-        cancelble: false
-        bodyContent: @
+  actions:
+    selectTheme: (theme) ->
+      @onSelection theme
 
-    onSelection: ->
-      # extension point
-
+  onSelection: ->
+    # extension point

@@ -6,26 +6,26 @@ App.templates.info = """
   </style>
   <div class="container container-normal">
     {{edit-link editable=editable route="info.edit"}} 
-    <h1>{{App.i18n.info.header}}</h1>
+    <h1>{{i18n.info.header}}</h1>
     <dl class="dl-horizontal">
-      <dt>{{App.i18n.info.startDate}}</dt>
+      <dt>{{i18n.info.startDate}}</dt>
       <dd itemprop="startDate" content="<%= @printDateDbFormat @tournament.info.startDate %>">
-        {{App.tournament.info.startDate}}
+        {{info.startDate}}
       </dd>
       {{#if App.tournament.info.stopDate}}
-        <dt>{{App.i18n.info.stopDate}}</dt>
+        <dt>{{i18n.info.stopDate}}</dt>
         <dd><%= @printDateAndTime @i18n.parseAndPrintDate(@tournament.info.stopDate), @tournament.info.stopTime, true %></dd>
       {{/if}}
-      <dt>{{App.i18n.info.venue}}</dt>
+      <dt>{{i18n.info.venue}}</dt>
       <span itemprop="location" itemscope itemtype="http://schema.org/Place">
-      <dd itemprop="name">{{App.tournament.info.venue}}</dd>
+      <dd itemprop="name">{{info.venue}}</dd>
       </span>
     </dl>
       <dl class="dl-horizontal">
-      <dt>{{App.i18n.info.host}}</dt>
-      <dd>{{App.tournament.info.host}}</dd>
+      <dt>{{i18n.info.host}}</dt>
+      <dd>{{info.host}}</dd>
       <dt>E-Mail</dt>
-      <dd>{{App.tournament.info.hostMail}}
+      <dd>{{info.hostMail}}
     </dl>
     <div itemprop="description" id="description">{{App.tournament.info.descriptionCompiled}}</div>
   </div>

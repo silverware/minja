@@ -92,30 +92,32 @@ App.ParticipantsView = Em.View.extend
       members: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.players
       membersAttributes: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.attributes
 
-  addAttribute: ->
-    App.tournament.participants.createAttribute
-      name: $("#inputname").val()
-      type: $("#inputtyp").val()
-      isPrivate: $("#inputprivate").val()
+  actions:
+    addAttribute: ->
+      App.tournament.participants.createAttribute
+        name: $("#inputname").val()
+        type: $("#inputtyp").val()
+        isPrivate: $("#inputprivate").val()
 
-  showAttributePopup: ->
-    App.Popup.show
-      title: @i18n.addAttribute
-      actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
-      bodyUrl: "/tournament/members/attribute_popup"
-      afterRendering: ($popup) ->
-        $popup.find("form").submit (event) ->
-          event.preventDefault()
+    showAttributePopup: ->
+      App.Popup.show
+        title: @i18n.addAttribute
+        actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
+        bodyUrl: "/tournament/members/attribute_popup"
+        afterRendering: ($popup) ->
+          $popup.find("form").submit (event) ->
+            event.preventDefault()
+
+    openPlayerView: (player) ->
+      App.PlayerDetailView.create
+        player: player
+
 
   addNoItemsRow: (->
     # if App.PlayerPool.get('sortedPlayers').length == 0
     #   @$('table').after('<p>asdlfkj</p>')
   
   ).observes('App.tournament.participants.sortedPlayers')
-
-  openPlayerView: (player) ->
-    App.PlayerDetailView.create
-      player: player
 
 
   # ------------------------ VIEWS ----------------------------#

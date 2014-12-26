@@ -1,6 +1,6 @@
 requirejs.config
   baseUrl: "/js"
-  deps: ['threejs', 'bootstrap', 'underscore', 'd3', 'moment', 'marked']
+  deps: ['threejs', 'bootstrap', 'underscore', 'd3', 'moment', 'marked', 'colorpicker']
   waitSeconds: 200
   paths:
     text: '../lib/require-text'

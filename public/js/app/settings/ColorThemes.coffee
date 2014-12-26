@@ -1,5 +1,5 @@
-define ->
-  defaultTheme =
+App.ColorThemes =
+  defaultTheme:
     name: "Standard Theme"
     content: "rgba(72, 82, 97, 0.7)"
     contentText: "rgba(255,255,255,1)"
@@ -7,7 +7,7 @@ define ->
     footer: "rgba(52, 62, 77, 0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  redTheme =
+  redTheme:
     name: "Red Theme"
     content: "rgba(255,255,255,0.85)"
     contentText: "rgba(69,69,69,1)"
@@ -15,7 +15,7 @@ define ->
     footer: "rgba(143,40,26,0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  blueTheme =
+  blueTheme:
     name: "Blue Theme"
     content: "rgba(250,250,250,0.8)"
     contentText: "rgba(69,69,69,1)"
@@ -23,7 +23,7 @@ define ->
     footer: "rgba(52,124,232,0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  greenTheme =
+  greenTheme:
     name: "Green Theme"
     content: "rgba(72, 82, 97, 0.7)"
     contentText: "rgba(255,255,255,1)"
@@ -31,7 +31,7 @@ define ->
     footer: "rgba(52, 62, 77, 0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  blackTheme =
+  blackTheme:
     name: "Black Theme"
     content: "rgba(0, 0, 0, 0.7)"
     contentText: "rgba(255,255,255,1)"
@@ -39,7 +39,7 @@ define ->
     footer: "rgba(52, 62, 77, 0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  greyTheme =
+  greyTheme:
     name: "Grey Theme"
     content: "rgba(54,54,54,0.7)"
     contentText: "rgba(255,255,255,1)"
@@ -47,4 +47,6 @@ define ->
     footer: "rgba(59,59,59,0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  [defaultTheme, greyTheme, blueTheme, redTheme]
+App.ColorThemes.list = ->
+  Object.getOwnPropertyNames(App.ColorThemes).map (name) ->
+    App.ColorThemes[name]

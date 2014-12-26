@@ -21,7 +21,7 @@ define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
         $("#popup").remove()
       $template = $ template
       $template.find('#myModalLabel').html @title
-      $("body").append $template
+      $("#appRoot").append $template
 
       if @cancelble
         @actions.push

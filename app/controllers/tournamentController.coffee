@@ -86,11 +86,12 @@ class TournamentController extends ControllerBase
   ]
 
   renderTournament: (req, res) ->
+    req.tournament.settings =
+      colors: colorService.getColors req.tournament
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     res.render "#{@viewPrefix}/index",
       editable: req.tournament.isOwner
       isOwner: req.tournament.isOwner
-      colors: colorService.getColors req.tournament
       hasLogo: req.tournament.hasLogo
 
   "/:tid": (req, res) =>

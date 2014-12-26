@@ -29,8 +29,8 @@ module.exports = (grunt) ->
 
     wrap:
       basic:
-        src: 'public/js/tree.js',
-        dest: 'public/js/tree.js',
+        src: 'public/js/app.js',
+        dest: 'public/js/app.js',
         options:
           wrapper: [emberAppOrder.wrapperTop, emberAppOrder.wrapperBottom]
 

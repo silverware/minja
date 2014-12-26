@@ -20,6 +20,8 @@ appFiles = [
   'routes.coffee'
   'bracket/BracketRoute.coffee'
   'form/DynamicTextField.coffee'
+  'form/SaveButtonComponent.coffee'
+  'form/ColorSelectionTextFieldView.coffee'
   'form/DynamicTypeAheadTextField.coffee'
   'form/TypeAheadTextField.coffee'
   'form/NumberSpinner.coffee'
@@ -27,10 +29,14 @@ appFiles = [
   'application/ApplicationController.coffee'
   'application/ApplicationView.coffee'
   'info/InfoRoute.coffee'
+  'info/InfoController.coffee'
   'info/InfoView.coffee'
+  'info/InfoEditView.coffee'
   'settings/SettingsRoute.coffee'
   'settings/SettingsController.coffee'
   'settings/SettingsView.coffee'
+  'settings/ColorThemes.coffee'
+  'settings/ColorSelectionPopup.coffee'
   'dashboard/DashboardView.coffee'
   'dashboard/BracketStatisticsView.coffee'
   'dashboard/DashboardRoute.coffee'
@@ -47,6 +53,7 @@ appFiles = [
   'components/EditLinkComponent.coffee'
   'components/IconButtonComponent.coffee'
   'components/PlayerLinkComponent.coffee'
+  'components/FormGroupComponent.coffee'
 ]
 
 bracketFiles  = [
