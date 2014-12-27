@@ -42,6 +42,7 @@ class TournamentEditController extends ControllerBase
     res.redirect "/#{req.params.tid}/bracket/edit"
 
   "POST:/:tid/bracket/edit": (req, res) =>
+    console.log req.body
     {tree, members} = req.body
     members =
       members: members

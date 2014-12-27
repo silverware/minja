@@ -13,12 +13,13 @@ App.Player = Em.Object.extend
 
   editable: (->
     @get("isPlayer") and App.editable
-  ).property("isPlayer")
+  ).property("isPlayer", 'App.editable')
 
   # used in Members Table
+  # TODO: getPlayers to computed property
   isPartaking: (->
     _.contains App.tournament.bracket.getPlayers(), @
-  ).property()
+  ).property('App.tournament.bracket.@each')
 
   # real, if its no dummy player or placeholder
   isRealPlayer: (->

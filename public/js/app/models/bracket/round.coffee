@@ -39,8 +39,8 @@ App.Round = Em.Object.extend
   ).property('_editable')
 
   isEditable: (->
-    App.editable and @get("editable")
-  ).property("editable")
+    App.get('editable') and @get("editable")
+  ).property("App.editable", "editable")
 
   qualifiers: (->
     @get("items").reduce (qualifiers, item) ->

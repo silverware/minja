@@ -1,6 +1,6 @@
 App.templates.game = """
 
-<table {{bind-attr class=":box game.itemId :round-item-table :noPadding"}} cellpadding="2" width="100%" id="gamesTable">
+<table {{bind-attr class=":box game.itemId :round-item-table editable::blurringBox :noPadding"}} {{action 'tableClicked' target='view'}} cellpadding="2" width="100%" id="gamesTable">
   <thead>
     <th colspan="10">
       <span>{{view 'dynamicTextField' value=game.name editable=App.editable}}</span>
@@ -55,15 +55,12 @@ App.GameView = App.RoundItemView.extend
   template: Ember.Handlebars.compile App.templates.game
   classNames: ['roundItem']
 
-  didInsertElement: ->
-    @_super()
-    if not App.editable
-      @$('#gamesTable').addClass 'blurringBox'
-      @$('#gamesTable').click => @openGameView()
-
   actions:
+    tableClicked: ->
+      if not App.editable
+        @send 'openGameView'
     openGameView: ->
-      App.RoundItemDetailView.create
+      @send 'openDetailView', 'roundItemDetail',
         roundItem: @get("game")
         table: false
 

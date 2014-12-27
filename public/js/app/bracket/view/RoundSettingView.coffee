@@ -10,6 +10,7 @@ App.templates.roundSetting = """
 
 <div class="roundName">&nbsp;{{round.name}}</div>
 
+{{#if editable}}
 <div id="settings">
 <button type="button" class="close"><i class="fa fa-times-circle"></i></button>
   <form role="form" style="float: left">
@@ -31,8 +32,8 @@ App.templates.roundSetting = """
     <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus"></i>{{round._itemLabel}}</button>
     </div>
   </form>
-
 </div>
+{{/if}}
 """
 
 App.RoundSettingView = Em.View.extend
@@ -41,24 +42,25 @@ App.RoundSettingView = Em.View.extend
   round: null
 
   didInsertElement: ->
-    @$(".close").click =>
-      @$("#settings").hide("medium")
-
+    @_super()
     if App.editable
+      @$(".close").click =>
+        @$("#settings").hide("medium")
       @$(".roundName").click =>
         if @$("#settings").is(":visible")
           @$("#settings").hide "medium"
         else
           @$("#settings").show "medium"
 
-  shuffle: ->
-    #someGamesCompleted = @get('round.games').some (game) -> game.get('isCompleted')
-    # Warnung ausgeben, falls dadurch Ergebnisse verfallen
-    if true
-      App.Popup.showQuestion
-        title: App.i18n.bracket.shufflePlayers
-        bodyContent: App.i18n.bracket.shufflePlayersDescription
-        onConfirm: =>
-          @round.shuffle()
-    else
-      @round.shuffle()
+  actions:
+    shuffle: ->
+      #someGamesCompleted = @get('round.games').some (game) -> game.get('isCompleted')
+      # Warnung ausgeben, falls dadurch Ergebnisse verfallen
+      if true
+        App.Popup.showQuestion
+          title: App.i18n.bracket.shufflePlayers
+          bodyContent: App.i18n.bracket.shufflePlayersDescription
+          onConfirm: =>
+            @round.shuffle()
+      else
+        @round.shuffle()

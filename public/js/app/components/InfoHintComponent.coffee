@@ -1,12 +1,9 @@
 App.InfoHintComponent = Ember.Component.extend
-  text: null
+  classNames: ['info-hint']
 
-  template: Ember.Handlebars.compile """
-    {{markedText}}
+  layout: Ember.Handlebars.compile """
+    <i class="fa fa-info-circle"></i>
+    <div>{{yield}}</div>
   """
-
-  markedText: (->
-    marked @get('text')
-  ).property('text')
 
 

@@ -1,7 +1,7 @@
-App.FilterButton = Ember.View.extend
+App.FilterButtonView = Ember.View.extend
   classNames: ['btn-group']
   content: []
-  value: ''
+  value: null
 
   template: Ember.Handlebars.compile """
       <button type="button" class="btn btn-inverse dropdown-toggle noPrint" data-toggle="dropdown">
@@ -16,11 +16,10 @@ App.FilterButton = Ember.View.extend
 
   init: ->
     @_super()
-    @set 'buttonLabel', @get 'value'
+    @set 'buttonLabel', ''
 
-  select: (selected) ->
-    @set 'buttonLabel', selected.label
-    @set 'value', selected.id
-
-  didInsertElement: ->
+  actions:
+    select: (selected) ->
+      @set 'buttonLabel', selected.label
+      @set 'value', selected.id
 

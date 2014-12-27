@@ -58,6 +58,7 @@ appFiles = [
   'components/PlayerLinkComponent.coffee'
   'components/FormGroupComponent.coffee'
   'components/PrettyDateTimeComponent.coffee'
+  'components/InfoHintComponent.coffee'
   'components/MarkdownComponent.coffee'
 ]
 

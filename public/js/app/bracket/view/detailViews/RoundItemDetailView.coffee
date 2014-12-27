@@ -1,4 +1,6 @@
-App.RoundItemDetailView = App.GamesDetailView.extend
+App.RoundItemDetailView = App.GamesDetailView.extend()
+
+App.RoundItemDetailController = App.GamesDetailController.extend
   roundItem: null
   
   navigateToRight: ->

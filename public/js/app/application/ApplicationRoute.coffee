@@ -1,5 +1,9 @@
 App.ApplicationRoute = Ember.Route.extend
   openDetailViews: []
+  currentPathDidChange: (->
+    console.debug 'path changed'
+    console.debug 'remove detailviews'
+  ).observes('currentPath')
   
   actions:
     openDetailView: (detailView, obj) ->
@@ -13,3 +17,10 @@ App.ApplicationRoute = Ember.Route.extend
       return this.render detailView,
         into: 'application'
         outlet: 'detailView' + position
+  events:
+    closeDetailView: ->
+      console.debug 'cloooooooooooooose'
+      position = @openDetailViews.get('length')
+      return @disconnectOutlet
+        outlet: 'detailView' + position,
+        parentView: 'application'

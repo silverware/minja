@@ -75,7 +75,7 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{i18n.bracket.schedule}}
       <span style="font-size: 1rem; float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
-        {{view App.FilterButton content=filterOptions value=gamesPlayedFilter}}
+        {{view 'filterButton' content=filterOptions value=gamesPlayedFilter}}
         {{view 'searchTextField' value=gameFilter placeholder="Filter ..."}}
       </span>
     </legend>
@@ -151,3 +151,14 @@ App.GamesDetailView = App.DetailView.extend
     App.PlayerDetailView.create
       player: player
 
+App.GamesDetailController = Ember.Controller.extend
+  gameFilter: ""
+  gamesPlayedFilter: undefined
+
+  init: ->
+    @_super()
+    @set 'filterOptions', [
+      {id: undefined, label: App.i18n.bracket.all}
+      {id: true, label: App.i18n.bracket.played}
+      {id: false, label: App.i18n.bracket.open}
+    ]

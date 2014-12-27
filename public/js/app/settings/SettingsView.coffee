@@ -31,6 +31,30 @@ App.templates.settings = """
         </form>
     </fieldset>
   </div>
+  <div class="col-md-6">
+  <div class="dashboardBox">
+    <fieldset>
+      <legend>{{i18n.settings.publicName}}</legend>
+        {{#info-hint}}
+          {{i18n.settings.publicNameInfo}}<br />{{i18n.settings.publicNameExample}}
+          <br /> <br />
+          {{i18n.settings.publicNameRestriction}}
+          <ul>
+            <li>{{i18n.settings.publicNameRestriction1}}</li>
+            <li>{{i18n.settings.publicNameRestriction2}}</li>
+            <li>{{i18n.settings.publicNameRestriction3}}</li>
+          </ul>
+        {{/info-hint}}
+        <br />
+
+        <form id="form">
+          {{#form-group label='Name' name="publicName"}}
+            {{input value=tournament.publicName name="publicName" placeholder=i18n.settings.publicName}}
+          {{/form-group}}
+          {{save-button label=i18n.save}}
+        </form>
+    </fieldset>
+</div>
   </div>
   </div>
 """
