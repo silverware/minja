@@ -7,7 +7,7 @@ App.templates.game = """
 
       <span class="actionIcons">
         {{#if App.editable}}
-          <i class="fa fa-search" {{action "openGameView" target="view"}}></i>
+          <i class="fa fa-search" {{action "openGameDetailView" game}}></i>
         {{/if}}
         {{#if view.round.isEditable}}
           <i class="fa fa-times removeItem" {{action "remove" target="game"}}></i>
@@ -51,18 +51,17 @@ App.templates.game = """
 </table>
   """
 
-App.GameView = App.RoundItemView.extend
+App.GameView = App.RoundItemView.extend Ember.TargetActionSupport,
   template: Ember.Handlebars.compile App.templates.game
   classNames: ['roundItem']
 
   actions:
     tableClicked: ->
       if not App.editable
-        @send 'openGameView'
-    openGameView: ->
-      @send 'openDetailView', 'roundItemDetail',
-        roundItem: @get("game")
-        table: false
+        @triggerAction
+          action: 'openGameDetailView'
+          actionContext: @get('game')
+          target: @get('controller')
 
   round: (->
     @game?._round

@@ -31,6 +31,7 @@ App.templates.settings = """
         </form>
     </fieldset>
   </div>
+  </div>
   <div class="col-md-6">
   <div class="dashboardBox">
     <fieldset>
@@ -49,12 +50,12 @@ App.templates.settings = """
 
         <form id="form">
           {{#form-group label='Name' name="publicName"}}
-            {{input value=tournament.publicName name="publicName" placeholder=i18n.settings.publicName}}
+            {{input value=tournament.publicName name="publicName" class='form-control' placeholder=i18n.settings.publicName}}
           {{/form-group}}
           {{save-button label=i18n.save}}
         </form>
     </fieldset>
-</div>
+  </div>
   </div>
   </div>
 """

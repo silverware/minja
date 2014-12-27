@@ -52,7 +52,7 @@ App.templates.bracket = """
 """
 
 App.BracketView = Em.View.extend
-  classNameBinding: ['hide:hide']
+  classNameBinding: ['controller.hide:hide']
   template: Ember.Handlebars.compile App.templates.bracket
 
   didInsertElement: ->
@@ -86,5 +86,6 @@ App.BracketView = Em.View.extend
     #   $("#tournamentAddRemoveActions").click()), 50
 
     App.Observer.snapshot()
+
 
 

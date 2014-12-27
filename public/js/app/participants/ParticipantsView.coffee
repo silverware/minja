@@ -26,6 +26,7 @@ App.templates.participants = """
     {{/each}}
     <th></th>
   </thead>
+  <tbody>
   {{#each member in participants.sortedPlayers}}
     <tr>
       <td style="height: 39px;">
@@ -44,7 +45,7 @@ App.templates.participants = """
         {{#view 'memberValue' memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if editable}}
-              {{view 'checkbox' checkedBinding="view.memberValue"}}
+              {{view Ember.Checkbox checkedBinding="view.memberValue"}}
             {{else}}
               {{#if view.memberValue}}
                 <i class="fa fa-check" />
@@ -79,6 +80,7 @@ App.templates.participants = """
       </td>
     </tr>
   {{/each}}
+  </tbody>
 </table>
 
 <div style="text-align: right"><em>{{participants.players.length}} {{i18n.members.navName}}</em></div>

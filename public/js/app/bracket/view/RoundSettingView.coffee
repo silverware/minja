@@ -44,6 +44,7 @@ App.RoundSettingView = Em.View.extend
   didInsertElement: ->
     @_super()
     if App.editable
+      @$("#settings").hide()
       @$(".close").click =>
         @$("#settings").hide("medium")
       @$(".roundName").click =>

@@ -11,7 +11,7 @@ App.templates.group = """
 
       <span class="actionIcons">
         {{#if App.editable}}
-          <i class="fa fa-search" {{action "openGroupView" target="view"}}></i>
+          <i class="fa fa-search" {{action "openGroupDetailView" group}}></i>
         {{/if}}
         {{#if view.round.isEditable}}
           <i class="fa fa-sort-up increaseQualifierCount" {{action "increaseQualifierCount" target="group"}}></i>
@@ -125,12 +125,6 @@ App.GroupView = App.RoundItemView.extend
     else
       @toggle "#groupTable", "#groupGames"
   ).observes("showTables")
-
-  openGroupView: ->
-    App.RoundItemDetailView.create
-      roundItem: @group
-      table: true
-
 
   toggle: (outId, inId) ->
     @$(outId).fadeOut "fast", =>

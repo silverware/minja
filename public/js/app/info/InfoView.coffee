@@ -20,15 +20,16 @@ App.templates.info = """
       {{/if}}
       <dt>{{i18n.info.venue}}</dt>
       <span itemprop="location" itemscope itemtype="http://schema.org/Place">
-      <dd itemprop="name">{{info.venue}}</dd>
+      <dd itemprop="name">{{#if info.venue}}{{info.venue}}{{else}}N/A{{/if}}</dd>
       </span>
     </dl>
-      <dl class="dl-horizontal">
+    <dl class="dl-horizontal">
       <dt>{{i18n.info.host}}</dt>
-      <dd>{{info.host}}</dd>
+      <dd>{{#if info.host}}{{info.host}}{{else}}N/A{{/if}}</dd>
       <dt>E-Mail</dt>
-      <dd>{{info.hostMail}}
+      <dd>{{#if info.hostMail}}{{info.hostMail}}{{else}}N/A{{/if}}</dd>
     </dl>
+    <br class="clear" />
     <div itemprop="description" id="description">{{mark-down text=info.description}}</div>
   </div>
 """

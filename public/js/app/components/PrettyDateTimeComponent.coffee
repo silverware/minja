@@ -4,26 +4,18 @@ App.PrettyDateTimeComponent = Ember.Component.extend
   withIcon: false
 
   layout: Ember.Handlebars.compile """
-    {{#if hasDate}}
+    {{#if date}}
       {{#if withIcon}}
         <i class="fa fa-calendar"></i>&nbsp;
       {{/if}}
       {{prettyDate}}
-      {{#if hasTime}}
+      {{#if time}}
         &nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{time}}
       {{/if}}
     {{else}}
       N/A
     {{/if}}
     """
-
-  hasDate: (->
-    @get('date') isnt null
-  ).property()
-
-  hasTime: (->
-    @get('time') isnt null
-  ).property()
 
   prettyDate: (->
     moment.lang App.i18n.lang

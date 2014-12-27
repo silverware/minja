@@ -182,3 +182,4 @@ App.PlayerDetailView = App.DetailView.extend
       statistics.goalsAgainstAvg = Math.round(statistics.goalsAgainst / statistics.games * 100) / 100
     @set 'statistics', Ember.Object.create statistics
       
+App.PlayerDetailController = Ember.Controller.extend()

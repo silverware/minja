@@ -25,7 +25,7 @@ App.templates.gamesDetail = """
 
     <div class="container">
     <div class="row">
-{{#if view.table}}
+{{#if renderTable}}
   <fieldset>
     <legend>{{i18n.bracket.table}}</legend>
 
@@ -45,7 +45,7 @@ App.templates.gamesDetail = """
         </tr>
       </thead>
       <tbody>
-        {{#each view.roundItem.table}}
+        {{#each roundItem.table}}
           <tr {{bind-attr class=":player qualified:qualified"}} >
           <td></td>
           <td class="rank-cell">
@@ -55,7 +55,7 @@ App.templates.gamesDetail = """
             {{#if App.editable}}
               {{view 'dynamicTextField' value=player.name classNames="xl" editable=player.editable}}
             {{else}}
-              <div class="input-padding"><a href="#" {{action "openPlayerView" player target="view"}}>{{player.name}}</a></div>
+              <div class="input-padding"><a href="#" {{action "openPlayerDetailView" player}}>{{player.name}}</a></div>
             {{/if}}
           </td>
           <td>{{games}}</td>
@@ -162,3 +162,8 @@ App.GamesDetailController = Ember.Controller.extend
       {id: true, label: App.i18n.bracket.played}
       {id: false, label: App.i18n.bracket.open}
     ]
+
+  actions:
+    openPlayerDetailView: (player) ->
+      @send 'openDetailView', 'playerDetail',
+        player: player
