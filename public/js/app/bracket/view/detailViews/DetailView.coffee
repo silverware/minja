@@ -22,14 +22,6 @@ App.DetailView = Em.View.extend
         @initExitableView()
       #@$(".detailContent").mCustomScrollbar scrollInertia: 10
 
-
-  init: ->
-    @_super()
-    for detailView in App.openDetailViews
-      detailView.hide()
-    App.openDetailViews.pushObject @
-    @appendTo '#appRoot'
-
   initExitableView: ->
     $(document).bind "keydown." + @get('elementId'), (e) =>
       if e.keyCode is 27 and @

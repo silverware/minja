@@ -6,16 +6,16 @@ App.GroupRound = App.Round.extend
 
   init: ->
     @_super()
-    @_itemLabel = App.i18n.group
+    @_itemLabel = App.i18n.bracket.group
 
   addItem: ->
     if not @get('editable')
       App.Popup.showInfo
-        bodyContent: App.i18n.roundItemNotAddable
+        bodyContent: App.i18n.bracket.roundItemNotAddable
       return
     
     group = App.Group.create
-      name:"#{App.i18n.group} " + @_letters[@get('items.length')]
+      name:"#{App.i18n.bracket.group} " + @_letters[@get('items.length')]
       _round: @
     
     # apply settings of previous group (playercount and qualifiercount)
@@ -33,6 +33,6 @@ App.GroupRound = App.Round.extend
         players.pushObject @getFreeMembers()[0]
       else
         players.pushObject App.tournament.participants.getNewPlayer
-          name: "#{App.i18n.player} " + (i + 1)
+          name: "#{App.i18n.bracket.player} " + (i + 1)
       group.set 'players', players
 

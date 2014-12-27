@@ -1,4 +1,4 @@
-App.BracketRoute = Ember.Route.extend
+App.BracketIndexRoute = Ember.Route.extend
   controllerName: 'bracket'
   setupController: (controller) ->
     controller.set "editable", false

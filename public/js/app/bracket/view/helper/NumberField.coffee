@@ -14,6 +14,7 @@ App.NumberFieldView = Ember.TextField.extend
   ).observes("editable")
 
   onlyNumber: (input) ->
+    console.debug input
     input.replace(/[^\d]/g, "") if input
 
 

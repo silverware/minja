@@ -3,7 +3,7 @@ App.templates.game = """
 <table {{bind-attr class=":box game.itemId :round-item-table :noPadding"}} cellpadding="2" width="100%" id="gamesTable">
   <thead>
     <th colspan="10">
-      <span>{{view 'dynamicTextField' valueBinding="game.name" editableBinding="App.editable"}}</span>
+      <span>{{view 'dynamicTextField' value=game.name editable=App.editable}}</span>
 
       <span class="actionIcons">
         {{#if App.editable}}
@@ -20,7 +20,7 @@ App.templates.game = """
     <td style="max-width: 110px; width: 110px" class="player tableCellBottom" title="{{unbound game.player1.name}}">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
       {{#if App.editable}}
-        {{view 'dynamicTextField' valueBinding="game.player1.name" editableBinding="game.player1.editable"}}
+        {{view 'dynamicTextField' value=game.player1.name editable=game.player1.editable}}
       {{else}}
         {{game.player1.name}}
       {{/if}}
@@ -28,7 +28,7 @@ App.templates.game = """
     {{#each g in game.games}}
 
       <td class="tableCellBottom">
-        {{view 'gameResult' playerBinding="game.player1" gBinding="g"}}
+        {{view 'gameResult' player=game.player1 gBinding="g"}}
       </td>
     {{/each}}
   </tr>
@@ -37,14 +37,14 @@ App.templates.game = """
     <td style="max-width: 110px; width: 110px" class="player tableCellTop" title="{{unbound game.player2.name}}">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">1</div>
       {{#if App.editable}}
-        {{view 'dynamicTextField' valueBinding="game.player2.name" editableBinding="game.player2.editable"}}
+        {{view 'dynamicTextField' value=game.player2.name editable=game.player2.editable}}
       {{else}}
         {{game.player2.name}}
       {{/if}}
     </td>
     {{#each g in game.games}}
       <td class="tableCellTop">
-        {{view 'gameResult' playerBinding="game.player2" gBinding="g"}}
+        {{view 'gameResult' player=game.player2 g=g}}
       </td>
     {{/each}}
   </tr>
@@ -82,7 +82,7 @@ App.GameView = App.RoundItemView.extend
 
 App.GameResultView = Em.View.extend
   template: Ember.Handlebars.compile """
-    {{view App.NumberField valueBinding="view.result" editableBinding="App.editable"}}
+    {{view 'numberField' value=view.result editable=App.editable}}
   """
 
   result: ((key, value) ->

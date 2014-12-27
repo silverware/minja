@@ -4,7 +4,7 @@ App.KoRound = App.Round.extend
 
   init: ->
     @_super()
-    @_itemLabel = App.i18n.game
+    @_itemLabel = App.i18n.bracket.game
 
   addItem: ->
     if not @get('editable')

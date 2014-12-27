@@ -7,7 +7,7 @@ App.templates.group = """
     <col width="20px" />
   <thead>
     <th colspan="5">
-      {{view 'dynamicTextField' valueBinding="group.name" editableBinding="App.editable"}}
+      {{view 'dynamicTextField' value=group.name editable=App.editable}}
 
       <span class="actionIcons">
         {{#if App.editable}}
@@ -33,7 +33,7 @@ App.templates.group = """
       </td>
       <td class="tableCell" style="max-width: 130px">
         {{#if App.editable}}
-          {{view 'dynamicTextField' valueBinding="player.name" editableBinding="player.editable"}}
+          {{view 'dynamicTextField' value=player.name editable=player.editable}}
         {{else}}
           {{player.name}}
         {{/if}}
@@ -52,7 +52,7 @@ App.templates.group = """
   <col width="50px" />
   <thead>
     <th colspan="4">
-      {{view 'dynamicTextField' valueBinding="group.name" editableBinding="App.editable"}}
+      {{view 'dynamicTextField' value=group.name editable=App.editable}}
     </th>
   </thead>
 {{#each view.games}}
@@ -71,7 +71,7 @@ App.templates.group = """
       {{game.player2.name}}
     </td>
     <td class="tableCell" style="text-align: center">
-      {{view App.NumberField editableBinding="App.editable" valueBinding="game.result1"}} : {{view App.NumberField valueBinding="game.result2" editableBinding="App.editable"}}
+      {{view 'numberField' editable=App.editable value=game.result1}} : {{view 'numberField' value=game.result2 editable=App.editable}}
     </td>
   </tr>
 {{/each}}

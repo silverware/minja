@@ -8,10 +8,13 @@ App.BracketController = Ember.Controller.extend
       @send 'openDetailView', 'tournamentSettings',
         tree: true
         player: "asdlfj"
+    openRoundDetailView: (round) ->
+      @send 'openDetailView', 'roundDetail',
+        round: round
     removeLastRound: ->
       App.Popup.showQuestion
         title: App.i18n.bracket.deletePreviousRound
         bodyContent: App.i18n.bracket.deletePreviousRoundInfo
-      onConfirm: =>
-        App.tournament.bracket.removeLastRound()
+        onConfirm: =>
+          App.tournament.bracket.removeLastRound()
 

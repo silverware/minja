@@ -8,8 +8,6 @@ App.templates.roundSetting = """
   </ul>
 </div>
 
-
-
 <div class="roundName">&nbsp;{{round.name}}</div>
 
 <div id="settings">
@@ -17,19 +15,19 @@ App.templates.roundSetting = """
   <form role="form" style="float: left">
     <div>
       <label style="">Name</label>
-      {{view Em.TextField classNames="s form-control" valueBinding="round.name"}}
+      {{input classNames="s form-control" value=round.name}}
     </div>
   </form>
   <form role="form" style="float: left">
     <div>
-      <label>{{App.i18n.bracket.games}}</label>
-      {{view App.NumberField classNames="form-control xs" editableBinding="round.isEditable" valueBinding="round.matchesPerGame"}}
+      <label>{{i18n.bracket.games}}</label>
+      {{view 'numberField' classNames="form-control xs" editable=round.isEditable value=round.matchesPerGame}}
     </div>
   </form>
   <form role="form" style="float: left">
-      <label>{{App.i18n.bracket.actions}}</label>
+      <label>{{i18n.bracket.actions}}</label>
     <div>
-    <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{App.i18n.bracket.shuffle}}</button>
+    <button class="btn btn-inverse" {{action "shuffle" target="view"}}><i class="fa fa-random"></i>{{i18n.bracket.shuffle}}</button>
     <button class="btn btn-inverse" {{action "addItem" target="round"}}><i class="fa fa-plus"></i>{{round._itemLabel}}</button>
     </div>
   </form>
@@ -37,7 +35,7 @@ App.templates.roundSetting = """
 </div>
 """
 
-App.RoundSetting = Em.View.extend
+App.RoundSettingView = Em.View.extend
   template: Ember.Handlebars.compile App.templates.roundSetting
   classNames: ["roundSetting box"]
   round: null

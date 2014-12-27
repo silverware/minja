@@ -3,7 +3,7 @@ App.templates.participants = """
   {{#if editable}}
     {{edit-link editable=editable route="participants"}} 
       <a style="margin-right: 10px" class="float-right" href="#">
-        <button type="button" class="btn btn-inverse" {{action 'showAttributePopup' target="view"}}><i class="fa fa-plus"></i>{{i18n.members.attribute }}</button>
+        <button type="button" class="btn btn-inverse" {{action 'showAttributePopup' target="view"}}><i class="fa fa-plus"></i>{{i18n.members.attribute}}</button>
       </a>
       <a style="float: right; margin-right: 10px" href="#" {{action "createPlayer" target="participants"}}>
         <button type="button" class="btn btn-inverse"><i class="fa fa-plus"></i>{{i18n.members.member}}</button>
@@ -35,13 +35,13 @@ App.templates.participants = """
       </td>
       <td style="height: 39px;">
         {{#if editable}}
-          {{input valueBinding="member.name" classNames="form-control required l" placeholder="Name"}}
+          {{input value=member.name classNames="form-control required l" placeholder="Name"}}
         {{else}}
           {{member.name}}
         {{/if}}
       </td>
       {{#each attribute in participants.attributes}}
-        {{#view view.MemberValueView memberBinding="member.attributes" attributeBinding="attribute"}}
+        {{#view 'memberValue' memberBinding="member.attributes" attributeBinding="attribute"}}
           {{#if attribute.isCheckbox}}
             {{#if editable}}
               {{view 'checkbox' checkedBinding="view.memberValue"}}
@@ -64,7 +64,7 @@ App.templates.participants = """
       <td width="50px">
         {{#unless editable}}
           {{#if member.isPartaking}}
-            <button class="btn btn-inverse" rel="tooltip" title="Info" {{action "openPlayerView" member target="view"}} type="button">
+            <button class="btn btn-inverse" rel="tooltip" title="Info" {{action "openPlayerView" member}} type="button">
               <i class="fa fa-info"></i>
             </button>
           {{/if}}
@@ -93,25 +93,20 @@ App.ParticipantsView = Em.View.extend
       membersAttributes: App.Serializer.emberObjArrToJsonDataArr App.tournament.participants.attributes
 
   actions:
-    addAttribute: ->
-      App.tournament.participants.createAttribute
-        name: $("#inputname").val()
-        type: $("#inputtyp").val()
-        isPrivate: $("#inputprivate").val()
-
     showAttributePopup: ->
       App.Popup.show
-        title: @i18n.addAttribute
-        actions: [{closePopup: true, label: @i18n.addAttribute, action: => @addAttribute()}]
+        title: App.i18n.members.addAttribute
+        actions: [{closePopup: true, label: App.i18n.members.addAttribute, action: => @addAttribute()}]
         bodyUrl: "/tournament/members/attribute_popup"
         afterRendering: ($popup) ->
           $popup.find("form").submit (event) ->
             event.preventDefault()
 
-    openPlayerView: (player) ->
-      App.PlayerDetailView.create
-        player: player
-
+  addAttribute: ->
+    App.tournament.participants.createAttribute
+      name: $("#inputname").val()
+      type: $("#inputtyp").val()
+      isPrivate: $("#inputprivate").val()
 
   addNoItemsRow: (->
     # if App.PlayerPool.get('sortedPlayers').length == 0
@@ -126,16 +121,16 @@ App.ParticipantsView = Em.View.extend
   didInsertElement: ->
     @$("[rel='tooltip']").tooltip()
 
-  MemberValueView: Ember.View.extend
-    tagName: 'td'
-    member: null
-    attribute: null
+App.MemberValueView = Ember.View.extend
+  tagName: 'td'
+  member: null
+  attribute: null
 
-    memberValue: ((key, value) ->
-      # GETTER
-      if arguments.length == 1
-        return @get("member")[@get("attribute").id]
-      # SETTER
-      @get("member").set @get("attribute").id, value
-    ).property("member", "attribute.name")
+  memberValue: ((key, value) ->
+    # GETTER
+    if arguments.length == 1
+      return @get("member")[@get("attribute").id]
+    # SETTER
+    @get("member").set @get("attribute").id, value
+  ).property("member", "attribute.name")
 

@@ -15,7 +15,7 @@ App.RoundGame = App.RoundItem.extend
 
   qualifiers: (->
     if !@isCompleted()
-      @get("winnerDummy").set "name", "#{App.i18n.winner} " + @get("name")
+      @get("winnerDummy").set "name", "#{App.i18n.bracket.winner} " + @get("name")
       @replace @get("player1"), @get("winnerDummy")
       @replace @get("player2"), @get("winnerDummy")
       return @dummies

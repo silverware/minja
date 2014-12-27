@@ -1,12 +1,13 @@
 App.templates.bracket = """
   <div class="container" id="margin-container" style="height: 30px"></div>
-  <div id="treeWrapper">
+  <div id="treeWrapper" class="noPrint">
+  <div class="tournament">
   {{#each round in bracket}}
     {{#if round.isGroupRound}}
-      {{view 'groupRound' roundBinding="round"}}
+      {{view 'groupRound' round=round}}
     {{/if}}
     {{#if round.isKoRound}}
-      {{view 'round' roundBinding="round"}}
+      {{view 'round' round=round}}
     {{/if}}
   {{/each}}
 
@@ -47,10 +48,11 @@ App.templates.bracket = """
 
   <div style="clear: both"></div>
   </div>
+  </div>
 """
 
 App.BracketView = Em.View.extend
-  classNames: ["tournament"]
+  classNameBinding: ['hide:hide']
   template: Ember.Handlebars.compile App.templates.bracket
 
   didInsertElement: ->

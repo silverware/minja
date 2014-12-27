@@ -27,21 +27,21 @@ App.templates.gamesDetail = """
     <div class="row">
 {{#if view.table}}
   <fieldset>
-    <legend>{{App.i18n.table}}</legend>
+    <legend>{{i18n.bracket.table}}</legend>
 
     <table class="table tableTable col-md-8 col-xs-12">
       <thead>
         <tr>
           <th style="width: 5px"></th>
-          <th width="20px">{{App.i18n.rank}}</th>
+          <th width="20px">{{i18n.bracket.rank}}</th>
           <th style="text-align: left">Name</th>
-          <th>{{App.i18n.games}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.wins}}">{{App.i18n.winsShort}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.draws}}">{{App.i18n.drawsShort}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound App.i18n.defeats}}">{{App.i18n.defeatsShort}}</th>
-          <th style="cursor: help" title="{{unbound App.i18n.goals}}">{{App.i18n.goalsShort}}</th>
-          <th style="cursor: help" class="hidden-xs" title="{{unbound App.i18n.difference}}">+/-</th>
-          <th>{{App.i18n.points}}</th>
+          <th>{{i18n.bracket.games}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.wins}}">{{i18n.bracket.winsShort}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.draws}}">{{i18n.bracket.drawsShort}}</th>
+          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.defeats}}">{{i18n.bracket.defeatsShort}}</th>
+          <th style="cursor: help" title="{{unbound i18n.bracket.goals}}">{{i18n.bracket.goalsShort}}</th>
+          <th style="cursor: help" class="hidden-xs" title="{{unbound i18n.bracket.difference}}">+/-</th>
+          <th>{{i18n.bracket.points}}</th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +53,7 @@ App.templates.gamesDetail = """
           </td>
           <td style="text-align: left">
             {{#if App.editable}}
-              {{view App.DynamicTextField valueBinding="player.name" classNames="xl" editableBinding="player.editable"}}
+              {{view 'dynamicTextField' value=player.name classNames="xl" editable=player.editable}}
             {{else}}
               <div class="input-padding"><a href="#" {{action "openPlayerView" player target="view"}}>{{player.name}}</a></div>
             {{/if}}
@@ -73,10 +73,10 @@ App.templates.gamesDetail = """
   <br />
 {{/if}}
   <fieldset>
-    <legend>{{App.i18n.schedule}}
+    <legend>{{i18n.bracket.schedule}}
       <span style="font-size: 1rem; float:right; margin-bottom: 5px;" class="hidden-xs" class="noPrint">
-        {{view App.FilterButton contentBinding="view.filterOptions" valueBinding="view.gamesPlayedFilter"}}
-        {{view App.SearchTextField valueBinding="view.gameFilter" placeholder="Filter ..."}}
+        {{view App.FilterButton content=filterOptions value=gamesPlayedFilter}}
+        {{view 'searchTextField' value=gameFilter placeholder="Filter ..."}}
       </span>
     </legend>
     <table class="table tableSchedule">
@@ -84,20 +84,20 @@ App.templates.gamesDetail = """
         <tr>
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>
-          <th style="text-align: left">{{App.i18n.home}}</th>
+          <th style="text-align: left">{{i18n.bracket.home}}</th>
           {{#if App.editable}}
             <th></th>
           {{/if}}
-          <th style="text-align: left">{{App.i18n.guest}}</th>
-          {{#each attribute in App.tournament.bracket.gameAttributes}}
+          <th style="text-align: left">{{i18n.bracket.guest}}</th>
+          {{#each attribute in bracket.gameAttributes}}
             <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
-          <th>{{App.i18n.result}}</th>
+          <th>{{i18n.bracket.result}}</th>
         </tr>
       </thead>
-      {{#each matchday in view.filteredGames}}
+      {{#each matchday in filteredGames}}
         <tbody style="page-break-after: always">
-        <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{matchday.matchDay}}. {{App.i18n.matchday}}</td></tr>
+        <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{matchday.matchDay}}. {{i18n.bracket.matchday}}</td></tr>
         {{#each game in matchday.games}}
           <tr>
             <td class="hidden-xs"></td>
@@ -106,22 +106,22 @@ App.templates.gamesDetail = """
               <a href="#" {{action "openPlayerView" game.player1 target="view"}}>{{game.player1.name}}</a>
             </td>
             {{#if App.editable}}
-              <td><i class="fa fa-exchange" title="{{unbound App.i18n.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
+              <td><i class="fa fa-exchange" title="{{unbound i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               <a href="#" {{action "openPlayerView" game.player2 target="view"}}>{{game.player2.name}}</a>
             </td>
             {{#each attribute in App.tournament.bracket.gameAttributes}}
-              {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
+              {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td class="center">
             {{#if App.editable}}
                 <div class="result-container">
-                {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
+                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
                 </div>
                 &nbsp;
                 <div class="result-container">
-                {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
+                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
                 </div>
             {{else}}
               {{#if game.isCompleted}}
@@ -136,24 +136,13 @@ App.templates.gamesDetail = """
         </tbody>
       {{/each}}
     </table>
-    <div style="text-align: right" class="noPrint"><em>{{view.gamesCount}} {{App.i18n.games}}</em></div>
+    <div style="text-align: right" class="noPrint"><em>{{gamesCount}} {{i18n.bracket.games}}</em></div>
   </fieldset>
     </div></div>
 """
 
 App.GamesDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.gamesDetail
-  gameFilter: ""
-  gamePlayedFilter: undefined
-
-
-  init: ->
-    @_super()
-    @filterOptions = [
-      {id: undefined, label: App.i18n.all}
-      {id: true, label: App.i18n.played}
-      {id: false, label: App.i18n.open}
-    ]
 
   printView: ->
     window.print()
@@ -162,8 +151,3 @@ App.GamesDetailView = App.DetailView.extend
     App.PlayerDetailView.create
       player: player
 
-  gamesCount: (->
-    @get('filteredGames').reduce (count, matchDay) ->
-      count += matchDay.games.length
-    , 0
-  ).property("filteredGames")

@@ -33,8 +33,8 @@ App.GameAttribute = Em.Object.extend
 
   remove: ->
     App.Popup.showQuestion
-      title: App.i18n.deleteGameAttribute
-      bodyContent: App.i18n.reallyDeleteGameAttribute
+      title: App.i18n.bracket.deleteGameAttribute
+      bodyContent: App.i18n.bracket.reallyDeleteGameAttribute
       onConfirm: =>
         App.tournament.bracket.gameAttributes.removeObject @
 

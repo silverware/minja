@@ -1,7 +1,7 @@
-App.SearchTextField = Ember.View.extend
+App.SearchTextFieldView = Ember.View.extend
   classNames: ['btn-group', 'noPrint']
   template: Ember.Handlebars.compile """
-    {{view Em.TextField classNames="form-control" valueBinding="view.value" placeholderBinding="view.placeholder" }}
+    {{input classNames="form-control" value=view.value placeholder=view.placeholder}}
     <i class="filter-input-close-button fa fa-times" {{action clearInput target="view"}}></i>
   """
 

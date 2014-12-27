@@ -1,13 +1,13 @@
 App.RoundView = Em.View.extend
   template: Ember.Handlebars.compile """
-    {{view App.RoundSetting roundBinding="round"}}
+    {{view 'roundSetting' round=round}}
     <div class="box toolbar"> 
-      <button class="btn-inverse" id="openDetailView"><i class="fa fa-search"></i></button>
+      <button class="btn-inverse" {{action 'openRoundDetailView' view.round}}><i class="fa fa-search"></i></button>
       <!-- <i class="fa fa-chevron-up" {{action "toggleRound" target="view"}} id="toggleRound"></i> -->
     </div>
 
     {{#each game in round.items}}
-      {{view 'game' gameBinding="game"}}
+      {{view 'game' game=game}}
     {{/each}}
   """
 
@@ -20,8 +20,8 @@ App.RoundView = Em.View.extend
   ).observes("round.items.@each")
 
   didInsertElement: ->
-    @$("#openDetailView").click =>
-        App.RoundDetailView.create round: @round
+    # @$("#openDetailView").click =>
+    #   App.RoundDetailView.create round: @round
     # @$("#openDetailView").tooltip
     #   title: "#{App.i18n.schedule} #{App.i18n.detailView}"
     #   placement: 'left'
