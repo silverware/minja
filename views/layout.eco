@@ -40,6 +40,7 @@
     <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
 
     <script src="/lib/require-jquery.js"></script>
+    <script src="/lib/moment.min.js"></script>
     <script src="/js/require-config.js"></script>
     <script src="/lib/chosen.jquery.min.js"></script>
     <script src="/lib/jquery.validate.min.js"></script>

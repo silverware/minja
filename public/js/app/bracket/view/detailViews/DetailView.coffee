@@ -28,7 +28,7 @@ App.DetailView = Em.View.extend
     for detailView in App.openDetailViews
       detailView.hide()
     App.openDetailViews.pushObject @
-    @appendTo "body"
+    @appendTo '#appRoot'
 
   initExitableView: ->
     $(document).bind "keydown." + @get('elementId'), (e) =>

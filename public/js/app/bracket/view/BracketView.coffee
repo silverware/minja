@@ -14,7 +14,7 @@ App.templates.bracket = """
     <div class="saveActions box">
       <form action="#" method="post" style="margin: 1px 20px">
         <span>
-          <button class="btn btn-inverse" {{action "edit" target="view"}} ><i class="fa fa-cog"></i>{{i18n.settings}}</button>
+          <button class="btn btn-inverse" {{action 'openSettings'}} ><i class="fa fa-cog"></i>{{i18n.bracket.settings}}</button>
           <button type="submit" class="btn btn-inverse">{{i18n.save}}</button>
           <i class="fa fa-spinner fa-spin ajaxLoader"></i>
           <span class="successIcon"><i class="fa fa-check"></i> {{i18n.saved}}</span>
@@ -85,6 +85,4 @@ App.BracketView = Em.View.extend
 
     App.Observer.snapshot()
 
-  edit: ->
-    App.TournamentSettingsView.create()
 

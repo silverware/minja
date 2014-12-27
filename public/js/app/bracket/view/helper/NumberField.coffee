@@ -1,4 +1,4 @@
-App.NumberField = Ember.TextField.extend
+App.NumberFieldView = Ember.TextField.extend
   classNames: ['result-textfield']
   editable: true
 

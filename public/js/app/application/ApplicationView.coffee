@@ -2,6 +2,7 @@ App.ApplicationView = Em.View.extend
   classNames: ['chat']
   defaultTemplate: Ember.Handlebars.compile """
     {{outlet}}
+    {{outlet detailView}}
     """
 
   didInsertElement: ->
@@ -11,6 +12,11 @@ App.ApplicationView = Em.View.extend
   isExpanded: true
 
   actions:
+    openDetailView: (detailView) ->
+      return this.render detailView,
+        into: 'application'
+        outlet: 'detailView'
+
     toggleExpansion: ->
       @expand not @get("isExpanded")
 

@@ -81,7 +81,7 @@ bracketFiles  = [
   'view/detailViews/PlayerDetailView.coffee'
   'view/detailViews/helper/GameAttributeValueView.coffee'
   'view/detailViews/helper/GameAttributePrefillPopup.coffee'
-  'view/TournamentSettings.coffee'
+  'view/TournamentSettingsView.coffee'
 ]
 
 wrapperTop = """

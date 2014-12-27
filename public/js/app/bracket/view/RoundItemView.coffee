@@ -5,7 +5,7 @@ App.RoundItemView = Em.View.extend
 
   didInsertElement: ->
     @$(".fa-search").tooltip
-      title: App.i18n.detailView
+      title: App.i18n.bracket.detailView
     if App.editable
       @initDraggable()
       @draggable()
