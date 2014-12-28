@@ -3,4 +3,5 @@ App.ParticipantsController = Ember.Controller.extend
     openPlayerView: (player) ->
       @send 'openDetailView', 'playerDetail',
         player: player
+        editable: false
 

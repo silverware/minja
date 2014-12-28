@@ -103,13 +103,13 @@ App.templates.gamesDetail = """
             <td class="hidden-xs"></td>
             <td class="hidden-xs rank-cell">{{game._roundItemName}}</td>
             <td {{bind-attr class="game.player1Wins:winner"}}>
-              <a href="#" {{action "openPlayerView" game.player1 target="view"}}>{{game.player1.name}}</a>
+              <a href="#" {{action "openPlayerDetailView" game.player1}}>{{game.player1.name}}</a>
             </td>
             {{#if App.editable}}
               <td><i class="fa fa-exchange" title="{{unbound i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
-              <a href="#" {{action "openPlayerView" game.player2 target="view"}}>{{game.player2.name}}</a>
+              <a href="#" {{action "openPlayerDetailView" game.player2}}>{{game.player2.name}}</a>
             </td>
             {{#each attribute in App.tournament.bracket.gameAttributes}}
               {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
@@ -117,11 +117,11 @@ App.templates.gamesDetail = """
             <td class="center">
             {{#if App.editable}}
                 <div class="result-container">
-                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
+                {{view 'numberField' classNames="form-control" editable=App.editable value=game.result1}}
                 </div>
                 &nbsp;
                 <div class="result-container">
-                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
+                {{view 'numberField' classNames="form-control" editable=App.editable value=game.result2}}
                 </div>
             {{else}}
               {{#if game.isCompleted}}
@@ -142,14 +142,11 @@ App.templates.gamesDetail = """
 """
 
 App.GamesDetailView = App.DetailView.extend
+  classNameBinding: ['hide:hide']
   template: Ember.Handlebars.compile App.templates.gamesDetail
 
   printView: ->
     window.print()
-
-  openPlayerView: (player) ->
-    App.PlayerDetailView.create
-      player: player
 
 App.GamesDetailController = Ember.Controller.extend
   gameFilter: ""
@@ -167,3 +164,4 @@ App.GamesDetailController = Ember.Controller.extend
     openPlayerDetailView: (player) ->
       @send 'openDetailView', 'playerDetail',
         player: player
+        editable: App.editable

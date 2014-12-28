@@ -2,7 +2,7 @@ App.templates.infoEdit = """
 <div class="container container-normal">
   {{edit-link editable='false' route="info"}} 
   <h1>{{i18n.info.header}}</h1>
-  <form class="form-horizontal">
+  <form id="info-form" class="form-horizontal" action=''>
     <fieldset>
       <legend>{{i18n.info.basicData}}</legend>
         {{#form-group label=i18n.tournamentName name="name" formControl="col-md-4"}}
@@ -48,9 +48,7 @@ App.templates.infoEdit = """
           {{input value=tournament.info.hostMail name="hostMail" class="form-control email"}}
         {{/form-group}}
       </fieldset>
-
       {{save-button label=i18n.save}}
-
   </form>
 </div>
 """
@@ -62,5 +60,6 @@ App.InfoEditView = Em.View.extend
     @_super()
     console.debug "insert info edit"
     new Save
-      form: @$('form')
+      url: @get 'controller.infoEditUrl'
+      form: @$('#info-form')
       tournamentId: App.tournament.identifier

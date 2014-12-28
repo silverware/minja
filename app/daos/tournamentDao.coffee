@@ -49,7 +49,16 @@ class TournamentDao extends require('./daoBase')
 
   findTournamentsByUser: (user, callback) ->
     @db.view "tournament/byUser", key: user.id, descending: true, (err, tournaments) ->
-      if err then callback [] else callback tournaments
+      if err
+        callback []
+      else
+        for t in tournaments
+          tournament = t.value
+          if tournament.publicName
+            tournament.identifier = tournament.publicName
+          else
+            tournament.identifier = tournament._id
+        callback tournaments
 
   findTournamentsByIds: (ids, callback) ->
     @db.view "tournament/byIds", keys: ids, descending: true, (err, tournaments) ->

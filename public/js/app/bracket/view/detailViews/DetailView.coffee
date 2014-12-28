@@ -1,4 +1,5 @@
 App.DetailView = Em.View.extend
+  classNameBindings: ['isHidden:hide']
   classNames: ['detailView']
 
   layout: Ember.Handlebars.compile """
@@ -6,6 +7,7 @@ App.DetailView = Em.View.extend
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="detailContent">{{yield}}</div>
+    {{hide}}
   """
 
   didInsertElement: ->

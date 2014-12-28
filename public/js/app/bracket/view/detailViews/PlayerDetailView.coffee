@@ -43,7 +43,7 @@ App.templates.playerDetail = """
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>
           <th class="left">{{i18n.bracket.home}}</th>
-          {{#if App.editable}}
+          {{#if editable}}
             <th></th>
           {{/if}}
           <th class="left">{{i18n.bracket.guest}}</th>
@@ -62,23 +62,23 @@ App.templates.playerDetail = """
             <td {{bind-attr class="game.player1Wins:winner"}}>
               {{game.player1.name}}
             </td>
-            {{#if App.editable}}
+            {{#if editable}}
               <td><i class="icon-exchange" title="{{unbound i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
             </td>
-            {{#each attribute in tournament.bracket.gameAttributes}}
+            {{#each attribute in bracket.gameAttributes}}
               {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td style="text-align: center">
-            {{#if App.editable}}
+            {{#if editable}}
                 <div class="result-container">
-                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
+                {{view 'numberField' classNames="form-control" editable=editable value=game.result1}}
                 </div>
                 &nbsp;
                 <div class="result-container">
-                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
+                {{view 'numberField' classNames="form-control" editable=editable value=game.result2}}
                 </div>
             {{else}}
               {{#if game.isCompleted}}
@@ -149,6 +149,7 @@ App.PlayerDetailView = App.DetailView.extend
 App.PlayerDetailController = Ember.Controller.extend
   player: null
   statistics: null
+  editable: false
   rounds: []
 
   onPlayerSelected: (->

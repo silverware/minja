@@ -18,4 +18,8 @@ App.InfoEditController = Ember.Controller.extend
       return true
     return false
   ).property('App.tournament.info.stopDate')
+  
+  infoEditUrl: (->
+    '/' + App.tournament.identifier + '/info/edit'
+  ).property()
 

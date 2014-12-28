@@ -14,7 +14,7 @@ App.ApplicationRoute = Ember.Route.extend
       @openDetailViews.pushObject detailView
 
       if currentView
-        @controllerFor(currentView).set 'hide', true
+        @controllerFor(currentView).set 'isHidden', true
       for key, value of obj
         @controllerFor(detailView).set key, value
 
@@ -29,6 +29,8 @@ App.ApplicationRoute = Ember.Route.extend
       if position is 1
         @getContainer().show()
         $(".navbar-static-top").removeClass "visible-lg"
+      else
+        @controllerFor(@openDetailViews.get('lastObject')).set 'isHidden', false
       return @disconnectOutlet
         outlet: 'detailView' + position,
         parentView: 'application'

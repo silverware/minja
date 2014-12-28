@@ -48,7 +48,7 @@ App.templates.settings = """
         {{/info-hint}}
         <br />
 
-        <form id="public-name-form">
+        <form id="public-name-form" class="form-horizontal">
           {{#form-group label='Name' name="publicName"}}
             {{input value=tournament.publicName name="publicName" class='form-control publicName' placeholder=i18n.settings.publicName}}
           {{/form-group}}
@@ -74,6 +74,8 @@ App.SettingsView = Em.View.extend
     new Save
       url: @get 'controller.publicNameUrl'
       form: @$ '#public-name-form'
+      onSave: ->
+        window.location.href = '/' + App.tournament.publicName + '/settings'
 
   fillColors: (colorTheme) =>
     console.debug "fill"
