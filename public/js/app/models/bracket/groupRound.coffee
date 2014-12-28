@@ -1,12 +1,13 @@
 App.GroupRound = App.Round.extend
   _itemLabel: ""
-  isGroupRound: true
+  isGroupRound: null
 
   _letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   init: ->
     @_super()
     @_itemLabel = App.i18n.bracket.group
+    @set 'isGroupRound', true
 
   addItem: ->
     if not @get('editable')

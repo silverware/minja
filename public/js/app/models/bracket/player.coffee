@@ -9,7 +9,7 @@ App.Player = Em.Object.extend
     @_super()
     if not @id
       @set 'id', UniqueId.create()
-    @attributes = Em.Object.create()
+    @set 'attributes', Em.Object.create()
 
   editable: (->
     @get("isPlayer") and App.editable

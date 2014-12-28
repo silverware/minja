@@ -1,6 +1,6 @@
 App.templates.game = """
 
-<table {{bind-attr class=":box game.itemId :round-item-table editable::blurringBox :noPadding"}} {{action 'tableClicked' target='view'}} cellpadding="2" width="100%" id="gamesTable">
+<table {{bind-attr class=":box game.itemId :round-item-table App.editable::blurringBox :noPadding"}} {{action 'tableClicked' target='view'}} cellpadding="2" width="100%" id="gamesTable">
   <thead>
     <th colspan="10">
       <span>{{view 'dynamicTextField' value=game.name editable=App.editable}}</span>

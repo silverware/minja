@@ -1,11 +1,11 @@
 App.Bracket = Em.ArrayController.extend
   winPoints: 3
   drawPoints: 1
-  qualifierModus: "aggregate"
+  qualifierModus: null
   timePerGame: 20
   gamesParallel: 1
   settings: {}
-  gameAttributes: []
+  gameAttributes: null
   content: []
 
   init: ->
@@ -37,20 +37,18 @@ App.Bracket = Em.ArrayController.extend
 
   addGroupRound: ->
     if @addRound()
-      $("#settings .close").click()
       @pushObject App.GroupRound.create
         name: App.i18n.bracket.groupStage
         _previousRound: @lastRound()
 
   addKoRound: ->
     if @addRound()
-      $("#settings .close").click()
       @pushObject App.KoRound.create
         name: App.i18n.bracket.koRound
         _previousRound: @lastRound()
 
   addRound: ->
-    if @get('content.length') is 0 or @lastRound().validate()
+    if @get('length') is 0 or @lastRound().validate()
       @lastRound()?.set "editable", false
       return true
     else
@@ -60,7 +58,7 @@ App.Bracket = Em.ArrayController.extend
       return false
 
   lastRound: ->
-    _.last @get('content')
+    @get('lastObject')
 
   removeLastRound: ->
     @removeObject @lastRound()

@@ -43,11 +43,15 @@ App.RoundSettingView = Em.View.extend
 
   didInsertElement: ->
     @_super()
+    if not @get('round.isEditable')
+      @$("#settings").hide "medium"
 
-  # showSettings: (->
-  #   if @get('round.isEditable') and not @$("#settings").is(":visible")
-  #     @$("#settings").show "medium"
-  # ).observes('round.isEditable')
+  showSettings: (->
+    if @get('round.isEditable')
+      @$("#settings").show "medium"
+    else
+      @$("#settings").hide "medium"
+  ).observes('round.isEditable')
 
   actions:
     toggleSettings: ->

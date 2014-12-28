@@ -272,7 +272,7 @@ Bootstrap
 /* ---------------------------------------------------------------------
 Form
 ----------------------------------------------------------------------*/
-.form-control {
+.form-control, .form-control[disabled], .form-control[readonly] {
   background-color: darken(@normalOpaque, 5%);
   color: @textColor;
   border: 1px solid fade(@textColor, 25%);
@@ -337,7 +337,7 @@ Tree
 }
 
 .roundItem table input.result-textfield {
-  .fadedBox;
+  .form-control;
   width: 14px;
   max-width: 14px;
 }

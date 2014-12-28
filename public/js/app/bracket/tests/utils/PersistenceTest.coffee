@@ -32,6 +32,15 @@ buster.testCase "Persistence",
     assert.equals true, json.isKoRound
     assert.equals 0, json.items.length
 
+  "Die Properties einer Gruppenphase persistieren": ->
+    round = App.GroupRound.create
+      name: "group"
+    json = App.Serializer.emberObjToJsonData round
+    assert.equals 'group', json.name
+    assert.equals true, json.isGroupRound
+    assert.equals 0, json.items.length
+    assert.equals 1, json.matchesPerGame
+
 
 
 

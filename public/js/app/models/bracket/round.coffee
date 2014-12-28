@@ -3,7 +3,12 @@ App.Round = Em.Object.extend
   items: []
   _previousRound: null
   _editable: true
-  matchesPerGame: 1
+  matchesPerGame: null
+
+  init: ->
+    @_super()
+    @set "items", []
+    @set "matchesPerGame", 1
 
   games: (->
     @get("items").reduce (roundGames, item) ->
@@ -25,10 +30,6 @@ App.Round = Em.Object.extend
         games: games
         matchDay: i + 1
   ).property("items.@each.matchDays")
-
-  init: ->
-    @_super()
-    @set "items", []
 
   editable: ((key, value) ->
     # SETTER
@@ -73,7 +74,7 @@ App.Round = Em.Object.extend
   ).property("App.tournament.bracket.@each")
 
   validate: ->
-    return (@getFreeMembers() is null or @getFreeMembers().length == 0) and @get("qualifiers").length > 1
+    return (@getFreeMembers() is null or @getFreeMembers().length is 0) and @get("qualifiers").length > 1
 
   removeItem: (item) ->
     @items.removeObject item

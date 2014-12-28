@@ -1,5 +1,4 @@
 App.Game = Em.Object.extend
-
   player1: null
   player2: null
   result1: null

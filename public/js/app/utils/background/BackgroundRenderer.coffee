@@ -128,6 +128,7 @@ define ['threejs'], ->
 
   init = ->
     return
+    console.debug "background start"
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
 
     ###--------------------------------------------------------------------------

@@ -1,5 +1,10 @@
 App.RoundGame = App.RoundItem.extend
-  isGame: true
+  isGame: null
+
+  init: ->
+    @_super()
+    @dummies.pushObject App.Dummy.create()
+    @set 'isGame', true
 
   player1: (->
     @get("players").objectAt 0
@@ -26,10 +31,6 @@ App.RoundGame = App.RoundItem.extend
       @replace @get("player2"), winner
       return [winner]
   ).property("players.@each", "games.@each.result1", "games.@each.result2", "name", "App.tournament.bracket.qualifierModus")
-
-  init: ->
-    @_super()
-    @dummies.pushObject App.Dummy.create()
 
   getWinner: ->
     if App.tournament.bracket.get('qualifierModus') is App.qualifierModi.AGGREGATE.id

@@ -1,12 +1,13 @@
 App.NumberFieldView = Ember.TextField.extend
   classNames: ['result-textfield']
   editable: true
+  type: 'number'
 
   didInsertElement: ->
     @onEditableChange()
 
   onValueChanged: ( ->
-    @set 'value', @onlyNumber @get 'value'
+    # @set 'value', @onlyNumber @get 'value'
   ).observes("value")
 
   onEditableChange: (->
@@ -14,8 +15,11 @@ App.NumberFieldView = Ember.TextField.extend
   ).observes("editable")
 
   onlyNumber: (input) ->
-    console.debug input
-    input.replace(/[^\d]/g, "") if input
+    if typeof input is 'number'
+      return input
+    if input
+      return input.replace(/[^\d]/g, "")
+    input
 
 
 

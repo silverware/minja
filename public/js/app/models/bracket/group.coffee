@@ -1,7 +1,12 @@
 App.Group = App.RoundItem.extend
-  isGroup: true
+  isGroup: null
   qualifierCount: null
   _tempQualifiers: []
+
+  init: ->
+    @_super()
+    @set "qualifierCount", 2
+    @set "isGroup", true
 
   qualifiers: (->
     qualifiers = []
@@ -23,10 +28,6 @@ App.Group = App.RoundItem.extend
     qualifiers
     ).property("qualifierCount", "games.@each.isCompleted", "name")
 
-  init: ->
-    @_super()
-    @set "qualifierCount", 2
-
   removeLastPlayer: ->
     if @get("players.length") > 2
       player = @get("players").popObject()
@@ -38,7 +39,7 @@ App.Group = App.RoundItem.extend
       @get("players").pushObject freeMembers[0]
     else
       @get("players").pushObject App.tournament.participants.getNewPlayer
-        name: "Player"
+        name: App.i18n.bracket.player
     @onPlayerSizeChange()
 
   table: (->

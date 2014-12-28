@@ -111,7 +111,7 @@ App.templates.gamesDetail = """
             <td {{bind-attr class="game.player2Wins:winner"}}>
               <a href="#" {{action "openPlayerDetailView" game.player2}}>{{game.player2.name}}</a>
             </td>
-            {{#each attribute in App.tournament.bracket.gameAttributes}}
+            {{#each attribute in bracket.gameAttributes}}
               {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td class="center">

@@ -1,10 +1,11 @@
 App.KoRound = App.Round.extend
   _itemLabel: ""
-  isKoRound: true
+  isKoRound: null
 
   init: ->
     @_super()
     @_itemLabel = App.i18n.bracket.game
+    @set 'isKoRound', true
 
   addItem: ->
     if not @get('editable')

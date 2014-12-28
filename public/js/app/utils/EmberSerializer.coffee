@@ -4,11 +4,13 @@ App.Serializer =
       throw TypeError "argument is not an Ember Object"
     jsonObj = {}
     emberObj = Ember.ArrayController.create(content: [])
+    if obj instanceof App.KoRound
+      console.debug obj
     for key, value of obj
       continue if Ember.typeOf(value) == 'function'
-      continue if emberObj[key] != undefined
-      continue if value == 'toString'
-      continue if value == undefined
+      continue if emberObj[key] isnt undefined
+      continue if value is 'toString'
+      continue if value is undefined
       continue if /^_/.test key
       if value instanceof Em.ArrayController
         jsonObj[key] = @emberObjArrToJsonDataArr(value.content)
