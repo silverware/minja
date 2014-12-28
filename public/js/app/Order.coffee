@@ -31,6 +31,8 @@ appFiles = [
   'application/ApplicationRoute.coffee'
   'application/ApplicationController.coffee'
   'application/ApplicationView.coffee'
+  'application/LoadingRoute.coffee'
+  'application/LoadingView.coffee'
   'info/InfoRoute.coffee'
   'info/InfoController.coffee'
   'info/InfoView.coffee'
