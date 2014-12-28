@@ -4,4 +4,7 @@ App.ParticipantsController = Ember.Controller.extend
       @send 'openDetailView', 'playerDetail',
         player: player
         editable: false
+  participantsUrl: (->
+    '/' + App.tournament.identifier + '/participants/edit'
+  ).property()
 

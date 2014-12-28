@@ -26,8 +26,6 @@ class TournamentEditController extends ControllerBase
 
   "POST:/:tid/participants/edit": (req, res) =>
     console.log req.body
-    if _.isEmpty req.body
-      return res.render "#{@viewPrefix}/members/edit"
     t = req.tournament
     t.members = req.body
     # console.log Tournament.validate t

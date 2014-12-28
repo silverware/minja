@@ -84,6 +84,11 @@ App.templates.participants = """
 </table>
 
 <div style="text-align: right"><em>{{participants.players.length}} {{i18n.members.navName}}</em></div>
+  {{#if editable}}
+    <form class="form-horizontal" method="post" id="participants-form">
+      {{save-button label=i18n.save}}
+    </form>
+  {{/if}}
 </div>
 """
 
@@ -122,6 +127,10 @@ App.ParticipantsView = Em.View.extend
   template: Ember.Handlebars.compile App.templates.participants
   didInsertElement: ->
     @$("[rel='tooltip']").tooltip()
+    new Save
+      url: @get 'controller.participantsUrl'
+      form: @$ '#participants-form'
+      data: @data
 
 App.MemberValueView = Ember.View.extend
   tagName: 'td'
