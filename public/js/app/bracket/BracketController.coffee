@@ -5,9 +5,7 @@ App.BracketController = Ember.Controller.extend
     addGroupRound: ->
       App.tournament.bracket.addGroupRound()
     openSettings: ->
-      @send 'openDetailView', 'tournamentSettings',
-        tree: true
-        player: "asdlfj"
+      @send 'openDetailView', 'tournamentSettings'
     openRoundDetailView: (round) ->
       @send 'openDetailView', 'roundDetail',
         round: round

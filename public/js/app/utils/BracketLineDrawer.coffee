@@ -18,7 +18,7 @@ App.BracketLineDrawer =
     @lastChange = new Date().getTime()
     @clear()
     @resize()
-    App.Tournament.forEach (round) =>
+    App.tournament.bracket.forEach (round) =>
       prev = round._previousRound
       if not prev then return
       if prev.isGroupRound or round.isGroupRound then return
@@ -45,7 +45,7 @@ App.BracketLineDrawer =
     @ctx.lineTo posTo.x, midY
     @ctx.lineTo posTo.x, posTo.y
 
-    @ctx.strokeStyle = App.colors.content
+    @ctx.strokeStyle = App.tournament.settings.colors.content
     @ctx.stroke()
 
   centerPos: (element, top) ->

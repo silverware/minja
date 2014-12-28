@@ -1,5 +1,6 @@
 App.Tournament = Em.Object.extend
   isOwner: false
+  publicName: ''
   identifier: ''
   info: null
   settings: null

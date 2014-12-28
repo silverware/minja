@@ -60,6 +60,7 @@ App.InfoEditView = Em.View.extend
 
   didInsertElement: ->
     @_super()
+    console.debug "insert info edit"
     new Save
       form: @$('form')
       tournamentId: App.tournament.identifier

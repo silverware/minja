@@ -8,7 +8,7 @@ App.templates.roundSetting = """
   </ul>
 </div>
 
-<div class="roundName">&nbsp;{{round.name}}</div>
+<div class="roundName">{{#if editable}}<i class="fa fa-edit"></i>{{/if}}&nbsp;{{round.name}}</div>
 
 {{#if editable}}
 <div id="settings">

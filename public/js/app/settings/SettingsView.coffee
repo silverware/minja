@@ -48,9 +48,9 @@ App.templates.settings = """
         {{/info-hint}}
         <br />
 
-        <form id="form">
+        <form id="public-name-form">
           {{#form-group label='Name' name="publicName"}}
-            {{input value=tournament.publicName name="publicName" class='form-control' placeholder=i18n.settings.publicName}}
+            {{input value=tournament.publicName name="publicName" class='form-control publicName' placeholder=i18n.settings.publicName}}
           {{/form-group}}
           {{save-button label=i18n.save}}
         </form>
@@ -62,37 +62,6 @@ App.templates.settings = """
 
 
 App.SettingsView = Em.View.extend
-  temp: """
-  <div class="col-md-6">
-  <div class="dashboardBox">
-    <fieldset>
-      <legend>{{App.i18n.settings.publicName}}</legend>
-        <%= @infoHint => %>
-          <%= @i18n.settings.publicNameInfo %><br /><%= @i18n.settings.publicNameExample %>
-          <br /> <br />
-          {{App.i18n.settings.publicNameRestriction}}
-          <ul>
-            <li>{{App.i18n.settings.publicNameRestriction1}}</li>
-            <li>{{App.i18n.settings.publicNameRestriction2}}</li>
-            <li>{{App.i18n.settings.publicNameRestriction3}}</li>
-          </ul>
-        <% end %>
-        <br />
-
-        <%= @formFor @tournament, (form) => %>
-          <%= form.textField 'Name', "publicName", {class: "publicName", placeholder: @i18n.settings.publicName} %>
-          <%= form.button @i18n.save %>
-        <% end %>
-    </fieldset>
-    <!--
-    <fieldset>
-      <legend><%= @i18n.settings.messages %></legend>
-
-Nachrichten aktivieren/deaktivieren
-
-  -->
-</div>
-  """
   template: Ember.Handlebars.compile App.templates.settings
 
   actions:
@@ -102,6 +71,9 @@ Nachrichten aktivieren/deaktivieren
 
   didInsertElement: ->
     @_super()
+    new Save
+      url: @get 'controller.publicNameUrl'
+      form: @$ '#public-name-form'
 
   fillColors: (colorTheme) =>
     console.debug "fill"

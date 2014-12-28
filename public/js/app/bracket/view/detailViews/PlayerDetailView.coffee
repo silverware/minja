@@ -1,7 +1,7 @@
 App.templates.playerDetail = """
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
-        <span class="round-item-name">{{view.player.name}}</span>
+        <span class="round-item-name">{{player.name}}</span>
     </div>
   </div>
 
@@ -9,51 +9,51 @@ App.templates.playerDetail = """
   <div class="container">
   <div class="row">
   <fieldset>
-    <legend>{{App.i18n.bracket.statistic}}</legend>
+    <legend>{{i18n.bracket.statistic}}</legend>
     <div class="col-md-6">
       <div id="win-chart" class="center"></div>
     </div>
     <div class="col-md-6">
         <div>
-          <b>{{App.i18n.bracket.games}}</b>
+          <b>{{i18n.bracket.games}}</b>
           <div style="display: inline-block; float: right; font-size: 12px">
-            {{view.statistics.games}}/{{view.statistics.totalGames}}
+            {{statistics.games}}/{{statistics.totalGames}}
           </div>
         <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{unbound view.statistics.gamesCompletion}}%"></div>
+            <div class="progress-bar progress-bar-success" style="width: {{unbound statistics.gamesCompletion}}%"></div>
           </div>
           </div>
           <br /> <br />
       <dl class="dl-horizontal">
-      <dt>{{App.i18n.bracket.goals}}</dt>
-      <dd>{{view.statistics.goals}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAvg}}){{/if}}<dd>
-      <dt>{{App.i18n.bracket.goalsAgainst}}</dt>
-      <dd>{{view.statistics.goalsAgainst}}&nbsp;&nbsp;{{#if view.statistics.hasPlayedGames}}(&oslash;&nbsp;{{view.statistics.goalsAgainstAvg}}){{/if}}</dd>
+      <dt>{{i18n.bracket.goals}}</dt>
+      <dd>{{statistics.goals}}&nbsp;&nbsp;{{#if statistics.hasPlayedGames}}(&oslash;&nbsp;{{statistics.goalsAvg}}){{/if}}<dd>
+      <dt>{{i18n.bracket.goalsAgainst}}</dt>
+      <dd>{{statistics.goalsAgainst}}&nbsp;&nbsp;{{#if statistics.hasPlayedGames}}(&oslash;&nbsp;{{statistics.goalsAgainstAvg}}){{/if}}</dd>
       </dl>
     </div>
   </fieldset>
   </div>
   <div class="row">
   <fieldset>
-    <legend>{{App.i18n.bracket.games}}</legend>
+    <legend>{{i18n.bracket.games}}</legend>
 
     <table class="table tableSchedule">
       <thead>
         <tr>
           <th class="hidden-xs" width="70px"></th>
           <th class="hidden-xs"></th>
-          <th class="left">{{App.i18n.bracket.home}}</th>
+          <th class="left">{{i18n.bracket.home}}</th>
           {{#if App.editable}}
             <th></th>
           {{/if}}
-          <th class="left">{{App.i18n.bracket.guest}}</th>
-          {{#each attribute in App.tournament.bracket.gameAttributes}}
+          <th class="left">{{i18n.bracket.guest}}</th>
+          {{#each attribute in bracket.gameAttributes}}
             <th class="hidden-xs">{{attribute.name}}</th>
           {{/each}}
-          <th>{{App.i18n.bracket.result}}</th>
+          <th>{{i18n.bracket.result}}</th>
         </tr>
       </thead>
-      {{#each round in view.rounds}}
+      {{#each round in rounds}}
         <tr class="matchday-separator"><td colspan="15" class="matchday-separator">{{round.round.name}}</td></tr>
         {{#each game in round.games}}
           <tr>
@@ -63,22 +63,22 @@ App.templates.playerDetail = """
               {{game.player1.name}}
             </td>
             {{#if App.editable}}
-              <td><i class="icon-exchange" title="{{unbound App.i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
+              <td><i class="icon-exchange" title="{{unbound i18n.bracket.swapPlayers}}"{{action swapPlayers target="game"}}></i></td>
             {{/if}}
             <td {{bind-attr class="game.player2Wins:winner"}}>
               {{game.player2.name}}
             </td>
-            {{#each attribute in App.tournament.bracket.gameAttributes}}
-              {{view App.GameAttributeValueView classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
+            {{#each attribute in tournament.bracket.gameAttributes}}
+              {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
             {{/each}}
             <td style="text-align: center">
             {{#if App.editable}}
                 <div class="result-container">
-                {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
+                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result1"}}
                 </div>
                 &nbsp;
                 <div class="result-container">
-                {{view App.NumberField classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
+                {{view 'numberField' classNames="form-control" editableBinding="App.editable" valueBinding="game.result2"}}
                 </div>
             {{else}}
               {{#if game.isCompleted}}
@@ -97,14 +97,6 @@ App.templates.playerDetail = """
 
 App.PlayerDetailView = App.DetailView.extend
   template: Ember.Handlebars.compile App.templates.playerDetail
-  player: null
-  statistics: null
-  rounds: []
-
-  init: ->
-    @_super()
-    @set 'rounds', App.tournament.bracket.getGamesByPlayer @player
-    @setStatistics()
 
   didInsertElement: ->
     @_super()
@@ -129,9 +121,9 @@ App.PlayerDetailView = App.DetailView.extend
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
     data = [
-      {label: App.i18n.bracket.wins, value: @statistics.get('wins')}
-      {label: App.i18n.bracket.draws, value: @statistics.get('draws')}
-      {label: App.i18n.bracket.defeats, value: @statistics.get('defeats')}
+      {label: App.i18n.bracket.wins, value: @get('controller.statistics').get('wins')}
+      {label: App.i18n.bracket.draws, value: @get('controller.statistics').get('draws')}
+      {label: App.i18n.bracket.defeats, value: @get('controller.statistics').get('defeats')}
     ]
 
     data = data.filter (value) -> value.value > 0
@@ -152,6 +144,18 @@ App.PlayerDetailView = App.DetailView.extend
       .text((d, i) ->
         if noGames then data[i].value = 0
         data[i].label + ': ' + data[i].value)
+
+      
+App.PlayerDetailController = Ember.Controller.extend
+  player: null
+  statistics: null
+  rounds: []
+
+  onPlayerSelected: (->
+    @_super()
+    @set 'rounds', App.tournament.bracket.getGamesByPlayer @get('player')
+    @setStatistics()
+  ).observes('player')
 
   setStatistics: ->
     stats =
@@ -181,5 +185,3 @@ App.PlayerDetailView = App.DetailView.extend
       statistics.goalsAvg = Math.round(statistics.goals / statistics.games * 100) / 100
       statistics.goalsAgainstAvg = Math.round(statistics.goalsAgainst / statistics.games * 100) / 100
     @set 'statistics', Ember.Object.create statistics
-      
-App.PlayerDetailController = Ember.Controller.extend()

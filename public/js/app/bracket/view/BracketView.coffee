@@ -40,7 +40,9 @@ App.templates.bracket = """
       <div class="actions">
         <button class="btn btn-inverse addKoRound" {{action "addKoRound"}}><i class="fa fa-plus"></i>{{i18n.bracket.koRound}}</button>
         <button class="btn btn-inverse addGroupStage" {{action "addGroupRound"}}><i class="fa fa-plus"></i>{{i18n.bracket.groupStage}}</button>
+        {{#if bracket.hasRounds}}
         <button class="btn btn-inverse deletePrevRound" {{action "removeLastRound"}}><i class="fa fa-trash-o"></i>{{i18n.bracket.previousRound}}</button>
+        {{/if}}
       </div>
     </div>
     </div>
@@ -56,9 +58,7 @@ App.BracketView = Em.View.extend
   template: Ember.Handlebars.compile App.templates.bracket
 
   didInsertElement: ->
-    $(".loading-screen").fadeOut 'medium', =>
-      # @$().fadeIn 'slow', ->
-      #   App.BracketLineDrawer.init()
+    App.BracketLineDrawer.init()
 
     new Save
       form: $ "form"

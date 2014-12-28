@@ -12,6 +12,10 @@ App.Bracket = Em.ArrayController.extend
     @_super()
     @set 'gameAttributes', []
 
+  hasRounds: (->
+    return @get('length') isnt 0
+  ).property('@each')
+
   games: (->
     @reduce (tournamentGames, round) ->
       tournamentGames = tournamentGames.concat round.get("games")

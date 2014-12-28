@@ -26,8 +26,6 @@ menu:
         <li><a href="#" data-target="#gameAttributes">{{i18n.bracket.gameAttributes}}</a></li>
         <li><a href="#" data-target="#scheduling">{{i18n.bracket.timeCalculation}}</a></li>
     </ul> 
-    {{tree}}
-    {{player}}
       
     </div>
     <div class="col-md-10">

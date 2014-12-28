@@ -1,7 +1,7 @@
 window.App = Em.Application.create
   LOG_TRANSITIONS: true,
   rootElement: '#appRoot'
-  LOG_TRANSITIONS_INTERNAL: true
+  # LOG_TRANSITIONS_INTERNAL: true
   tournament: null
 
   openDetailViews: []
@@ -16,6 +16,7 @@ window.App = Em.Application.create
 App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
+    publicName: tournament.publicName
   App.set 'tournament.bracket', App.Bracket.create()
   App.set 'tournament.participants', App.Participants.create()
   App.set 'tournament.info', App.Info.create()
