@@ -1,14 +1,14 @@
 App.templates.gamesDetail = """
   <div class="roundItemTitle">
     <div class="roundItemTitleLabel">
-      {{#if view.roundItem}}
-        <span class="left noPrint" title="previous" {{action "navigateToLeft" target="view"}}>
+      {{#if roundItem}}
+        <span class="left noPrint" title="previous" {{action "navigateToLeft"}}>
           <i class="fa fa-arrow-circle-left"></i>
         </span>
 
-        <span class="round-item-name">{{view.roundItem.name}}</span>
+        <span class="round-item-name">{{roundItem.name}}</span>
 
-        <span class="right noPrint" title="next" {{action "navigateToRight" target="view"}}>
+        <span class="right noPrint" title="next" {{action "navigateToRight"}}>
           <i class="fa fa-arrow-circle-right"></i>
         </span>
       {{/if}}

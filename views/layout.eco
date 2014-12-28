@@ -289,6 +289,5 @@
     <% if @tournament: %>
       </span>
     <% end %>
-<canvas id="bracketLines"></canvas>
   </body>
 </html>

@@ -1,5 +1,5 @@
 App.templates.group = """
-  <table class="round-item-table noPadding box" id="groupTable">
+  <table {{bind-attr class=":round-item-table :noPadding :box editable::blurringBox"}} id="groupTable" {{action 'tableClicked' target='view'}}>
     <col width="5px" />
     <col width="18px" />
     <col width="127px" />
@@ -45,7 +45,7 @@ App.templates.group = """
   </tbody>
 </table>
 
-  <table class="table round-item-table noPadding groupGames box hide" id="groupGames">
+  <table {{bind-attr class=":table :round-item-table :noPadding :groupGames :box :hide editable::blurringBox"}} id="groupGames" {{action 'tableClicked' target='view'}}>
   <col width="80px" />
   <col width="8px" />
   <col width="80px" />
@@ -79,13 +79,22 @@ App.templates.group = """
 """
 
 
-App.GroupView = App.RoundItemView.extend
+App.GroupView = App.RoundItemView.extend Ember.TargetActionSupport,
   template: Ember.Handlebars.compile App.templates.group
   classNames: ['group roundItem']
 
   round: (->
     @group?._round
   ).property("group._round")
+
+  actions:
+    tableClicked: ->
+      if not App.editable
+        @triggerAction
+          action: 'openGroupDetailView'
+          actionContext: @get('group')
+          target: @get('controller')
+
 
   didInsertElement: ->
     @_super()
@@ -104,8 +113,6 @@ App.GroupView = App.RoundItemView.extend
     else
       @$('#groupTable').addClass 'blurringBox'
       @$('#groupGames').addClass 'blurringBox'
-      @$('#groupTable').click => @openGroupView()
-      @$('#groupGames').click => @openGroupView()
 
   # Wettlauf beachten
   onRedrawTable: (->

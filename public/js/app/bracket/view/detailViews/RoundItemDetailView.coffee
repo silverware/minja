@@ -3,11 +3,12 @@ App.RoundItemDetailView = App.GamesDetailView.extend()
 App.RoundItemDetailController = App.GamesDetailController.extend
   roundItem: null
   
-  navigateToRight: ->
-    @navigate 1
+  actions:
+    navigateToRight: ->
+      @navigate 1
 
-  navigateToLeft: ->
-    @navigate -1
+    navigateToLeft: ->
+      @navigate -1
 
   navigate: (offset) ->
     length = @roundItem._round.items.get "length"
@@ -17,9 +18,9 @@ App.RoundItemDetailController = App.GamesDetailController.extend
     if index >= length then index = 0
     newRoundItem = @roundItem._round.items.objectAt index
 
-    @$('.detailContent').fadeOut 'medium', =>
-      @set "roundItem", newRoundItem
-      @$('.detailContent').fadeIn 'medium'
+    # @$('.detailContent').fadeOut 'medium', =>
+    #   @$('.detailContent').fadeIn 'medium'
+    @set "roundItem", newRoundItem
 
   prefillAttributes: ->
     App.GameAttributePrefillPopup.open @get("roundItem.games")

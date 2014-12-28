@@ -4,7 +4,7 @@ App.BracketLineDrawer =
   lastChange: new Date().getTime()
 
   init: ->
-    @canvas = document.getElementById "bracketLines"
+    @canvas = document.getElementById "bracket-lines"
     $(@canvas).hide()
     @ctx = @canvas.getContext "2d"
     window.addEventListener 'resize', (=> @update()), false

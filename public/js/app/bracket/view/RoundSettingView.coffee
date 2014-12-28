@@ -8,11 +8,11 @@ App.templates.roundSetting = """
   </ul>
 </div>
 
-<div class="roundName">{{#if editable}}<i class="fa fa-edit"></i>{{/if}}&nbsp;{{round.name}}</div>
+<div class="roundName" {{action 'toggleSettings' target='view'}}>{{#if editable}}<i class="fa fa-edit"></i>{{/if}}&nbsp;{{round.name}}</div>
 
 {{#if editable}}
 <div id="settings">
-<button type="button" class="close"><i class="fa fa-times-circle"></i></button>
+<button type="button" class="close" {{action 'toggleSettings' target='view'}}><i class="fa fa-times-circle"></i></button>
   <form role="form" style="float: left">
     <div>
       <label style="">Name</label>
@@ -43,17 +43,15 @@ App.RoundSettingView = Em.View.extend
 
   didInsertElement: ->
     @_super()
-    if App.editable
-      @$("#settings").hide()
-      @$(".close").click =>
-        @$("#settings").hide("medium")
-      @$(".roundName").click =>
+    @$("#settings").hide()
+
+  actions:
+    toggleSettings: ->
+      if App.editable
         if @$("#settings").is(":visible")
           @$("#settings").hide "medium"
         else
           @$("#settings").show "medium"
-
-  actions:
     shuffle: ->
       #someGamesCompleted = @get('round.games').some (game) -> game.get('isCompleted')
       # Warnung ausgeben, falls dadurch Ergebnisse verfallen

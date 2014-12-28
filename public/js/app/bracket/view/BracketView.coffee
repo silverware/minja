@@ -51,6 +51,7 @@ App.templates.bracket = """
   <div style="clear: both"></div>
   </div>
   </div>
+  <canvas id="bracket-lines"></canvas>
 """
 
 App.BracketView = Em.View.extend
