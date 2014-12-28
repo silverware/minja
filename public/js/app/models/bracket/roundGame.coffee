@@ -42,7 +42,6 @@ App.RoundGame = App.RoundItem.extend
         return @get("player2")
       else
         return @get("player1")
-
     else if App.tournament.bracket.get('qualifierModus') is App.qualifierModi.BEST_OF.id
       wins1 = 0
       wins2 = 0

@@ -14,7 +14,6 @@ window.App = Em.Application.create
 
 
 App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
-  console.debug tournament
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
     publicName: tournament.publicName
@@ -29,7 +28,7 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   App.sport = sport
 
   # initially fill with sport values
-  if App.sport
+  if not _.isEmpty App.sport
     App.tournament.bracket.set "winPoints", App.sport.pointsPerWin
     App.tournament.bracket.set "drawPoints", App.sport.pointsPerDraw
     App.tournament.bracket.set "qualifierModus", App.sport.qualifierModus

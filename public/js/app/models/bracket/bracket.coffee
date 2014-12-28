@@ -11,6 +11,7 @@ App.Bracket = Em.ArrayController.extend
   init: ->
     @_super()
     @set 'gameAttributes', []
+    @set 'qualifierModus', "aggregate"
 
   hasRounds: (->
     return @get('length') isnt 0

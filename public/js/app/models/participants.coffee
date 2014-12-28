@@ -13,11 +13,12 @@ App.Participants = Em.Object.extend
       @attributes.pushObject App.PlayerAttribute.create attribute
 
   sortedPlayers: (->
-    @get("players").sort (player1, player2) ->
+    # concat to copy the array
+    @get("players").concat().sort (player1, player2) ->
       if player1.get('isPartaking') is player2.get('isPartaking')
         return player1.get('name').toLowerCase() > player2.get('name').toLowerCase()
       return player2.get('isPartaking')
-  ).property("players.@each.id", "players.@each.isPartaking")
+  ).property("players.@each.name", "players.@each.isPartaking")
 
   # takes a player thats not present in the bracket
   # otherwise creates a new player

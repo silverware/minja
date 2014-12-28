@@ -1,8 +1,8 @@
 buster.testCase "Round Model",
   setUp: ->
-    App.Tournament.clear()
-    App.Tournament.addKoRound()
-    @round = App.Tournament.lastRound()
+    App.tournament.bracket.clear()
+    App.tournament.bracket.addKoRound()
+    @round = App.tournament.bracket.lastRound()
 
   "Zufälliges Auslosen der Spieler": ->
     getPlayers = (games) ->
@@ -28,24 +28,24 @@ buster.testCase "Round Model",
     assert.equals 0, _.difference(initialPlayers, shuffledPlayers).length
 
   "count Ko Rounds before": ->
-    App.Tournament.clear()
-    App.Tournament.pushObject App.KoRound.create()
-    App.Tournament.pushObject App.KoRound.create
-      _previousRound: App.Tournament.lastRound()
-    round = App.Tournament.lastRound()
+    App.tournament.bracket.clear()
+    App.tournament.bracket.pushObject App.KoRound.create()
+    App.tournament.bracket.pushObject App.KoRound.create
+      _previousRound: App.tournament.bracket.lastRound()
+    round = App.tournament.bracket.lastRound()
 
     assert.equals 1, round.koRoundsBefore()
-    App.Tournament.pushObject App.KoRound.create
-      _previousRound: App.Tournament.lastRound()
-    round = App.Tournament.lastRound()
+    App.tournament.bracket.pushObject App.KoRound.create
+      _previousRound: App.tournament.bracket.lastRound()
+    round = App.tournament.bracket.lastRound()
     assert.equals 2, round.koRoundsBefore()
-    App.Tournament.pushObject App.GroupRound.create
-      _previousRound: App.Tournament.lastRound()
-    App.Tournament.pushObject App.KoRound.create
-      _previousRound: App.Tournament.lastRound()
-    App.Tournament.pushObject App.KoRound.create
-      _previousRound: App.Tournament.lastRound()
-    round = App.Tournament.lastRound()
+    App.tournament.bracket.pushObject App.GroupRound.create
+      _previousRound: App.tournament.bracket.lastRound()
+    App.tournament.bracket.pushObject App.KoRound.create
+      _previousRound: App.tournament.bracket.lastRound()
+    App.tournament.bracket.pushObject App.KoRound.create
+      _previousRound: App.tournament.bracket.lastRound()
+    round = App.tournament.bracket.lastRound()
     assert.equals 1, round.koRoundsBefore()
 
   "swap players in group round": ->
@@ -139,8 +139,8 @@ buster.testCase "Round Model",
     game2.players.pushObject p4
 
 
-    App.Tournament.addKoRound()
-    lastRound = App.Tournament.lastRound()
+    App.tournament.bracket.addKoRound()
+    lastRound = App.tournament.bracket.lastRound()
 
     game3 = App.RoundGame.create
       _round: lastRound
@@ -149,7 +149,7 @@ buster.testCase "Round Model",
     game3.players.pushObject p1
     game3.players.pushObject p3
 
-    rounds = App.Tournament.getGamesByPlayer p1
+    rounds = App.tournament.bracket.getGamesByPlayer p1
     assert.equals game1.get('games').objectAt(0), rounds[0].games[0]
     assert.equals game3.get('games').objectAt(0), rounds[1].games[0]
 
@@ -172,8 +172,8 @@ buster.testCase "Round Model",
     game2.players.pushObject p4
 
 
-    App.Tournament.addGroupRound()
-    lastRound = App.Tournament.lastRound()
+    App.tournament.bracket.addGroupRound()
+    lastRound = App.tournament.bracket.lastRound()
 
     group = App.Group.create
       _round: lastRound
@@ -182,7 +182,7 @@ buster.testCase "Round Model",
     group.players.pushObject p5
     group.players.pushObject App.Dummy.create()
 
-    players = App.Tournament.getPlayers()
+    players = App.tournament.bracket.getPlayers()
     assert.equals 5, players.length
     assert.equals p1, players[0]
     assert.equals p2, players[1]

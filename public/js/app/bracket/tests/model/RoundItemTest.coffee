@@ -69,11 +69,11 @@ buster.testCase "RoundItem Model",
     assert.equals 3, @group.get("completion")
 
   "Berechnung der Id eines RoundItems": ->
-    App.Tournament.clear()
-    round1 = App.Tournament.addKoRound()
+    App.tournament.bracket.clear()
+    round1 = App.tournament.bracket.addKoRound()
     round1.addItem()
     round1.addItem()
-    round2 = App.Tournament.addGroupRound()
+    round2 = App.tournament.bracket.addGroupRound()
     round2.addItem()
 
     game1 = round1.get('items')[0]

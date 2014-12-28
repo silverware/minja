@@ -5,8 +5,6 @@ App.Serializer =
     jsonObj = {}
     emberObj = Ember.ArrayController.create(content: [])
     for key, value of obj
-      if key is 'isKoRound' or key is '_itemLabel'
-        console.debug "huhu"
       continue if Ember.typeOf(value) == 'function'
       continue if emberObj[key] != undefined
       continue if value == 'toString'

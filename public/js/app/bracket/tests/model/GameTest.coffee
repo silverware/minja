@@ -51,7 +51,7 @@ buster.testCase "Game Model",
       id: 'attr-id'
       name: 'name'
     
-    App.Tournament.gameAttributes.pushObject attr
+    App.tournament.bracket.gameAttributes.pushObject attr
 
     assert.equals @hans, @game.get 'player1'
     assert.equals @peter, @game.get 'player2'

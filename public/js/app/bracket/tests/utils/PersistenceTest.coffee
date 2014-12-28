@@ -1,14 +1,14 @@
 buster.testCase "Persistence",
   setUp: ->
-    App.Tournament.clear()
-    App.PlayerPool.clear()
-    App.Tournament.addKoRound()
-    @firstRound = App.Tournament.lastRound()
+    App.tournament.bracket.clear()
+    App.tournament.participants.clear()
+    App.tournament.bracket.addKoRound()
+    @firstRound = App.tournament.bracket.lastRound()
     @firstRound.addItem()
     @firstRound.addItem()
 
-    App.Tournament.addKoRound()
-    @secondRound = App.Tournament.lastRound()
+    App.tournament.bracket.addKoRound()
+    @secondRound = App.tournament.bracket.lastRound()
     @secondRound.addItem()
 
   "Turnier wird persistiert ohne Fehler": ->
@@ -24,6 +24,13 @@ buster.testCase "Persistence",
     assert.equals 2, tree.rounds[0].items.length
     assert.equals 1, tree.rounds[1].items.length
 
+  "Die Properties einer Runde persistieren": ->
+    round = App.KoRound.create
+      name: "round"
+    json = App.Serializer.emberObjToJsonData round
+    assert.equals 'round', json.name
+    assert.equals true, json.isKoRound
+    assert.equals 0, json.items.length
 
 
 

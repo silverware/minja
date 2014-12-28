@@ -12,13 +12,13 @@ App.templates.dashboard = """
         {{pretty-date-time date=info.startDate time=info.startTime}}
       </dd>
       <dt><i class="fa fa-map-marker"></i></dt>
-      <dd>{{info.venue}}
+      <dd>{{#if info.venue}}{{info.venue}}{{else}}N/A{{/if}}</dd>
     </dl>
     <dl class="dl-horizontal">
       <dt><i class="fa fa-user"></i></dt>
-      <dd>{{info.host}}</dd>
+      <dd>{{#if info.host}}{{info.host}}{{else}}N/A{{/if}}</dd>
       <dt>E-Mail</dt>
-      <dd>{{info.hostMail}}
+      <dd>{{#if info.hostMail}}{{info.hostMail}}{{else}}N/A{{/if}}</dd>
     </dl>
     </fieldset>
   </section>

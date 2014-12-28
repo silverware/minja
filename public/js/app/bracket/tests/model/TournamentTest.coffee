@@ -1,6 +1,6 @@
 buster.testCase "Tournament Model",
   setUp: ->
-    @tournament = App.Tournament
+    @tournament = App.tournament.bracket
     @tournament.clear()
 
   "Ersetze Spieler-Objekte nach Eintragen von Ergebnissen": ->

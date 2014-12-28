@@ -1,8 +1,8 @@
 buster.testCase "Group Round Model",
   setUp: ->
-    App.Tournament.clear()
-    App.Tournament.addGroupRound()
-    @round = App.Tournament.lastRound()
+    App.tournament.bracket.clear()
+    App.tournament.bracket.addGroupRound()
+    @round = App.tournament.bracket.lastRound()
 
   "Hinzufügen einer Gruppe mit 4 Spielern": ->
 

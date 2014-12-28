@@ -1,6 +1,6 @@
 buster.testCase "Utils",
   setUp: ->
-    App.Tournament.clear()
+    App.tournament.bracket.clear()
 
   "Filterung der Spiele nach gespielten und nicht gespielten": ->
     create = (name) ->
@@ -85,7 +85,7 @@ buster.testCase "Utils",
       name: "Schiedsrichter"
       type: "textfield"
 
-    App.Tournament.gameAttributes.pushObject schiriAttr
+    App.tournament.bracket.gameAttributes.pushObject schiriAttr
     create = (name) ->
       App.Player.create name: name
     games = [
