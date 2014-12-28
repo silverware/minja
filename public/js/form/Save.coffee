@@ -1,3 +1,4 @@
+window.saves = []
 window.Save = class Save
 
   ajax: true
@@ -9,11 +10,11 @@ window.Save = class Save
     @enableSaveButton()
 
   init: ->
+    console.debug "saves: " + saves
     @form.submit (event) =>
       @formValidator = new FormValidator @form
 
       if @formValidator.validate()
-
         if @ajax
           @startLoading()
           event.preventDefault()

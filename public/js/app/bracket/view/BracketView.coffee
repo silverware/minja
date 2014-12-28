@@ -11,16 +11,15 @@ App.templates.bracket = """
     {{/if}}
   {{/each}}
 
+  <form id="bracket-form" action="#" method="post">
   {{#if editable}}
     <div class="saveActions box">
-      <form action="#" method="post" style="margin: 1px 20px">
         <span>
           <button class="btn btn-inverse" {{action 'openSettings'}} ><i class="fa fa-cog"></i>{{i18n.bracket.settings}}</button>
           <button type="submit" class="btn btn-inverse">{{i18n.save}}</button>
           <i class="fa fa-spinner fa-spin ajaxLoader"></i>
           <span class="successIcon"><i class="fa fa-check"></i> {{i18n.saved}}</span>
         </span>
-      </form>
     </div>
   {{else}}
     {{#if tournament.isOwner}}
@@ -31,6 +30,7 @@ App.templates.bracket = """
       </div>
     {{/if}}
   {{/if}}
+  </form>
 
 
   {{#if editable}}
@@ -58,11 +58,14 @@ App.BracketView = Em.View.extend
   classNameBinding: ['controller.hide:hide']
   template: Ember.Handlebars.compile App.templates.bracket
 
+  actions:
+    save: ->
+
   didInsertElement: ->
     App.BracketLineDrawer.init()
 
     new Save
-      form: $ "form"
+      form: @$ "#bracket-form"
       data: App.persist
       onSave: ->
         App.Observer.snapshot()

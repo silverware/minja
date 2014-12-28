@@ -9,19 +9,25 @@
   <body>
     <script src="lib/require-jquery.js"></script>
     <script src="js/require-config.js"></script>
-    <script src="lib/handlebars-1.0.0.js"></script>
-    <script src="lib/ember-1.0.0.js"></script>
+    <script src="lib/handlebars-2.0.0.js"></script>
+    <script src="lib/ember-1.9.1.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/buster-test.js"></script>
     <script src="js/main.js"></script>
   <script>
-    require(["tree"], function() {
+  require(["app"], function() {
       App.init({
-        editable: true,
-        i18n: {}
+        editable: false,
+        i18n: {},
+        isOwner: true,
+        colors: {},
+        tournament: {},
+        sport: {}
       });
       require(['tree-test']);
-    });
-  </script>
+  });
+</script>
+
+<div id="appRoot"></div>
   </body></html>

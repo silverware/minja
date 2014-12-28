@@ -14,15 +14,17 @@ window.App = Em.Application.create
 
 
 App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
+  console.debug tournament
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
     publicName: tournament.publicName
   App.set 'tournament.bracket', App.Bracket.create()
   App.set 'tournament.participants', App.Participants.create()
-  App.set 'tournament.info', App.Info.create()
+  App.tournament.set "info", App.Info.create(tournament.info)
+  App.tournament.set "settings", Ember.Object.create(tournament.settings)
 
-  App.editable = editable or false
-  App.tournament.isOwner = isOwner or false
+  App.editable = false
+  App.tournament.isOwner = isOwner
   App.i18n = i18n
   App.sport = sport
 
@@ -41,8 +43,6 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   if tournament?.tree
     App.PersistanceManager.buildBracket tournament.tree
 
-  App.tournament.set "info", App.Info.create(tournament.info)
-  App.tournament.set "settings", Ember.Object.create(tournament.settings)
 
 
 $.fn.createTree = ->

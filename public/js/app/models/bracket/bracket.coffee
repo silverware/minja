@@ -42,9 +42,7 @@ App.Bracket = Em.ArrayController.extend
         _previousRound: @lastRound()
 
   addKoRound: ->
-    console.debug "asdfladsfj"
     if @addRound()
-      console.debug "yaaaaa drin"
       $("#settings .close").click()
       @pushObject App.KoRound.create
         name: App.i18n.bracket.koRound
