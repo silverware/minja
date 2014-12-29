@@ -133,6 +133,8 @@ App.ParticipantsView = Em.View.extend
       url: @get 'controller.participantsUrl'
       form: @$ '#participants-form'
       data: @data
+      onSave: ->
+        App.Observer.snapshot()
 
 App.MemberValueView = Ember.View.extend
   tagName: 'td'

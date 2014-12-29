@@ -13,3 +13,12 @@ App.ParticipantsEditRoute = Ember.Route.extend
   setupController: (controller) ->
     controller.set "editable", true
     console.debug 'a'
+  actions:
+    willTransition: (transition) ->
+      if App.Observer.hasChanges() and !confirm(App.i18n.bracket.unsavedChanges)
+        transition.abort()
+      else
+        return true
+  afterModel: (model) ->
+    App.Observer.snapshot()
+
