@@ -1,5 +1,5 @@
 App.Tournament = Em.Object.extend
-  isOwner: false
+  isOwner: null
   publicName: ''
   identifier: ''
   info: null
@@ -7,6 +7,9 @@ App.Tournament = Em.Object.extend
   bracket: null
   participants: null
   messages: null
+
+  init: ->
+    @set 'isOwner', false
 
 Ember.Controller.reopen
   i18n: (->

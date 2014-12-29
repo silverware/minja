@@ -1,9 +1,4 @@
 App.templates.info = """
-  <style type="text/css">
-  dl {
-    font-size: 16px;
-  }
-  </style>
   <div class="container container-normal">
     {{edit-link editable=editable route="info.edit"}} 
     <h1>{{i18n.info.header}}</h1>

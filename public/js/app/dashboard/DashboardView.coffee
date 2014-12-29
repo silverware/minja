@@ -50,12 +50,18 @@ App.templates.dashboard = """
 <section class="dashboardBox dashboardLightning">
   <fieldset>
     <legend>{{i18n.members.navName}}</legend>
-    {{#each member in participants.players}}
-      <span class="label" style="display: inline-block">{{member.name}}</span>
-      {{/each}}
-    <div class="bottomRight">
-      <em>{{participantCount}} {{i18n.members.navName}}</em>
-    </div>
+    {{#if participants.isEmpty}}
+      {{#info-hint}}
+        {{i18n.members.notRecordedYet}}
+      {{/info-hint}}
+    {{else}}
+      {{#each member in participants.players}}
+        <span class="label" style="display: inline-block">{{member.name}}</span>
+        {{/each}}
+      <div class="bottomRight">
+        <em>{{participantCount}} {{i18n.members.navName}}</em>
+      </div>
+    {{/if}}
     </span>
   </fieldset>
 </section>

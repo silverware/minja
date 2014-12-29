@@ -139,6 +139,7 @@ module.exports =
 
   ################################ MEMBERS ########################################################
   members:
+    notRecordedYet: "noch keine Teilnehmer erfasst"
     navName: "Teilnehmer"
     addAttribute: "Attribut hinzufügen"
     attribute: "Attribut"
@@ -146,13 +147,13 @@ module.exports =
     visibility: "Sichtbarkeit"
     type: "Typ"
     textfield: "Textfeld"
-    noMembersCreated: "Es wurden noch keine Teilnehmer erfasst."
     playerDoPartipate: "ist im Turnierbaum erfasst"
 
 
   ################################ TREE ########################################################
   bracket:
     navName: "Turnierbaum"
+    notRecordedYet: "noch kein Turnierbaum angelegt"
     groupStage: "Gruppenphase"
     koRound: "KO-Runde"
     addKoRound: "neue KO-Runde hinzufügen"

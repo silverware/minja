@@ -6,6 +6,10 @@ App.Participants = Em.Object.extend
     @set 'players', []
     @set 'attributes', []
 
+  isEmpty: (->
+    @get('players.length') is 0
+  ).property('players.@each')
+
   initPlayers: (members) ->
     members?.members?.forEach (member) =>
       @players.pushObject App.Player.createPlayer member

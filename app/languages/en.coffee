@@ -154,13 +154,14 @@ module.exports =
     visibility: "Visibility"
     type: "Type"
     textfield: "Textfield"
-    noMembersCreated: ""
+    notRecordedYet: "no participants recorded yet"
     playerDoPartipate: "is included in bracket"
 
 
 ################################ TREE ########################################################
   bracket:
     navName: "Bracket"
+    notRecordedYet: "no tournament bracket created yet"
     groupStage: "Group Stage"
     koRound: "Knockout Phase"
     addKoRound: "Add Knockout Phase"

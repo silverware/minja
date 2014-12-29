@@ -22,5 +22,9 @@ App.BracketStatisticsView = Ember.View.extend
           </div>
         {{/unless}}
     {{/each}}
-    <br /><br />
+    {{#unless bracket.hasRounds}}
+      {{#info-hint}}
+        {{i18n.bracket.notRecordedYet}}
+      {{/info-hint}}
+    {{/unless}}
   """
