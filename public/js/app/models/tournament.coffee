@@ -6,6 +6,7 @@ App.Tournament = Em.Object.extend
   settings: null
   bracket: null
   participants: null
+  messages: null
 
 Ember.Controller.reopen
   i18n: (->
@@ -23,4 +24,10 @@ Ember.Controller.reopen
   info: (->
     return App.tournament.info
   ).property()
+  messages: (->
+    return App.tournament.messages
+  ).property()
+  editable: (->
+    return App.get('editable')
+  ).property('App.editable')
   

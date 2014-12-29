@@ -17,15 +17,15 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
     publicName: tournament.publicName
+    isOwner: isOwner
   App.set 'tournament.bracket', App.Bracket.create()
   App.set 'tournament.participants', App.Participants.create()
   App.tournament.set "info", App.Info.create(tournament.info)
   App.tournament.set "settings", Ember.Object.create(tournament.settings)
 
-  App.editable = false
-  App.tournament.isOwner = isOwner
-  App.i18n = i18n
-  App.sport = sport
+  App.set 'editable', false
+  App.set 'i18n', i18n
+  App.set 'sport', sport
 
   # initially fill with sport values
   if not _.isEmpty App.sport

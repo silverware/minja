@@ -6,6 +6,8 @@ App.ApplicationRoute = Ember.Route.extend
   ).observes('currentPath')
   
   actions:
+    willTransition: ->
+      @send 'closeDetailView' for [1..@openDetailViews.get('length')]
     openDetailView: (detailView, obj) ->
       position = @openDetailViews.get('length') + 1
       currentView = @openDetailViews.get('lastObject')
@@ -25,6 +27,7 @@ App.ApplicationRoute = Ember.Route.extend
     closeDetailView: ->
       console.debug 'cloooooooooooooose'
       position = @openDetailViews.get('length')
+      if position is 0 then return
       @openDetailViews.popObject()
       if position is 1
         @getContainer().show()

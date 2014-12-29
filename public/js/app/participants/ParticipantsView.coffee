@@ -27,7 +27,7 @@ App.templates.participants = """
     <th></th>
   </thead>
   <tbody>
-  {{#each member in participants.sortedPlayers}}
+  {{#each member in sortedPlayers}}
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
