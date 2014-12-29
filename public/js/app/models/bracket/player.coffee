@@ -19,7 +19,7 @@ App.Player = Em.Object.extend
   # TODO: getPlayers to computed property
   isPartaking: (->
     _.contains App.tournament.bracket.getPlayers(), @
-  ).property('App.tournament.bracket.@each')
+  ).property('App.tournament.bracket.@each.games')
 
   # real, if its no dummy player or placeholder
   isRealPlayer: (->

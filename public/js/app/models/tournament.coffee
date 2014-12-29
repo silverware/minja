@@ -8,9 +8,6 @@ App.Tournament = Em.Object.extend
   participants: null
   messages: null
 
-  init: ->
-    @set 'isOwner', false
-
 Ember.Controller.reopen
   i18n: (->
     return App.i18n

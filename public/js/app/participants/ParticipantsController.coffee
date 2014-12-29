@@ -8,3 +8,7 @@ App.ParticipantsController = Ember.Controller.extend
     '/' + App.tournament.identifier + '/participants/edit'
   ).property()
 
+  updateList: (->
+    @set 'sortedPlayers', App.tournament.participants.sortedPlayers()
+  ).observes('participants.players.@each')
+

@@ -1,5 +1,8 @@
 App.BracketIndexRoute = Ember.Route.extend
   controllerName: 'bracket'
+  beforeModel: ->
+    if !App.tournament.bracket.get('hasRounds') and App.tournament.get('isOwner')
+      @transitionTo 'bracket.edit'
   setupController: (controller) ->
     App.set 'editable', false
 
