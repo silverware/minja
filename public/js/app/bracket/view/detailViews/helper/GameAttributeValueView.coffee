@@ -52,42 +52,37 @@ App.GameAttributeValueView = Ember.View.extend
       @$(".timeTextBox").timepicker()
 
   gameValue: ((key, value) ->
-    # GETTER
-    if arguments.length == 1
-      return @get("game")[@get("attribute.id")]
     # SETTER
-    else
+    if arguments.length > 1
       @get("game").set @get("attribute.id"), value
-  ).property("member", "attribute.name")
+    # SETTER
+    return @get("game").get(@get("attribute.id"))
+  ).property("game", "attribute.name")
 
   resultGameValue1: ((key, value) ->
     splitted = @resultSplitted()
-    # GETTER
-    if arguments.length == 1
-      return splitted[0]
     # SETTER
-    else
+    if arguments.length > 1
       value = "" if not value?
       @get("game").set @get("attribute.id"), "#{value}:#{splitted[1]}"
-  ).property("member", "attribute.name", "game._playersSwapped")
-
+    # GETTER
+    return splitted[0]
+  ).property("resultGameValue2", "game._playersSwapped")
 
   resultGameValue2: ((key, value) ->
     splitted = @resultSplitted()
-    # GETTER
-    if arguments.length == 1
-      return splitted[1]
     # SETTER
-    else
+    if arguments.length > 1
       value = "" if not value?
       @get("game").set @get("attribute.id"), "#{splitted[0]}:#{value}"
-  ).property("member", "attribute.name", "game._playersSwapped")
+    # GETTER
+    return splitted[1]
+  ).property('resultGameValue1', "game._playersSwapped")
 
   resultSplitted: ->
-    currentValue = @get("game")[@get("attribute.id")]
+    currentValue = @get("game").get(@get("attribute.id"))
     currentValue = "" if not currentValue
     splitted = currentValue.split ":"
-    if splitted.length is not 2
-      currentValue = ":"
-      splitted = currentValue.split ":"
+    if splitted.length isnt 2
+      splitted = ['', '']
     splitted

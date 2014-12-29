@@ -18,6 +18,7 @@ appFiles = [
   'models/bracket/playerAttribute.coffee'
   'models/participants.coffee'
   'models/info.coffee'
+  'models/message.coffee'
   'routes.coffee'
   'bracket/BracketRoute.coffee'
   'bracket/BracketController.coffee'

@@ -17,12 +17,21 @@ class ChatDao extends require('./daoBase')
     @db.view "messages/byTournament", key: tournamentId, descending: true, skip: paginator.first, limit: paginator.limit, (err, messages) =>
       if err then return callback []
       for message in messages
-        m = message.value
-        switch m.authorType
-          when @authorTypes.leader then m.author = i18n.tournamentLeader
-          when @authorTypes.guest then m.author += " [#{i18n.guest}]"
-          else
-        m.created_at_humanized = i18n.date m.created_at
+        @_enrichMessage message.value, i18n
       callback messages
+
+  findById: (messageId, i18n, callback) ->
+    @find messageId, (message) =>
+      callback @_enrichMessage message, i18n
+
+  _enrichMessage: (m, i18n) ->
+    switch m.authorType
+      when @authorTypes.leader then m.author = i18n.tournamentLeader
+      when @authorTypes.guest then m.author += " [#{i18n.guest}]"
+      else
+    m.created_at_humanized = i18n.date m.created_at
+    m
+
+      
 
 module.exports = new ChatDao()

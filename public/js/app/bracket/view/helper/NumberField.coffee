@@ -1,7 +1,6 @@
 App.NumberFieldView = Ember.TextField.extend
   classNames: ['result-textfield']
   editable: true
-  type: 'number'
 
   didInsertElement: ->
     @onEditableChange()

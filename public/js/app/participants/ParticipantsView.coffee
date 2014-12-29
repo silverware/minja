@@ -142,10 +142,10 @@ App.MemberValueView = Ember.View.extend
   attribute: null
 
   memberValue: ((key, value) ->
-    # GETTER
-    if arguments.length == 1
-      return @get("member")[@get("attribute").id]
     # SETTER
-    @get("member").set @get("attribute").id, value
+    if arguments.length > 1
+      @get("member").set @get("attribute").id, value
+    # GETTER
+    return @get("member")[@get("attribute").id]
   ).property("member", "attribute.name")
 

@@ -4,6 +4,6 @@ App.DynamicTypeAheadTextFieldView = Em.TextField.extend
 
   focusIn: ->
     @_super()
-    values = (game[@attribute.id] for game in App.tournament.bracket.get("games"))
+    values = (game.get(@get('attribute.id')) for game in App.tournament.bracket.get("games"))
     @$().typeahead
       source: _.uniq _.compact values

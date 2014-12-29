@@ -5,7 +5,7 @@ App.GameAttribute = Em.Object.extend
 
   init: ->
     @_super()
-    @id = UniqueId.create() if not @id
+    @set('id', UniqueId.create()) if not @id
 
   isCheckbox: (->
     @get("type") is "checkbox"

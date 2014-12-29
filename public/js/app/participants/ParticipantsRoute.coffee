@@ -17,8 +17,10 @@ App.ParticipantsEditRoute = Ember.Route.extend
     console.debug 'a'
   actions:
     willTransition: (transition) ->
-      if App.Observer.hasChanges() and !confirm(App.i18n.bracket.unsavedChanges)
+      if App.Observer.hasChanges() and not confirm(App.i18n.bracket.unsavedChanges)
+        console.debug 'abooooort'
         transition.abort()
+        return
       else
         return true
   afterModel: (model) ->

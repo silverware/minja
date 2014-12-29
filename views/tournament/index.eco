@@ -18,6 +18,7 @@
         colors: <%- @json @colors %>,
         tournament: <%- @json @tournament %>,
         sport: <%- @json @sport %>,
+        messages: <%- @json @messages %>
       });
       /* treeWrapper.createTree(); */
   });

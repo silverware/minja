@@ -29,8 +29,15 @@ App.templates.dashboard = """
 <section id="messageDashboardBox" class="dashboardBox dashboardLightning">
   <fieldset>
   <legend>{{i18n.chat.messageStream}}</legend>
-    <center class="spinner-wrapper"><i class="fa fa-spinner fa-spin"></i></center>
-    <div id="chat"></div>
+    {{#each message in sortedMessages}}
+      <div class="row">
+        <div class="col-md-8">
+          {{message.author}}
+          <small>&nbsp;&nbsp;{{message.created_at_humanized}}</small>
+        </div>
+      </div>
+      <pre style="margin-bottom: 20px">{{message.text}}</pre>
+    {{/each}}
   </fieldset>
 </section>
   {{/link-to}}

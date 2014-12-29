@@ -87,10 +87,9 @@ App.GameResultView = Em.View.extend
     else
       index = "2"
 
-    # GETTER
-    if arguments.length == 1
-      return @get("g.result#{index}")
     # SETTER
-    else
+    if arguments.length > 1
       @get("g").set "result#{index}", value
+    # GETTER
+    return @get("g.result#{index}")
   ).property("player", "g.result1", "g.result2")

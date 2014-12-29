@@ -112,7 +112,7 @@ App.templates.gamesDetail = """
               <a href="#" {{action "openPlayerDetailView" game.player2}}>{{game.player2.name}}</a>
             </td>
             {{#each attribute in bracket.gameAttributes}}
-              {{view 'gameAttributeValue' classNames="hidden-xs" attributeBinding="attribute" gameBinding="game"}}
+              {{view 'gameAttributeValue' classNames="hidden-xs" attribute=attribute game=game}}
             {{/each}}
             <td class="center">
             {{#if App.editable}}

@@ -163,9 +163,9 @@ App.TournamentSettingsView = App.DetailView.extend
   gameAttributeOptions: (->
     [
       Em.Object.create {type: "checkbox", label: "Checkbox"}
-      Em.Object.create {type: "textfield", label: App.i18n.textfield}
-      Em.Object.create {type: "result", label: App.i18n.result}
-      Em.Object.create {type: "number", label: App.i18n.number}
+      Em.Object.create {type: "textfield", label: App.i18n.bracket.textfield}
+      Em.Object.create {type: "result", label: App.i18n.bracket.result}
+      Em.Object.create {type: "number", label: App.i18n.bracket.number}
     ]
   ).property()
 

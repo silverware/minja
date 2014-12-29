@@ -13,15 +13,16 @@ window.App = Em.Application.create
     App.Router.router.transitionTo route
 
 
-App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
+App.init = ({isOwner, editable, i18n, sport, colors, tournament, messages}) ->
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
     publicName: tournament.publicName
     isOwner: isOwner
-  App.set 'tournament.bracket', App.Bracket.create()
-  App.set 'tournament.participants', App.Participants.create()
-  App.tournament.set "info", App.Info.create(tournament.info)
-  App.tournament.set "settings", Ember.Object.create(tournament.settings)
+    messages: []
+    bracket: App.Bracket.create()
+    participants: App.Participants.create()
+    info: App.Info.create(tournament.info)
+    settings: Ember.Object.create(tournament.settings)
 
   App.set 'editable', false
   App.set 'i18n', i18n
@@ -41,6 +42,11 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament}) ->
   # Build Bracket
   if tournament?.tree
     App.PersistanceManager.buildBracket tournament.tree
+
+  # build messages
+  if messages.length > 0
+    for message in messages
+      App.tournament.messages.pushObject App.Message.create message.value
 
 
 

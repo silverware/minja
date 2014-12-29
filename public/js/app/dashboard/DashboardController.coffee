@@ -19,3 +19,9 @@ App.DashboardController = Ember.Controller.extend
     App.tournament.participants.players.length
   ).property('App.tournament.participants.players')
 
+  sortedMessages: (->
+    list = App.tournament.messages.concat().sort (m1, m2) ->
+      return m1.created_at < m2.created_at
+    _.first list, 3
+  ).property('App.tournament.messages.@each.created_at')
+

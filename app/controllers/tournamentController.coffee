@@ -89,10 +89,15 @@ class TournamentController extends ControllerBase
     req.tournament.settings =
       colors: colorService.getColors req.tournament
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
-    res.render "#{@viewPrefix}/index",
-      editable: req.tournament.isOwner
-      isOwner: req.tournament.isOwner
-      hasLogo: req.tournament.hasLogo
+    paginator =
+      first: 0
+      limit: 100
+    chatDao.findMessagesByTournamentId req.tournament.id, req.i18n, paginator, (messages) =>
+      res.render "#{@viewPrefix}/index",
+        editable: req.tournament.isOwner
+        isOwner: req.tournament.isOwner
+        hasLogo: req.tournament.hasLogo
+        messages: messages
 
   "/:tid": (req, res) =>
     @renderTournament req, res
@@ -131,7 +136,7 @@ class TournamentController extends ControllerBase
       editable: false
 
   "/:tid/chat": (req, res) =>
-    res.render "#{@viewPrefix}/dashboard"
+    @renderTournament req, res
 
   "/:tid/image/:imageId": (req, res) =>
     url = config.DB_URL + "/tournaments/#{req.params.tid}/image/#{req.params.imageId}"
@@ -158,8 +163,9 @@ class TournamentController extends ControllerBase
     else
       message.authorType = chatDao.authorTypes.guest
 
-    chatDao.save message, ->
-      res.send "ok"
+    chatDao.save message, (result) ->
+      chatDao.findById result.id, req.i18n, (message) ->
+        res.send message
 
   "/:tid/tournament_colors.css": (req, res) =>
     path = config.CLIENT_DIR + "/less/colors_template.less"
