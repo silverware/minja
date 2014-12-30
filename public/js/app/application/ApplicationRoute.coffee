@@ -14,6 +14,7 @@ App.ApplicationRoute = Ember.Route.extend
       @getContainer().hide()
       $(".navbar-static-top").addClass "visible-lg"
       @openDetailViews.pushObject detailView
+      App.BracketLineDrawer.hide()
 
       if currentView
         @controllerFor(currentView).set 'isHidden', true
@@ -25,13 +26,13 @@ App.ApplicationRoute = Ember.Route.extend
         outlet: 'detailView' + position
 
     closeDetailView: ->
-      console.debug 'cloooooooooooooose'
       position = @openDetailViews.get('length')
       if position is 0 then return
       @openDetailViews.popObject()
       if position is 1
         @getContainer().show()
         $(".navbar-static-top").removeClass "visible-lg"
+        App.BracketLineDrawer.show()
       else
         @controllerFor(@openDetailViews.get('lastObject')).set 'isHidden', false
       return @disconnectOutlet

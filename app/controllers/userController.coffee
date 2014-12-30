@@ -42,7 +42,6 @@ class UserController extends ControllerBase
 
   "/me/tournaments": (req, res) =>
     tournamentDao.findTournamentsByUser req.user, (tournaments) =>
-      console.log tournaments
       if tournaments.length is 0
         res.addInfo req.i18n.noTournamentsCreated
       res.render "#{@viewPrefix}/mytournaments",

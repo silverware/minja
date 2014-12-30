@@ -70,7 +70,7 @@ App.BracketLineDrawer =
     $(@canvas).fadeIn 'slow'
 
   hide: ->
-    $(@canvas).fadeOut 'medium'
+    $(@canvas).hide()
 
   clear: ->
     if not @ctx then return

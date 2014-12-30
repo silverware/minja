@@ -10,7 +10,6 @@ window.Save = class Save
     @enableSaveButton()
 
   init: ->
-    console.debug "saves: " + saves
     @form.submit (event) =>
       @formValidator = new FormValidator @form
 
@@ -23,7 +22,6 @@ window.Save = class Save
 
           if typeof @data == 'function'
             data = @data()
-            console.debug data
             $.ajax
               type: "POST"
               url: @url

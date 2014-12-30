@@ -25,7 +25,6 @@ class TournamentEditController extends ControllerBase
     next()
 
   "POST:/:tid/participants/edit": (req, res) =>
-    console.log req.body
     t = req.tournament
     t.members = req.body
     # console.log Tournament.validate t
@@ -40,12 +39,10 @@ class TournamentEditController extends ControllerBase
     res.redirect "/#{req.params.tid}/bracket/edit"
 
   "POST:/:tid/bracket/edit": (req, res) =>
-    console.log req.body
     {tree, members} = req.body
     members =
       members: members
       membersAttributes: req.tournament.members?.membersAttributes
-    console.log members
     tournamentDao.merge req.tournament.id, members: members, ->
       tournamentDao.merge req.tournament.id, tree: tree, ->
         res.send "ok"
