@@ -136,12 +136,14 @@ App.templates.gamesDetail = """
         </tbody>
       {{/each}}
     </table>
-    <div style="text-align: right" class="noPrint"><em>{{gamesCount}} {{i18n.bracket.games}}</em></div>
   </fieldset>
     </div></div>
 """
 
 App.GamesDetailView = App.DetailView.extend
+  temp: """
+    <div style="text-align: right" class="noPrint"><em>{{gamesCount}} {{i18n.bracket.games}}</em></div>
+  """
   classNameBinding: ['hide:hide']
   template: Ember.Handlebars.compile App.templates.gamesDetail
 

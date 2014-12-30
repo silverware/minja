@@ -30,14 +30,35 @@
   box-shadow:  @x1 @x2 @x3 @x4 @color;
 }
 
+.placeholder(@color) {
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color: @color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color: @color;
+     opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color: @color;
+     opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+     color: @color;
+  }
+}
+
+.underline {
+  border-bottom: 1px solid @dark;
+  box-shadow: 0 1px 0 0 fade(@textColor, 20%);
+}
 
 /* ---------------------------------------------------------------------
 Colors
 ----------------------------------------------------------------------*/
 
 .fadedBox {
-  background-color: fade(@dark, 15%);
-  border: 1px solid fade(@dark, 25%);
+  background-color: fade(@dark, 20%);
+  border: 1px solid fade(@dark, 30%);
 }
 
 .contentBox {
@@ -89,7 +110,7 @@ body {
 legend {
   // border-bottom: 2px solid fade(@dark, 30%);
   // box-shadow: 0 1px rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid @dark;
+  .underline;
 }
 
 
@@ -142,7 +163,7 @@ Popover
 }
 
 .modal-header {
-  border-bottom: 2px solid fade(@dark, 30%);
+  .underline;
 }
 
 .dropdown-menu {
@@ -273,12 +294,12 @@ Bootstrap
 Form
 ----------------------------------------------------------------------*/
 .form-control, .form-control[disabled], .form-control[readonly] {
-  background-color: darken(@normalOpaque, 5%);
+  background-color: darken(@normal, 5%);
   color: @textColor;
   border: 1px solid fade(@textColor, 25%);
   border-radius: 2px;
   // .box-shadow(0px, 0px, 0px, 1px, rgba(0,0,0,0.39));
-  .inset-box-shadow(0px, 0px, 0px, 1px, darken(@normal, 5%));
+  .inset-box-shadow(0px, 0px, 1px, 1px, darken(@normal, 10%));
 }
 
 .form-control:hover, .form-control:active, .form-control:focus,
@@ -288,9 +309,8 @@ input:hover, input:active, input:focus {
   // outline: none;
   // box-shadow: none;
 }
-
 input {
-  color: #333;
+.placeholder(fadeOut(@textColor, 20%));
 }
 
 /* ---------------------------------------------------------------------

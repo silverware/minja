@@ -26,9 +26,15 @@ App.templates.playerDetail = """
           <br /> <br />
       <dl class="dl-horizontal">
       <dt>{{i18n.bracket.goals}}</dt>
-      <dd>{{statistics.goals}}&nbsp;&nbsp;{{#if statistics.hasPlayedGames}}(&oslash;&nbsp;{{statistics.goalsAvg}}){{/if}}<dd>
+      <dd>{{statistics.goals}}<dd>
       <dt>{{i18n.bracket.goalsAgainst}}</dt>
-      <dd>{{statistics.goalsAgainst}}&nbsp;&nbsp;{{#if statistics.hasPlayedGames}}(&oslash;&nbsp;{{statistics.goalsAgainstAvg}}){{/if}}</dd>
+      <dd>{{statistics.goalsAgainst}}</dd>
+      {{#if statistics.hasPlayedGames}}
+        <dt>&oslash;&nbsp;{{i18n.bracket.goals}}</dt>
+        <dd>{{statistics.goalsAvg}}<dd>
+        <dt>&oslash;&nbsp;{{i18n.bracket.goalsAgainst}}</dt>
+        <dd>{{statistics.goalsAgainstAvg}}</dd>
+      {{/if}}
       </dl>
     </div>
   </fieldset>
