@@ -15,7 +15,7 @@ App.templates.gamesDetail = """
     </div>
   </div>
     <div class="noPrint actionButtons">
-      <span title="print" class="printView hidden-xs hidden-sm" {{action "printView" target="view"}}>
+      <span title="print" class="printView hidden-xs hidden-sm" {{action "printView"}}>
         <i class="fa fa-print"></i>
       </span><!--
       <span title="prefill Attributes" class="carousel-control prefillAttributesView" {{action "prefillAttributes" target="view"}}>
@@ -145,8 +145,6 @@ App.GamesDetailView = App.DetailView.extend
   classNameBinding: ['hide:hide']
   template: Ember.Handlebars.compile App.templates.gamesDetail
 
-  printView: ->
-    window.print()
 
 App.GamesDetailController = Ember.Controller.extend
   gameFilter: ""
@@ -165,3 +163,5 @@ App.GamesDetailController = Ember.Controller.extend
       @send 'openDetailView', 'playerDetail',
         player: player
         editable: App.editable
+    printView: ->
+      window.print()
