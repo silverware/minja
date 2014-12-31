@@ -1,7 +1,7 @@
 requirejs.config
   baseUrl: "/js"
   waitSeconds: 200
-  deps: ['jquery']
+  deps: ['jquery', 'handlebars']
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'
@@ -16,6 +16,7 @@ requirejs.config
     typeahead: '../lib/bootstrap-modules/typeahead/bootstrap3-typeahead.min'
     colorpicker: '../lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.min'
     background: 'utils/background/BackgroundRenderer'
+    popup: 'utils/popup'
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
     chosen: "../lib/chosen.jquery.min"
@@ -41,10 +42,8 @@ requirejs.config
     ember:
       deps: ['handlebars', 'jquery']
       exports: 'Ember'
-      init: ->
-        window.Em = window.Ember
     jquery:
       init: ->
         window.$ = window.jQuery
 
-require ['main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']
+require ['background', 'main', 'popup', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']

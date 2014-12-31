@@ -1,4 +1,4 @@
-define ["text!./popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
+define ["text!./utils/popup_template.hbs", "json!/i18n/popup"], (template, i18n) ->
 
   popup =
     hide: ->

@@ -93,7 +93,7 @@ bracketFiles  = [
 
 wrapperTop = """
   define([
-    "utils/Popup",\n
+    "popup",\n
     "typeahead", "marked"], function(Popup, type, marked) {\n
 """
 

@@ -114,7 +114,7 @@ module.exports = (grunt) ->
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
   grunt.registerTask 'compile', ['clean', 'coffee:emberApp', 'wrap', 'coffee:treeTests', 'less']
-  grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify', 'less']
+  grunt.registerTask 'compileDist', ['compile', 'coffee:all', 'uglify', 'less', 'requirejs']
   grunt.registerTask 'default', ['compile', 'concurrent']
   grunt.registerTask 'test', ['mochaTest', 'cucumberjs']
 

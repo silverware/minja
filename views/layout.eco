@@ -42,7 +42,6 @@
     <script src="/lib/require.js"></script>
     <% if @isProduction: %>
       <script src="/js/main-built.js"></script>
-    <% else: %>
     <% end %>
 
 
@@ -59,16 +58,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-
-    <script type="text/javascript">
-      require(["/js/require-config-global.js"], function() {
-        require(["background"], function(backgroundRenderer) {
-          backgroundRenderer.init();
-        });
-      });
-    </script>
-
-
 
   </head>
   <body>
