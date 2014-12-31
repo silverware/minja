@@ -20,7 +20,7 @@ requirejs.config
     d3: '../lib/d3.min'
     chosen: "../lib/chosen.jquery.min"
     validate: "../lib/jquery.validate.min"
-    jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+    jquery: "jquery-1.8.0.min"
     jqueryui: "../lib/jquery-ui"
     main: "./main"
     formvalidator: "./form/FormValidator"
