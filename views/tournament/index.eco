@@ -1,4 +1,3 @@
-<script src="/lib/jquery-ui.js"></script>
 <script>
       require(["/js/require-config-global.js"], function() {
   require(["app"], function() {

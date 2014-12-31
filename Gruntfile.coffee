@@ -33,6 +33,7 @@ module.exports = (grunt) ->
           baseUrl: "public/js",
           mainConfigFile: "public/js/require-config-global.js",
           out: "public/js/main-built.js"
+          name: 'require-config-global'
 
     wrap:
       basic:

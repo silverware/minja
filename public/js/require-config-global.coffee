@@ -1,6 +1,7 @@
 requirejs.config
   baseUrl: "/js"
   waitSeconds: 200
+  deps: ['jquery']
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'
@@ -17,18 +18,33 @@ requirejs.config
     background: 'utils/background/BackgroundRenderer'
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
-    chosen: "../lib/chosen.jquery.min.js"
-    validate: "../lib/jquery.validate.min.js"
+    chosen: "../lib/chosen.jquery.min"
+    validate: "../lib/jquery.validate.min"
+    jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+    jqueryui: "../lib/jquery-ui"
+    main: "./main"
+    formvalidator: "./form/FormValidator"
+    save: "./form/Save"
   shim:
+    colorpicker: ['jquery']
+    datepicker: ['jquery']
+    main: ['jquery']
+    formvalidator: ['jquery', 'validate']
+    validate: ['jquery']
+    save: ['jquery']
+    jqueryui: ['jquery']
     underscore:
       exports: '_'
     threejs:
       exports: 'THREE'
-    bootstrap: ['moment']
+    bootstrap: ['moment', 'jquery']
     ember:
-      deps: ['handlebars']
+      deps: ['handlebars', 'jquery']
       exports: 'Ember'
       init: ->
         window.Em = window.Ember
+    jquery:
+      init: ->
+        window.$ = window.jQuery
 
-require ['underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']
+require ['main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']
