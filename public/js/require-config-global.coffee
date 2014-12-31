@@ -17,12 +17,18 @@ requirejs.config
     background: 'utils/background/BackgroundRenderer'
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
+    chosen: "../lib/chosen.jquery.min.js"
+    validate: "../lib/jquery.validate.min.js"
   shim:
     underscore:
       exports: '_'
     threejs:
       exports: 'THREE'
-    ember: ['handlebars']
     bootstrap: ['moment']
+    ember:
+      deps: ['handlebars']
+      exports: 'Ember'
+      init: ->
+        window.Em = window.Ember
 
 require ['underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']
