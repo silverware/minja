@@ -27,6 +27,13 @@ module.exports = (grunt) ->
         dest: 'public/js'
         ext: '.js'
 
+    requirejs:
+      compile:
+        options:
+          baseUrl: "public/js",
+          mainConfigFile: "public/js/require-config-global.js",
+          out: "public/js/main-built.js"
+
     wrap:
       basic:
         src: 'public/js/app.js',

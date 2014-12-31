@@ -39,6 +39,7 @@
     "grunt-contrib-coffee" : "*",
     "grunt-contrib-less" : "0.10.0",
     "grunt-contrib-uglify" : "*",
+    "grunt-contrib-requirejs" : "0.4.4",
     "grunt-cucumber": "*",
     "grunt-wrap": "0.3.0",
     "matchdep" : "*",
