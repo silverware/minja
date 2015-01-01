@@ -1,6 +1,8 @@
 <script>
-      require(["/js/require-config-global.js"], function() {
   require(["app"], function() {
+      require(['background'], function(backgroundRenderer) {
+          backgroundRenderer.init();
+      });
       App.init({
         editable: <%= @editable %>,
         i18n: <%- @json @i18n %>,
@@ -10,8 +12,7 @@
         sport: <%- @json @sport %>,
         messages: <%- @json @messages %>
       });
-  });
-  });
+      });
 </script>
 
 <div id="appRoot"></div>

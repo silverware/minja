@@ -1,7 +1,7 @@
 requirejs.config
   baseUrl: "/js"
   waitSeconds: 200
-  deps: ['jquery', 'handlebars']
+  deps: ['jquery']
   paths:
     text: '../lib/require-text'
     json: '../lib/require/json'
@@ -16,7 +16,6 @@ requirejs.config
     typeahead: '../lib/bootstrap-modules/typeahead/bootstrap3-typeahead.min'
     colorpicker: '../lib/bootstrap-modules/colorpicker/js/bootstrap-colorpicker.min'
     background: 'utils/background/BackgroundRenderer'
-    popup: 'utils/popup'
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
     chosen: "../lib/chosen.jquery.min"
@@ -29,10 +28,11 @@ requirejs.config
   shim:
     colorpicker: ['jquery']
     datepicker: ['jquery']
+    typeahead: ['bootstrap']
     main: ['jquery']
     formvalidator: ['jquery', 'validate']
     validate: ['jquery']
-    save: ['jquery']
+    save: ['jquery', 'validate', 'formvalidator', 'main']
     jqueryui: ['jquery']
     underscore:
       exports: '_'
@@ -43,7 +43,8 @@ requirejs.config
       deps: ['handlebars', 'jquery']
       exports: 'Ember'
     jquery:
+      exports: '$'
       init: ->
         window.$ = window.jQuery
 
-require ['background', 'main', 'popup', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker']
+require ['background', 'main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker', 'typeahead']

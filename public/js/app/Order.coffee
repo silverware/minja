@@ -58,6 +58,7 @@ appFiles = [
   'utils/Observer.coffee'
   'utils/PersistanceManager.coffee'
   'utils/RoundRobin.coffee'
+  'utils/Popup.coffee'
   'utils/BracketLineDrawer.coffee'
   'components/EditLinkComponent.coffee'
   'components/IconButtonComponent.coffee'
@@ -93,12 +94,10 @@ bracketFiles  = [
 
 wrapperTop = """
   define([
-    "popup",\n
-    "typeahead", "marked"], function(Popup, type, marked) {\n
+    "marked", "save", "ember"], function(marked) {\n
 """
 
 wrapperBottom = """
-    App.Popup = Popup;\n
     window.marked = marked;\n
     });\n
 """

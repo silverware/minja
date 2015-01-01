@@ -42,6 +42,8 @@
     <script src="/lib/require.js"></script>
     <% if @isProduction: %>
       <script src="/js/main-built.js"></script>
+      <% else: %>
+      <script src="/js/require-config-global.js"></script>
     <% end %>
 
 

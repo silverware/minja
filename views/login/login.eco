@@ -5,7 +5,7 @@ function fillInputs() {
 	$("form").submit();
 };
 
-$(function() {
+require(['save'], function() {
   new Save({
     form: $("form"),
     ajax: false,
