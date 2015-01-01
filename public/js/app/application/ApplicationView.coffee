@@ -8,3 +8,4 @@ App.ApplicationView = Em.View.extend
 
   didInsertElement: ->
     @_super()
+    $('.loading-screen').hide()

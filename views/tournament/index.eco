@@ -15,5 +15,11 @@
       });
 </script>
 
-<div id="appRoot"></div>
+<div id="appRoot">
+  <div class="loading-screen">
+    <div class="loading-screen-inner">
+      <i class="fa fa-spinner fa-spin"></i>
+    </div>
+  </div>
+</div>
 
