@@ -84,7 +84,7 @@
                   <small><i class="icon-picture"></i>&nbsp;<%= @i18n.settings.editLogo %></small>
                 </a>-->
               <% end %>
-              <a class="navbar-brand" href="#" onclick="App.transitionTo('dashboard'); return false;" itemprop="name">
+              <a class="navbar-brand disabled-link" href="#" onclick="App.transitionTo('dashboard'); return false;" itemprop="name">
                 
                 <% if @tournament.hasLogo: %>
                   <img style="max-height: 35px" src="/<%= @tournament.id %>/logo/display" alt="@tournament.info.name logo" />
@@ -105,7 +105,7 @@
             <% if @navigation: %>
               <% for item in @navigation: %>
                 <li class="<%= item.selectedClass %>">
-                <a href="#" onclick="App.transitionTo('<%= item.route %>'); return false;">
+                <a href="#" onclick="App.transitionTo('<%= item.route %>'); return false;" class="disabled-link">
                     <i class="fa fa-fw fa-<%= item.icon %>"></i><span <% if item.xs: %>class="visible-inline-xs"<% end %>><% if item.label: %>&nbsp;<%= item.label %><% end %></span>
                   </a>
                 </li>

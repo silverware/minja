@@ -40,7 +40,7 @@ App.Round = Em.Object.extend
   ).property('_editable')
 
   isEditable: (->
-    App.get('editable') and @get("editable")
+    (App.get('editable') and @get("editable"))
   ).property("App.editable", "editable")
 
   qualifiers: (->

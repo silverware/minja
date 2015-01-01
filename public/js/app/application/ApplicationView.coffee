@@ -9,3 +9,5 @@ App.ApplicationView = Em.View.extend
   didInsertElement: ->
     @_super()
     $('.loading-screen').hide()
+    $('.disabled-link').removeClass 'disabled-link'
+    

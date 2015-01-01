@@ -20,6 +20,13 @@ h6 {
     /* font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; */
     /* font-weight: 700; */
 }
+.navbar {
+  background: none !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(61, 70, 82, 0.7) inset;
+}
 
 .lead {
     font-size: 18px;
@@ -33,6 +40,7 @@ h6 {
     color: #f8f8f8;
     background: url(../img/football-fitness-1.jpg) no-repeat center center;
     background-size: cover;
+    margin-top: -50px;
 }
 
 .intro-message {

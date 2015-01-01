@@ -11,7 +11,7 @@ App.templates.roundSetting = """
 <div class="roundName" {{action 'toggleSettings' target='view'}}>{{#if editable}}<i class="fa fa-edit"></i>{{/if}}&nbsp;{{round.name}}</div>
 
 {{#if editable}}
-<div id="settings">
+<div id="settings" {{bind-attr class="view.showSettings::hide"}}>
 <button type="button" class="close" {{action 'toggleSettings' target='view'}}><i class="fa fa-times-circle"></i></button>
   <form role="form" style="float: left">
     <div>
@@ -22,7 +22,7 @@ App.templates.roundSetting = """
   <form role="form" style="float: left">
     <div>
       <label>{{i18n.bracket.games}}</label>
-      {{view 'numberField' classNames="form-control xs" editable=round.isEditable value=round.matchesPerGame}}
+      {{view 'numberField' classNames="form-control xs" editable=round.isNotStarted value=round.matchesPerGame}}
     </div>
   </form>
   <form role="form" style="float: left">
@@ -40,26 +40,22 @@ App.RoundSettingView = Em.View.extend
   template: Ember.Handlebars.compile App.templates.roundSetting
   classNames: ["roundSetting box"]
   round: null
+  showSettings: null
 
   didInsertElement: ->
     @_super()
-    if not @get('round.isEditable')
-      @$("#settings").hide "medium"
+    @set 'showSettings', @get('round.isEditable')
 
-  showSettings: (->
+  onEditableChanged: (->
     if @get('round.isEditable')
-      @$("#settings").show "medium"
+      @set 'showSettings', true
     else
-      @$("#settings").hide "medium"
+      @set 'showSettings', false
   ).observes('round.isEditable')
 
   actions:
     toggleSettings: ->
-      if App.editable
-        if @$("#settings").is(":visible")
-          @$("#settings").hide "medium"
-        else
-          @$("#settings").show "medium"
+      @set 'showSettings', !@get('showSettings')
     shuffle: ->
       #someGamesCompleted = @get('round.games').some (game) -> game.get('isCompleted')
       # Warnung ausgeben, falls dadurch Ergebnisse verfallen
