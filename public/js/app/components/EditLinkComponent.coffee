@@ -2,7 +2,7 @@ App.EditLinkComponent = Ember.Component.extend
   editable: true
   route: 'info'
 
-  template: Ember.Handlebars.compile """
+  layout: Ember.Handlebars.compile """
     {{#if isOwner}}
     {{#link-to route class='float-right'}}
       <button class="btn btn-inverse"><i class="fa fa-{{unbound icon}}"></i>{{label}}</button>

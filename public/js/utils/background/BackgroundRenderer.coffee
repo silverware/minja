@@ -182,7 +182,7 @@ define ['threejs', 'jquery'], ->
       vertexShader: HEIGHT_VERTEX_SHADER
       fragmentShader: HEIGHT_FRAGMENT_SHADER
 
-    heightScene.add new THREE.Mesh new THREE.PlaneGeometry(2, 2), material
+    heightScene.add new THREE.Mesh new THREE.PlaneBufferGeometry(2, 2), material
 
     heightRenderTarget = new THREE.WebGLRenderTarget 512, 512,
       minFilter: THREE.LinearFilter
@@ -204,8 +204,9 @@ define ['threejs', 'jquery'], ->
 
     renderer = new THREE.WebGLRenderer
       antialias: true
+      alpha: true
     renderer.setSize width(), height()
-    canvas = $(renderer.domElement).hide().fadeIn(6000)
+    canvas = $(renderer.domElement).hide().fadeIn(4000)
     canvas.addClass "noPrint"
     canvas.attr "id", "backgroundCanvas"
     $("body").append canvas
@@ -220,7 +221,7 @@ define ['threejs', 'jquery'], ->
       vertexShader: VERTEX_SHADER
       fragmentShader: FRAGMENT_SHADER
 
-    geometry = new THREE.PlaneGeometry 1000, 300, 100, 100
+    geometry = new THREE.PlaneBufferGeometry 1000, 300, 100, 100
     plane = new THREE.Mesh geometry, shaderMaterial
     plane.rotation.x = -Math.PI / 2
     scene.add plane

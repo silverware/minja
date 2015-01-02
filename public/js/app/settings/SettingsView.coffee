@@ -4,12 +4,12 @@ App.templates.settings = """
   <div class="col-md-6">
   <div class="dashboardBox">
     <fieldset>
-      <legend>{{App.i18n.settings.colorSelection}}</legend>
+      <legend>{{i18n.settings.colorSelection}}</legend>
       <form class="form-horizontal" action="{{unbound colorsUrl}}" method="post">
           <div class="form-group">
-            <label class="control-label col-sm-2">{{App.i18n.settings.theme}}</label>
+            <label class="control-label col-sm-2">{{i18n.settings.theme}}</label>
             <div class="col-sm-10">
-              <span class="btn btn-link" {{action "openSelectionPopup" target="view"}}><i class="fa fa-picture-o"></i>{{App.i18n.settings.selectTheme}}</span>
+              <span class="btn btn-link" {{action "openSelectionPopup" target="view"}}><i class="fa fa-picture-o"></i>{{i18n.settings.selectTheme}}</span>
             </div>
           </div>
           {{#form-group label=i18n.settings.background name="background"}}

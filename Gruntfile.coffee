@@ -36,6 +36,7 @@ module.exports = (grunt) ->
           name: 'require-config'
           paths:
             ember: '../lib/ember-1.9.1.min'
+            threejs: '../lib/three.min'
 
     wrap:
       basic:

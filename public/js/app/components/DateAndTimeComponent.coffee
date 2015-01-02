@@ -2,7 +2,7 @@ App.DateAndTimeComponent = Ember.Component.extend
   date: null
   time: null
 
-  template: Ember.Handlebars.compile """
+  layout: Ember.Handlebars.compile """
     {{#if date}}
       <i class="fa fa-calendar"></i>&nbsp;{{beautifulDate}}
       &nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{time}}

@@ -48,5 +48,5 @@ App.ColorThemes =
     footerText: "rgba(255,255,255,1)"
 
 App.ColorThemes.list = ->
-  Object.getOwnPropertyNames(App.ColorThemes).map (name) ->
+  Object.getOwnPropertyNames(App.ColorThemes).filter((name) -> return name isnt 'list').map (name) ->
     App.ColorThemes[name]

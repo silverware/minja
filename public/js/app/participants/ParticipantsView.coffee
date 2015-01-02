@@ -127,8 +127,6 @@ App.ParticipantsView = Em.View.extend
   template: Ember.Handlebars.compile App.templates.participants
   didInsertElement: ->
     @$("[rel='tooltip']").tooltip()
-
-    console.debug 'init save'
     new Save
       url: @get 'controller.participantsUrl'
       form: @$ '#participants-form'
