@@ -23,13 +23,21 @@ App.ColorThemes =
     footer: "rgba(52,124,232,0.95)"
     footerText: "rgba(255,255,255,1)"
 
-  # greenTheme:
-  #   name: "Green Theme"
-  #   content: "rgba(72, 82, 97, 0.7)"
-  #   contentText: "rgba(255,255,255,1)"
-  #   background: "rgba(106, 123, 145, 1)"
-  #   footer: "rgba(52, 62, 77, 0.95)"
-  #   footerText: "rgba(255,255,255,1)"
+  alphaTheme:
+    name: "Alpha Theme"
+    content: "rgba(54,54,54,0.23)"
+    contentText: "rgba(255,255,255,1)"
+    background: "rgba(61,61,61,1)"
+    footer: "rgba(0,0,0,0.46)"
+    footerText: "rgba(255,255,255,1)"
+
+  greenTheme:
+    name: "Green Theme"
+    content: "rgba(255,255,255,0.54)"
+    contentText: "rgba(69,69,69,1)"
+    background: "rgba(209,209,209,1)"
+    footer: "rgba(56,140,49,0.95)"
+    footerText: "rgba(255,255,255,1)"
 
   # blackTheme:
   #   name: "Black Theme"
