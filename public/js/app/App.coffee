@@ -13,7 +13,7 @@ window.App = Ember.Application.create
     App.Router.router.transitionTo route
 
 
-App.init = ({isOwner, editable, i18n, sport, colors, tournament, messages}) ->
+App.init = ({isOwner, i18n, sport, colors, tournament, messages, isProduction}) ->
   App.set 'tournament', App.Tournament.create
     identifier: tournament.identifier
     publicName: tournament.publicName
@@ -27,6 +27,8 @@ App.init = ({isOwner, editable, i18n, sport, colors, tournament, messages}) ->
   App.set 'editable', false
   App.set 'i18n', i18n
   App.set 'sport', sport
+  if isProduction
+    App.set 'LOG_TRANSITIONS', false
 
   # initially fill with sport values
   if not _.isEmpty App.sport

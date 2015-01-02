@@ -8,6 +8,7 @@ _ = require 'underscore'
 fs = require 'fs'
 less = require 'less'
 colorService = require '../services/colorService'
+config = require '../server-config'
 
 class TournamentController extends ControllerBase
 
@@ -94,10 +95,10 @@ class TournamentController extends ControllerBase
       limit: 100
     chatDao.findMessagesByTournamentId req.tournament.id, req.i18n, paginator, (messages) =>
       res.render "#{@viewPrefix}/index",
-        editable: req.tournament.isOwner
         isOwner: req.tournament.isOwner
         hasLogo: req.tournament.hasLogo
         messages: messages
+        isProduction: config.isProduction
 
   "/:tid": (req, res) =>
     @renderTournament req, res

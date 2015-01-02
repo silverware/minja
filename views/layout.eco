@@ -43,7 +43,7 @@
     <% if @isProduction: %>
       <script src="/js/main-built.js"></script>
       <% else: %>
-      <script src="/js/require-config-global.js"></script>
+      <script src="/js/require-config.js"></script>
     <% end %>
 
 

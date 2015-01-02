@@ -31,9 +31,11 @@ module.exports = (grunt) ->
       compile:
         options:
           baseUrl: "public/js",
-          mainConfigFile: "public/js/require-config-global.js",
+          mainConfigFile: "public/js/require-config.js",
           out: "public/js/main-built.js"
-          name: 'require-config-global'
+          name: 'require-config'
+          paths:
+            ember: '../lib/ember-1.9.1.min'
 
     wrap:
       basic:

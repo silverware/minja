@@ -15,6 +15,7 @@ App.BracketEditRoute = Ember.Route.extend
   actions:
     willTransition: (transition) ->
       if App.Observer.hasChanges() and !confirm(App.i18n.bracket.unsavedChanges)
+        console.debug 'abooort'
         transition.abort()
       else
         return true

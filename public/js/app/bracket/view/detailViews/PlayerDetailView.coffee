@@ -24,16 +24,12 @@ App.templates.playerDetail = """
           </div>
           </div>
           <br /> <br />
-      <dl class="dl-horizontal">
-      <dt>{{i18n.bracket.goals}}</dt>
-      <dd>{{statistics.goals}}<dd>
-      <dt>{{i18n.bracket.goalsAgainst}}</dt>
-      <dd>{{statistics.goalsAgainst}}</dd>
       {{#if statistics.hasPlayedGames}}
-        <dt>&oslash;&nbsp;{{i18n.bracket.goals}}</dt>
-        <dd>{{statistics.goalsAvg}}<dd>
-        <dt>&oslash;&nbsp;{{i18n.bracket.goalsAgainst}}</dt>
-        <dd>{{statistics.goalsAgainstAvg}}</dd>
+      <dl class="dl-horizontal">
+      <dt>&oslash;&nbsp;{{i18n.bracket.goals}}</dt>
+      <dd>{{statistics.goalsAvg}} ({{statistics.goals}})<dd>
+      <dt>&oslash;&nbsp;{{i18n.bracket.goalsAgainst}}</dt>
+      <dd>{{statistics.goalsAgainstAvg}} ({{statistics.goalsAgainst}})<dd>
       {{/if}}
       </dl>
     </div>

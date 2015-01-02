@@ -1,18 +1,18 @@
 <script>
   require(["app"], function() {
-      require(['background'], function(backgroundRenderer) {
-          backgroundRenderer.init();
-      });
-      App.init({
-        editable: <%= @editable %>,
-        i18n: <%- @json @i18n %>,
-        isOwner: <%= @tournament.isOwner %>,
-        colors: <%- @json @colors %>,
-        tournament: <%- @json @tournament %>,
-        sport: <%- @json @sport %>,
-        messages: <%- @json @messages %>
-      });
-      });
+    require(['background'], function(backgroundRenderer) {
+        backgroundRenderer.init();
+    });
+    App.init({
+      i18n: <%- @json @i18n %>,
+      isOwner: <%= @tournament.isOwner %>,
+      colors: <%- @json @colors %>,
+      tournament: <%- @json @tournament %>,
+      sport: <%- @json @sport %>,
+      messages: <%- @json @messages %>,
+      isProduction: <%= @isProduction %>
+    });
+  });
 </script>
 
 <div id="appRoot">
