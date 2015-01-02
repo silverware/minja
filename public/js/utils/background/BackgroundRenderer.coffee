@@ -126,7 +126,15 @@ define ['threejs', 'jquery'], ->
 
   time = new Date().getSeconds()
 
+  webGlSupported = ->
+    try
+      canvas = document.createElement('canvas')
+      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')))
+     catch e
+       return false
+
   init = ->
+    if not webGlSupported() then return
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
 
     ###--------------------------------------------------------------------------
