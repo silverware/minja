@@ -18,6 +18,7 @@ requirejs.config
     background: 'utils/background/BackgroundRenderer'
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
+    modernizr: '../lib/modernizr'
     chosen: "../lib/chosen.jquery.min"
     validate: "../lib/jquery.validate.min"
     jquery: "../lib/jquery-1.8.0.min"
@@ -47,4 +48,4 @@ requirejs.config
       init: ->
         window.$ = window.jQuery
 
-require ['background', 'main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker', 'typeahead']
+require ['background', 'modernizr', 'main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker', 'typeahead']

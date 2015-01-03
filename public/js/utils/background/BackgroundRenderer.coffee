@@ -152,17 +152,18 @@ define ['threejs', 'jquery'], ->
     document.body.removeChild(outer)
      
     return (w1 - w2)
-  scrollbarwidth = getScrollbarWidth()
+  # scrollbarwidth = getScrollbarWidth()
 
   webGlSupported = ->
     try
       canvas = document.createElement('canvas')
-      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')))
+      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl')))
      catch e
        return false
 
   init = ->
-    if not webGlSupported() then return
+    if not Modernizr.webgl then return
+    if !webGlSupported() then return
     is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
 
     ###--------------------------------------------------------------------------
@@ -243,7 +244,7 @@ define ['threejs', 'jquery'], ->
     render()
 
   width = ->
-    $(window).width() + scrollbarwidth # scrollbar offset
+    $(window).width()# + scrollbarwidth # scrollbar offset
 
   height = ->
     window.innerHeight
