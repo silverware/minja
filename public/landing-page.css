@@ -173,6 +173,7 @@ footer {
   box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.3);
   padding: 50px 0;
   background-color: #f8f8f8;
+  margin-bottom: 0px !important;
 }
 
 p.copyright {
