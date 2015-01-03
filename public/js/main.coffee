@@ -8,23 +8,28 @@ $.fn.exists = ->
     return this.length isnt 0
 
 ############ error handling ##################
-window.onerror = (errorMessage, errorUrl, errorLine) ->
-    $.ajax
-        type: 'POST',
-        url: '/errors/report',
-        data:
-            msg: errorMessage,
-            url: errorUrl,
-            line: errorLine
-            hostUrl: document.URL
-            userAgent: navigator?.userAgent
-        success: ->
-            if (console && console.log)
-                console.log('JS error report successful.')
-        error: ->
-            if (console && console.error)
-                console.error('JS error report submission failed!')
-    return false
+window.reportedErrors = []
+window.onerror = (errorMessage, errorUrl, errorLine, errorCol, error) ->
+  if (errorMessage in reportedErrors)
+    return
+  reportedErrors.push errorMessage
+  $.ajax
+      type: 'POST',
+      url: '/errors/report',
+      data:
+          msg: errorMessage,
+          url: errorUrl,
+          line: errorLine
+          stacktrace: error
+          hostUrl: document.URL
+          userAgent: navigator?.userAgent
+      success: ->
+          if (console && console.log)
+              console.log('JS error report successful.')
+      error: ->
+          if (console && console.error)
+              console.error('JS error report submission failed!')
+  return false
 
 ############ after each Page-Load ##################
 $(document).ready ->

@@ -1,4 +1,4 @@
-define ['threejs', 'jquery'], ->
+define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
 
   ###--------------------------------------------------------------------------
      SHADER
@@ -163,8 +163,9 @@ define ['threejs', 'jquery'], ->
 
   init = ->
     if not Modernizr.webgl then return
-    if !webGlSupported() then return
-    is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
+    if not Modernizr.canvas then return
+    md = new MobileDetect window.navigator.userAgent
+    if md.mobile() then return
 
     ###--------------------------------------------------------------------------
      init height map

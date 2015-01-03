@@ -19,6 +19,7 @@ requirejs.config
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
     modernizr: '../lib/modernizr'
+    mobiledetect: '../lib/mobile-detect.min'
     chosen: "../lib/chosen.jquery.min"
     validate: "../lib/jquery.validate.min"
     jquery: "../lib/jquery-1.8.0.min"
@@ -48,4 +49,4 @@ requirejs.config
       init: ->
         window.$ = window.jQuery
 
-require ['background', 'modernizr', 'main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker', 'typeahead']
+require ['background', 'modernizr', 'mobiledetect', 'main', 'formvalidator', 'save', 'jqueryui', 'jquery', 'validate', 'underscore', 'marked', 'handlebars', 'ember', 'threejs', 'moment', 'bootstrap', 'd3', 'colorpicker', 'datepicker', 'typeahead']
