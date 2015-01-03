@@ -3,8 +3,6 @@ requirejs.config
   waitSeconds: 200
   deps: ['jquery']
   paths:
-    text: '../lib/require-text'
-    json: '../lib/require/json'
     datepicker: '../lib/bootstrap-modules/datetimepicker/js/bootstrap-datetimepicker.min'
     moment: '../lib/moment.min'
     marked: '../lib/marked.min'
@@ -19,7 +17,7 @@ requirejs.config
     # hammer: '../lib/hammer.min'
     d3: '../lib/d3.min'
     modernizr: '../lib/modernizr'
-    mobiledetect: '../lib/mobile-detect.min'
+    mobiledetect: '../lib/mobile-detect'
     chosen: "../lib/chosen.jquery.min"
     validate: "../lib/jquery.validate.min"
     jquery: "../lib/jquery-1.8.0.min"
