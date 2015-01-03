@@ -22,8 +22,6 @@ buster.testCase "Utils",
           return (item is games[i])
         assert contains
 
-    console.debug "compledted", games[6].get("isCompleted")
-
     result = App.utils.filterGames {search: "", played: true}, games
     assertGames result, 0, 6
 

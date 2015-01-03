@@ -46,7 +46,7 @@ App.init = ({isOwner, i18n, sport, colors, tournament, messages, isProduction}) 
     App.PersistanceManager.buildBracket tournament.tree
 
   # build messages
-  if messages.length > 0
+  if messages?.length > 0
     for message in messages
       App.tournament.messages.pushObject App.Message.create message.value
 

@@ -1,7 +1,6 @@
 buster.testCase "Round Game Model",
   setUp: ->
     @round = App.KoRound.create()
-    console.debug "asdöfkasjdf öasdlkfj "+@round.get('matchesPerGame')
     @roundGame = App.RoundGame.create
       _round: @round
     @p1 = App.Player.create name: "p1"
