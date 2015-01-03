@@ -152,7 +152,7 @@ define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
     document.body.removeChild(outer)
      
     return (w1 - w2)
-  # scrollbarwidth = getScrollbarWidth()
+  scrollbarwidth = getScrollbarWidth()
 
   webGlSupported = ->
     try
@@ -245,7 +245,7 @@ define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
     render()
 
   width = ->
-    $(window).width()# + scrollbarwidth # scrollbar offset
+    $(window).width() + scrollbarwidth # scrollbar offset
 
   height = ->
     window.innerHeight
