@@ -20,7 +20,7 @@
                         <hr class="intro-divider">
                     <ul class="list-inline">
                         <li>
-                            <a href="/user/register" class="btn btn-inverse btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Sign up</span></a>
+                            <a href="/user/register" class="btn btn-inverse btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name">Sign up</span></a>
                         </li>
                         <li>
                             <a href="/auth/facebook" class="btn btn-inverse btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Login via facebook</span></a>
