@@ -134,75 +134,78 @@ define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
        return false
 
   init = ->
-    if not Modernizr.webgl then return
-    if not Modernizr.canvas then return
-    md = new MobileDetect window.navigator.userAgent
-    if md.mobile() then return
+    try
+      if not Modernizr.webgl then return
+      if not Modernizr.canvas then return
+      md = new MobileDetect window.navigator.userAgent
+      if md.mobile() then return
 
-    ###--------------------------------------------------------------------------
-     init height map
-    --------------------------------------------------------------------------###
+      ###--------------------------------------------------------------------------
+       init height map
+      --------------------------------------------------------------------------###
 
-    heightScene = new THREE.Scene()
-    heightCamera = new THREE.Camera()
-    heightCamera.position.z = 1
-    heightUniforms =
-      time:
-        type: "f"
-        value: time
+      heightScene = new THREE.Scene()
+      heightCamera = new THREE.Camera()
+      heightCamera.position.z = 1
+      heightUniforms =
+        time:
+          type: "f"
+          value: time
 
-    material = new THREE.ShaderMaterial
-      uniforms: heightUniforms
-      vertexShader: HEIGHT_VERTEX_SHADER
-      fragmentShader: HEIGHT_FRAGMENT_SHADER
+      material = new THREE.ShaderMaterial
+        uniforms: heightUniforms
+        vertexShader: HEIGHT_VERTEX_SHADER
+        fragmentShader: HEIGHT_FRAGMENT_SHADER
 
-    heightScene.add new THREE.Mesh new THREE.PlaneBufferGeometry(2, 2), material
+      heightScene.add new THREE.Mesh new THREE.PlaneBufferGeometry(2, 2), material
 
-    heightRenderTarget = new THREE.WebGLRenderTarget 512, 512,
-      minFilter: THREE.LinearFilter
-      magFilter: THREE.NearestFilter
-      format: THREE.RGBFormat
+      heightRenderTarget = new THREE.WebGLRenderTarget 512, 512,
+        minFilter: THREE.LinearFilter
+        magFilter: THREE.NearestFilter
+        format: THREE.RGBFormat
 
 
-    ###--------------------------------------------------------------------------
-     init main scene
-    --------------------------------------------------------------------------###
+      ###--------------------------------------------------------------------------
+       init main scene
+      --------------------------------------------------------------------------###
 
-    scene = new THREE.Scene()
-    camera = new THREE.OrthographicCamera -width() / CAM_FACTOR, width() / CAM_FACTOR, height() / CAM_FACTOR, -height() / CAM_FACTOR, NEAR, FAR
+      scene = new THREE.Scene()
+      camera = new THREE.OrthographicCamera -width() / CAM_FACTOR, width() / CAM_FACTOR, height() / CAM_FACTOR, -height() / CAM_FACTOR, NEAR, FAR
 
-    camera.position.y = 60
-    camera.position.z = 200
-    camera.lookAt new THREE.Vector3 0, 0, 0
-    scene.add camera
+      camera.position.y = 60
+      camera.position.z = 200
+      camera.lookAt new THREE.Vector3 0, 0, 0
+      scene.add camera
 
-    renderer = new THREE.WebGLRenderer
-      antialias: true
-      alpha: true
-    renderer.setSize width(), height()
-    canvas = $(renderer.domElement).hide().fadeIn(4000)
-    canvas.addClass "noPrint"
-    canvas.attr "id", "backgroundCanvas"
-    $("body").append canvas
+      renderer = new THREE.WebGLRenderer
+        antialias: true
+        alpha: true
+      renderer.setSize width(), height()
+      canvas = $(renderer.domElement).hide().fadeIn(4000)
+      canvas.addClass "noPrint"
+      canvas.attr "id", "backgroundCanvas"
+      $("body").append canvas
 
-    uniforms =
-      heightmap:
-        type: 't'
-        value: heightRenderTarget
+      uniforms =
+        heightmap:
+          type: 't'
+          value: heightRenderTarget
 
-    shaderMaterial = new THREE.ShaderMaterial
-      uniforms: uniforms
-      vertexShader: VERTEX_SHADER
-      fragmentShader: FRAGMENT_SHADER
+      shaderMaterial = new THREE.ShaderMaterial
+        uniforms: uniforms
+        vertexShader: VERTEX_SHADER
+        fragmentShader: FRAGMENT_SHADER
 
-    geometry = new THREE.PlaneBufferGeometry 1000, 300, 100, 100
-    plane = new THREE.Mesh geometry, shaderMaterial
-    plane.rotation.x = -Math.PI / 2
-    scene.add plane
+      geometry = new THREE.PlaneBufferGeometry 1000, 300, 100, 100
+      plane = new THREE.Mesh geometry, shaderMaterial
+      plane.rotation.x = -Math.PI / 2
+      scene.add plane
 
-    window.addEventListener 'resize', onWindowResize, false
-    window.addEventListener 'scroll', onWindowResize, false
-    animate()
+      window.addEventListener 'resize', onWindowResize, false
+      window.addEventListener 'scroll', onWindowResize, false
+      animate()
+    catch e
+      console.debug e
 
   onWindowResize = ->
     renderer.setSize width(), height()
