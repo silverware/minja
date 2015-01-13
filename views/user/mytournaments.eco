@@ -21,7 +21,7 @@
         <tr>
           <td><%= tournament.value.info.name %></td>
           <td class="hidden-xs"><%= @i18n.date tournament.value.created_at %></td>
-          <td width="140px">
+          <td style="text-align: right">
             <div class="btn-group">
               <button type="button" class="btn btn-inverse" onclick="window.location.href = '/<%= tournament.value.identifier %>'"><i class="fa fa-folder-open"></i><%= @i18n.open %></button>
               <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">

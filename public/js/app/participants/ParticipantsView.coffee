@@ -17,7 +17,7 @@ App.templates.participants = """
     <th width="25px"></th>
     <th>Name</th>
     {{#each attribute in participants.attributes}}
-      <th>
+      <th class="hidden-xs">
         {{attribute.name}}
         {{#if editable}}
           &nbsp;&nbsp;<i class="fa fa-times-circle" rel="tooltip" {{action "removeAttribute" attribute target="participants"}}></i>
@@ -138,6 +138,7 @@ App.MemberValueView = Ember.View.extend
   tagName: 'td'
   member: null
   attribute: null
+  classNames: ['hidden-xs']
 
   memberValue: ((key, value) ->
     # SETTER
