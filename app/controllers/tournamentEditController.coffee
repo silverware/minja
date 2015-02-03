@@ -96,9 +96,9 @@ class TournamentEditController extends ControllerBase
 
   "POST:/:tid/logo": (req, res) =>
     if req.param("save")
-      hasLogo = req.tournament.hasLogo == true
+      hasLogo = req.tournament.hasLogo is true
       logoFile = req.files['logo']
-      if logoFile.size == 0
+      if logoFile.size is 0
         res.addError "No image specified"
       else if logoFile.type not in ["image/png", "image/jpg", "image/jpeg", "image/gif"]
         res.addError "Image must be of type png, jpg, or gif"
@@ -106,31 +106,24 @@ class TournamentEditController extends ControllerBase
       if res.locals.errors?
         res.render "#{@viewPrefix}/settings", hasLogo: hasLogo
       else
-        logo = gm(logoFile.path)
-        logo.size((err, size) =>
-          if (err)
-            throw err
+        logo = gm logoFile.path
+        logo.size (err, size) =>
+          if err then throw err
           longestSide = Math.max(size.width, size.height)
-          if (longestSide > 200)
-            logo.resize(200).toBuffer((err, buffer) =>
-              if (err)
-                throw err
-
+          if longestSide > 200
+            logo.resize(200).toBuffer (err, buffer) =>
+              if err then throw err
               logoImage =
                 name: 'logo'
                 contentType: logoFile.type
                 body: buffer
-
-              tournamentDao.saveAttachments([logoImage], req.tournament, () =>
-                tournamentDao.merge req.tournament.id, hasLogo: true, () =>
-                  res.render "#{@viewPrefix}/settings", hasLogo: true)
-            )
-        )
-
+              tournamentDao.saveAttachments [logoImage], req.tournament, =>
+                tournamentDao.merge req.tournament.id, hasLogo: true, =>
+                  res.render "#{@viewPrefix}/settings", hasLogo: true
     else
-      tournamentDao.merge req.tournament.id, hasLogo: false, () =>
-        tournamentDao.removeAttachments( req.tournament, ["logo"], () =>
-          res.render "#{@viewPrefix}/settings", hasLogo: false)
+      tournamentDao.merge req.tournament.id, hasLogo: false, =>
+        tournamentDao.removeAttachments req.tournament, ["logo"], =>
+          res.render "#{@viewPrefix}/settings", hasLogo: false
 
   "POST:/:tid/settings/colors": (req, res) =>
     if colorService.isDefaultColor req.body

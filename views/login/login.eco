@@ -19,8 +19,8 @@ require(['save'], function() {
 	  <p><%= @message %></p>
 	<% end %>
   <%= @formWithActionFor {}, "/user/login", (form) => %>
-    <%= form.textField "E-Mail", "username", {placeholder: "name@example.com", class: "required email"} %>
-    <%= form.password @i18n.password, "password", {placeholder: @i18n.password, class: "required"} %>
+    <%= form.textField "E-Mail", "username", {class: "required email"} %>
+    <%= form.password @i18n.password, "password", {class: "required"} %>
 	  <input type="hidden" value="<%= @next %>" name="next" />
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">

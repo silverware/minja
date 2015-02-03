@@ -157,7 +157,7 @@ define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
         vertexShader: HEIGHT_VERTEX_SHADER
         fragmentShader: HEIGHT_FRAGMENT_SHADER
 
-      heightScene.add new THREE.Mesh new THREE.PlaneBufferGeometry(2, 2), material
+      heightScene.add new THREE.Mesh new THREE.PlaneBufferGeometry(512, 512), material
 
       heightRenderTarget = new THREE.WebGLRenderTarget 512, 512,
         minFilter: THREE.LinearFilter
