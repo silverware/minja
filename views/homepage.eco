@@ -157,7 +157,7 @@
                         <a href="mailto:webmaster@minja.net" target="_blank"><%= @i18n.contact %></a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted small">Copyright &copy; minja.net 2015. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Minja &copy; 2015</p>
                 </div>
             </div>
         </div>
