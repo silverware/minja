@@ -106,6 +106,19 @@ App.SettingsView = Em.View.extend
     openSelectionPopup: ->
       App.ColorSelectionPopup.create
         onSelection: @fillColors
+    handleFileSelect: (evt) ->
+      files = evt.target.files
+      for f in files
+        if !f.type.match('image.*') then continue
+        reader = new FileReader()
+        reader.onload = (theFile) ->
+          logo = $('#logo')
+          logocontainer = $('#logocontainer')
+          logo.setAttribute("src", e.target.result)
+          logocontainer.setAttribute("style", "")
+        reader.readAsDataURL(f)
+
+  # document.getElementById('logofile').addEventListener('change', handleFileSelect, false);
 
   didInsertElement: ->
     @_super()

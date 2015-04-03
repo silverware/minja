@@ -98,6 +98,7 @@ class TournamentEditController extends ControllerBase
     if req.param("save")
       hasLogo = req.tournament.hasLogo is true
       logoFile = req.files['logo']
+      console.log logoFile
       if logoFile.size is 0
         res.addError "No image specified"
       else if logoFile.type not in ["image/png", "image/jpg", "image/jpeg", "image/gif"]
@@ -117,6 +118,7 @@ class TournamentEditController extends ControllerBase
                 name: 'logo'
                 contentType: logoFile.type
                 body: buffer
+              console.log logoImage
               tournamentDao.saveAttachments [logoImage], req.tournament, =>
                 tournamentDao.merge req.tournament.id, hasLogo: true, =>
                   res.render "#{@viewPrefix}/settings", hasLogo: true
