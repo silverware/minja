@@ -89,6 +89,7 @@ class TournamentController extends ControllerBase
   renderTournament: (req, res) ->
     req.tournament.settings =
       colors: colorService.getColors req.tournament
+      hasLogo: req.tournament.hasLogo
     res.locals.sport = if req.tournament.sport then sports[req.tournament.sport] else sports.other
     paginator =
       first: 0

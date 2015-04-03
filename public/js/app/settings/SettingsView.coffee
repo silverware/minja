@@ -1,3 +1,7 @@
+# TODO: nachrichten aktivieren/deaktivieren
+#
+#
+
 App.templates.settings = """
 <div class="container dashboard">
   <div class="row">
@@ -31,6 +35,40 @@ App.templates.settings = """
         </form>
     </fieldset>
   </div>
+  <div class="dashboardBox">
+
+    <fieldset>
+      <legend>{{i18n.settings.uploadLogo}}</legend>
+
+      <form class="form-horizontal" role="form" action="/{{unbound tournament.identifier}}/logo" method="post" enctype="multipart/form-data">
+      <div id="logocontainer" {{bind-attr class="tournament.settings.hasLogo::hide"}}>
+        <div class="form-group">
+          <label class="control-label col-sm-2">&nbsp;</label>
+          <div class="col-sm-10">
+            <img id="logo" style="max-width:200px" src="/{{unbound tournament.identifier}}/logo/display" alt="your tournament logo" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="logofile">{{i18n.settings.choosePicture}}</label>
+        <div class="col-sm-10">
+          <input type="file" name="logo" accept="image/* " size="50" id="logofile" />
+         </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-inverse" name="save" value="1" type="submit" style="margin-right: 20px">{{i18n.settings.saveLogo}}</button>
+          {{#if tournament.settings.hasLogo}}
+            <button class="btn btn-danger" name="delete" value="1" type="submit" style="margin-right: 20px">{{i18n.settings.deleteLogo}}</button>
+          {{/if}}
+        </div>
+      </div>
+    </form>
+  </fieldset>
+  </div>
+
   </div>
   <div class="col-md-6">
   <div class="dashboardBox">

@@ -17,7 +17,7 @@ app.set "view engine", 'eco'
 app.use partials()
 app.use express.methodOverride()
 app.use assets src: config.CLIENT_DIR, buildDir: false
-app.use express.favicon config.CLIENT_DIR + '/favicon.ico'
+app.use express.favicon config.CLIENT_DIR + '/favicon.png'
 app.use express.bodyParser()
 app.use express.cookieParser 'keyboard cat'
 app.use express.static config.CLIENT_DIR
