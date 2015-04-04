@@ -134,6 +134,7 @@ module.exports =
     saveLogo: "Logo speichern"
     deleteLogo: "Logo löschen"
     uploadLogo: "Turnierlogo hochladen"
+    uploadLogoInfo: "Um eine ansprechende Darstellung des Logos zu erreichen, empfehlen wir den Hintergrund transparent zu gestalten."
     choosePicture: "Bild auswählen"
     editLogo: "Turnier Logo bearbeiten"
 
