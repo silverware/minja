@@ -17,8 +17,6 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="icon" href="favicon.png">
-
     <link href="/lib/normalize/normalize.css" rel="stylesheet">
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/lib/bootstrap-modules/inline/bootstrap.inline-responsive.css" rel="stylesheet">
@@ -63,6 +61,9 @@
   </head>
   <body>
       <!-- ########################################## NAVIGATION ########################################## -->
+      <noscript>
+        minja works best with JavaScript enabled
+      </noscript>
 
 
     <% if @tournament: %>
