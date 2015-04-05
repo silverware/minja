@@ -50,8 +50,6 @@ module.exports =
   guest: "Guest"
   tournamentLeader: "Tournament Leader"
 
-
-
   infoAlert:
     members: """
       Manage the participants of Your tournament. Feel free to add additional attributes e.g., "email", "member count"
@@ -61,7 +59,6 @@ module.exports =
       Create a complete tournament bracket. Combine group stages and knockout phases in any order.
     """
     gallery: "Stelle bis zu 20 Bilder hinein."
-
 
   ################################ LOGIN ########################################################
   register: "Register"
@@ -77,15 +74,12 @@ module.exports =
   newPassword: "New Password"
   newPasswordRepeat: "New Password (Repeat)"
 
-
-
   ################################ GALLERY ########################################################
   gallery:
     navName: "Gallery"
     addImages: "Add Images"
     delete: "Delete"
     title: "Title"
-
 
   ################################ INFO ########################################################
   info:
@@ -114,9 +108,7 @@ module.exports =
     showMore: "Show More"
     tournamentCreated: "Tournament created."
 
-
   ################################ SETTINGS ########################################################
-
   settings:
     header: "Tournament Settings"
     navName: "Settings"
