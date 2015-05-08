@@ -21,30 +21,6 @@
 
 <!--
 
-  <li>100% free</li>
-  <li>no advertising</li>
-  <li>create Your Tournament in 5 minutes</li>
-  <li>unlimeted participants</li>
-</ul>
-
-* unlimited tournaments
-*
-
-* test login
-* register and login buttons
-
-
-
-examples for ad:
-http://www.tournamentsmanager.com/
-http://www.tournament-bracket-generator.com/
-
-<ul>
-  <li>flexible bracket creation</li>
-  <li>all common bracket modes realizable</li>
-  <li>automatic game schedule generation</li>
-  <li>print views</li>
-</ul>
 
 </div>
 
@@ -66,25 +42,6 @@ http://www.tournament-bracket-generator.com/
 
 
 <!--
-FEATURES:
-
-Turnierbaum: Spielplan-Generator, Druckansichten, Spiele Taggen
-* 100% free
-* no advertising
-* Erstelle dein Turnier in 2 Minuten
-* unlimeted participants
-* alle üblichen Turniermodi umsetzbar
-* Flexible Umsetzung aller gebräuchlichen Turniermodi durch einfaches Zusammenbauen der Turnierrunden
-    Gesamter Turnierbaum auf einen Blick
-    automatische Spielplangenerierung (Algorithmus stellt sicher, dass Mannschaften/Spieler nicht zu viel oder zu wenig Pausen zwischen den Gruppenspielen haben)
-    Druckansichten der Spielpläne/Gruppen
-* Individualisiere deine Turnierseite (Farbe, Logo)
-
-
-in 5 Minuten zum Online Auftritt - DEMO VIDEO
-
-
-
 
 
     <div id="myCarousel" class="carousel slide">

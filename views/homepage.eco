@@ -1,4 +1,67 @@
 <!-- particle system http://aerotwist.com/tutorials/creating-particles-with-three-js/ -->
+
+<!--
+
+Homepage:
+=========
+* Responsive -> tablet smartphone desktop bilder
+* Example Tournament bracket im Hintergrund �ber volle Breite
+* example: http://info.noombers.com/de/index.php
+Warum bei Noombers anmelden?
+Hier einige der grossartigen Features unserer Plattform.
+
+    Es ist gratis!
+    Turniere in wenigen Minuten planen
+    Eigene Mannschaften kreiren und Freunde einladen
+    Einfach mit anderen Mannschaften oder Fans kommunizieren
+
+
+
+Design:
+Examples:
+https://yourkarma.com/
+Themes: http://bootswatch.com/
+
+feature examples
+https://www.youtube.com/watch?v=Ax9Qq6Slews
+
+FEATURES:
+
+Turnierbaum: Spielplan-Generator, Druckansichten, Spiele Taggen
+* 100% free
+* no advertising
+* Erstelle dein Turnier in 2 Minuten
+* unlimeted participants
+* alle üblichen Turniermodi umsetzbar
+* Flexible Umsetzung aller gebräuchlichen Turniermodi durch einfaches Zusammenbauen der Turnierrunden
+    Gesamter Turnierbaum auf einen Blick
+    automatische Spielplangenerierung (Algorithmus stellt sicher, dass Mannschaften/Spieler nicht zu viel oder zu wenig Pausen zwischen den Gruppenspielen haben)
+    Druckansichten der Spielpläne/Gruppen
+* Individualisiere deine Turnierseite (Farbe, Logo)
+
+
+in 5 Minuten zum Online Auftritt - DEMO VIDEO
+
+
+  <li>100% free</li>
+  <li>no advertising</li>
+  <li>create Your Tournament in 5 minutes</li>
+  <li>unlimeted participants</li>
+</ul>
+
+* unlimited tournaments
+*
+
+* test login
+* register and login buttons
+
+
+  <li>flexible bracket creation</li>
+  <li>all common bracket modes realizable</li>
+  <li>automatic game schedule generation</li>
+  <li>print views</li>
+
+-->
 <script>
   require(['background'], function(backgroundRenderer) {
       backgroundRenderer.init();
