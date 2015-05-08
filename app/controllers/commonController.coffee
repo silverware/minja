@@ -13,6 +13,9 @@ class CommonController
   "/site/impressum": (req, res) =>
     res.render 'impressum'
 
+  "/site/aboutus": (req, res) =>
+    res.render 'aboutus'
+
   "/site/sitemap": (req, res) =>
     tournamentDao.findAllTournamentIdentifiers (tournaments)->
       res.render 'sitemap',
