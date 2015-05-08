@@ -4,6 +4,15 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+/* ul.feature-list { */
+/*    list-style-image: url('favicon.png'); */
+/* } */
+
+ul.feature-list li {
+  margin: 10px;
+
+}
+
 body,
 html {
     width: 100%;
@@ -24,6 +33,9 @@ h6 {
     /* font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; */
     /* font-weight: 700; */
 }
+/* .navbar-static-top { */
+/*   display: none; */
+/* } */
 .navbar {
   /* background: none !important; */
   /* background-color: rgba(255, 255, 255, 0.05) !important; */
@@ -102,11 +114,16 @@ h6 {
 
 .content-section-a {
     padding: 50px 0;
-    background-color: #f8f8f8;
-    color: #222;
+    /* background-color: #f8f8f8; */
+    background-color: rgba(68, 82, 101, 0.95);
+    color: #eee;
 }
 
 .content-section-b {
+    color: #f8f8f8;
+    /* background: url(../img/rasen.jpg) no-repeat center center; */
+    background-color: #6a7b91;
+    background-size: cover;
     padding: 50px 0;
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
@@ -122,10 +139,12 @@ h6 {
     border-top: 3px solid #e7e7e7;
 }
 
+
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../img/rasen.jpg) no-repeat center center;
+    /* background: url(../img/rasen.jpg) no-repeat center center; */
+    background-color: #6a7b91;
     background-size: cover;
 }
 

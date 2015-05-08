@@ -86,7 +86,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                         <a href="/user/register" class="btn btn-inverse btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name"><%= @i18n.register %></span></a>
                         </li>
                         <li>
-                            <a href="/auth/facebook" class="btn btn-inverse btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Login via facebook</span></a>
+                            <a href="/user/login" class="btn btn-inverse btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name">Login</span></a>
                         </li>
                     </ul>
                     </div>
@@ -98,7 +98,6 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
 
     </div>
     <!-- /.intro-header -->
-<!--
 
     <div class="content-section-a">
 
@@ -108,11 +107,11 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
+                    <h2 class="section-heading">It is just for the promoters</h2>
                     <p class="lead">
-                      <ul>
+                      <ul class="feature-list">
                         <li>free creation of unlimited tournaments of arbitrary size</li>
-                        <li>customizable color themes and tournament logo</li>
+                        <li>entirely without advertisment</li>
                         <li>responsive user interface</li>
                       </ul>
                     </p>
@@ -137,7 +136,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Flexible bracket creation</h2>
                     <p class="lead">
-                      <ul>
+                      <ul class="feature-list">
                         <li>all common bracket modes feasible by sticking together the tournament rounds</li>
                         <li>automatic game scheduling</li>
                       </ul>
@@ -158,14 +157,20 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-5 col-sm-6">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                    <h2 class="section-heading">Customizable appearance</h2>
+                    <p class="lead">
+                      <ul class="feature-list">
+                        <li>change the color theme in order to achieve a consistent look and feel</li>
+                        <li>upload custom tournament logo</li>
+                        <li>responsive user interface</li>
+                      </ul>
+                    </p>
                 </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="img/homepage/colorthemes.png" alt="">
                 </div>
             </div>
 
@@ -180,16 +185,11 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Ready to start:</h2>
+                    <h2>Ready to start</h2>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="/user/register" class="btn btn-inverse btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Sign up</span></a>
-                        </li>
-                        <li>
-                            <a href="/auth/facebook" class="btn btn-inverse btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Login via facebook</span></a>
-                        </li>
+                      <li><a class="btn btn-inverse btn-lg" href="/tournament/create"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"><%= @.i18n.createNewTournament %></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -198,7 +198,6 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
 
     </div>
 
--->
     <footer class="navbar">
         <div class="container">
             <div class="row">

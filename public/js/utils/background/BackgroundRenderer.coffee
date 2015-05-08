@@ -134,6 +134,7 @@ define ['mobiledetect', 'threejs', 'jquery', 'modernizr'], (MobileDetect) ->
        return false
 
   init = ->
+    return
     try
       if not Modernizr.webgl then return
       if not Modernizr.canvas then return

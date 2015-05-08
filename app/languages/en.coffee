@@ -90,7 +90,7 @@ module.exports =
     when: "When"
     startDate: "From"
     stopDate: "To"
-    host: "Host"
+    host: "Promoter"
     basicData: "Basic Data"
     stopTimeKnown: "End Time?"
     deleteStopTime: "Delete End Time"
