@@ -79,7 +79,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>minja</h1>
-                        <h3>the simple way to manage tournaments</h3>
+                        <h3><%= @i18n.homepage.subtitle %></h3>
                         <hr class="intro-divider">
                     <ul class="list-inline">
                         <li>
@@ -110,9 +110,10 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                     <h2 class="section-heading">It is just for the promoters</h2>
                     <p class="lead">
                       <ul class="feature-list">
-                        <li>Administrate basic tournament data, participants and a flexible bracket</li>
-                        <li>Free creation of unlimited tournaments of arbitrary size</li>
-                        <li>Entirely without advertisment</li>
+                        <li><%= @i18n.homepage.feature11 %></li>
+                        <li><%= @i18n.homepage.feature12 %></li>
+                        <li><%= @i18n.homepage.feature13 %></li>
+                        <li><%= @i18n.homepage.feature14 %></li>
                       </ul>
                     </p>
                 </div>
@@ -134,17 +135,17 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Flexible bracket editor</h2>
+                    <h2 class="section-heading"><%= @i18n.homepage.feature2Title %></h2>
                     <p class="lead">
                       <ul class="feature-list">
-                        <li>All common bracket modes feasible by sticking together the tournament rounds</li>
-                        <li>Automatic game scheduling, manually adjustable</li>
-                        <li>various views: participant statistics, filterable round details</li>
+                        <li><%= @i18n.homepage.feature21 %></li>
+                        <li><%= @i18n.homepage.feature22 %></li>
+                        <li><%= @i18n.homepage.feature23 %></li>
                       </ul>
                     </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/homepage/bracket.png" alt="">
+                    <img class="img-responsive" src="img/homepage/bracket2.png" alt="">
                 </div>
             </div>
 
@@ -161,12 +162,12 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Customizable appearance</h2>
+                    <h2 class="section-heading"><%= @i18n.homepage.feature3Title %></h2>
                     <p class="lead">
                       <ul class="feature-list">
-                        <li>Change the color theme in order to achieve a consistent look and feel</li>
-                        <li>Upload a custom tournament logo</li>
-                        <li>Responsive user interface</li>
+                        <li><%= @i18n.homepage.feature31 %></li>
+                        <li><%= @i18n.homepage.feature32 %></li>
+                        <li><%= @i18n.homepage.feature33 %></li>
                       </ul>
                     </p>
                 </div>

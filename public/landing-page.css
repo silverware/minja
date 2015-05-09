@@ -139,6 +139,10 @@ h6 {
     border-bottom: 1px solid #e7e7e7;
 }
 
+.intro-header {
+    border-bottom: 1px solid #e7e7e7;
+}
+
 .section-heading {
     margin-bottom: 30px;
 }
@@ -156,6 +160,7 @@ h6 {
     /* background: url(../img/rasen.jpg) no-repeat center center; */
     background-color: #6a7b91;
     background-size: cover;
+    border-top: 1px solid #e7e7e7;
 }
 
 .banner h2 {

@@ -168,7 +168,7 @@ Popover
 }
 
 .dropdown-menu {
-  background-color: darken(@dark, 10%);
+  background-color: darken(@dark, 8%);
   color: @footerText !important;
   a {
     color: inherit;
@@ -182,11 +182,12 @@ Bootstrap
 ----------------------------------------------------------------------*/
 
 .navbar {
-  // background-color: @dark;
-  .gradient(lighten(@dark, 8%), @dark);
+  background-color: @dark;
+  // .gradient(lighten(@dark, 8%), @dark);
   a {
     color: @footerText;
   }
+  border-top: 5px solid darken(@dark, 8%);
 }
 .dropdown-menu > li > a {
   color: @footerText;
@@ -202,7 +203,7 @@ Bootstrap
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  background-color: darken(@dark, 10%);
+  background-color: darken(@dark, 8%);
 }
 
 .navbar-toggle {
@@ -210,13 +211,13 @@ Bootstrap
 }
 
 .navbar-brand:hover {
-  background-color: darken(@dark, 10%);
+  background-color: darken(@dark, 8%);
   color: @footerText;
 
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover {
-  background-color: darken(@dark, 10%);
+  background-color: darken(@dark, 8%);
   color: @footerText;
   border-radius: 5px;
 }
@@ -226,7 +227,7 @@ Bootstrap
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
-  background-color: darken(@dark, 10%);
+  background-color: darken(@dark, 8%);
   color: fadein(@footerText, 100%);
 }
 
@@ -352,7 +353,16 @@ Tree
         color: @footerText !important;
       }
       color: @footerText !important;
-      .gradient(lighten(@dark, 8%), @dark);
+      // .gradient(lighten(@dark, 8%), @dark);
+      background-color: @dark;
+    }
+  }
+}
+.detailView .table, .table-striped{
+  thead {
+    th {
+      background-color: @dark;
+      border-top: 3px solid darken(@dark, 8%) !important;
     }
   }
 }

@@ -74,6 +74,22 @@ module.exports =
   newPassword: "Neues Passwort"
   newPasswordRepeat: "Neues Passwort wiederholen"
 
+  ################################ HOMEPAGE ########################################################
+  homepage:
+    subtitle: "the simple way to manage tournaments"
+    feature1Title: "It is just for the promoters"
+    feature11: "Administrate basic tournament data, participants and a flexible bracket"
+    feature12: "Generate print views for tournament groups and rounds"
+    feature13: "Free creation of unlimited tournaments of arbitrary size"
+    feature14: "Entirely without advertisment"
+    feature2Title: "Flexible bracket editor"
+    feature21: "All common bracket modes feasible by sticking together the tournament rounds"
+    feature22: "Automatic game scheduling, afterwards manually adjustable"
+    feature23: "Various views: participant statistics, filterable round schedule, ..."
+    feature3Title: "Customizable appearance"
+    feature31: "Change the color theme in order to achieve a consistent look and feel"
+    feature32: "Upload a custom tournament logo"
+    feature33: "Responsive user interface"
 
   ################################ GALLERY ########################################################
   gallery:

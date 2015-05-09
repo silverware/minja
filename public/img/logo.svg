@@ -14,7 +14,7 @@
    height="297mm"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="logo.svg"
    inkscape:export-filename="F:\github\minja\public\img\logo.png"
    inkscape:export-xdpi="90"
@@ -1094,7 +1094,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70000002"
-     inkscape:cx="207.93611"
+     inkscape:cx="-65.635311"
      inkscape:cy="270.28146"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -1102,8 +1102,8 @@
      inkscape:snap-global="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1463"
-     inkscape:window-height="763"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
@@ -1151,7 +1151,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1177,50 +1177,50 @@
        inkscape:export-xdpi="21.233465"
        inkscape:export-ydpi="21.233465" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:none;filter:url(#filter4920)"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;"
        d="m 41.140176,716.4732 66.584024,122.35518 46.59823,15.35361 c 9.5548,-21.56795 32.95332,-33.57541 55.99292,-28.82868 L 226.11755,777.29066 41.140176,716.4732 z"
        id="rect3777"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Github\minja\public\img\homepage\logo.png"
-       inkscape:export-xdpi="63.579865"
-       inkscape:export-ydpi="63.579865" />
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\homepage\logo.png"
+       inkscape:export-xdpi="70.921646"
+       inkscape:export-ydpi="70.921646" />
     <path
-       style="fill:#ffffff;fill-opacity:1;filter:url(#filter4932);stroke:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
        d="m 357.8732,716.13295 -122.31616,66.46527 -15.13888,45.94514 c 21.86778,9.55839 33.96261,33.33419 28.92019,56.61512 l 47.79547,15.71435 60.73938,-184.73988 z"
        id="rect3777-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Github\minja\public\img\homepage\logo.png"
-       inkscape:export-xdpi="63.579865"
-       inkscape:export-ydpi="63.579865" />
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\homepage\logo.png"
+       inkscape:export-xdpi="70.921646"
+       inkscape:export-ydpi="70.921646" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:none;filter:url(#filter4908)"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;"
        d="M 103.00712,847.67252 42.277479,1032.3828 164.59365,965.91745 179.50803,920.65511 c -21.95229,-9.72496 -33.99812,-33.78748 -28.55702,-57.21942 l -47.94389,-15.76317 z"
        id="rect3777-4-0"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Github\minja\public\img\homepage\logo.png"
-       inkscape:export-xdpi="63.579865"
-       inkscape:export-ydpi="63.579865" />
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\homepage\logo.png"
+       inkscape:export-xdpi="70.921646"
+       inkscape:export-ydpi="70.921646" />
     <path
-       style="fill:#ffffff;fill-opacity:1;filter:url(#filter4896);stroke:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
        d="m 246.02955,895.22225 c -9.75723,21.72978 -33.59167,33.66079 -56.8644,28.37768 l -15.85101,48.21107 184.7399,60.7394 -66.46528,-122.31616 -45.55921,-15.01199 z"
        id="rect3777-4-9"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Github\minja\public\img\homepage\logo.png"
-       inkscape:export-xdpi="63.579865"
-       inkscape:export-ydpi="63.579865" />
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\homepage\logo.png"
+       inkscape:export-xdpi="70.921646"
+       inkscape:export-ydpi="70.921646" />
     <path
        transform="matrix(0.94997204,0.31233491,-0.31233491,0.94997204,308.88249,-169.1132)"
        sodipodi:type="arc"
-       style="fill:#ffffff;fill-opacity:1;filter:url(#filter4944);stroke:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
        id="path3861-4"
        sodipodi:cx="200.26274"
        sodipodi:cy="852.60449"
        sodipodi:rx="50.255089"
        sodipodi:ry="50.255089"
        d="m 250.51783,852.60449 a 50.255089,50.255089 0 1 1 -100.51018,0 50.255089,50.255089 0 1 1 100.51018,0 z"
-       inkscape:export-filename="D:\Github\minja\public\img\homepage\logo.png"
-       inkscape:export-xdpi="63.579865"
-       inkscape:export-ydpi="63.579865" />
+       inkscape:export-filename="B:\Marvin\Daten\Projekte\Github\minja\public\img\homepage\logo.png"
+       inkscape:export-xdpi="70.921646"
+       inkscape:export-ydpi="70.921646" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3885"
