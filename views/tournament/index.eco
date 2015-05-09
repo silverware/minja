@@ -1,8 +1,8 @@
 <script>
   require(["app"], function() {
-    require(['background'], function(backgroundRenderer) {
-        backgroundRenderer.init();
-    });
+    //require(['background'], function(backgroundRenderer) {
+    //    backgroundRenderer.init();
+    //});
     App.init({
       i18n: <%- @json @i18n %>,
       isOwner: <%= @tournament.isOwner %>,

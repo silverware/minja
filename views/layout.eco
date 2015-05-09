@@ -117,12 +117,15 @@
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <% if @user: %>
               <% if @tournament: %>
                  <li><i id="favoriteStar" tid="<%= @tournament.id %>" rel="tooltip"
                   title="Favoriten-Status" isFavorite="<%= @tournament.isFavorite %>"></i></li>
               <% end %>
+              <% if @user: %>
                 <li><a href="/me/tournaments"><%= @i18n.myTournaments %></a></li>
+              <% else: %>
+                <li><a href="/user/login">Login</a></li>
+              <% end %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -130,18 +133,20 @@
                     <li><a tabindex="-1" href="/me/tournaments"><%= @i18n.myTournaments %></a></li>
                     <li><a tabindex="-1" href="/me/favorites"><%= @i18n.favorites %></a></li>
                     <li class="divider"></li>-->
-                    <li class="dropdown-header"><%= @i18n.profile %></li>
-                    <li><a tabindex="-1" href="/me/changepassword"><%= @i18n.changePassword %></a></li>
-                    <li><a tabindex="-1" href="/user/logout">Logout</a></li>
+                    <% if @user: %>
+                      <li class="dropdown-header"><%= @i18n.profile %></li>
+                      <li><a tabindex="-1" href="/me/changepassword"><%= @i18n.changePassword %></a></li>
+                      <li><a tabindex="-1" href="/user/logout">Logout</a></li>
+                    <% else: %>
+                      <li><a tabindex="-1" href="/user/register"><%= @i18n.register %></a></li>
+                      <li><a tabindex="-1" href="/user/login">Login</a></li>
+                    <% end %>
                     <li class="divider"></li>
                     <li class="dropdown-header"><%= @i18n.language %></li>
                     <li><a tabindex="-1" href="/lang/de?next=<%= @path %>"><img src="/img/de.png" alt="german" />&nbsp;<%= @i18n.german %></a></li>
                     <li><a tabindex="-1" href="/lang/en?next=<%= @path %>"><img src="/img/gb.png" alt="english" />&nbsp;<%= @i18n.english %></a></li>
                   </ul>
                 </li>
-            <% else: %>
-                <li><a href="/user/login">Login</a></li>
-            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
