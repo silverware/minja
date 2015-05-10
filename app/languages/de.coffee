@@ -82,7 +82,7 @@ module.exports =
     feature12: "Erzeuge Druckansichten für die einzelnen Turnierrunden"
     feature13: "Erstelle kostenfrei Turniere beliebiger Größe"
     feature14: "100% ohne Werbeeinblendung"
-    feature2Title: "Flexibler Turnierbaum-Editor"
+    feature2Title: "Flexibler Turnierbaum Editor"
     feature21: "Alle üblichen Turniermodi erstellbar"
     feature22: "Automatische Erstellung eines Spielplans"
     feature23: "Verschiedene Sichten: Teilnehmer Statistiken, Spielpläne pro Turnierrunde, ..."
