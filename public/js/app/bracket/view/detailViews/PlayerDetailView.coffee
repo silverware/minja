@@ -26,6 +26,8 @@ App.templates.playerDetail = """
           <br /> <br />
       {{#if statistics.hasPlayedGames}}
       <dl class="dl-horizontal">
+      <dt>{{i18n.bracket.statistic}}</dt>
+      <dd>{{statistics.wins}}-{{statistics.draws}}-{{statistics.defeats}} ({{i18n.bracket.winsShort}}-{{i18n.bracket.drawsShort}}-{{i18n.bracket.defeatsShort}})<dd>
       <dt>&oslash;&nbsp;{{i18n.bracket.goals}}</dt>
       <dd>{{statistics.goalsAvg}} ({{statistics.goals}})<dd>
       <dt>&oslash;&nbsp;{{i18n.bracket.goalsAgainst}}</dt>
@@ -145,7 +147,8 @@ App.PlayerDetailView = App.DetailView.extend
       .style("text-anchor", "middle")
       .text((d, i) ->
         if noGames then data[i].value = 0
-        data[i].label + ': ' + data[i].value)
+        data[i].label #+ ': ' + data[i].value
+        )
 
       
 App.PlayerDetailController = Ember.Controller.extend

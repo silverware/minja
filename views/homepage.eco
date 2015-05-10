@@ -107,7 +107,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">It is just for the promoters</h2>
+                    <h2 class="section-heading"><%= @i18n.homepage.feature1Title %></h2>
                     <p class="lead">
                       <ul class="feature-list">
                         <li><%= @i18n.homepage.feature11 %></li>

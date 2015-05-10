@@ -77,7 +77,7 @@ module.exports =
   ################################ HOMEPAGE ########################################################
   homepage:
     subtitle: "the simple way to manage tournaments"
-    feature1Title: "It is just for the promoters"
+    feature1Title: "Yet another tournament manager"
     feature11: "Administrate basic tournament data, participants and a flexible bracket"
     feature12: "Generate print views for tournament groups and rounds"
     feature13: "Free creation of unlimited tournaments of arbitrary size"

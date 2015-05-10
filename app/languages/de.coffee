@@ -77,19 +77,19 @@ module.exports =
   ################################ HOMEPAGE ########################################################
   homepage:
     subtitle: "the simple way to manage tournaments"
-    feature1Title: "It is just for the promoters"
-    feature11: "Administrate basic tournament data, participants and a flexible bracket"
-    feature12: "Generate print views for tournament groups and rounds"
-    feature13: "Free creation of unlimited tournaments of arbitrary size"
-    feature14: "Entirely without advertisment"
-    feature2Title: "Flexible bracket editor"
-    feature21: "All common bracket modes feasible by sticking together the tournament rounds"
-    feature22: "Automatic game scheduling, afterwards manually adjustable"
-    feature23: "Various views: participant statistics, filterable round schedule, ..."
-    feature3Title: "Customizable appearance"
-    feature31: "Change the color theme in order to achieve a consistent look and feel"
-    feature32: "Upload a custom tournament logo"
-    feature33: "Responsive user interface"
+    feature1Title: "Noch ein weiterer Turnier Manager"
+    feature11: "Verwalte allgemeine Turnierdaten, die Teilnehmer und den Turnierbaum"
+    feature12: "Erzeuge Druckansichten für die einzelnen Turnierrunden"
+    feature13: "Erstelle kostenfrei Turniere beliebiger Größe"
+    feature14: "100% ohne Werbeeinblendung"
+    feature2Title: "Flexibler Turnierbaum-Editor"
+    feature21: "Alle üblichen Turniermodi erstellbar"
+    feature22: "Automatische Erstellung eines Spielplans"
+    feature23: "Verschiedene Sichten: Teilnehmer Statistiken, Spielpläne pro Turnierrunde, ..."
+    feature3Title: "Anpassbare Benutzeroberfläche"
+    feature31: "Passe das Farbschema beliebig an"
+    feature32: "Lade ein Turnierlogo hoch"
+    feature33: "Responsives User Interface"
 
   ################################ GALLERY ########################################################
   gallery:
