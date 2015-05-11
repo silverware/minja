@@ -118,7 +118,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
                     </p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/homepage/logo.png" alt="" style="height: 230px">
+                    <img class="img-responsive hidden-xs" src="img/homepage/logo.png" alt="" style="height: 230px">
                 </div>
             </div>
 
@@ -181,7 +181,7 @@ in 5 Minuten zum Online Auftritt - DEMO VIDEO
       </div>
 
 
-    <div class="banner">
+    <div class="banner hidden-xs">
 
         <div class="container">
 

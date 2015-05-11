@@ -8,6 +8,7 @@ ul.feature-list {
    list-style-image: url('img/homepage/logo-white-small.png');
       background-repeat: no-repeat;
     background-position: 95% 50%;
+    margin-bottom: 20px;
 }
 
 canvas {

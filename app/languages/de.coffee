@@ -77,7 +77,7 @@ module.exports =
   ################################ HOMEPAGE ########################################################
   homepage:
     subtitle: "the simple way to manage tournaments"
-    feature1Title: "Noch ein weiterer Turnier Manager"
+    feature1Title: "Der Minja Turnier Manager"
     feature11: "Verwalte allgemeine Turnierdaten, die Teilnehmer und den Turnierbaum"
     feature12: "Erzeuge Druckansichten für die einzelnen Turnierrunden"
     feature13: "Erstelle kostenfrei Turniere beliebiger Größe"
