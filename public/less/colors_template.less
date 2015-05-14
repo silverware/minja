@@ -18,6 +18,8 @@
   background: linear-gradient(to bottom,  @from 0%,@to 100%); /* W3C */
 }
 
+@fadedDark: fade(@dark, 20%);
+
 .inset-box-shadow(@x1, @x2, @x3, @x4, @color) {
   -webkit-box-shadow: inset @x1 @x2 @x3 @x4 @color;
   -moz-box-shadow: inset @x1 @x2 @x3 @x4 @color;
@@ -57,7 +59,7 @@ Colors
 ----------------------------------------------------------------------*/
 
 .fadedBox {
-  background-color: fade(@dark, 20%);
+  background-color: @fadedDark;
   border: 1px solid fade(@dark, 30%);
 }
 
@@ -160,7 +162,7 @@ Popover
 
 .modal-footer {
   background-color: @normalOpaque;
-  border-top: 2px solid fade(@dark, 30%);
+  border-top: 2px solid @fadedDark;
 }
 
 .modal-header {
@@ -381,7 +383,7 @@ Tree
 }
 
 .roundSeperator {
-  background-color: fade(@dark, 50%);
+  background-color: @fadedDark;
   color: @footerText;
 }
 
@@ -393,6 +395,10 @@ Tree
   }
   
   .tableTable {
+    tr:hover {
+      background-color: @fadedDark;
+      cursor: pointer;
+    }
     td {
       border-bottom: 1px solid fade(@dark, 50%);
     }
@@ -404,6 +410,9 @@ Tree
     }
     .matchday-separator:hover {
       background-color: rgba(0,0,0,0) !important;
+    }
+    tr:hover {
+      background-color: @fadedDark;
     }
   }
   .closeButton {
@@ -419,10 +428,15 @@ Tree
   }
 }
 
+.qualified td:first-child {
+  color: @textColor;
+}
+
 .rank-cell {
       // .gradient(lighten(@dark, 8%), @dark);
   // color: @normalOpaque;
   // width: auto;
+  font-weight: bold;
 }
 
 .btn-link {

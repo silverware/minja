@@ -32,7 +32,6 @@ App.templates.gamesDetail = """
     <table class="table tableTable col-md-8 col-xs-12">
       <thead>
         <tr>
-          <th style="width: 5px"></th>
           <th width="20px">{{i18n.bracket.rank}}</th>
           <th style="text-align: left">Name</th>
           <th>{{i18n.bracket.games}}</th>
@@ -46,8 +45,7 @@ App.templates.gamesDetail = """
       </thead>
       <tbody>
         {{#each roundItem.table}}
-          <tr {{bind-attr class=":player qualified:qualified"}} >
-          <td></td>
+          <tr {{bind-attr class=":player qualified:qualified"}} {{action "openPlayerDetailView" player}}>
           <td class="rank-cell">
             {{rank}}.
           </td>
@@ -55,7 +53,7 @@ App.templates.gamesDetail = """
             {{#if App.editable}}
               {{view 'dynamicTextField' value=player.name classNames="xl" editable=player.editable}}
             {{else}}
-              <div class="input-padding"><a href="#" {{action "openPlayerDetailView" player}}>{{player.name}}</a></div>
+              <div class="input-padding"><a href="#" >{{player.name}}</a></div>
             {{/if}}
           </td>
           <td>{{games}}</td>

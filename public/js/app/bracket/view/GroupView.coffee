@@ -1,6 +1,5 @@
 App.templates.group = """
   <table {{bind-attr class=":round-item-table :noPadding :box editable::blurringBox"}} id="groupTable" {{action 'tableClicked' target='view'}}>
-    <col width="5px" />
     <col width="18px" />
     <col width="127px" />
     <col width="40px" />
@@ -26,7 +25,6 @@ App.templates.group = """
   <tbody>
     {{#each group.table}}
       <tr {{bind-attr class="qualified:qualified :player"}}>
-      <td></td>
       <td class="tableCell" style="text-align: center; vertical-align: middle">
         <div id="itemIndex" class="hide">{{view.groupIndex}}</div><div id="playerIndex" class="hide">{{index}}</div>
         {{rank}}.
