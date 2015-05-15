@@ -204,6 +204,8 @@ module.exports =
     pointsPerDraw: "Punkte/Unentschieden"
     timePerGame: "Minuten/Spiel"
     gameAttributes: "Spielmerkmale"
+    gameAttributesInfo: "Definiere zusätzliche Eigenschaften zu einem Spiel, z.B. Halbzeitergebnisse, Schiedsrichter, Spielfeld etc."
+    modusInfo: "Lege fest, welches Team sich in einer KO-Begegnung mit mehr als einem Spiel (z.B. Hin- und Rückspiel) durchsetzt. Bei Best of X qualifiziert sich das Team mit den meisten Siegen. Bei Aggregated entscheidet die Summe der erzielten Tore."
     addAttribute: "Merkmal hinzufügen"
     timeCalculation: "Zeitplanung"
     close: "Schließen"

@@ -205,6 +205,8 @@ module.exports =
     pointsPerDraw: "Points/Draw"
     timePerGame: "Minutes/Game"
     gameAttributes: "Game Attributes"
+    gameAttributesInfo: "Define additional game properties, for example halftime result, referee, pitch and so forth."
+    modusInfo: "Specify how to determine the winner in knockout phase matches with each club playing each opponent twice or more. Best of X: Team with more wins qualifies. Aggregated: Sum of goals is determining."
     addAttribute: "Add Attribute"
     timeCalculation: "Scheduling"
     close: "Close"

@@ -52,6 +52,10 @@ menu:
   </fieldset>
   <fieldset>
     <legend>{{i18n.bracket.koRound}}</legend>
+    {{#info-hint}}
+      {{i18n.bracket.modusInfo}}
+    {{/info-hint}}
+    <br />
     <div class="form-group">
     <label class="control-label col-sm-2" for="qualifierModus">Modus</label>
     <div class="col-sm-10 col-md-2">
@@ -66,6 +70,10 @@ menu:
     <div id="gameAttributes" class="tab-pane">
   <fieldset>
     <legend>{{i18n.bracket.gameAttributes}}</legend>
+    {{#info-hint}}
+      {{i18n.bracket.gameAttributesInfo}}
+    {{/info-hint}}
+    <br />
     <table class="table table-striped">
       <thead>
       <tr>

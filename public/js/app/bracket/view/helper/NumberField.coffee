@@ -9,6 +9,9 @@ App.NumberFieldView = Ember.TextField.extend
     # @set 'value', @onlyNumber @get 'value'
   ).observes("value")
 
+  click: ->
+    @$().select()
+
   onEditableChange: (->
     @$().attr("disabled", not @get("editable"))
   ).observes("editable")
