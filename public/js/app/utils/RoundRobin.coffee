@@ -1,10 +1,6 @@
 ###
   RoundRobin eine Klasse um in einer Liga Spieltage zu erzeugen.
   Der Algorithmus der Berechnung folgt in etwa dem, der auf dieser Seite beschrieben wird: http://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php
-  
-  @author  M.Richter
-  @version  1.0.0
-  @date  12:21 10.07.2012
 ###
 App.RoundRobin =
   generateGames: (players) ->

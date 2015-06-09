@@ -1,6 +1,6 @@
 App.templates.info = """
   <div class="container container-normal">
-    {{edit-link editable=false route="info.edit"}} 
+    {{edit-link editable=false route="info.edit"}}
     <h1>{{i18n.info.header}}</h1>
     <dl class="dl-horizontal">
       <dt>{{i18n.info.startDate}}</dt>

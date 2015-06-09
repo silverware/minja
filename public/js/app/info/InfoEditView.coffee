@@ -1,6 +1,6 @@
 App.templates.infoEdit = """
 <div class="container container-normal">
-  {{edit-link editable='false' route="info"}} 
+  {{edit-link editable='false' route="info"}}
   <h1>{{i18n.info.header}}</h1>
   <form id="info-form" class="form-horizontal" action=''>
     <fieldset>

@@ -86,10 +86,3 @@ App.DashboardView = Em.View.extend
 
   didInsertElement: ->
     @_super()
-    # Chat.create({
-    #   tournament_id: "<%= @tournament.id %>",
-    #   editable: false,
-    #   i18n: <%- @json @i18n.chat %>,
-    #   limit: 2
-    # App.TreeStatisticsView.init()
-
