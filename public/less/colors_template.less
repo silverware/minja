@@ -54,6 +54,11 @@
   box-shadow: 0 1px 0 0 fade(@textColor, 10%);
 }
 
+.underline-light {
+  border-bottom: 1px solid darken(@normal, 20%);
+  box-shadow: 0 1px 0 0 fade(@textColor, 10%);
+}
+
 /* ---------------------------------------------------------------------
 Colors
 ----------------------------------------------------------------------*/
@@ -128,6 +133,10 @@ code, pre {
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
   background-color: fade(@dark, 12%);
+}
+
+.table-striped tbody td {
+  .underline-light;
 }
 
 /* ---------------------------------------------------------------------
@@ -400,7 +409,8 @@ Tree
       cursor: pointer;
     }
     td {
-      border-bottom: 1px solid fade(@dark, 50%);
+      // border-bottom: 1px solid fade(@dark, 50%);
+      .underline-light;
     }
   }
 
