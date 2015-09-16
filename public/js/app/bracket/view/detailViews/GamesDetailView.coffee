@@ -35,13 +35,13 @@ App.templates.gamesDetail = """
         <tr>
           <th width="20px">{{i18n.bracket.rank}}</th>
           <th style="text-align: left">Name</th>
-          <th>{{i18n.bracket.games}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.wins}}">{{i18n.bracket.winsShort}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.draws}}">{{i18n.bracket.drawsShort}}</th>
-          <th class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.defeats}}">{{i18n.bracket.defeatsShort}}</th>
-          <th style="cursor: help" title="{{unbound i18n.bracket.goals}}">{{i18n.bracket.goalsShort}}</th>
-          <th style="cursor: help" class="hidden-xs" title="{{unbound i18n.bracket.difference}}">+/-</th>
-          <th>{{i18n.bracket.points}}</th>
+          <th width="80px">{{i18n.bracket.games}}</th>
+          <th width="60px" class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.wins}}">{{i18n.bracket.winsShort}}</th>
+          <th width="60px" class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.draws}}">{{i18n.bracket.drawsShort}}</th>
+          <th width="60px" class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.defeats}}">{{i18n.bracket.defeatsShort}}</th>
+          <th width="60px" style="cursor: help" title="{{unbound i18n.bracket.goals}}">{{i18n.bracket.goalsShort}}</th>
+          <th width="60px" style="cursor: help" class="hidden-xs" title="{{unbound i18n.bracket.difference}}">+/-</th>
+          <th width="80px">{{i18n.bracket.points}}</th>
         </tr>
       </thead>
       <tbody>
