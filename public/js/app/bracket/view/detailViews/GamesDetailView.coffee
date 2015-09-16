@@ -29,7 +29,8 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{i18n.bracket.table}}</legend>
 
-    <table class="table tableTable col-md-8 col-xs-12">
+    <div class="col-md-offset-1 col-md-10 col-xs-12">
+    <table class="table tableTable">
       <thead>
         <tr>
           <th width="20px">{{i18n.bracket.rank}}</th>
@@ -67,6 +68,7 @@ App.templates.gamesDetail = """
         {{/each}}
       </tbody>
     </table>
+    </div>
   </fieldset>
   <br />
 {{/if}}
@@ -77,6 +79,7 @@ App.templates.gamesDetail = """
         {{view 'searchTextField' value=gameFilter placeholder="Filter ..."}}
       </span>
     </legend>
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
     <table class="table tableSchedule">
       <thead class="hidden-xs">
         <tr>
@@ -134,6 +137,7 @@ App.templates.gamesDetail = """
         </tbody>
       {{/each}}
     </table>
+    </div>
   </fieldset>
     </div></div>
 """

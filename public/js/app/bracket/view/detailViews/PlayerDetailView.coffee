@@ -10,10 +10,10 @@ App.templates.playerDetail = """
   <div class="row">
   <fieldset>
     <legend>{{i18n.bracket.statistic}}</legend>
-    <div class="col-md-6">
+    <div class="col-md-offset-1 col-md-5">
       <div id="win-chart" class="center"></div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5 col-xs-6">
         <div>
           <b>{{i18n.bracket.games}}</b>
           <div style="display: inline-block; float: right; font-size: 12px">
@@ -41,6 +41,7 @@ App.templates.playerDetail = """
   <fieldset>
     <legend>{{i18n.bracket.games}}</legend>
 
+    <div class="col-md-offset-1 col-md-10">
     <table class="table tableSchedule">
       <thead>
         <tr>
@@ -96,6 +97,7 @@ App.templates.playerDetail = """
         {{/each}}
       {{/each}}
     </table>
+    </div>
     </div></div>
 """
 
