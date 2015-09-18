@@ -41,7 +41,7 @@ App.templates.playerDetail = """
   <fieldset>
     <legend>{{i18n.bracket.games}}</legend>
 
-    <div class="col-md-offset-1 col-md-10">
+    <div class="col-lg-offset-1 col-lg-10">
     <table class="table tableSchedule">
       <thead>
         <tr>

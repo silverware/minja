@@ -29,11 +29,11 @@ App.templates.gamesDetail = """
   <fieldset>
     <legend>{{i18n.bracket.table}}</legend>
 
-    <div class="col-md-offset-1 col-md-10 col-xs-12">
+    <div class="col-lg-offset-1 col-lg-10 col-xs-12">
     <table class="table tableTable">
       <thead>
         <tr>
-          <th width="20px">{{i18n.bracket.rank}}</th>
+          <th width="30px"></th>
           <th style="text-align: left">Name</th>
           <th width="80px">{{i18n.bracket.games}}</th>
           <th width="60px" class="hidden-xs" style="cursor: help" title="{{unbound i18n.bracket.wins}}">{{i18n.bracket.winsShort}}</th>
@@ -79,7 +79,7 @@ App.templates.gamesDetail = """
         {{view 'searchTextField' value=gameFilter placeholder="Filter ..."}}
       </span>
     </legend>
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
     <table class="table tableSchedule">
       <thead class="hidden-xs">
         <tr>
