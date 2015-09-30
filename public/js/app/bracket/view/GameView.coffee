@@ -16,7 +16,6 @@ App.templates.game = """
     </th>
   </thead>
   <tr>
-    <td style="width: 5px">&nbsp;</td>
     <td style="max-width: 110px; width: 110px" class="player tableCellBottom" title="{{unbound game.player1.name}}">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">0</div>
       {{#if App.editable}}
@@ -33,7 +32,6 @@ App.templates.game = """
     {{/each}}
   </tr>
   <tr>
-    <td style="width: 5px">&nbsp;</td>
     <td style="max-width: 110px; width: 110px" class="player tableCellTop" title="{{unbound game.player2.name}}">
       <div id="itemIndex" class="hide">{{view.gameIndex}}</div><div id="playerIndex" class="hide">1</div>
       {{#if App.editable}}
