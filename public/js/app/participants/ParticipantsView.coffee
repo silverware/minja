@@ -31,7 +31,7 @@ App.templates.participants = """
     <tr>
       <td style="height: 39px;">
         {{#if member.isPartaking}}
-          <i title="{{unbound i18n.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
+          <i title="{{unbound i18n.members.playerDoPartipate}}" class="fa fa-fw fa-sitemap fa-rotate-180"></i>
         {{/if}}
       </td>
       <td style="height: 39px;">

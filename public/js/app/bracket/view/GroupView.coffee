@@ -1,8 +1,7 @@
 App.templates.group = """
   <table {{bind-attr class=":round-item-table :noPadding :box editable::blurringBox"}} id="groupTable" {{action 'tableClicked' target='view'}}>
     <col width="18px" />
-    <col width="127px" />
-    <col width="40px" />
+    <col width="147px" />
     <col width="20px" />
   <thead>
     <th colspan="5">
@@ -36,7 +35,6 @@ App.templates.group = """
           {{player.name}}
         {{/if}}
       </td>
-      <td class="tableCell" style="text-align: center; vertical-align: middle">{{goals}} : {{goalsAgainst}}</td>
       <td class="tableCell" style="text-align: center; vertical-align: middle; font-weight: bold;">{{points}}</td>
     </tr>
     {{/each}}

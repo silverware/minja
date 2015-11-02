@@ -113,8 +113,17 @@ App.PlayerDetailView = App.DetailView.extend
     height = 200
     radius = Math.min(width, height) / 2
 
-    color = d3.scale.ordinal()
-      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
+    statistics = @get('controller.statistics')
+
+    colors = []
+    if statistics.get('wins') > 0
+      colors.push App.tournament.settings.colors.footer
+    if statistics.get('draws') > 0
+      colors.push "#98abc5"
+    if statistics.get('defeats') > 0
+      colors.push App.tournament.settings.colors.background
+
+    color = d3.scale.ordinal().range(colors)
 
     arc = d3.svg.arc().outerRadius(radius - 10).innerRadius(radius - 70)
 
@@ -128,8 +137,8 @@ App.PlayerDetailView = App.DetailView.extend
 
     data = [
       {label: App.i18n.bracket.wins, value: @get('controller.statistics').get('wins')}
-      {label: App.i18n.bracket.draws, value: @get('controller.statistics').get('draws')}
-      {label: App.i18n.bracket.defeats, value: @get('controller.statistics').get('defeats')}
+      {label: App.i18n.bracket.drawsMiddle, value: @get('controller.statistics').get('draws')}
+      {label: App.i18n.bracket.defeatsMiddle, value: @get('controller.statistics').get('defeats')}
     ]
 
     data = data.filter (value) -> value.value > 0
@@ -147,6 +156,7 @@ App.PlayerDetailView = App.DetailView.extend
       .attr("transform", (d) -> "translate(" + arc.centroid(d) + ")")
       .attr("dy", ".35em")
       .style("text-anchor", "middle")
+      .style('fill', App.tournament.settings.colors.footerText)
       .text((d, i) ->
         if noGames then data[i].value = 0
         data[i].label #+ ': ' + data[i].value
