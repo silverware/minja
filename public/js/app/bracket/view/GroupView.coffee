@@ -42,9 +42,9 @@ App.templates.group = """
 </table>
 
   <table {{bind-attr class=":table :round-item-table :noPadding :groupGames :box :hide editable::blurringBox"}} id="groupGames" {{action 'tableClicked' target='view'}}>
-  <col width="80px" />
+  <col width="70px" />
   <col width="8px" />
-  <col width="80px" />
+  <col width="70px" />
   <col width="50px" />
   <thead>
     <th colspan="4">
