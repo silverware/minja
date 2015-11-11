@@ -55,9 +55,12 @@ App.templates.dashboard = """
         {{i18n.members.notRecordedYet}}
       {{/info-hint}}
     {{else}}
-      {{#each member in participants.players}}
+      {{#each member in subsetParticipants}}
         <span class="label" style="display: inline-block">{{member.name}}</span>
         {{/each}}
+        {{#if participantListIsNotCompleted}}
+        <span style="display: inline-block">...</span>
+        {{/if}}
       <div class="bottomRight">
         <em>{{participantCount}} {{i18n.members.navName}}</em>
       </div>

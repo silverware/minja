@@ -19,6 +19,14 @@ App.DashboardController = Ember.Controller.extend
     App.tournament.participants.players.length
   ).property('App.tournament.participants.players')
 
+  subsetParticipants: (->
+    App.tournament.participants.players[0..9]
+  ).property('App.tournament.participants.players')
+
+  participantListIsNotCompleted: (->
+    @get('subsetParticipants').length isnt @get('participantCount')
+  ).property('App.tournament.participants.players')
+
   sortedMessages: (->
     list = App.tournament.messages.concat().sort (m1, m2) ->
       return m1.created_at < m2.created_at
